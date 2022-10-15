@@ -1,0 +1,90 @@
+cabal-version: 2.2
+
+name:           myXMonad
+version:        0.1.0.0
+description:    Please see the README
+homepage:       https://github.com/saep/figs
+bug-reports:    https://github.com/saep/figs/issues
+author:         Sebastian Witte
+maintainer:     woozletoff@gmail.com
+copyright:      2022 Sebastian Witte
+license:        BSD-3-Clause
+build-type:     Simple
+
+source-repository head
+  type: git
+  location: https://github.com/saep/figs
+
+executable myXMonad
+  default-language: Haskell2010
+  main-is: Main.hs
+  other-modules:
+      Paths_myXMonad
+  hs-source-dirs:
+      .
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      myXMonad
+    , base >=4.11 && <10
+    , bytestring
+    , containers
+    , generic-lens
+    , hostname
+    , lens
+    , megaparsec
+    , mtl
+    , pretty-simple
+    , pointedlist
+    , relude
+    , text
+    , typed-process
+    , xmonad >=0.15
+    , xmonad-contrib
+
+library
+  default-language: Haskell2010
+  exposed-modules:
+    MyWorkspaces
+  hs-source-dirs:
+    lib
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints
+  build-depends:
+      base >=4.11 && <10
+    , bytestring
+    , containers
+    , generic-lens
+    , hostname
+    , lens
+    , megaparsec
+    , mtl
+    , pretty-simple
+    , pointedlist
+    , relude
+    , text
+    , typed-process
+    , xmonad >=0.17
+    , xmonad-contrib
+
+test-suite spec
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+    MyWorkspacesSpec
+  hs-source-dirs:
+      test
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N -Wno-type-defaults
+  build-depends:
+      myXMonad
+    , base
+    , containers
+    , hspec
+    , hspec-discover
+    , lens
+    , pointedlist
+    , relude
+    , text
+    , xmonad
+    , xmonad-contrib
+  build-tool-depends:
+    hspec-discover:hspec-discover
+  default-language: Haskell2010

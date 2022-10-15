@@ -1,0 +1,25 @@
+*.swp
+*.o
+.stack-work/
+dist/
+.netrwhist
+dist-newstyle/
+home/emacs.d/bookmarks
+home/emacs.d/eshell/
+home/emacs.d/projectile-bookmarks.eld
+
+# mpd temporary files
+home/config/mpd/mpd.log
+home/config/mpd/pid
+home/config/mpd/state
+home/config/mpd/sticker.sql
+home/config/mpd/tag_cache
+
+# generated from config.org
+home/config/doom/config.el
+
+# generated from home manager/nix
+result
+
+# generated from direnv with 'use flakes'
+.direnv/

@@ -1,0 +1,95 @@
+umask 027
+
+PATH="${HOME}/bin:${HOME}/.local/bin:${HOME}/.cargo/bin:$PATH"
+[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
+export PATH
+
+typeset -U path
+
+export EDITOR='nvim'
+export VISUAL=$EDITOR
+
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_DATA_HOME="${HOME}/.local/share"
+
+[[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
+
+# User configuration
+bindkey '\C-w' kill-region
+bindkey '\eq' push-line-or-edit # M-q (original: push-line)
+bindkey ' ' magic-space
+bindkey '\e.' insert-last-word
+
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "\ee" edit-command-line # M-e
+
+# press "ctrl-e d" to insert the actual date in the form yyyy-mm-dd
+insert-datestamp() { LBUFFER+=${(%):-'%D{%Y-%m-%d}'}; }
+zle -N insert-datestamp
+#k# Insert a timestamp on the command line (yyyy-mm-dd)
+bindkey '^ed' insert-datestamp
+
+# run command line as user root via doas:
+doas-command-line() {
+    [[ -z $BUFFER ]] && zle up-history
+    if [[ $BUFFER != doas\ * ]]; then
+        BUFFER="doas $BUFFER"
+        CURSOR=$(( CURSOR+5 ))
+    fi
+}
+zle -N doas-command-line
+# prepend the current command with "doas"
+bindkey "^os" doas-command-line
+bindkey "^z" fancy-ctrl-z
+
+alias ghci-pretty="stack ghci --ghci-options \"-interactive-print=Text.Pretty.Simple.pPrint\" --package pretty-simple $@"
+
+nvm-lazy() {
+    if [ -z "$NVM_DIR" ] ; then
+        export NVM_DIR="$HOME/.nvm"
+        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+        [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+    fi
+    nvm $@
+}
+
+alias mynvm=nvm-lazy
+
+alias gd="git diff -w $@"
+alias mb="mvn package -T8 -DskipTests -Dmaven.javadoc.skip=true $@"
+
+function mvn-env() {
+    echo "Executing maven with ${MAVEN_SETTINGS_FILE}"
+    if [ -z "${MAVEN_SETTINGS_FILE}" ]; then
+        mvn $@
+    else
+        mvn -s ${MAVEN_SETTINGS_FILE} $@
+    fi
+}
+
+alias mvn=mvn-env
+
+function abs() {
+    toCopy="`pwd`/$1"
+    echo -n "$toCopy" | xsel -ib
+    echo "Put in clipboard: $toCopy"
+}
+
+function doom() {
+    exe="${HOME}/.emacs.d/bin/doom"
+    if [[ -x ${exe} ]]; then
+        ${exe} $@
+    else
+        echo "doom emacs is not installed"
+    fi
+}
+
+function stack-test-match() {
+    match="\"$@\""
+    stack test "--ta=--match ${match}" --file-watch
+}
+
+[[ "$TERM" == "xterm-kitty" ]] && alias ssh='TERM=xterm ssh $@'
+
