@@ -187,14 +187,7 @@
           vim-vinegar
 
           # treesitter
-          (nvim-treesitter.withPlugins (
-            plugins: with plugins; [
-              tree-sitter-lua
-              tree-sitter-haskell
-              tree-sitter-nix
-              tree-sitter-elm
-            ]
-          ))
+          (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
           nvim-treesitter-textobjects
 
           # telescope
