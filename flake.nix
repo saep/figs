@@ -12,16 +12,19 @@
       url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    saeparized-vim = {
-      url = "github:saep/saeparized-vim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     xmonad = {
       url = "github:xmonad/xmonad";
       inputs.unstable.follows = "nixpkgs";
     };
     xmonad-contrib = {
       url = "github:xmonad/xmonad-contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # neovim plugins that are either not in nix or for which I want to follow a
+    # specific branch
+    saeparized-vim = {
+      url = "github:saep/saeparized-vim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
