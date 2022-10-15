@@ -130,18 +130,6 @@
 
     # neovim {{{2
     neovim =
-      let
-        hydra-nvim = pkgs.vimUtils.buildVimPluginFrom2Nix {
-          name = "hydra-nvim";
-          version = "2022-10-02";
-          src = pkgs.fetchFromGitHub {
-            repo = "hydra.nvim";
-            owner = "anuvyklack";
-            rev = "fa41a971765d4cce9c39185289f5a10894f66dbd";
-            sha256 = "sha256-4X9TAi/bH7JIKRuRYONcYVtSsmyz912V5KOI4QefC6U=";
-          };
-        };
-      in
       {
         enable = true;
         viAlias = true;
