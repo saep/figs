@@ -243,7 +243,7 @@ local hydraSpace = hydra {
   },
   hint = [[
     _w_: window    _g_: git
-    _f_: find
+    _f_: find      _b_: search buffer
     _t_: terminal
     _l_: LSP
     _r_: run
@@ -261,6 +261,7 @@ local hydraSpace = hydra {
       end, { desc = ":w :so" } },
     { "f", function() hydraFind:activate() end },
     { "g", function() hydraGit:activate() end },
+    { "b", require('telescope.builtin').buffers },
     { "l",
       function()
         local buffer = vim.api.nvim_get_current_buf()
