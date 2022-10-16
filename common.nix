@@ -203,6 +203,7 @@
           nvim-colorizer-lua
           vim-shellcheck
           hydra-nvim
+          orgmode
         ];
       };
 
