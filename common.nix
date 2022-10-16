@@ -196,6 +196,7 @@
           # git
           fugitive
           gitsigns-nvim
+          diffview-nvim
 
           # other
           trouble-nvim
