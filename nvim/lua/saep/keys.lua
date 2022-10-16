@@ -277,6 +277,11 @@ local hydraSpace = hydra {
   },
 }
 
+vim.keymap.set({"n", "t", "i"}, "<A-j>", "<C-w>j" )
+vim.keymap.set({"n", "t", "i"}, "<A-k>", "<C-w>k" )
+vim.keymap.set({"n", "t", "i"}, "<A-l>", "<C-w>l" )
+vim.keymap.set({"n", "t", "i"}, "<A-h>", "<C-w>h" )
+
 vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "open diagnostics popup" })
 vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, { desc = "next" })
 vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, { desc = "previous" })
