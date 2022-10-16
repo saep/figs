@@ -184,6 +184,7 @@
           vim-speeddating
           vim-surround
           vim-vinegar
+          toggleterm-nvim
 
           # treesitter
           (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))

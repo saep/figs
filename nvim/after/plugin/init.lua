@@ -1,4 +1,5 @@
 require("saep.keys")
+require("saep.toggleterm")
 
 -- Appearance {{{1
 vim.opt.background = "dark"
