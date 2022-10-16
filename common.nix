@@ -183,7 +183,6 @@
           vim-repeat
           vim-speeddating
           vim-surround
-          vim-unimpaired
           vim-vinegar
 
           # treesitter
