@@ -93,8 +93,9 @@ instance Default MyConfig where
             myKeys =
               myDynamicWorkspaceKeys
                 <> myScreenKeys
-                <> [ ("M-g", sendMessage ToggleStruts),
+                <> [ ("M-r", sendMessage ToggleStruts),
                      ("M-f", myTreeselectWorkspace myTSConfig W.greedyView),
+                     ("M-g", namedScratchpadAction scratchpads "lazygit"),
                      ("M-n", namedScratchpadAction scratchpads "keepassxc"),
                      ("M-S-f", myTreeselectWorkspace myTSConfig W.shift),
                      ("M-q", treeSelectKey),
@@ -355,6 +356,7 @@ applyMyConfig myConfig@MyConfig {..} =
 scratchpads :: [NamedScratchpad]
 scratchpads = 
   [ NS "keepassxc" "keepassxc" (className =? "KeePassXC") (customFloating $ W.RationalRect (1/3) (1/4) (1/3) (1/2))
+  , NS "lazygit" "kitty --class=lazygit --directory ~/src/figs lazygit" (className =? "lazygit") (customFloating $ W.RationalRect (1/20) (1/20) (18/20) (18/20))
   ]
 
 myManageHook :: ManageHook
