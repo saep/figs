@@ -22,7 +22,7 @@ vim.keymap.set("v", "Q", "gq")
 
 vim.keymap.set("v", ".", ":normal .<CR>")
 
-vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
+vim.keymap.set("t", "<C-]>", "<C-\\><C-n>")
 
 local ls = require "luasnip"
 vim.keymap.set({ "i", "s" }, "<C-j>", function()
@@ -277,10 +277,15 @@ local hydraSpace = hydra {
   },
 }
 
-vim.keymap.set({"n", "t", "i"}, "<A-j>", "<C-w>j" )
-vim.keymap.set({"n", "t", "i"}, "<A-k>", "<C-w>k" )
-vim.keymap.set({"n", "t", "i"}, "<A-l>", "<C-w>l" )
-vim.keymap.set({"n", "t", "i"}, "<A-h>", "<C-w>h" )
+vim.keymap.set({"n", "i"}, "<A-j>", "<C-w>j" )
+vim.keymap.set({"n", "i"}, "<A-k>", "<C-w>k" )
+vim.keymap.set({"n", "i"}, "<A-l>", "<C-w>l" )
+vim.keymap.set({"n", "i"}, "<A-h>", "<C-w>h" )
+
+vim.keymap.set({"t"}, "<A-j>", [[<C-\><C-n><C-w>j]] )
+vim.keymap.set({"t"}, "<A-k>", [[<C-\><C-n><C-w>k]] )
+vim.keymap.set({"t"}, "<A-l>", [[<C-\><C-n><C-w>l]] )
+vim.keymap.set({"t"}, "<A-h>", [[<C-\><C-n><C-w>h]] )
 
 vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "open diagnostics popup" })
 vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, { desc = "next" })
