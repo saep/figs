@@ -55,6 +55,7 @@
     in
     {
       pkgs = pkgs;
+      color = color;
       home-manager = home-manager;
       hmModules = {
         common = ./common.nix;
