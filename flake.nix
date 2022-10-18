@@ -21,6 +21,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    saep-lazygit = {
+      url = "github:saep/lazygit/nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # neovim plugins that are either not in nix or for which I want to follow a
     # specific branch
     saeparized-vim = {
@@ -38,6 +43,7 @@
     , saeparized-vim
     , xmonad
     , xmonad-contrib
+    , saep-lazygit
     }:
     let
       color = (import ./colors/cattpuccin/mocha.nix).color;
@@ -50,6 +56,7 @@
           saeparized-vim.overlay
           xmonad.overlay
           xmonad-contrib.overlay
+          saep-lazygit.overlay.x86_64-linux
         ];
       };
     in
