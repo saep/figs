@@ -17,6 +17,7 @@
     elmPackages.elm-test
     elmPackages.elm-format
     # go
+    gcc
     go
     gofumpt
     gopls
