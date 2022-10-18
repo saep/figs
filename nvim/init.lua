@@ -138,6 +138,11 @@ require('lspconfig').elmls.setup {
   on_attach = on_attach
 }
 
+-- go {{{2
+require('lspconfig').gopls.setup {
+  on_attach = on_attach
+}
+
 -- nix {{{2
 require('lspconfig').rnix.setup {
   on_attach = on_attach

@@ -16,6 +16,9 @@
     elmPackages.elm
     elmPackages.elm-test
     elmPackages.elm-format
+    # go
+    go
+    gopls
     # nix
     nixfmt
     rnix-lsp
