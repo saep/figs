@@ -28,9 +28,7 @@
     fd
     graphviz
     jq
-    lazygit
     ripgrep
-    stow # TODO remove once everything is moved to home-manager
     wakeonlan
     zip
   ];
@@ -47,7 +45,7 @@
 
   # Configuration files {{{1
   home.file.".ghci".source = ./dev/ghci;
-   
+
   xdg.configFile."nix/nix.conf".text = ''
     experimental-features = nix-command flakes
   '';
@@ -126,6 +124,23 @@
 
         "tags"
       ];
+    };
+
+    # lazygit {{{2
+    lazygit = {
+      enable = true;
+      settings = {
+        gui = {
+          showIcons = true;
+        };
+        git = {
+          paging = {
+            colorArg = "always";
+            pager = "delta --dark --paging=never";
+          };
+        };
+        notARepository = "skip";
+      };
     };
 
     # neovim {{{2
