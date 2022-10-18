@@ -18,6 +18,7 @@
     elmPackages.elm-format
     # go
     go
+    gofumpt
     gopls
     # nix
     nixfmt
@@ -135,6 +136,8 @@
       settings = {
         gui = {
           showIcons = true;
+          scrollHeight = 0.5;
+          scrollPastBottom = false;
         };
         git = {
           paging = {

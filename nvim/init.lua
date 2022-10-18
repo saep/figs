@@ -140,7 +140,12 @@ require('lspconfig').elmls.setup {
 
 -- go {{{2
 require('lspconfig').gopls.setup {
-  on_attach = on_attach
+  on_attach = on_attach,
+  settings = {
+    gopls = {
+      gofumpt = true
+    }
+  }
 }
 
 -- nix {{{2
