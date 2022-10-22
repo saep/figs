@@ -2,10 +2,10 @@ require("saep.orgmode")
 require("saep.keys")
 require("saep.toggleterm")
 require("saep.cmp")
+require("saep.noice")
 
 -- Appearance {{{1
 vim.opt.background = "dark"
-vim.opt.lazyredraw = true
 vim.cmd"highlight WinSeparator guibg=None"
 vim.opt.hlsearch = false
 vim.g.catppuccin_flavour = "mocha"

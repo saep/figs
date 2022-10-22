@@ -180,6 +180,9 @@
           plenary-nvim
 
           # bling
+          nui-nvim
+          noice-nvim
+          nvim-notify
           lualine-nvim
           nvim-web-devicons
           saeparized-vim
