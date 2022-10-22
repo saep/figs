@@ -277,15 +277,15 @@ local hydraSpace = hydra {
   },
 }
 
-vim.keymap.set({"n", "i"}, "<A-j>", "<C-w>j" )
-vim.keymap.set({"n", "i"}, "<A-k>", "<C-w>k" )
-vim.keymap.set({"n", "i"}, "<A-l>", "<C-w>l" )
-vim.keymap.set({"n", "i"}, "<A-h>", "<C-w>h" )
+vim.keymap.set({ "n", "i" }, "<A-j>", "<C-w>j")
+vim.keymap.set({ "n", "i" }, "<A-k>", "<C-w>k")
+vim.keymap.set({ "n", "i" }, "<A-l>", "<C-w>l")
+vim.keymap.set({ "n", "i" }, "<A-h>", "<C-w>h")
 
-vim.keymap.set({"t"}, "<A-j>", [[<C-\><C-n><C-w>j]] )
-vim.keymap.set({"t"}, "<A-k>", [[<C-\><C-n><C-w>k]] )
-vim.keymap.set({"t"}, "<A-l>", [[<C-\><C-n><C-w>l]] )
-vim.keymap.set({"t"}, "<A-h>", [[<C-\><C-n><C-w>h]] )
+vim.keymap.set({ "t" }, "<A-j>", [[<C-\><C-n><C-w>j]])
+vim.keymap.set({ "t" }, "<A-k>", [[<C-\><C-n><C-w>k]])
+vim.keymap.set({ "t" }, "<A-l>", [[<C-\><C-n><C-w>l]])
+vim.keymap.set({ "t" }, "<A-h>", [[<C-\><C-n><C-w>h]])
 
 vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "open diagnostics popup" })
 vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, { desc = "next" })
@@ -329,7 +329,7 @@ local createLspHydraForBuffer = function(buffer)
    ^ ^                     _t_: type_definition
   ]]   ,
       heads = {
-        { "f", vim.lsp.buf.formatting, opts("format buffer") },
+        { "f", function() vim.lsp.buf.format { async = true } end, opts("format buffer") },
         { "d", vim.lsp.buf.definition, opts("definition") },
         { "D", vim.lsp.buf.declaration, opts("declaration") },
         { "i", vim.lsp.buf.implementation, opts("implementation") },

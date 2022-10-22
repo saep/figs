@@ -3,13 +3,15 @@ require("saep.keys")
 require("saep.toggleterm")
 require("saep.cmp")
 require("saep.noice")
+require("saep.lsp")
+require("saep.gitsigns")
 
 -- Appearance {{{1
 vim.opt.background = "dark"
-vim.cmd"highlight WinSeparator guibg=None"
+vim.cmd "highlight WinSeparator guibg=None"
 vim.opt.hlsearch = false
 vim.g.catppuccin_flavour = "mocha"
-vim.cmd.colorscheme { args = { "catppuccin"} }
+vim.cmd.colorscheme { args = { "catppuccin" } }
 
 -- Figure out highlighting group {{{2
 function SynStack()
@@ -54,4 +56,3 @@ require('lualine').setup {
   tabline = {},
   extensions = {}
 }
-
