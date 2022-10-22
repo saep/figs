@@ -20,7 +20,7 @@ vim.keymap.set("i", "<C-w>", "<C-g>u<C-u>")
 vim.keymap.set("n", "Q", "gqgq")
 vim.keymap.set("v", "Q", "gq")
 
-vim.keymap.set("v", ".", ":normal .<CR>")
+vim.keymap.set("v", ".", "<Cmd>normal .<CR>")
 
 vim.keymap.set("t", "<C-]>", "<C-\\><C-n>")
 
@@ -66,24 +66,24 @@ local hydraWindow = hydra {
   heads = {
     { "h", "<C-w>h" },
     { "H", "<C-w>H" },
-    { "<C-h>", ":winc <<CR>", },
+    { "<C-h>", "<Cmd>winc <<CR>", },
     { "j", "<C-w>j" },
     { "J", "<C-w>J" },
-    { "<C-j>", ":winc -<CR>", },
+    { "<C-j>", "<Cmd>winc -<CR>", },
     { "k", "<C-w>k" },
-    { "<C-k>", ":winc +<CR>" },
+    { "<C-k>", "<Cmd>winc +<CR>" },
     { "K", "<C-w>K" },
     { "l", "<C-w>l" },
-    { "<C-l>", ":winc ><CR>", },
+    { "<C-l>", "<Cmd>winc ><CR>", },
     { "L", "<C-w>L" },
-    { "o", ":only<CR>" },
-    { "c", ":q<CR>" },
-    { "s", ":sp<CR>" },
-    { "v", ":vsp<CR>" },
-    { "b", ":Telescope buffers<CR>", { exit = true } },
-    { "f", ":Telescope find_files<CR>", { exit = true } },
-    { "g", ":Telescope live_grep<CR>", { exit = true } },
-    { "t", ":term<CR>", { exit = true } },
+    { "o", "<Cmd>only<CR>" },
+    { "c", "<Cmd>q<CR>" },
+    { "s", "<Cmd>sp<CR>" },
+    { "v", "<Cmd>vsp<CR>" },
+    { "b", "<Cmd>Telescope buffers<CR>", { exit = true } },
+    { "f", "<Cmd>Telescope find_files<CR>", { exit = true } },
+    { "g", "<Cmd>Telescope live_grep<CR>", { exit = true } },
+    { "t", "<Cmd>term<CR>", { exit = true } },
     { "=", "<C-w>=" },
     { "<Esc>", nil, { exit = true, desc = "quit" } },
   }
@@ -109,12 +109,12 @@ local hydraTerminal = hydra {
   _w_: this window  ^
   ]],
   heads = {
-    { "t", ":tabnew +term<CR>" },
-    { "k", ":sp +term<CR>" },
-    { "j", ":sp +term<CR><C-w>J" },
-    { "w", ":term<CR>" },
-    { "h", ":vsp +term<CR>" },
-    { "l", ":vsp +term<CR><C-w>L" },
+    { "t", "<Cmd>tabnew +term<CR>" },
+    { "k", "<Cmd>sp +term<CR>" },
+    { "j", "<Cmd>sp +term<CR><C-w>J" },
+    { "w", "<Cmd>term<CR>" },
+    { "h", "<Cmd>vsp +term<CR>" },
+    { "l", "<Cmd>vsp +term<CR><C-w>L" },
     { "<Esc>", nil, { exit = true, desc = "quit" } },
   },
 }
@@ -139,7 +139,7 @@ local hydraFind = hydra {
     { "f", function() require('telescope.builtin').find_files({ follow = true }) end },
     { "g", require('telescope.builtin').live_grep },
     { "h", require('telescope.builtin').help_tags },
-    { "t", ":NvimTreeFindFileToggle<CR>" },
+    { "t", "<Cmd>NvimTreeFindFileToggle<CR>" },
     { "<Esc>", nil, { exit = true, desc = "quit" } },
   }
 }
@@ -220,7 +220,7 @@ local hydraGit = hydra {
         return "<Ignore>"
       end,
     },
-    { "s", ":Gitsigns stage_hunk<CR>", { silent = true } },
+    { "s", "<Cmd>Gitsigns stage_hunk<CR>", { silent = true } },
     { "u", gitsigns.undo_stage_hunk },
     { "S", gitsigns.stage_buffer },
     { "p", gitsigns.preview_hunk },
@@ -292,9 +292,9 @@ vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, { desc = "next" })
 vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, { desc = "previous" })
 vim.keymap.set("n", "<leader>dq", vim.diagnostic.setloclist, { desc = "open in location list" })
 
-vim.keymap.set("n", "<leader>gg", ":Git<CR>", { desc = "Git status" })
-vim.keymap.set("n", "<leader>gll", ":Gllog<CR>", { desc = "bottom location list" })
-vim.keymap.set("n", "<leader>glv", ":vertical Gllog<CR>", { desc = "vertical location list" })
+vim.keymap.set("n", "<leader>gg", "<Cmd>Git<CR>", { desc = "Git status" })
+vim.keymap.set("n", "<leader>gll", "<Cmd>Gllog<CR>", { desc = "bottom location list" })
+vim.keymap.set("n", "<leader>glv", "<Cmd>vertical Gllog<CR>", { desc = "vertical location list" })
 
 
 vim.keymap.set("n", "<space>", function() hydraSpace:activate() end, { desc = "spacey" })
