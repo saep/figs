@@ -10,22 +10,6 @@
 
   # simple packages {{{1
   home.packages = with pkgs; [
-    # bash/shell
-    shellcheck
-    # elm
-    elmPackages.elm
-    elmPackages.elm-test
-    elmPackages.elm-format
-    # go
-    gcc
-    go
-    gofumpt
-    gopls
-    # nix
-    nixfmt
-    rnix-lsp
-    # lua
-    sumneko-lua-language-server
     # command line utilities
     bat
     curl
@@ -167,6 +151,27 @@
           curl
           jq
           tree-sitter
+
+          # bash/shell
+          shellcheck
+
+          # nix
+          nixfmt
+          rnix-lsp
+
+          # lua
+          sumneko-lua-language-server
+
+          # elm
+          elmPackages.elm
+          elmPackages.elm-test
+          elmPackages.elm-format
+
+          # go
+          gcc # tests can't be run without it
+          go
+          gofumpt
+          gopls
 
           elmPackages.elm-language-server
         ];
