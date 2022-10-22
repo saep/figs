@@ -225,7 +225,7 @@ in
     };
     # alacritty {{{2
     alacritty = {
-      enable = true;
+      enable = false;
       package =
         let wrapper = pkgs.nixgl.nixGLIntel;
         in
