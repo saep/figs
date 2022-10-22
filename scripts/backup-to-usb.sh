@@ -1,19 +1,5 @@
 #!/usr/bin/env bash
 
-## Helper functions {{{1
-gitPushToStick() {
-    if [ -d "$1" ]; then
-        echo "Backing up $1"
-        cd "$1" || exit
-        if ! git fetch stick || ! git rebase stick/master || ! git push stick master ;then
-            echo Failure trying to backup $1
-            exit 1
-        fi
-
-    fi
-}
-## }}}1
-
 if [ "$(id -u)" != "1000" ]; then
     echo 'Unexpected user id: ' "$(id -u)" '!= 1000'
     exit 1
@@ -23,7 +9,10 @@ case $(hostname) in
     monad)
         mountPoint=/mnt/my_usb
         ;;
-    monoid|swaep)
+    monoid)
+        mountPoint=/media/saep/persistence
+        ;;
+    swaep)
         mountPoint=/run/media/saep/persistence
         ;;
     *)
@@ -53,10 +42,6 @@ fi
 #         exit 1
 #     fi
 # fi
-
-## Backup local or important repositories {{{1
-gitPushToStick "${HOME}/.password-store"
-# gitPushToStick "${HOME}/src/saepfigs"
 
 ## BORG BACKUP {{{1
 # Setting this, so the repo does not need to be given on the commandline:

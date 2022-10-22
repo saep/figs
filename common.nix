@@ -12,6 +12,7 @@
   home.packages = with pkgs; [
     # command line utilities
     bat
+    borgbackup
     curl
     direnv
     fd
