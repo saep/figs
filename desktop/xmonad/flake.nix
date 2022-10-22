@@ -7,15 +7,6 @@
     flake-utils = {
       url = "github:numtide/flake-utils";
     };
-
-    xmonad = {
-      url = "github:xmonad/xmonad";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    xmonad-contrib = {
-      url = "github:xmonad/xmonad-contrib";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = { self, nixpkgs, flake-utils, xmonad, xmonad-contrib }:

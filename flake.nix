@@ -12,15 +12,6 @@
       url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    xmonad = {
-      url = "github:xmonad/xmonad";
-      inputs.unstable.follows = "nixpkgs";
-    };
-    xmonad-contrib = {
-      url = "github:xmonad/xmonad-contrib";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     saep-lazygit = {
       url = "github:saep/lazygit/nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,8 +32,6 @@
     , home-manager
     , nixgl
     , saeparized-vim
-    , xmonad
-    , xmonad-contrib
     , saep-lazygit
     }:
     let
@@ -54,8 +43,6 @@
           nixgl.overlay
           nur.overlay
           saeparized-vim.overlay
-          xmonad.overlay
-          xmonad-contrib.overlay
           saep-lazygit.overlay.x86_64-linux
         ];
       };
