@@ -292,7 +292,7 @@ vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, { desc = "next" })
 vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, { desc = "previous" })
 vim.keymap.set("n", "<leader>dq", vim.diagnostic.setloclist, { desc = "open in location list" })
 
-vim.keymap.set("n", "<leader>gg", "<Cmd>Git<CR>", { desc = "Git status" })
+vim.keymap.set("n", "<leader>gg", "<Cmd>Neogit<CR>", { desc = "Git status" })
 vim.keymap.set("n", "<leader>gll", "<Cmd>Gllog<CR>", { desc = "bottom location list" })
 vim.keymap.set("n", "<leader>glv", "<Cmd>vertical Gllog<CR>", { desc = "vertical location list" })
 
