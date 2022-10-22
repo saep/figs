@@ -163,7 +163,7 @@ myTheme =
       urgentTextColor = "#dc322f",
       urgentColor = "#678cb1",
       urgentBorderColor = "#dc322f",
-      fontName = "xft:Fira Code:size=12"
+      fontName = "xft:Hasklug Nerd Font:size=12"
     }
 
 myTSConfig :: Tree.TSConfig a

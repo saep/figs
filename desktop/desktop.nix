@@ -59,7 +59,7 @@ in
         "*.metaSendsEscape" = true;
 
         # Font
-        "*faceName" = "FiraCode Nerd Font Mono";
+        "*faceName" = "Hasklug Nerd Font Mono";
         "*faceSize" = 14;
         ## Face size for normal=;
         "*.VT100*faceSize" = 14;
@@ -159,7 +159,7 @@ in
       remmina
 
       # fonts
-      (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+      (nerdfonts.override { fonts = [ "FiraCode" "Hasklig" "DroidSansMono" ]; })
 
       # keyboard flashing tool
       wally-cli
@@ -214,7 +214,7 @@ in
           ${wrapper}/bin/nixGLIntel ${pkgs.kitty}/bin/kitty "$@"
         '';
       font = {
-        name = "FiraCode Nerd Font";
+        name = "Hasklug Nerd Font";
         size = 14;
       };
       theme = "Catppuccin-Mocha";
@@ -244,7 +244,7 @@ in
         };
         font = {
           normal = {
-            family = "FiraCode Nerd Font";
+            family = "Hasklug Nerd Font";
           };
           size = 14.0;
         };
@@ -390,7 +390,7 @@ in
       enable = true;
       settings = {
         global = {
-          font = "FiraCode Nerd Font 14";
+          font = "Hasklug Nerd Font 14";
 
           # The format of the message. Possible variables are:
           #   %a  appname
