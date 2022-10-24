@@ -210,7 +210,6 @@ in
         let wrapper = pkgs.nixgl.nixGLIntel;
         in
         pkgs.writeShellScriptBin "kitty" ''
-          #!/bin/sh
           ${wrapper}/bin/nixGLIntel ${pkgs.kitty}/bin/kitty "$@"
         '';
       font = {
@@ -230,7 +229,6 @@ in
         let wrapper = pkgs.nixgl.nixGLIntel;
         in
         pkgs.writeShellScriptBin "alacritty" ''
-          #!/bin/sh
           ${wrapper}/bin/nixGLIntel ${pkgs.alacritty}/bin/alacritty "$@"
         '';
       settings = {
