@@ -63,6 +63,7 @@
         dev = {
           java = ./dev/java.nix;
         };
+        syncthing = ./misc/syncthing.nix;
       };
       # configuration for personal computers
       homeConfigurations."saep@monoid" = home-manager.lib.homeManagerConfiguration {
@@ -86,6 +87,7 @@
           ./desktop/desktop.nix
           ./private.nix
           ./desktop/xcape.nix
+          ./misc/syncthing.nix
         ];
         extraSpecialArgs = {
           username = "saep";
