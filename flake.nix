@@ -16,10 +16,6 @@
       url = "github:saep/lazygit/nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    neogit-saep = {
-      url = "github:saep/neogit/saep";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     # neovim plugins that are either not in nix or for which I want to follow a
     # specific branch
@@ -37,7 +33,6 @@
     , nixgl
     , saeparized-vim
     , saep-lazygit
-    , neogit-saep
     }:
     let
       color = (import ./colors/cattpuccin/mocha.nix).color;
@@ -49,7 +44,6 @@
           nur.overlay
           saeparized-vim.overlay
           saep-lazygit.overlay.x86_64-linux
-          neogit-saep.overlay
         ];
       };
     in

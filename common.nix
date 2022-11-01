@@ -228,7 +228,6 @@
           fugitive
           gitsigns-nvim
           diffview-nvim
-          neogit-saep
 
           # other
           trouble-nvim

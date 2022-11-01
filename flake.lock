@@ -32,21 +32,6 @@
     },
     "flake-utils_3": {
       "locked": {
-        "lastModified": 1659877975,
-        "narHash": "sha256-zllb8aq3YO3h8B/U0/J1WBgAL8EX5yWf5pMj3G0NAmc=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "c0e246b9b83f637f4681389ecabcb2681b4f3af0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "flake-utils_4": {
-      "locked": {
         "lastModified": 1656928814,
         "narHash": "sha256-RIFfgBuKz6Hp89yRr7+NR5tzIAbn52h8vT6vXkYjZoM=",
         "owner": "numtide",
@@ -100,31 +85,9 @@
         "type": "github"
       }
     },
-    "neogit-saep": {
-      "inputs": {
-        "flake-utils": "flake-utils",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1666460040,
-        "narHash": "sha256-QV7lxERimIMU/yqMa+MmLW4pdUkm0gdIbctb4hxnDR8=",
-        "owner": "saep",
-        "repo": "neogit",
-        "rev": "1b262d05a4bd0d8fbb9cada7795fdf7c14952012",
-        "type": "github"
-      },
-      "original": {
-        "owner": "saep",
-        "ref": "saep",
-        "repo": "neogit",
-        "type": "github"
-      }
-    },
     "nixgl": {
       "inputs": {
-        "flake-utils": "flake-utils_2",
+        "flake-utils": "flake-utils",
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -176,11 +139,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1667293123,
-        "narHash": "sha256-03b6C/sALjiTp5zp5mHwFzg88RVMI+0CqOw8UhLqK70=",
+        "lastModified": 1667311639,
+        "narHash": "sha256-dvwXGcIFSWmT1+XDadQXUS0XOea4KOrOBEQwS4E38bE=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "b9b1f566b3a1dc43275ef5aa9897f19c91d3135b",
+        "rev": "603aa23b61b4cc6c4078bdafb6ac699dacf80c60",
         "type": "github"
       },
       "original": {
@@ -192,7 +155,6 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "neogit-saep": "neogit-saep",
         "nixgl": "nixgl",
         "nixpkgs": "nixpkgs",
         "nur": "nur",
@@ -202,7 +164,7 @@
     },
     "saep-lazygit": {
       "inputs": {
-        "flake-utils": "flake-utils_3",
+        "flake-utils": "flake-utils_2",
         "gomod2nix": "gomod2nix",
         "nixpkgs": [
           "nixpkgs"
@@ -225,7 +187,7 @@
     },
     "saeparized-vim": {
       "inputs": {
-        "flake-utils": "flake-utils_4",
+        "flake-utils": "flake-utils_3",
         "nixpkgs": [
           "nixpkgs"
         ]
