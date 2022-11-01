@@ -5,6 +5,7 @@ require("saep.cmp")
 require("saep.noice")
 require("saep.lsp")
 require("saep.gitsigns")
+require("saep.tree-sitter")
 
 -- Appearance {{{1
 vim.opt.background = "dark"
