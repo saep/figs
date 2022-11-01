@@ -203,7 +203,6 @@
 
           # LSP plugins
           nvim-lspconfig
-          lsp_signature-nvim
           lspsaga-nvim
 
           # simple quality of life plugins
