@@ -7,6 +7,8 @@ require("saep.lsp")
 require("saep.gitsigns")
 require("saep.tree-sitter")
 
+require('leap').add_default_mappings()
+
 -- Appearance {{{1
 vim.opt.background = "dark"
 vim.cmd "highlight WinSeparator guibg=None"

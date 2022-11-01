@@ -215,6 +215,7 @@
           vim-surround
           vim-vinegar
           toggleterm-nvim
+          leap-nvim
 
           # treesitter
           (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
