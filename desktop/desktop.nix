@@ -192,6 +192,8 @@ in
             "browser.startup.page" = 3; # restore previous tabs and windows
             "browser.urlbar.placeholderName" = "DuckDuckGo";
             "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+            "media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
+            "media.hardwaremediakeys.enabled" = false;
           };
           userChrome = ''
             #TabsToolbar
