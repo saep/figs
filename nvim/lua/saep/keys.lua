@@ -336,12 +336,15 @@ local createLspHydraForBuffer = function(buffer)
    _f_: format buffer      _d_: definition
    _r_: rename             _D_: declaration
    _u_: usages             _i_: implementation
-   ^ ^                     _t_: type_definition
+   _c_: code lens          _t_: type_definition
+   _h_: hoogle
   ]]   ,
       heads = {
+        { "c", vim.lsp.codelens.run , opts("code lens") },
         { "f", function() vim.lsp.buf.format { async = true } end, opts("format buffer") },
         { "d", vim.lsp.buf.definition, opts("definition") },
         { "D", vim.lsp.buf.declaration, opts("declaration") },
+        { "h", require('haskell-tools').hoogle.hoogle_signature, opts("hoogle") },
         { "i", vim.lsp.buf.implementation, opts("implementation") },
         { "r", require("lspsaga.rename").rename, opts("rename") },
         { "t", vim.lsp.buf.type_definition, opts("type defintion") },

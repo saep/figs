@@ -195,6 +195,7 @@
           # LSP plugins
           nvim-lspconfig
           lspsaga-nvim
+          haskell-tools-nvim
 
           # simple quality of life plugins
           nvim-tree-lua

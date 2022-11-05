@@ -19,9 +19,10 @@ end
 -- Setup lspconfig. {{{1
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 -- Haskell {{{2
-require('lspconfig')['hls'].setup {
-  capabilities = capabilities,
-  on_attach = on_attach
+require('haskell-tools').setup {
+  hls = {
+    on_attach = on_attach
+  },
 }
 
 -- lua {{{2
