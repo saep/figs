@@ -23,6 +23,10 @@
       url = "github:saep/saeparized-vim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    saep-nvim-unception = {
+      url = "github:saep/nvim-unception/nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -33,6 +37,7 @@
     , nixgl
     , saeparized-vim
     , saep-lazygit
+    , saep-nvim-unception
     }:
     let
       color = (import ./colors/cattpuccin/mocha.nix).color;
@@ -44,6 +49,7 @@
           nur.overlay
           saeparized-vim.overlay
           saep-lazygit.overlay.x86_64-linux
+          saep-nvim-unception.overlay
         ];
       };
     in
