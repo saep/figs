@@ -9,6 +9,9 @@ set ideavimsupport=
 set clipboard+=ideaput
 set clipboard+=unnamedplus
 
+set number
+set relativenumber
+
 set iskeyword=@,48-57,192-255
 
 let mapleader = " "
