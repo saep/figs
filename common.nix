@@ -17,6 +17,7 @@
     direnv
     fd
     graphviz
+    htop
     jq
     ripgrep
     wakeonlan
