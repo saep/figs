@@ -215,7 +215,6 @@
           vim-repeat
           vim-speeddating
           vim-surround
-          vim-vinegar
           toggleterm-nvim
           leap-nvim
 

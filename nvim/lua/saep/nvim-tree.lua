@@ -1,3 +1,9 @@
 require('nvim-tree').setup {
-  hijack_netrw = false -- still using vim-vinegar
+  view = {
+    mappings = {
+      list = {
+        { key = "<CR>", action = "edit_in_place" }
+      }
+    }
+  }
 }
