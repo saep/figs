@@ -232,7 +232,6 @@
 
           # other
           trouble-nvim
-          nvim-colorizer-lua
           vim-shellcheck
           hydra-nvim
           orgmode

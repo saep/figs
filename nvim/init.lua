@@ -44,15 +44,3 @@ vim.api.nvim_create_autocmd({ "BufReadPost" }, {
   pattern = "*",
   callback = goToLastKnownPosition
 })
-
-
--- Completion {{{2
-
-vim.opt.completeopt = "menu,menuone,noselect"
-
--- 1}}}
--- hex color highlighter {{{1
-vim.opt.termguicolors = false
-require('colorizer').setup {}
-
--- vim: foldmethod=marker
