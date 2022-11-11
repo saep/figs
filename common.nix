@@ -44,8 +44,7 @@
 
   # Due to the way progrms.neovim works, it is currently not possible
   # to simply define the nvim directory here or in the neovim module.
-  xdg.configFile."nvim/after".source = ./nvim/after;
-  xdg.configFile."nvim/lua".source = ./nvim/lua;
+  xdg.configFile."nvim".source = ./nvim;
 
   # Programs {{{1
   programs = {
@@ -143,13 +142,6 @@
         enable = true;
         viAlias = true;
         withPython3 = true;
-        extraConfig = builtins.concatStringsSep "\n" [
-          ''
-            lua << EOF
-            ${lib.strings.fileContents ./nvim/init.lua}
-            EOF
-          ''
-        ];
         extraPackages = with pkgs; [
           curl
           jq
