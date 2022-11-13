@@ -16,6 +16,7 @@
     curl
     direnv
     fd
+    gnumake
     graphviz
     htop
     jq
