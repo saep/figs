@@ -524,6 +524,8 @@ in
       xset s 900
       xss-lock --notifier="${lock-screen-bin}" --transfer-sleep-lock "${lock-screen-bin}" &
 
+      eval $(ssh-agent)
+
       export GTK_THEME='Adwaita:dark'
       export QT_SCALE_FACTOR="0.5"
       [ -x $HOME/.fehbg ] && "$HOME/.fehbg"
