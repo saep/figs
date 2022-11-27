@@ -1,12 +1,18 @@
 # Applications used on desktop computers and laptops
-{ config, pkgs, lib, username, stateVersion, dpi, color, ... }:
+{ config, pkgs, lib, username, stateVersion, dpi, color, isNixos ? false, ... }:
 
 let
-  lock-screen = pkgs.writeShellScriptBin
-    "lock-screen.sh" ''
-    ${pkgs.xdotool}/bin/xdotool mousemove 0 0
-    exec /usr/bin/i3lock -c 1E1E1E
-  '';
+  lock-screen =
+    if isNixos then
+      pkgs.writeShellScriptBin "lock-screen.sh" ''
+        ${pkgs.xdotool}/bin/xdotool mousemove 0 0
+        exec ${pkgs.i3lock}/bin/i3lock -c 1E1E1E
+      ''
+    else
+      pkgs.writeShellScriptBin "lock-screen.sh" ''
+        ${pkgs.xdotool}/bin/xdotool mousemove 0 0
+        exec /usr/bin/i3lock -c 1E1E1E
+      '';
   lock-screen-bin = "${lock-screen}/bin/lock-screen.sh";
 in
 {
@@ -125,7 +131,14 @@ in
     };
 
   # simple packages {{{1
-  home.packages = with pkgs;
+  home.packages =
+    let
+      # Must use i3lock of debian system because pam files contains @include
+      # statments and only debian-based systems use that...
+      nixos-packages = if !isNixos then [ ] else with pkgs; [ i3lock ];
+    in
+    with pkgs;
+    nixos-packages ++
     [
       lock-screen
       pkgs.nixgl.nixGLIntel
@@ -137,9 +150,6 @@ in
       brightnessctl
       feh
       hsetroot
-      # Must use i3lock of debian system because pam files contains @include
-      # statments and only debian-based systems use that...
-      # i3lock
       maim
       playerctl
       wmctrl

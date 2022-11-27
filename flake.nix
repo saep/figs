@@ -75,6 +75,7 @@
           /* dpi = 96; */
           dpi = 144;
           color = color;
+          isNixos = true;
           # If the config needs attributes from a flake:
           # inherit flake;
           # then flake can be added to the arguments of e.g. home.nix
