@@ -15,6 +15,7 @@
     borgbackup
     bottom # similar to htop
     curl
+    delta
     direnv
     difftastic
     du-dust # similar to df 
@@ -39,6 +40,7 @@
     e = "nvim";
     g = "git";
     l = "ls -lah --color=tty";
+    j = "jump";
     ".." = "cd ..";
     "..." = "cd ../..";
     "...." = "cd ../../..";
@@ -66,7 +68,7 @@
     # git {{{2
     git = {
       enable = true;
-      delta.enable = true;
+      difftastic.enable = true;
       userName = "Sebastian Witte";
       extraConfig = {
         difftool = {
