@@ -25,6 +25,7 @@
     graphviz
     htop
     hyperfine # similar to time
+    inotify-tools
     jq
     jump # cd with cached directories
     procs # similar to ps
