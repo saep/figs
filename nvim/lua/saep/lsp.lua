@@ -21,7 +21,12 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 -- Haskell {{{2
 require('haskell-tools').setup {
   hls = {
-    on_attach = on_attach
+    on_attach = on_attach,
+    settings = {
+      haskell = {
+        formattingProvider = 'fourmolu',
+      },
+    },
   },
 }
 
