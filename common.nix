@@ -13,14 +13,23 @@
     # command line utilities
     bat
     borgbackup
+    bottom # similar to htop
     curl
     direnv
-    fd
+    difftastic
+    du-dust # similar to df 
+    exa # similar to ls
+    fd # similar to find
     gnumake
     graphviz
     htop
+    hyperfine # similar to time
     jq
-    ripgrep
+    jump # cd with cached directories
+    procs # similar to ps
+    ripgrep # similar to grep
+    tealdeer # common examples instead of man page
+    tokei # similar to cloc (count lines of code)
     wakeonlan
     zip
   ];
