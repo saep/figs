@@ -40,7 +40,7 @@
   home.shellAliases = {
     e = "nvim";
     g = "git";
-    l = "ls -lah --color=tty";
+    l = "exa -lah --time-style long-iso";
     j = "jump";
     ".." = "cd ..";
     "..." = "cd ../..";
