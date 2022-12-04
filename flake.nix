@@ -27,6 +27,10 @@
       url = "github:saep/nvim-unception/nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lspsaga = {
+      url = "github:glepnir/lspsaga.nvim";
+      flake = false;
+    };
   };
 
   outputs =
@@ -38,6 +42,7 @@
     , saeparized-vim
     , saep-lazygit
     , saep-nvim-unception
+    , lspsaga
     }:
     rec
     {
@@ -51,6 +56,15 @@
           saeparized-vim.overlay
           saep-lazygit.overlay.x86_64-linux
           saep-nvim-unception.overlay
+          (final: prev: {
+            vimPlugins = prev.vimPlugins // {
+              lspsaga-nvim = pkgs.vimUtils.buildVimPluginFrom2Nix {
+                pname = "lspsaga-nvim";
+                version = "HEAD";
+                src = lspsaga;
+              };
+            };
+          })
         ];
       };
       hmModules = {
@@ -68,6 +82,7 @@
         };
         private = ./private.nix;
       };
+
       # configuration for personal computers
       homeConfigurations."saep@monoid" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;

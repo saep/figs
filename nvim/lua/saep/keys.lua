@@ -10,21 +10,61 @@ local bufferSpecificLspHydras = {}
 
 -- Set a default timeout len (/ms)
 vim.opt.timeoutlen = 500
-vim.g.mapleader = "\\"
-vim.g.maplocalleader = "_"
+vim.g.mapleader = " "
+vim.g.maplocalleader = "<BS>"
 
-vim.keymap.set("i", "jk", "<ESC>")
-vim.keymap.set("i", "<C-u>", "<C-g>u<C-u>")
-vim.keymap.set("i", "<C-w>", "<C-g>u<C-u>")
+local map = function(description, modes, lhs, rhs)
+  vim.keymap.set(modes, lhs, rhs, { desc = description })
+end
 
-vim.keymap.set("n", "Q", "gqgq")
-vim.keymap.set("v", "Q", "gq")
+map("ESC", "i", "jk", "<ESC>")
+map("format gqgq", "n", "Q", "gqgq")
+map("format gq", "v", "Q", "gq")
+map("repeat", "v", ".", "<Cmd>normal .<CR>")
+map("ESC", "t", "<C-\\><C-n>", "<C-]>")
 
-vim.keymap.set("v", ".", "<Cmd>normal .<CR>")
+map("window down", { "n", "i" }, "<A-j>", "<C-w>j")
+map("window up", { "n", "i" }, "<A-k>", "<C-w>k")
+map("window right", { "n", "i" }, "<A-l>", "<C-w>l")
+map("window left", { "n", "i" }, "<A-h>", "<C-w>h")
 
-vim.keymap.set("t", "<C-]>", "<C-\\><C-n>")
+map("window down", "n", "<leader>wj", "<C-w>j")
+map("window up", "n", "<leader>wk", "<C-w>k")
+map("window right", "n", "<leader>wl", "<C-w>l")
+map("window left", "n", "<leader>wh", "<C-w>h")
 
-local ls = require "luasnip"
+map("window down", { "t" }, "<A-j>", [[<C-\><C-n><C-w>j]])
+map("window up", { "t" }, "<A-k>", [[<C-\><C-n><C-w>k]])
+map("window right", { "t" }, "<A-l>", [[<C-\><C-n><C-w>l]])
+map("window left", { "t" }, "<A-h>", [[<C-\><C-n><C-w>h]])
+
+map("previous buffer", "n", "<leader><space>", "<C-^>")
+
+map("open diagnostics popup", "n", "<leader>d", vim.diagnostic.open_float)
+map("next", "n", "<leader>dn", vim.diagnostic.goto_next)
+map("previous", "n", "<leader>dp", vim.diagnostic.goto_prev)
+map("open in location list", "n", "<leader>dq", vim.diagnostic.setloclist)
+
+map("find buffer", "n", "<leader>b", require('telescope.builtin').buffers)
+map("find buffer", "n", "<leader>fb", require('telescope.builtin').buffers)
+map("find files", "n", "<leader>ff", function() require('telescope.builtin').find_files({ follow = true }) end)
+map("live grep", "n", "<leader>fg", require('telescope.builtin').live_grep)
+map("neovim help", "n", "<leader>fh", require('telescope.builtin').help_tags)
+map("nvim-tree", "n", "<leader>ft", "<Cmd>NvimTreeFindFileToggle<CR>")
+
+local function toggle_replace()
+  local view = require "nvim-tree.view"
+  if view.is_visible() then
+    view.close()
+  else
+    require("nvim-tree").open_replacing_current_buffer()
+  end
+end
+
+map("nvim-tree current buffer", "n", "-", toggle_replace)
+
+
+local ls = require("luasnip")
 vim.keymap.set({ "i", "s" }, "<C-j>", function()
   if (ls.expand_or_jumpable()) then
     ls.expand_or_jump()
@@ -88,6 +128,7 @@ local hydraWindow = hydra {
     { "<Esc>", nil, { exit = true, desc = "quit" } },
   }
 }
+map("persistent window hydra", "n", "<C-w>", function() hydraWindow:activate() end)
 
 local hydraTerminal = hydra {
   name = "terminal",
@@ -118,56 +159,7 @@ local hydraTerminal = hydra {
     { "<Esc>", nil, { exit = true, desc = "quit" } },
   },
 }
-
-local hydraFind = hydra {
-  name = "Space prefixed commands",
-  mode = "n",
-  config = {
-    color = "blue",
-    hint = {
-      border = "rounded",
-    }
-  },
-  hint = [[
-  _b_: buffer     _t_: file tree browser  ^
-  _f_: files
-  _g_: live grep
-  _h_: help tags
-  ]],
-  heads = {
-    { "b", require('telescope.builtin').buffers },
-    { "f", function() require('telescope.builtin').find_files({ follow = true }) end },
-    { "g", require('telescope.builtin').live_grep },
-    { "h", require('telescope.builtin').help_tags },
-    { "t", "<Cmd>NvimTreeFindFileToggle<CR>" },
-    { "<Esc>", nil, { exit = true, desc = "quit" } },
-  }
-}
-
-local hydraRun = hydra {
-  name = "Run",
-  mode = "n",
-  config = {
-    color = "blue",
-    hint = {
-      border = "rounded",
-    },
-  },
-  hint = [[
-  _t_: Run tests of file
-  ]],
-  heads = {
-    { "t",
-      function()
-        if vim.opt.filetype:get() == "lua" then
-          vim.cmd ":write"
-          require('plenary.test_harness').test_directory(vim.fn.expand("%:p"))
-        end
-      end
-    },
-    { "<Esc>", nil, { exit = true, desc = "quit" } },
-  },
-}
+map("terminal hydra", "n", "<leader>t", function() hydraTerminal:activate() end)
 
 local gitsigns = require "gitsigns"
 local hydraGit = hydra {
@@ -227,87 +219,23 @@ local hydraGit = hydra {
     { "d", gitsigns.toggle_deleted, { nowait = true } },
     { "b", gitsigns.blame_line },
     { "B", function() gitsigns.blame_line { full = true } end },
-    { "g", "<Cmd>Neogit<CR>", { exit = true } },
+    { "g", "<Cmd>Git<CR>", { exit = true } },
     { "<Esc>", nil, { exit = true, nowait = true, desc = "exit" } },
   }
 }
+map("Git hydra", "n", "<leader>g", function() hydraGit:activate() end)
 
-local hydraSpace = hydra {
-  name = "Space prefixed commands",
-  mode = "n",
-  config = {
-    color = "blue",
-    hint = {
-      border = "rounded",
-    }
-  },
-  hint = [[
-    _w_: window    _g_: git
-    _f_: find      _b_: search buffer
-    _t_: terminal
-    _l_: LSP
-    _r_: run
-    ^
-    _<space>_: alternate buffer
-    _s_: :w :so
-  ]],
-  heads = {
-    { "r", function() hydraRun:activate() end },
-    { "s",
-      function() vim.cmd([[
-        :write
-        :source
-      ]] )
-      end, { desc = ":w :so" } },
-    { "f", function() hydraFind:activate() end },
-    { "g", function() hydraGit:activate() end },
-    { "b", require('telescope.builtin').buffers },
-    { "l",
-      function()
-        local buffer = vim.api.nvim_get_current_buf()
-        local lspHydra = bufferSpecificLspHydras[buffer]
-        if (lspHydra) then
-          lspHydra:activate()
-        end
-      end },
-    { "t", function() hydraTerminal:activate() end },
-    { "w", function() hydraWindow:activate() end },
-    { "<space>", "<C-^>" },
-    { "<Esc>", nil, { exit = true, desc = "quit" } },
-  },
-}
+map("lsp hydra", "n", "<leader>l",
+  function()
+    local buffer = vim.api.nvim_get_current_buf()
+    local lspHydra = bufferSpecificLspHydras[buffer]
+    if (lspHydra) then
+      lspHydra:activate()
+    end
+  end)
 
-vim.keymap.set({ "n", "i" }, "<A-j>", "<C-w>j")
-vim.keymap.set({ "n", "i" }, "<A-k>", "<C-w>k")
-vim.keymap.set({ "n", "i" }, "<A-l>", "<C-w>l")
-vim.keymap.set({ "n", "i" }, "<A-h>", "<C-w>h")
-
-vim.keymap.set({ "t" }, "<A-j>", [[<C-\><C-n><C-w>j]])
-vim.keymap.set({ "t" }, "<A-k>", [[<C-\><C-n><C-w>k]])
-vim.keymap.set({ "t" }, "<A-l>", [[<C-\><C-n><C-w>l]])
-vim.keymap.set({ "t" }, "<A-h>", [[<C-\><C-n><C-w>h]])
-
-vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "open diagnostics popup" })
-vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, { desc = "next" })
-vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, { desc = "previous" })
-vim.keymap.set("n", "<leader>dq", vim.diagnostic.setloclist, { desc = "open in location list" })
-
-vim.keymap.set("n", "<leader>gg", "<Cmd>Git<CR>", { desc = "Git status" })
-vim.keymap.set("n", "<leader>gll", "<Cmd>Gllog<CR>", { desc = "bottom location list" })
-vim.keymap.set("n", "<leader>glv", "<Cmd>vertical Gllog<CR>", { desc = "vertical location list" })
-
-
-vim.keymap.set("n", "<space>", function() hydraSpace:activate() end, { desc = "spacey" })
-
-local function toggle_replace()
-  local view = require "nvim-tree.view"
-  if view.is_visible() then
-    view.close()
-  else
-    require "nvim-tree".open_replacing_current_buffer()
-  end
-end
-vim.keymap.set("n", "-", toggle_replace, { desc = "nvim-tree current buffer" })
+vim.keymap.set("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true, desc = "previous diagnostic" })
+vim.keymap.set("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true, desc = "next diagnostic" })
 
 local createLspHydraForBuffer = function(buffer)
   local opts = function(desc, args)
@@ -320,7 +248,7 @@ local createLspHydraForBuffer = function(buffer)
     return opts
   end
   if (buffer) then
-    local codeaction = require("lspsaga.codeaction")
+    vim.keymap.set("n", "<Leader>u", vim.lsp.buf.references, opts("usages"))
     bufferSpecificLspHydras[buffer] = hydra({
       name = "LSP",
       mode = "n",
@@ -336,11 +264,12 @@ local createLspHydraForBuffer = function(buffer)
    _f_: format buffer      _d_: definition
    _r_: rename             _D_: declaration
    _u_: usages             _i_: implementation
-   _c_: code lens          _t_: type_definition
-   _h_: hoogle
+   _l_: code lens          _t_: type_definition
+   _h_: hoogle             _p_: peek definition
+   _c_: code action
   ]]   ,
       heads = {
-        { "c", vim.lsp.codelens.run , opts("code lens") },
+        { "l", vim.lsp.codelens.run, opts("code lens") },
         { "f", function() vim.lsp.buf.format { async = true } end, opts("format buffer") },
         { "d", vim.lsp.buf.definition, opts("definition") },
         { "D", vim.lsp.buf.declaration, opts("declaration") },
@@ -349,14 +278,8 @@ local createLspHydraForBuffer = function(buffer)
         { "r", require("lspsaga.rename").rename, opts("rename") },
         { "t", vim.lsp.buf.type_definition, opts("type defintion") },
         { "u", vim.lsp.buf.references, opts("usages") },
-        { "a", codeaction.code_action, opts("code action") },
-        { "a",
-          function()
-            vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-U>", true, false, true))
-            codeaction.range_code_action()
-          end,
-          opts("code action")
-        },
+        { "c", "<Cmd>Lspsaga code_action<CR>", opts("code action") },
+        { "p", "<cmd>Lspsaga peek_definition<CR>", opts("preview definition") },
         { "<Esc>", nil, { exit = true, desc = "quit" } },
       },
     })
@@ -375,14 +298,8 @@ local createLspKeymapForBuffer = function(buffer)
     end
     return opts
   end
-  vim.keymap.set("n", "K", require("lspsaga.hover").render_hover_doc, opts("hover docs"))
-  local action = require("lspsaga.action")
-  vim.keymap.set("n", "<C-f>", function()
-    action.smart_scroll_with_saga(1)
-  end, opts("scroll down in preview"))
-  vim.keymap.set("n", "<C-b>", function()
-    action.smart_scroll_with_saga(-1)
-  end, opts("scroll up in preview"))
+  vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts("hover docs"))
+  vim.keymap.set("n", "H", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts("hover docs"))
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
@@ -392,18 +309,6 @@ local createLspKeymapForBuffer = function(buffer)
   -- end, opts("vim inspect"))
   createLspHydraForBuffer(buffer)
 
-  -- TODO lspsaga jump to diagnostic and jump to error
-  local hasLspsagaDefinition, lspsagaDefinition = pcall(require, "lspsaga.definition")
-  if (hasLspsagaDefinition) then
-    vim.keymap.set("n", "<leader>lp", lspsagaDefinition.preview_definition, opts("preview definition"))
-  end
-
-  local hasLspsagaSignature, lspsagaSignature = pcall(require, "lspsaga.signature")
-  if (hasLspsagaSignature) then
-    vim.keymap.set("n", "<leader>ls", lspsagaSignature.signature_help, opts("preview definition"))
-  else
-    vim.keymap.set("n", "<leader>ls", vim.lsp.buf.signature_help, opts("signature help"))
-  end
 
 end
 return {

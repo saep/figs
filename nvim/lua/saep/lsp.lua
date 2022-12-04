@@ -92,3 +92,6 @@ require('lspconfig').gopls.setup {
 require('lspconfig').rnix.setup {
   on_attach = on_attach
 }
+
+require('lspsaga').init_lsp_saga()
+

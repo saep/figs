@@ -100,6 +100,22 @@
         "type": "github"
       }
     },
+    "lspsaga": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1669973510,
+        "narHash": "sha256-DMjvHak4ekLHD/sHsa01Y9xJXV4XwFpfJNhuAxsYafA=",
+        "owner": "glepnir",
+        "repo": "lspsaga.nvim",
+        "rev": "2eb8d023790099b182ac0c43d13dede80f42153e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "glepnir",
+        "repo": "lspsaga.nvim",
+        "type": "github"
+      }
+    },
     "nixgl": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -170,6 +186,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "lspsaga": "lspsaga",
         "nixgl": "nixgl",
         "nixpkgs": "nixpkgs",
         "nur": "nur",

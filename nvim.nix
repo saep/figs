@@ -1,4 +1,4 @@
-{ config, pkgs, lib, username, stateVersion, ... }:
+{ config, pkgs, lib, username, stateVersion, lspsaga, ... }:
 
 {
   home.username = username;
