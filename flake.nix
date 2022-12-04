@@ -95,6 +95,7 @@
           stateVersion = home-manager-state-version;
           dpi = 96;
           color = color;
+          isNixos = false;
         };
       };
       homeConfigurations."saep@nixos-wsl" = home-manager.lib.homeManagerConfiguration {
@@ -107,6 +108,7 @@
           username = "saep";
           stateVersion = home-manager-state-version;
           color = color;
+          isNixos = true;
         };
       };
     };
