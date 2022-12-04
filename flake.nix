@@ -39,9 +39,10 @@
     , saep-lazygit
     , saep-nvim-unception
     }:
-    let
-      color = (import ./colors/cattpuccin/mocha.nix).color;
+    rec
+    {
       home-manager-state-version = "22.05";
+      color = (import ./colors/cattpuccin/mocha.nix).color;
       pkgs = import nixpkgs {
         system = "x86_64-linux";
         overlays = [
@@ -52,23 +53,31 @@
           saep-nvim-unception.overlay
         ];
       };
-    in
-    {
-      pkgs = pkgs;
-      color = color;
-      home-manager = home-manager;
       hmModules = {
         common = ./common.nix;
-        desktop = ./desktop/desktop.nix;
+        nvim = ./nvim.nix;
+        desktop = {
+          common = ./desktop/common.nix;
+          xcape = ./desktop/xcape.nix;
+        };
         dev = {
           java = ./dev/java.nix;
         };
-        syncthing = ./misc/syncthing.nix;
+        misc = {
+          syncthing = ./misc/syncthing.nix;
+        };
+        private = ./private.nix;
       };
       # configuration for personal computers
       homeConfigurations."saep@monoid" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [ ./common.nix ./desktop/desktop.nix ./private.nix ];
+        modules = with hmModules; [
+          common
+          nvim
+          desktop.common
+          private
+          misc.syncthing
+        ];
         extraSpecialArgs = {
           username = "saep";
           stateVersion = home-manager-state-version;
@@ -83,12 +92,13 @@
       };
       homeConfigurations."saep@swaep" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [
-          ./common.nix
-          ./desktop/desktop.nix
-          ./private.nix
-          ./desktop/xcape.nix
-          ./misc/syncthing.nix
+        modules = with hmModules; [
+          common
+          nvim
+          desktop.common
+          private
+          desktop.xcape
+          misc.syncthing
         ];
         extraSpecialArgs = {
           username = "saep";
@@ -100,9 +110,10 @@
       };
       homeConfigurations."saep@nixos-wsl" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [
-          ./common.nix
-          ./private.nix
+        modules = with hmModules; [
+          common
+          nvim
+          private
         ];
         extraSpecialArgs = {
           username = "saep";

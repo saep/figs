@@ -395,10 +395,6 @@ in
       enable = true;
       multimediaKeys = true;
     };
-    # syncthing {{{2
-    syncthing = {
-      enable = true;
-    };
     # dunst {{{2
     dunst = {
       enable = true;
