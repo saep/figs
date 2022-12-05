@@ -44,9 +44,12 @@
     , saep-nvim-unception
     , lspsaga
     }:
+    let hm = home-manager; 
+    in
     rec
     {
       home-manager-state-version = "22.05";
+      home-manager = hm;
       color = (import ./colors/cattpuccin/mocha.nix).color;
       pkgs = import nixpkgs {
         system = "x86_64-linux";
