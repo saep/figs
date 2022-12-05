@@ -270,15 +270,15 @@ local createLspHydraForBuffer = function(buffer)
   ]]   ,
       heads = {
         { "l", vim.lsp.codelens.run, opts("code lens") },
-        { "f", function() vim.lsp.buf.format { async = true } end, opts("format buffer") },
+        { "f", function() vim.lsp.buf.format { async = false } end, opts("format buffer") },
         { "d", vim.lsp.buf.definition, opts("definition") },
         { "D", vim.lsp.buf.declaration, opts("declaration") },
         { "h", require('haskell-tools').hoogle.hoogle_signature, opts("hoogle") },
         { "i", vim.lsp.buf.implementation, opts("implementation") },
-        { "r", require("lspsaga.rename").rename, opts("rename") },
+        { "r", "<cmd>Lspsaga rename<CR>", opts("rename") },
         { "t", vim.lsp.buf.type_definition, opts("type defintion") },
         { "u", vim.lsp.buf.references, opts("usages") },
-        { "c", "<Cmd>Lspsaga code_action<CR>", opts("code action") },
+        { "c", "<cmd>Lspsaga code_action<CR>", opts("code action") },
         { "p", "<cmd>Lspsaga peek_definition<CR>", opts("preview definition") },
         { "<Esc>", nil, { exit = true, desc = "quit" } },
       },
@@ -300,7 +300,7 @@ local createLspKeymapForBuffer = function(buffer)
   end
   vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts("hover docs"))
   vim.keymap.set("n", "H", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts("cursor diagnostics"))
-  vim.keymap.set("n", "L", "<cmd>Lspsaga show_lines_diagnostics<CR>", opts("line diagnostics"))
+  vim.keymap.set("n", "L", "<cmd>Lspsaga show_line_diagnostics<CR>", opts("line diagnostics"))
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
