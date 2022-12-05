@@ -299,7 +299,8 @@ local createLspKeymapForBuffer = function(buffer)
     return opts
   end
   vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts("hover docs"))
-  vim.keymap.set("n", "H", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts("hover docs"))
+  vim.keymap.set("n", "H", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts("cursor diagnostics"))
+  vim.keymap.set("n", "L", "<cmd>Lspsaga show_lines_diagnostics<CR>", opts("line diagnostics"))
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
