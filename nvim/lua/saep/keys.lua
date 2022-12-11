@@ -21,7 +21,7 @@ map("ESC", "i", "jk", "<ESC>")
 map("format gqgq", "n", "Q", "gqgq")
 map("format gq", "v", "Q", "gq")
 map("repeat", "v", ".", "<Cmd>normal .<CR>")
-map("ESC", "t", "<C-\\><C-n>", "<C-]>")
+map("ESC", "t", "<C-]>", "<C-\\><C-n>")
 
 map("window down", { "n", "i" }, "<A-j>", "<C-w>j")
 map("window up", { "n", "i" }, "<A-k>", "<C-w>k")
