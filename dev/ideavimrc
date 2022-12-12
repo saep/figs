@@ -20,6 +20,7 @@ nnoremap <Leader><space> <C-S-6>
 
 vnoremap x X
 
+nnoremap <Leader>b :action RecentFiles<CR>
 nnoremap <Leader>c :action GotoClass<CR>
 nnoremap <Leader>s :action ChangeSignature<CR>
 nnoremap <Leader>r :action RenameElement<CR>
