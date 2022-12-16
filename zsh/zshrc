@@ -82,5 +82,9 @@ function stack-test-match() {
     stack test "--ta=--match ${match}" --file-watch
 }
 
+function npm-bin {
+    export PATH="$(npm bin):$PATH"; npm $@
+}
+
 [[ "$TERM" == "xterm-kitty" ]] && alias ssh='TERM=xterm ssh $@'
 
