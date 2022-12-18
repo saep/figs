@@ -7,14 +7,7 @@ local function executableOnPath(executable)
   end
 end
 
-local on_attach = function(_ --[[client]] , bufnr)
-
-  -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  require("saep.keys").createLspKeymapForBuffer(bufnr)
-
-end
+local on_attach = require('saep.keys').lsp_on_attach
 
 -- Setup lspconfig. {{{1
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())

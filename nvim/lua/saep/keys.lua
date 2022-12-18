@@ -2,12 +2,6 @@
 -- the function 'createLspKeymapForBuffer' which should be used in 'on_attach'
 -- for lsp servers.
 
--- Stores hydras for buffers that support LSP.
--- When an LSP server is started, the on_atach method calls
--- createLspKeymapForBuffer which will then add a hydra to this table which is
--- then used by the hydraSpace to execute buffer specific lsp actions.
-local bufferSpecificLspHydras = {}
-
 -- Set a default timeout len (/ms)
 vim.opt.timeoutlen = 500
 vim.g.mapleader = " "
@@ -225,21 +219,18 @@ local hydraGit = hydra {
 }
 map("Git hydra", "n", "<leader>g", function() hydraGit:activate() end)
 
-map("lsp hydra", "n", "<leader>l",
-  function()
-    local buffer = vim.api.nvim_get_current_buf()
-    local lspHydra = bufferSpecificLspHydras[buffer]
-    if (lspHydra) then
-      lspHydra:activate()
-    end
-  end)
-
 vim.keymap.set("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true, desc = "previous diagnostic" })
 vim.keymap.set("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true, desc = "next diagnostic" })
 
-local createLspHydraForBuffer = function(buffer)
+-- on_attach function for language servers
+--
+-- This sets up keybindings which only work when a language server is used.
+---@param client any
+---@param bufnr any
+---@diagnostic disable-next-line client is unused, but required for the on_attach signature
+local lsp_on_attach = function(client, bufnr)
   local opts = function(desc, args)
-    local opts = { silent = true, buffer = buffer, desc = desc }
+    local opts = { silent = true, buffer = bufnr, desc = desc }
     if (args) then
       for key, value in pairs(args) do
         opts[key] = value
@@ -247,9 +238,20 @@ local createLspHydraForBuffer = function(buffer)
     end
     return opts
   end
-  if (buffer) then
+  if (bufnr) then
     vim.keymap.set("n", "<Leader>u", vim.lsp.buf.references, opts("usages"))
-    bufferSpecificLspHydras[buffer] = hydra({
+    vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts("hover docs"))
+    vim.keymap.set("n", "H", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts("cursor diagnostics"))
+    vim.keymap.set("n", "L", "<cmd>Lspsaga show_line_diagnostics<CR>", opts("line diagnostics"))
+
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+    -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+    -- vim.keymap.set('n', '<space>wl', function()
+    --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    -- end, opts("vim inspect"))
+
+    local lspHydra = hydra({
       name = "LSP",
       mode = "n",
       config = {
@@ -283,35 +285,10 @@ local createLspHydraForBuffer = function(buffer)
         { "<Esc>", nil, { exit = true, desc = "quit" } },
       },
     })
+    vim.keymap.set("n", "<Leader>l", function() lspHydra:activate() end, opts("lsp commands"))
   end
 end
 
--- Used in the on_attach callback when configuring lsp providers to provide LSP
--- keybindings only when an LSP is installed.
-local createLspKeymapForBuffer = function(buffer)
-  local opts = function(desc, args)
-    local opts = { silent = true, buffer = buffer, desc = desc }
-    if (args) then
-      for key, value in pairs(args) do
-        opts[key] = value
-      end
-    end
-    return opts
-  end
-  vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts("hover docs"))
-  vim.keymap.set("n", "H", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts("cursor diagnostics"))
-  vim.keymap.set("n", "L", "<cmd>Lspsaga show_line_diagnostics<CR>", opts("line diagnostics"))
-
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-  -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-  -- vim.keymap.set('n', '<space>wl', function()
-  --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  -- end, opts("vim inspect"))
-  createLspHydraForBuffer(buffer)
-
-
-end
 return {
-  createLspKeymapForBuffer = createLspKeymapForBuffer;
+  lsp_on_attach = lsp_on_attach,
 }
