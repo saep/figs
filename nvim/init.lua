@@ -19,6 +19,7 @@ vim.opt.mouse = "a"
 vim.opt.expandtab = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 2
+vim.opt.scrolloff = 8
 
 vim.opt.updatetime = 300
 vim.opt.shortmess = vim.opt.shortmess + "c"
