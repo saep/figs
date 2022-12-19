@@ -63,6 +63,11 @@
       enable = true;
     };
 
+    # autojump {{{2
+    autojump = {
+      enable = true;
+      enableZshIntegration = true;
+    };
     # git {{{2
     git = {
       enable = true;
