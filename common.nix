@@ -129,6 +129,21 @@
       ];
     };
 
+    helix = {
+      enable = true;
+      settings = {
+        theme = "base16";
+        editor = {
+          line-number = "relative";
+        };
+        editor.cursor-shape = {
+          insert = "bar";
+          normal = "block";
+          select = "underline";
+        };
+      };
+    };
+
     # lazygit {{{2
     lazygit = {
       enable = true;
