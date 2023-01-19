@@ -18,7 +18,7 @@
     delta
     direnv
     difftastic
-    du-dust # similar to df 
+    du-dust # similar to du 
     exa # similar to ls
     fd # similar to find
     gnumake
@@ -27,7 +27,6 @@
     hyperfine # similar to time
     inotify-tools
     jq
-    jump # cd with cached directories
     procs # similar to ps
     ripgrep # similar to grep
     tealdeer # common examples instead of man page
@@ -42,7 +41,6 @@
     e = "nvim";
     g = "git";
     l = "exa -lah --time-style long-iso";
-    j = "jump";
     ".." = "cd ..";
     "..." = "cd ../..";
     "...." = "cd ../../..";
