@@ -71,7 +71,6 @@
 
           # simple quality of life plugins
           nvim-tree-lua
-          nvim-unception
           vim-commentary
           vim-exchange
           vim-highlightedyank

@@ -23,10 +23,6 @@
       url = "github:saep/saeparized-vim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    saep-nvim-unception = {
-      url = "github:saep/nvim-unception/nix-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     lspsaga = {
       url = "github:glepnir/lspsaga.nvim";
       flake = false;
@@ -41,7 +37,6 @@
     , nixgl
     , saeparized-vim
     , saep-lazygit
-    , saep-nvim-unception
     , lspsaga
     }:
     let hm = home-manager; 
@@ -58,7 +53,6 @@
           nur.overlay
           saeparized-vim.overlay
           saep-lazygit.overlay.x86_64-linux
-          saep-nvim-unception.overlay
           (final: prev: {
             vimPlugins = prev.vimPlugins // {
               lspsaga-nvim = pkgs.vimUtils.buildVimPluginFrom2Nix {
