@@ -93,13 +93,14 @@ require('lspconfig').rnix.setup {
   on_attach = on_attach
 }
 
-require('lspsaga').init_lsp_saga {
+require('lspsaga').setup {
   symbol_in_winbar = {
-    in_custom = false,
     enable = true,
     separator = ' ',
     show_file = true,
-    file_formatter = "%:t",
-    click_support = false,
+    hide_keyword = true;
+    folder_level = 2;
+    respect_root = false;
+    color_mode = true;
   },
 }
