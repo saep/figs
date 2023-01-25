@@ -186,7 +186,6 @@ in
         consent-o-matic
         foxyproxy-standard
         floccus
-        https-everywhere
         keepassxc-browser
         privacy-badger
         tree-style-tab
