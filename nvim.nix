@@ -16,7 +16,6 @@
         extraPackages = with pkgs; [
           curl
           jq
-          lazygit
           tree-sitter
 
           # bash/shell

@@ -12,10 +12,6 @@
       url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    saep-lazygit = {
-      url = "github:saep/lazygit/nix-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     # neovim plugins that are either not in nix or for which I want to follow a
     # specific branch
@@ -36,7 +32,6 @@
     , home-manager
     , nixgl
     , saeparized-vim
-    , saep-lazygit
     , lspsaga
     }:
     let hm = home-manager; 
@@ -52,7 +47,6 @@
           nixgl.overlay
           nur.overlay
           saeparized-vim.overlay
-          saep-lazygit.overlay.x86_64-linux
           (final: prev: {
             vimPlugins = prev.vimPlugins // {
               lspsaga-nvim = pkgs.vimUtils.buildVimPluginFrom2Nix {

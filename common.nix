@@ -144,25 +144,6 @@
       };
     };
 
-    # lazygit {{{2
-    lazygit = {
-      enable = true;
-      settings = {
-        gui = {
-          showIcons = true;
-          scrollHeight = 0.5;
-          scrollPastBottom = false;
-        };
-        git = {
-          paging = {
-            colorArg = "always";
-            pager = "delta --dark --paging=never";
-          };
-        };
-        notARepository = "skip";
-      };
-    };
-
     # zsh {{{2
     zsh = {
       enable = true;

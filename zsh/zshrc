@@ -55,8 +55,6 @@ alias ghci-pretty="stack ghci --ghci-options \"-interactive-print=Text.Pretty.Si
 alias gd="git diff -w $@"
 alias mb="mvn package -T8 -DskipTests -Dmaven.javadoc.skip=true $@"
 
-alias lg=lazygit
-
 function mvn-env() {
     echo "Executing maven with ${MAVEN_SETTINGS_FILE}"
     if [ -z "${MAVEN_SETTINGS_FILE}" ]; then

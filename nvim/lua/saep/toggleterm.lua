@@ -4,17 +4,3 @@ require("toggleterm").setup {
     border = 'curved'
   },
 }
-
-local Terminal = require("toggleterm.terminal").Terminal
-
-local lazygit = Terminal:new {
-  cmd = "lazygit",
-  hidden = true,
-  direction = "float",
-}
-
-local lazigitToggle = function()
-  lazygit:toggle()
-end
-
-vim.keymap.set({ "n", "i", "t" }, "<C-g>", lazigitToggle)
