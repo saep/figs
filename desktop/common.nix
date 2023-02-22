@@ -206,6 +206,7 @@ in
             floccus
             keepassxc-browser
             privacy-badger
+            sponsorblock
             tree-style-tab
             tridactyl
             ublock-origin
