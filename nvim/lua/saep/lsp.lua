@@ -35,7 +35,7 @@ local luaLanguageServer = executableOnPath('lua-language-server')
     or executableOnPath('lua-language-server.sh')
 
 if (luaLanguageServer ~= nil) then
-  require('lspconfig')['sumneko_lua'].setup {
+  require('lspconfig')['lua_ls'].setup {
     capabilities = capabilities,
     on_attach = on_attach,
     cmd = { luaLanguageServer },

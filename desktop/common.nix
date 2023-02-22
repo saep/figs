@@ -182,16 +182,6 @@ in
       enable = true;
       package =
         pkgs.firefox.override { cfg = { enableTridactylNative = true; }; };
-      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-        consent-o-matic
-        foxyproxy-standard
-        floccus
-        keepassxc-browser
-        privacy-badger
-        tree-style-tab
-        tridactyl
-        ublock-origin
-      ];
       profiles = {
         default = {
           id = 0;
@@ -210,6 +200,16 @@ in
               visibility: collapse;
             }
           '';
+          extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+            consent-o-matic
+            foxyproxy-standard
+            floccus
+            keepassxc-browser
+            privacy-badger
+            tree-style-tab
+            tridactyl
+            ublock-origin
+          ];
         };
       };
     };

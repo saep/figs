@@ -13,8 +13,12 @@ require('leap').add_default_mappings()
 vim.opt.background = "dark"
 vim.cmd "highlight WinSeparator guibg=None"
 vim.opt.hlsearch = false
-vim.g.catppuccin_flavour = "mocha"
-vim.cmd.colorscheme { args = { "catppuccin" } }
+
+require("catppuccin").setup {
+  flavour = "mocha";
+  compile_path = vim.fn.stdpath "cache" .. "/catpuccin"
+}
+vim.cmd.colorscheme "catppuccin"
 
 -- Figure out highlighting group {{{2
 function SynStack()
