@@ -80,7 +80,7 @@
           leap-nvim
 
           # treesitter
-          (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
+          nvim-treesitter
           nvim-treesitter-textobjects
 
           # telescope
