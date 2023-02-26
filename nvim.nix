@@ -77,6 +77,7 @@
           vim-unimpaired
           toggleterm-nvim
           leap-nvim
+          which-key-nvim
 
           # testing
           neotest
