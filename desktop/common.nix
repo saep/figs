@@ -229,9 +229,8 @@ in
         size = 14;
       };
       theme = "Catppuccin-Mocha";
-      settings = with (import ../colors/saeparized.nix); {
+      settings = {
         enable_audio_bell = false;
-
       };
     };
     # alacritty {{{2

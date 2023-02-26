@@ -15,10 +15,6 @@
 
     # neovim plugins that are either not in nix or for which I want to follow a
     # specific branch
-    saeparized-vim = {
-      url = "github:saep/saeparized-vim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     lspsaga = {
       url = "github:glepnir/lspsaga.nvim";
       flake = false;
@@ -31,7 +27,6 @@
     , nur
     , home-manager
     , nixgl
-    , saeparized-vim
     , lspsaga
     }:
     let hm = home-manager; 
@@ -46,7 +41,6 @@
         overlays = [
           nixgl.overlay
           nur.overlay
-          saeparized-vim.overlay
           (final: prev: {
             vimPlugins = prev.vimPlugins // {
               lspsaga-nvim = pkgs.vimUtils.buildVimPluginFrom2Nix {

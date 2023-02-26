@@ -47,7 +47,6 @@
           # bling
           lualine-nvim
           nvim-web-devicons
-          saeparized-vim
           catppuccin-nvim
 
           # cmp completion plugins
