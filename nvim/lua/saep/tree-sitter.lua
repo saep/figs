@@ -4,7 +4,14 @@ vim.opt.runtimepath:append(parserPath)
 
 require('nvim-treesitter.configs').setup({
   parser_install_dir = parserPath,
-  ensure_installed = {"lua", "haskell", "vim", "help", "nix"},
+  ensure_installed = {
+    "bash",
+    "haskell",
+    "help",
+    "lua",
+    "nix",
+    "vim",
+  },
   sync_install = false,
   auto_install = true,
   highlight = {

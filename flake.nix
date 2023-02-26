@@ -19,6 +19,10 @@
       url = "github:glepnir/lspsaga.nvim";
       flake = false;
     };
+    neotest-haskell = {
+      url = "github:saep/neotest-haskell/feature/run-tests-for-simple-cabal-projects";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -28,8 +32,9 @@
     , home-manager
     , nixgl
     , lspsaga
+    , neotest-haskell
     }:
-    let hm = home-manager; 
+    let hm = home-manager;
     in
     rec
     {
@@ -41,6 +46,7 @@
         overlays = [
           nixgl.overlay
           nur.overlay
+          neotest-haskell.overlays.default
           (final: prev: {
             vimPlugins = prev.vimPlugins // {
               lspsaga-nvim = pkgs.vimUtils.buildVimPluginFrom2Nix {

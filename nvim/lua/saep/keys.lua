@@ -50,6 +50,11 @@ map("live grep", "n", "<leader>fg", require('telescope.builtin').live_grep)
 map("neovim help", "n", "<leader>fh", require('telescope.builtin').help_tags)
 map("nvim-tree", "n", "<leader>ft", "<Cmd>NvimTreeFindFileToggle<CR>")
 
+-- t -- test bindings
+map("neotest run nearest", "n", "<Leader>tt", function() require('neotest').run.run() end)
+map("neotest open output", "n", "<Leader>to", function() require('neotest').output.open() end)
+map("neotest summary", "n", "<Leader>ts", function() require('neotest').summary.toggle() end)
+
 local function toggle_replace()
   local view = require "nvim-tree.view"
   if view.is_visible() then
@@ -127,37 +132,6 @@ local hydraWindow = hydra {
   }
 }
 map("persistent window hydra", "n", "<C-w>", function() hydraWindow:activate() end)
-
-local hydraTerminal = hydra {
-  name = "terminal",
-  mode = "n",
-  config = {
-    color = "blue",
-    hint = {
-      border = "rounded",
-    },
-  },
-  hint = [[
-  ^   Open
-  ------------
-  _t_: new tab
-  _k_: above
-  _j_: below
-  _h_: left
-  _l_: right
-  _w_: this window  ^
-  ]],
-  heads = {
-    { "t", "<Cmd>tabnew +term<CR>" },
-    { "k", "<Cmd>sp +term<CR>" },
-    { "j", "<Cmd>sp +term<CR><C-w>J" },
-    { "w", "<Cmd>term<CR>" },
-    { "h", "<Cmd>vsp +term<CR>" },
-    { "l", "<Cmd>vsp +term<CR><C-w>L" },
-    { "<Esc>", nil, { exit = true, desc = "quit" } },
-  },
-}
-map("terminal hydra", "n", "<leader>t", function() hydraTerminal:activate() end)
 
 local gitsigns = require "gitsigns"
 local hydraGit = hydra {

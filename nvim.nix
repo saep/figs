@@ -1,4 +1,4 @@
-{ config, pkgs, lib, username, stateVersion, lspsaga, ... }:
+{ config, pkgs, lib, username, stateVersion, ... }:
 
 {
   home.username = username;
@@ -76,6 +76,10 @@
           vim-surround
           toggleterm-nvim
           leap-nvim
+
+          # testing
+          neotest
+          neotest-haskell
 
           # treesitter
           nvim-treesitter
