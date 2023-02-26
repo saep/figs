@@ -81,7 +81,7 @@
 
           # testing
           neotest
-          neotest-haskell
+          saep-neotest-haskell
 
           # treesitter
           nvim-treesitter

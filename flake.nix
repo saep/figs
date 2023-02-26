@@ -54,6 +54,7 @@
                 version = "HEAD";
                 src = lspsaga;
               };
+              saep-neotest-haskell = neotest-haskell.packages.x86_64-linux.nvim-plugin;
             };
           })
         ];
