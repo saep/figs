@@ -74,6 +74,7 @@
           vim-repeat
           vim-speeddating
           vim-surround
+          vim-unimpaired
           toggleterm-nvim
           leap-nvim
 
