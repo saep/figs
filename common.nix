@@ -24,6 +24,7 @@
     hyperfine # similar to time
     neovim
     inotify-tools
+    isa-l # igzip is a really fast gzip
     jq
     mprocs # tmux-esque for long running processes
     parinfer-rust # magic parens
