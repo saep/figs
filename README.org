@@ -1,13 +1,33 @@
 #+title: saep's configs
 
+* Installation
 Configuration files managed with [[https://github.com/nix-community/home-manager][home-manager]].
 
 To build the home manager configuration for the user `saep` on the computer `monoid`:
 
-#+begin_src sh
+#+begin_src bash
 ./config build monoid saep
 #+end_src
 
 The [[./config.sh][config.sh]] scripts tries to automatically detect the username and hostname, so no arguments are required for me.
 
 The configuration can be installed by running `result/activate` or by passing `install` as the first paraemter to [[./config.sh][config.sh]].
+
+** Neovim
+
+   Managing the plugins with home-manager directly kind of works, but it breaks
+   apart when you try to develop and test plugins. Since all the plugins
+   defined via home-manager are baked into a wrapper script, neovim cannot run
+   without the overall config and test runners for lua plugins just don't work.
+   Hence, I've decided to use lazy for managing plugins and use it's lock file
+   to pin plugin versions. This however requires an extra step to update
+   plugins in addition to `nix flake update`.
+
+   #+begin_src bash
+   XDG_CONFIG_HOME=$(pwd) nvim -u nvim/init.lua
+   #+end_src
+
+   #+begin_src vim
+   :Lazy update
+   #+end_src
+

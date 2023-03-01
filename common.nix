@@ -25,6 +25,7 @@
     graphviz
     htop
     hyperfine # similar to time
+    neovim
     inotify-tools
     jq
     procs # similar to ps

@@ -1,5 +1,7 @@
 require('neotest').setup {
   adapters = {
-    require('neotest-haskell'),
+    require('neotest-haskell') {
+      build_tools = { 'cabal' },
+    },
   },
 }

@@ -4,6 +4,70 @@
 -- without nix and home manager, you would have to load the plugins in some way:
 -- e.g. by using packer or vim-plug
 
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+
+require("lazy").setup({
+  "nvim-lua/plenary.nvim",
+  "nvim-treesitter/nvim-treesitter",
+  "nvim-treesitter/nvim-treesitter-textobjects",
+  {
+    "nvim-telescope/telescope.nvim", branch = "0.1.x",
+    dependencies = { "nvim-lua/plenary.nvim", },
+  },
+  "folke/which-key.nvim",
+  "neovim/nvim-lspconfig",
+  "glepnir/lspsaga.nvim",
+  "nvim-neotest/neotest",
+  "tpope/vim-fugitive",
+  "lewis6991/gitsigns.nvim",
+  "anuvyklack/hydra.nvim",
+  "folke/trouble.nvim",
+  "nvim-tree/nvim-tree.lua",
+  "tpope/vim-commentary",
+  "akinsho/toggleterm.nvim",
+  "tpope/vim-speeddating",
+  "tpope/vim-surround",
+  "tpope/vim-unimpaired",
+  "tpope/vim-repeat",
+  "tommcdo/vim-exchange",
+  "mrcjkb/neotest-haskell",
+  "ggandor/leap.nvim",
+  {
+     'mrcjkb/haskell-tools.nvim',
+      dependencies = {
+        'nvim-lua/plenary.nvim',
+        'nvim-telescope/telescope.nvim',
+      },
+      branch = '1.x.x',
+  },
+  {
+    "L3MON4D3/LuaSnip",
+    build = "make install_jsregexp",
+  },
+  "hrsh7th/cmp-nvim-lsp",
+  "hrsh7th/cmp-buffer",
+  "hrsh7th/cmp-path",
+  "hrsh7th/cmp-cmdline",
+  "hrsh7th/nvim-cmp",
+  "saadparwaiz1/cmp_luasnip",
+  { "catppuccin/nvim", name = "catppuccin" },
+  "nvim-tree/nvim-web-devicons",
+  "nvim-lualine/lualine.nvim",
+  "nvim-orgmode/orgmode",
+}) --
+
 P = function(t)
   print(vim.inspect(t))
   return t
