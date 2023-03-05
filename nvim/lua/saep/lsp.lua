@@ -44,13 +44,14 @@ if (luaLanguageServer ~= nil) then
             "vim",
 
             -- Busted
+            "after_each",
+            "assert",
+            "before_each",
+            "clear",
             "describe",
             "it",
-            "before_each",
-            "after_each",
-            "teardown",
             "pending",
-            "clear",
+            "teardown",
           },
         },
         workspace = {
