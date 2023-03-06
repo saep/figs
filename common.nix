@@ -28,6 +28,7 @@
     neovim
     inotify-tools
     jq
+    mprocs
     procs # similar to ps
     ripgrep # similar to grep
     tealdeer # common examples instead of man page
@@ -145,6 +146,17 @@
       };
     };
 
+    # starship {{{2
+    starship = {
+      enable = true;
+      enableNushellIntegration = true;
+    };
+    # nushell {{{2
+    nushell = {
+      enable = true;
+      configFile.source = ./nushell/config.nu;
+      envFile.source = ./nushell/env.nu;
+    };
     # zsh {{{2
     zsh = {
       enable = true;
@@ -176,7 +188,7 @@
       enable = true;
       clock24 = true;
       prefix = "M-r";
-      shell = "${pkgs.zsh}/bin/zsh";
+      shell = "${pkgs.nushell}/bin/nu";
       terminal = "screen-256color";
       keyMode = "vi";
       extraConfig = ''
