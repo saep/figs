@@ -53,6 +53,7 @@ map("find files", "n", "<leader>ff", function() require('telescope.builtin').fin
 map("live grep", "n", "<leader>fg", require('telescope.builtin').live_grep)
 map("neovim help", "n", "<leader>fh", require('telescope.builtin').help_tags)
 map("nvim-tree", "n", "<leader>ft", "<Cmd>NvimTreeFindFileToggle<CR>")
+map("find project ", "n", "<leader>fp", require('telescope').extensions.project.project)
 
 -- t -- test bindings
 map("neotest run nearest", "n", "<Leader>tt", function() require('neotest').run.run() end)

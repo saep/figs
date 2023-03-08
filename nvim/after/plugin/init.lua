@@ -1,5 +1,4 @@
 require("saep.orgmode")
-require("saep.keys")
 require("saep.toggleterm")
 require("saep.cmp")
 require("saep.nvim-tree")
@@ -8,10 +7,13 @@ require("saep.gitsigns")
 require("saep.tree-sitter")
 require("saep.neotest")
 require('leap').add_default_mappings()
+require("saep.project")
 
 if vim.g.neovide then
   require("saep.neovide")
 end
+
+require("saep.keys")
 
 -- Appearance {{{1
 vim.opt.background = "dark"

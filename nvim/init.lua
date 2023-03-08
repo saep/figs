@@ -26,6 +26,13 @@ require("lazy").setup({
     "nvim-telescope/telescope.nvim", branch = "0.1.x",
     dependencies = { "nvim-lua/plenary.nvim", },
   },
+  {
+    "nvim-telescope/telescope-project.nvim",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      "nvim-telescope/telescope-file-browser.nvim",
+    },
+  },
   "folke/which-key.nvim",
   "neovim/nvim-lspconfig",
   "glepnir/lspsaga.nvim",
