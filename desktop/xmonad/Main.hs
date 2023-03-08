@@ -37,6 +37,7 @@ import XMonad.Actions.WindowGo (raiseNextMaybe)
 import XMonad.Hooks.EwmhDesktops as EWMH
 import XMonad.Hooks.InsertPosition
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.WindowSwallowing
 import XMonad.Hooks.WorkspaceHistory
 import XMonad.Layout.ComboP
 import XMonad.Layout.Fullscreen as Full
@@ -342,7 +343,8 @@ applyMyConfig myConfig@MyConfig {..} =
           handleEventHook =
             mconcat
               [ Full.fullscreenEventHook,
-                hintsEventHook
+                hintsEventHook,
+                swallowEventHook (className =? "kitty" <||> className =? "org.wezfurlong.wezterm") (return True)
               ],
           workspaces = Tree.toWorkspaces $ toTreeSelectWorkspaces myWorkspaces,
           logHook = workspaceHistoryHook,
