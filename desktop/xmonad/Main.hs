@@ -102,7 +102,7 @@ instance Default MyConfig where
                      ("M-t", XS.get >>= spawn . myTerminal),
                      ("M-o", myPromptsPrompt),
                      ("M-s", withFocused $ windows . W.sink),
-                     ("M-p", shellPrompt myPrompt),
+                     ("M-p", spawn "rofi -show drun"),
                      ("M-a", myWorkspacePrompt),
                      ("M-y", treeSelectChromeApps),
                      ("M-<Tab>", cycleAtCurrentTreeLevel Next),
