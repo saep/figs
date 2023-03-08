@@ -9,15 +9,11 @@
     };
   };
 
-  outputs = { self, nixpkgs, flake-utils, xmonad, xmonad-contrib }:
+  outputs = { self, nixpkgs, flake-utils }:
     flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
       let
         pkgs = import nixpkgs {
           inherit system;
-          overlays = [
-            xmonad.overlay
-            xmonad-contrib.overlay
-          ];
         };
         haskellPackages = pkgs.haskellPackages;
         t = pkgs.lib.trivial;
