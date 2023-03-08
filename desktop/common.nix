@@ -214,6 +214,25 @@ in
         };
       };
     };
+    # wezterm {{{2
+    wezterm = {
+      enable = false; # kind of buggy; can't start multiple windows
+      package =
+        let wrapper = pkgs.nixgl.nixGLIntel;
+        in
+        pkgs.writeShellScriptBin "wezterm" ''
+          ${wrapper}/bin/nixGLIntel ${pkgs.wezterm}/bin/wezterm "$@"
+        '';
+      extraConfig = ''
+        return {
+          color_scheme = "Catppuccin Mocha",
+          font = wezterm.font("Hasklug Nerd Font"),
+          font_size = 14.0,
+          enable_tab_bar = false,
+        }
+      '';
+      
+    };
 
     # kitty {{{2
     kitty = {
