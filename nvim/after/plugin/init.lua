@@ -69,3 +69,6 @@ require('lualine').setup {
   tabline = {},
   extensions = {}
 }
+
+-- Fix saving spell checking by prepending a specific writable directory to the runtimepath.
+vim.opt.rtp:prepend('~/.local/share/nvim/site/')
