@@ -143,6 +143,7 @@ in
       lock-screen
       pkgs.nixgl.nixGLIntel
       keepassxc
+      neovide
 
       # window manager utilites
       alsa-utils
@@ -401,7 +402,7 @@ in
     };
     # unclutter {{{2
     unclutter = {
-      enable = true;
+      enable = false;
     };
     # mpd {{{2
     mpd = {

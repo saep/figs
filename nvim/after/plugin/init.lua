@@ -7,8 +7,11 @@ require("saep.lsp")
 require("saep.gitsigns")
 require("saep.tree-sitter")
 require("saep.neotest")
-
 require('leap').add_default_mappings()
+
+if vim.g.neovide then
+  require("saep.neovide")
+end
 
 -- Appearance {{{1
 vim.opt.background = "dark"
