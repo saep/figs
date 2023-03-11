@@ -41,6 +41,18 @@ require("lazy").setup({
       "rcarriga/nvim-notify",
     },
   },
+  {
+    "Olical/aniseed",
+    init = function()
+      vim.g['aniseed#env'] = true
+    end,
+  },
+  "Olical/conjure",
+  {
+    "eraserhd/parinfer-rust",
+    build = 'nix-shell --run \"cargo build --release \"',
+  },
+  "windwp/nvim-autopairs",
   "neovim/nvim-lspconfig",
   "glepnir/lspsaga.nvim",
   "nvim-neotest/neotest",
@@ -74,12 +86,19 @@ require("lazy").setup({
   "hrsh7th/cmp-path",
   "hrsh7th/cmp-cmdline",
   "hrsh7th/nvim-cmp",
+  {
+    "PaterJason/cmp-conjure",
+    dependencies = {
+      "Olical/conjure",
+      "Olical/aniseed",
+    },
+  },
   "saadparwaiz1/cmp_luasnip",
   { "catppuccin/nvim", name = "catppuccin" },
   "nvim-tree/nvim-web-devicons",
   "nvim-lualine/lualine.nvim",
   "nvim-orgmode/orgmode",
-}) --
+})
 
 P = function(t)
   print(vim.inspect(t))

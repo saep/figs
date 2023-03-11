@@ -24,6 +24,7 @@ require('nvim-treesitter.configs').setup({
   textobjects = {
     select = {
       enable = true,
+      disable = { "fennel" },
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
         ["af"] = "@function.outer",
@@ -36,4 +37,3 @@ require('nvim-treesitter.configs').setup({
     },
   },
 })
-

@@ -27,6 +27,7 @@
     inotify-tools
     jq
     mprocs
+    parinfer-rust
     procs # similar to ps
     ripgrep # similar to grep
     tealdeer # common examples instead of man page
@@ -63,6 +64,10 @@
     broot = {
       enable = true;
       enableZshIntegration = true;
+      settings = {
+        syntax_theme = "MochaDark";
+        modal = true;
+      };
     };
     git = {
       enable = true;
