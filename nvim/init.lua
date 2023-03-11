@@ -34,6 +34,13 @@ require("lazy").setup({
     },
   },
   "folke/which-key.nvim",
+  {
+    "folke/noice.nvim",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+  },
   "neovim/nvim-lspconfig",
   "glepnir/lspsaga.nvim",
   "nvim-neotest/neotest",
@@ -52,12 +59,12 @@ require("lazy").setup({
   "mrcjkb/neotest-haskell",
   "ggandor/leap.nvim",
   {
-     'mrcjkb/haskell-tools.nvim',
-      dependencies = {
-        'nvim-lua/plenary.nvim',
-        'nvim-telescope/telescope.nvim',
-      },
-      branch = '1.x.x',
+    'mrcjkb/haskell-tools.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+    },
+    branch = '1.x.x',
   },
   {
     "L3MON4D3/LuaSnip"
