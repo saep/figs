@@ -19,6 +19,8 @@ require("saep.keys")
 vim.opt.background = "dark"
 vim.cmd "highlight WinSeparator guibg=None"
 vim.opt.hlsearch = false
+vim.o.ch = 0 -- comand height: Removes bottom line of nothingness
+vim.o.laststatus = 2
 
 require("catppuccin").setup {
   flavour = "mocha";
