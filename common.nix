@@ -5,10 +5,8 @@
   home.homeDirectory = "/home/${username}";
   home.stateVersion = stateVersion;
 
-  # misc {{{1
   fonts.fontconfig.enable = true;
 
-  # simple packages {{{1
   home.packages = with pkgs; [
     # command line utilities
     bat
@@ -38,7 +36,6 @@
     zip
   ];
 
-  # Shell aliases {{{1
   home.shellAliases = {
     e = "nvim";
     g = "git";
@@ -48,27 +45,25 @@
     "...." = "cd ../../..";
   };
 
-  # Configuration files {{{1
   home.file.".ghci".source = ./dev/ghci;
 
   xdg.configFile."nix/nix.conf".text = ''
     experimental-features = nix-command flakes
   '';
 
-  # Programs {{{1
   programs = {
-    # Home Manager {{{2
     # Let Home Manager install and manage itself.
     home-manager = {
       enable = true;
     };
-
-    # autojump {{{2
     autojump = {
       enable = true;
       enableZshIntegration = true;
     };
-    # git {{{2
+    broot = {
+      enable = true;
+      enableZshIntegration = true;
+    };
     git = {
       enable = true;
       difftastic.enable = true;
@@ -208,18 +203,15 @@
       };
     };
 
-    # starship {{{2
     starship = {
       enable = true;
       enableNushellIntegration = true;
     };
-    # nushell {{{2
     nushell = {
       enable = true;
       configFile.source = ./nushell/config.nu;
       envFile.source = ./nushell/env.nu;
     };
-    # zsh {{{2
     zsh = {
       enable = true;
       dotDir = ".config/zsh";
@@ -245,7 +237,6 @@
       '';
     };
 
-    # tmux {{{2
     tmux = {
       enable = true;
       clock24 = true;
@@ -282,9 +273,7 @@
     };
   };
 
-  # services {{{1
   services = {
-    # gpg-agent {{{2
     gpg-agent = {
       enable = true;
       enableSshSupport = false;
@@ -293,4 +282,3 @@
   };
 
 }
-# vim: foldmethod=marker
