@@ -60,8 +60,7 @@ require("lazy").setup({
       branch = '1.x.x',
   },
   {
-    "L3MON4D3/LuaSnip",
-    build = "make install_jsregexp",
+    "L3MON4D3/LuaSnip"
   },
   "hrsh7th/cmp-nvim-lsp",
   "hrsh7th/cmp-buffer",
