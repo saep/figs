@@ -9,7 +9,7 @@ wk.setup {
 -- Set a default timeout len (/ms)
 vim.opt.timeoutlen = 500
 vim.g.mapleader = " "
-vim.g.maplocalleader = "<BS>"
+vim.g.maplocalleader = vim.api.nvim_replace_termcodes('<BS>', false, false, true)
 
 local map = function(description, modes, lhs, rhs)
   vim.keymap.set(modes, lhs, rhs, { desc = description })
