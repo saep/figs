@@ -17,7 +17,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-
 require("lazy").setup({
   "nvim-lua/plenary.nvim",
   "nvim-treesitter/nvim-treesitter",
@@ -44,7 +43,11 @@ require("lazy").setup({
   {
     "Olical/aniseed",
     init = function()
-      vim.g['aniseed#env'] = true
+      local aniseed_compiled_lua_directory = vim.fn.stdpath("cache") .. "/aniseed"
+      vim.opt.rtp:append(aniseed_compiled_lua_directory)
+      vim.g['aniseed#env'] = {
+        output = aniseed_compiled_lua_directory .. "/lua",
+      }
     end,
   },
   "Olical/conjure",
