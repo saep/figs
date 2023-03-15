@@ -1,5 +1,4 @@
 require("saep.orgmode")
-require("saep.noice")
 require("saep.toggleterm")
 require("saep.cmp")
 require("saep.lsp")
