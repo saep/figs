@@ -1,9 +1,3 @@
--- This config is used together with home manager. It therefore lacks
--- initialization of plugins because the home manager configuration sets up the
--- plugins and they can therefore be freely used here. If you were to use this
--- without nix and home manager, you would have to load the plugins in some way:
--- e.g. by using packer or vim-plug
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
