@@ -5,7 +5,6 @@ require("saep.gitsigns")
 require("saep.tree-sitter")
 require("saep.neotest")
 require('leap').add_default_mappings()
-require("saep.project")
 require("saep.autopairs")
 
 if vim.g.neovide then

@@ -25,6 +25,9 @@ require("lazy").setup({
       "nvim-telescope/telescope.nvim",
       "nvim-telescope/telescope-file-browser.nvim",
     },
+    init = function()
+      require("telescope").load_extension("project")
+    end
   },
   "folke/which-key.nvim",
   {
