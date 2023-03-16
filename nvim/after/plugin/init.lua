@@ -1,5 +1,4 @@
 require("saep.orgmode")
-require("saep.toggleterm")
 require("saep.cmp")
 require("saep.lsp")
 require("saep.gitsigns")

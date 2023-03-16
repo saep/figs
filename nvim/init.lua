@@ -74,7 +74,15 @@ require("lazy").setup({
   "folke/trouble.nvim",
   "nvim-tree/nvim-tree.lua",
   "tpope/vim-commentary",
-  "akinsho/toggleterm.nvim",
+  {
+    "akinsho/toggleterm.nvim",
+    config = {
+      open_mapping = [[<C-t>]],
+      float_opts = {
+        border = 'curved'
+      },
+    },
+  },
   "tpope/vim-speeddating",
   "tpope/vim-surround",
   "tpope/vim-unimpaired",
