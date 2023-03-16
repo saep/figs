@@ -100,7 +100,12 @@ require("lazy").setup({
   "tpope/vim-repeat",
   "tommcdo/vim-exchange",
   "mrcjkb/neotest-haskell",
-  "ggandor/leap.nvim",
+  {
+    "ggandor/leap.nvim",
+    init = function()
+      require("leap").add_default_mappings()
+    end,
+  },
   {
     'mrcjkb/haskell-tools.nvim',
     dependencies = {
