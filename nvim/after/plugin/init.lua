@@ -1,7 +1,6 @@
 require("saep.orgmode")
 require("saep.cmp")
 require("saep.lsp")
-require("saep.gitsigns")
 require("saep.tree-sitter")
 require("saep.neotest")
 require('leap').add_default_mappings()

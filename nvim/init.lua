@@ -72,7 +72,11 @@ require("lazy").setup({
   "glepnir/lspsaga.nvim",
   "nvim-neotest/neotest",
   "tpope/vim-fugitive",
-  "lewis6991/gitsigns.nvim",
+  {
+    "lewis6991/gitsigns.nvim",
+    config = {
+    },
+  },
   "anuvyklack/hydra.nvim",
   "folke/trouble.nvim",
   "nvim-tree/nvim-tree.lua",
