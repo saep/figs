@@ -9,14 +9,15 @@
 
   home.packages = with pkgs; [
     # command line utilities
-    bat
+    bat # should have been rat
     borgbackup
     bottom # similar to htop
     curl
-    delta
+    delta # diff
     direnv
-    difftastic
+    difftastic # diff
     du-dust # similar to du 
+    evcxr # rust repl
     exa # similar to ls
     fd # similar to find
     gnumake
@@ -26,8 +27,8 @@
     neovim
     inotify-tools
     jq
-    mprocs
-    parinfer-rust
+    mprocs # tmux-esque for long running processes
+    parinfer-rust # magic parens
     procs # similar to ps
     ripgrep # similar to grep
     tealdeer # common examples instead of man page
