@@ -4,7 +4,6 @@ require("saep.lsp")
 require("saep.tree-sitter")
 require("saep.neotest")
 require('leap').add_default_mappings()
-require("saep.autopairs")
 
 if vim.g.neovide then
   require("saep.neovide")

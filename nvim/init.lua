@@ -67,7 +67,11 @@ require("lazy").setup({
     "eraserhd/parinfer-rust",
     build = 'nix-shell --run \"cargo build --release \"',
   },
-  "windwp/nvim-autopairs",
+  {
+    "windwp/nvim-autopairs",
+    config = {
+    },
+  },
   "neovim/nvim-lspconfig",
   "glepnir/lspsaga.nvim",
   "nvim-neotest/neotest",
