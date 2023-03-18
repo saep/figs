@@ -154,6 +154,7 @@ require("lazy").setup({
       'nvim-telescope/telescope.nvim',
     },
     branch = '1.x.x',
+    ft = { "cabal", "haskell", },
   },
   {
     "L3MON4D3/LuaSnip"
