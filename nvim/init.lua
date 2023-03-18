@@ -245,9 +245,6 @@ require("lazy").setup({
       flavour = "mocha",
       compile_path = vim.fn.stdpath "cache" .. "/catpuccin"
     },
-    init = function()
-      vim.cmd.colorscheme "catppuccin"
-    end,
   },
   {
     "nvim-lualine/lualine.nvim",
