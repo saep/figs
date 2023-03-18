@@ -36,7 +36,7 @@ require("lazy").setup({
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
     },
-    config = {
+    opts = {
       override = {
         ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
         ["vim.lsp.util.stylize_markdown"] = true,
@@ -62,23 +62,28 @@ require("lazy").setup({
       }
     end,
   },
-  "Olical/conjure",
+  {
+    "PaterJason/cmp-conjure",
+    dependencies = {
+      "Olical/conjure",
+      "Olical/aniseed",
+    },
+    ft = { "fennel", },
+  },
   {
     "eraserhd/parinfer-rust",
     build = 'nix-shell --run \"cargo build --release \"',
   },
   {
     "windwp/nvim-autopairs",
-    config = {
-    },
+    config = true,
   },
   "neovim/nvim-lspconfig",
   "glepnir/lspsaga.nvim",
   "tpope/vim-fugitive",
   {
     "lewis6991/gitsigns.nvim",
-    config = {
-    },
+    config = true,
   },
   "anuvyklack/hydra.nvim",
   "folke/trouble.nvim",
@@ -103,7 +108,7 @@ require("lazy").setup({
   },
   {
     "akinsho/toggleterm.nvim",
-    config = {
+    opts = {
       open_mapping = [[<C-t>]],
       float_opts = {
         border = 'curved'
