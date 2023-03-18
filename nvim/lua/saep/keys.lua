@@ -11,6 +11,8 @@ local map = function(description, modes, lhs, rhs)
   vim.keymap.set(modes, lhs, rhs, { desc = description })
 end
 
+map("local leader", { "n" }, "<LocalLeader>", "<cmd>lua require'which-key'.show('<LocalLeader>', {mode='n'})<cr>")
+
 map("ESC", "i", "jk", "<ESC>")
 map("format gqgq", "n", "Q", "gqgq")
 map("format gq", "v", "Q", "gq")
