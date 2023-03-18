@@ -172,7 +172,18 @@ require("lazy").setup({
     },
   },
   "saadparwaiz1/cmp_luasnip",
-  { "catppuccin/nvim", name = "catppuccin" },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    config = true,
+    opts = {
+      flavour = "mocha",
+      compile_path = vim.fn.stdpath "cache" .. "/catpuccin"
+    },
+    init = function()
+      vim.cmd.colorscheme "catppuccin"
+    end,
+  },
   "nvim-lualine/lualine.nvim",
   "nvim-orgmode/orgmode",
 })

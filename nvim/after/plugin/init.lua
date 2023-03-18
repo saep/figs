@@ -16,11 +16,6 @@ vim.opt.hlsearch = false
 vim.o.ch = 0 -- comand height: Removes bottom line of nothingness
 vim.o.laststatus = 2
 
-require("catppuccin").setup {
-  flavour = "mocha";
-  compile_path = vim.fn.stdpath "cache" .. "/catpuccin"
-}
-vim.cmd.colorscheme "catppuccin"
 
 -- Figure out highlighting group {{{2
 function SynStack()
