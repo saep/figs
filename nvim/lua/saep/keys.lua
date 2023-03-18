@@ -2,10 +2,6 @@
 -- the function 'createLspKeymapForBuffer' which should be used in 'on_attach'
 -- for lsp servers.
 
-local wk = require("which-key")
-wk.setup {
-}
-
 -- Set a default timeout len (/ms)
 vim.opt.timeoutlen = 500
 vim.g.mapleader = " "

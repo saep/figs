@@ -29,7 +29,10 @@ require("lazy").setup({
       require("telescope").load_extension("project")
     end
   },
-  "folke/which-key.nvim",
+  {
+    "folke/which-key.nvim",
+    config = true,
+  },
   {
     "folke/noice.nvim",
     dependencies = {
