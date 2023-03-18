@@ -83,8 +83,25 @@ require("lazy").setup({
   },
   "anuvyklack/hydra.nvim",
   "folke/trouble.nvim",
-  "nvim-tree/nvim-tree.lua",
-  "tpope/vim-commentary",
+  {
+    "nvim-tree/nvim-tree.lua",
+    config = true,
+    opts = {
+      view = {
+        mappings = {
+          list = {
+            { key = "<CR>", action = "edit_in_place" },
+          },
+        },
+      },
+    },
+  },
+  {
+    "nvim-tree/nvim-web-devicons",
+    dependencies = {
+      "nvim-tree/nvim-tree.lua",
+    },
+  },
   {
     "akinsho/toggleterm.nvim",
     config = {
@@ -94,6 +111,7 @@ require("lazy").setup({
       },
     },
   },
+  "tpope/vim-commentary",
   "tpope/vim-speeddating",
   "tpope/vim-surround",
   "tpope/vim-unimpaired",
@@ -131,7 +149,6 @@ require("lazy").setup({
   },
   "saadparwaiz1/cmp_luasnip",
   { "catppuccin/nvim", name = "catppuccin" },
-  "nvim-tree/nvim-web-devicons",
   "nvim-lualine/lualine.nvim",
   "nvim-orgmode/orgmode",
 })
