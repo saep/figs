@@ -74,7 +74,6 @@ require("lazy").setup({
   },
   "neovim/nvim-lspconfig",
   "glepnir/lspsaga.nvim",
-  "nvim-neotest/neotest",
   "tpope/vim-fugitive",
   {
     "lewis6991/gitsigns.nvim",
@@ -117,7 +116,26 @@ require("lazy").setup({
   "tpope/vim-unimpaired",
   "tpope/vim-repeat",
   "tommcdo/vim-exchange",
-  "mrcjkb/neotest-haskell",
+  {
+    "nvim-neotest/neotest",
+    dependencies = {
+      -- Note that these are not dependencies of neotest, but put here as these
+      -- plugins are specifically for neotest and I want the configuration to
+      -- be here
+      "mrcjkb/neotest-haskell",
+    },
+    ft = { "haskell" },
+    config = true,
+    opts = function()
+      return {
+        adapters = {
+          require("neotest-haskell") {
+            build_tools = { "cabal" },
+          }
+        },
+      }
+    end,
+  },
   {
     "ggandor/leap.nvim",
     init = function()
