@@ -269,7 +269,13 @@ require("lazy").setup({
       extensions = {}
     },
   },
-  "nvim-orgmode/orgmode",
+  {
+    "nvim-orgmode/orgmode",
+    config = true,
+    init = function()
+      require("orgmode").setup_ts_grammar()
+    end
+  },
 })
 
 P = function(t)

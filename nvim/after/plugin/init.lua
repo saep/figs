@@ -1,4 +1,3 @@
-require("saep.orgmode")
 require("saep.cmp")
 require("saep.lsp")
 
