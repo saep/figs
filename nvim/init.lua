@@ -29,6 +29,14 @@ require("lazy").setup({
   {
     "folke/which-key.nvim",
     config = true,
+    opts = {
+      plugins = {
+        presets = {
+          windows = false,
+          nav = false,
+        }
+      },
+    },
   },
   {
     "folke/noice.nvim",
