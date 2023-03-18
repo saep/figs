@@ -11,17 +11,6 @@ local on_attach = require('saep.keys').lsp_on_attach
 
 -- Setup lspconfig. {{{1
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
--- Haskell {{{2
-require('haskell-tools').setup {
-  hls = {
-    on_attach = on_attach,
-    settings = {
-      haskell = {
-        formattingProvider = 'fourmolu',
-      },
-    },
-  },
-}
 
 -- lua {{{2
 local luaLanguageServer = executableOnPath('lua-language-server')

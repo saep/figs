@@ -208,6 +208,18 @@ require("lazy").setup({
     },
     branch = '1.x.x',
     ft = { "cabal", "haskell", },
+    opts = function()
+      return {
+        hls = {
+          on_attach = require("saep.keys").lsp_on_attach,
+          settings = {
+            haskell = {
+              formattingProvider = 'fourmolu',
+            },
+          },
+        },
+      }
+    end,
   },
   {
     "L3MON4D3/LuaSnip"

@@ -77,8 +77,8 @@ vim.keymap.set({ "i", "s" }, "<C-j>", function()
   end
 end, { desc = "next in snippet", silent = true })
 vim.keymap.set({ "i", "s" }, "<C-k>", function()
-  if (ls.jumpable(-1)) then
-    ls.jump(-1)
+  if (ls.jumpable( -1)) then
+    ls.jump( -1)
   end
 end,
   { desc = "prev in snippet", silent = true })
@@ -99,7 +99,7 @@ local hydraWindow = hydra {
   ^   _k_ ^^      _K_  ^^^       _<C-k>_
    _h_   _l_   _H_   _L_ ^^  _<C-h>_   _<C-l>_
   ^   _j_   ^^    _J_    ^^^     _<C-j>_
-  ^^^^^^^^^^                
+  ^^^^^^^^^^
   ^
    Open              Split
   ---------------   ---------------  ^
@@ -110,28 +110,28 @@ local hydraWindow = hydra {
   ^^                 _=_: equalize
   ]],
   heads = {
-    { "h", "<C-w>h" },
-    { "H", "<C-w>H" },
+    { "h",     "<C-w>h" },
+    { "H",     "<C-w>H" },
     { "<C-h>", "<Cmd>winc <<CR>", },
-    { "j", "<C-w>j" },
-    { "J", "<C-w>J" },
+    { "j",     "<C-w>j" },
+    { "J",     "<C-w>J" },
     { "<C-j>", "<Cmd>winc -<CR>", },
-    { "k", "<C-w>k" },
+    { "k",     "<C-w>k" },
     { "<C-k>", "<Cmd>winc +<CR>" },
-    { "K", "<C-w>K" },
-    { "l", "<C-w>l" },
+    { "K",     "<C-w>K" },
+    { "l",     "<C-w>l" },
     { "<C-l>", "<Cmd>winc ><CR>", },
-    { "L", "<C-w>L" },
-    { "o", "<Cmd>only<CR>" },
-    { "c", "<Cmd>q<CR>" },
-    { "s", "<Cmd>sp<CR>" },
-    { "v", "<Cmd>vsp<CR>" },
-    { "b", "<Cmd>Telescope buffers<CR>", { exit = true } },
-    { "f", "<Cmd>Telescope find_files<CR>", { exit = true } },
-    { "g", "<Cmd>Telescope live_grep<CR>", { exit = true } },
-    { "t", "<Cmd>term<CR>", { exit = true } },
-    { "=", "<C-w>=" },
-    { "<Esc>", nil, { exit = true, desc = "quit" } },
+    { "L",     "<C-w>L" },
+    { "o",     "<Cmd>only<CR>" },
+    { "c",     "<Cmd>q<CR>" },
+    { "s",     "<Cmd>sp<CR>" },
+    { "v",     "<Cmd>vsp<CR>" },
+    { "b",     "<Cmd>Telescope buffers<CR>",    { exit = true } },
+    { "f",     "<Cmd>Telescope find_files<CR>", { exit = true } },
+    { "g",     "<Cmd>Telescope live_grep<CR>",  { exit = true } },
+    { "t",     "<Cmd>term<CR>",                 { exit = true } },
+    { "=",     "<C-w>=" },
+    { "<Esc>", nil,                             { exit = true, desc = "quit" } },
   }
 }
 map("persistent window hydra", "n", "<C-w>", function() hydraWindow:activate() end)
@@ -142,9 +142,9 @@ local hydraGit = hydra {
   hint = [[
   _J_: next hunk   _s_: stage hunk        _d_: show deleted   _b_: blame line
   _K_: prev hunk   _u_: undo last stage   _p_: preview hunk   _B_: blame show full  ^
-  ^ ^              _S_: stage buffer      ^ ^                 
+  ^ ^              _S_: stage buffer      ^ ^
   ^
-  ^ ^              _g_: status              
+  ^ ^              _g_: status
    ]],
   config = {
     color = "pink",
@@ -187,15 +187,15 @@ local hydraGit = hydra {
         return "<Ignore>"
       end,
     },
-    { "s", "<Cmd>Gitsigns stage_hunk<CR>", { silent = true } },
-    { "u", gitsigns.undo_stage_hunk },
-    { "S", gitsigns.stage_buffer },
-    { "p", gitsigns.preview_hunk },
-    { "d", gitsigns.toggle_deleted, { nowait = true } },
-    { "b", gitsigns.blame_line },
-    { "B", function() gitsigns.blame_line { full = true } end },
-    { "g", "<Cmd>Git<CR>", { exit = true } },
-    { "<Esc>", nil, { exit = true, nowait = true, desc = "exit" } },
+    { "s",     "<Cmd>Gitsigns stage_hunk<CR>",                    { silent = true } },
+    { "u",     gitsigns.undo_stage_hunk },
+    { "S",     gitsigns.stage_buffer },
+    { "p",     gitsigns.preview_hunk },
+    { "d",     gitsigns.toggle_deleted,                           { nowait = true } },
+    { "b",     gitsigns.blame_line },
+    { "B",     function() gitsigns.blame_line { full = true } end },
+    { "g",     "<Cmd>Git<CR>",                                    { exit = true } },
+    { "<Esc>", nil,                                               { exit = true, nowait = true, desc = "exit" } },
   }
 }
 map("Git hydra", "n", "<leader>g", function() hydraGit:activate() end)
@@ -250,20 +250,20 @@ local lsp_on_attach = function(client, bufnr)
    _l_: code lens          _t_: type_definition
    _h_: hoogle             _p_: peek definition
    _c_: code action
-  ]]   ,
+  ]],
       heads = {
-        { "l", vim.lsp.codelens.run, opts("code lens") },
-        { "f", function() vim.lsp.buf.format { async = false } end, opts("format buffer") },
-        { "d", vim.lsp.buf.definition, opts("definition") },
-        { "D", vim.lsp.buf.declaration, opts("declaration") },
-        { "h", require('haskell-tools').hoogle.hoogle_signature, opts("hoogle") },
-        { "i", vim.lsp.buf.implementation, opts("implementation") },
-        { "r", "<cmd>Lspsaga rename<CR>", opts("rename") },
-        { "t", vim.lsp.buf.type_definition, opts("type defintion") },
-        { "u", vim.lsp.buf.references, opts("usages") },
-        { "c", "<cmd>Lspsaga code_action<CR>", opts("code action") },
-        { "p", "<cmd>Lspsaga peek_definition<CR>", opts("preview definition") },
-        { "<Esc>", nil, { exit = true, desc = "quit" } },
+        { "l",     vim.lsp.codelens.run,                                              opts("code lens") },
+        { "f",     function() vim.lsp.buf.format { async = false } end,               opts("format buffer") },
+        { "d",     vim.lsp.buf.definition,                                            opts("definition") },
+        { "D",     vim.lsp.buf.declaration,                                           opts("declaration") },
+        { "h",     function() require('haskell-tools').hoogle.hoogle_signature() end, opts("hoogle") },
+        { "i",     vim.lsp.buf.implementation,                                        opts("implementation") },
+        { "r",     "<cmd>Lspsaga rename<CR>",                                         opts("rename") },
+        { "t",     vim.lsp.buf.type_definition,                                       opts("type defintion") },
+        { "u",     vim.lsp.buf.references,                                            opts("usages") },
+        { "c",     "<cmd>Lspsaga code_action<CR>",                                    opts("code action") },
+        { "p",     "<cmd>Lspsaga peek_definition<CR>",                                opts("preview definition") },
+        { "<Esc>", nil,                                                               { exit = true, desc = "quit" } },
       },
     })
     vim.keymap.set("n", "<Leader>l", function() lspHydra:activate() end, opts("lsp commands"))
