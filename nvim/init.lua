@@ -121,7 +121,7 @@ require("lazy").setup({
       "Olical/conjure",
       "Olical/aniseed",
     },
-    ft = { "fennel", },
+    ft = { "fennel", "lua", },
   },
   {
     "eraserhd/parinfer-rust",
