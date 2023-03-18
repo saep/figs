@@ -1,7 +1,6 @@
 require("saep.orgmode")
 require("saep.cmp")
 require("saep.lsp")
-require("saep.tree-sitter")
 
 if vim.g.neovide then
   require("saep.neovide")
