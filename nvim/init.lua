@@ -45,7 +45,6 @@ require("lazy").setup({
         textobjects = {
           select = {
             enable = true,
-            disable = { "fennel" },
             keymaps = {
               -- You can use the capture groups defined in textobjects.scm
               ["af"] = "@function.outer",
@@ -67,7 +66,7 @@ require("lazy").setup({
       "nvim-telescope/telescope-project.nvim",
       "nvim-telescope/telescope-file-browser.nvim",
     },
-    init = function()
+    config = function()
       require("telescope").load_extension("project")
     end
   },
@@ -106,24 +105,6 @@ require("lazy").setup({
     },
   },
   {
-    "Olical/aniseed",
-    init = function()
-      local aniseed_compiled_lua_directory = vim.fn.stdpath("cache") .. "/aniseed"
-      vim.opt.rtp:append(aniseed_compiled_lua_directory)
-      vim.g['aniseed#env'] = {
-        output = aniseed_compiled_lua_directory .. "/lua",
-      }
-    end,
-  },
-  {
-    "PaterJason/cmp-conjure",
-    dependencies = {
-      "Olical/conjure",
-      "Olical/aniseed",
-    },
-    ft = { "fennel", "lua", },
-  },
-  {
     "eraserhd/parinfer-rust",
     build = 'nix-shell --run \"cargo build --release \"',
   },
@@ -131,7 +112,9 @@ require("lazy").setup({
     "windwp/nvim-autopairs",
     config = true,
   },
-  "neovim/nvim-lspconfig",
+  {
+    "neovim/nvim-lspconfig",
+  },
   {
     "glepnir/lspsaga.nvim",
     opts = {
@@ -152,7 +135,10 @@ require("lazy").setup({
     config = true,
   },
   "anuvyklack/hydra.nvim",
-  "folke/trouble.nvim",
+  {
+    "folke/trouble.nvim",
+    config = true,
+  },
   {
     "nvim-tree/nvim-tree.lua",
     config = true,
@@ -209,7 +195,7 @@ require("lazy").setup({
   },
   {
     "ggandor/leap.nvim",
-    init = function()
+    config = function()
       require("leap").add_default_mappings()
     end,
   },
@@ -224,7 +210,7 @@ require("lazy").setup({
     opts = function()
       return {
         hls = {
-          on_attach = require("saep.keys").lsp_on_attach,
+          on_attach = require("saep.lsp").on_attach,
           settings = {
             haskell = {
               formattingProvider = 'fourmolu',
@@ -235,7 +221,13 @@ require("lazy").setup({
     end,
   },
   {
-    "L3MON4D3/LuaSnip"
+    "L3MON4D3/LuaSnip",
+  },
+  {
+    "saadparwaiz1/cmp_luasnip",
+    dependencies = {
+      "L3MON4D3/LuaSnip",
+    },
   },
   "hrsh7th/cmp-nvim-lsp",
   "hrsh7th/cmp-buffer",
@@ -243,6 +235,9 @@ require("lazy").setup({
   "hrsh7th/cmp-cmdline",
   {
     "hrsh7th/nvim-cmp",
+    dependencies = {
+      "L3MON4D3/LuaSnip",
+    },
     config = function()
       local cmp = require("cmp")
       vim.opt.completeopt = "menu,menuone,noselect"
@@ -301,14 +296,6 @@ require("lazy").setup({
     end,
   },
   {
-    "PaterJason/cmp-conjure",
-    dependencies = {
-      "Olical/conjure",
-      "Olical/aniseed",
-    },
-  },
-  "saadparwaiz1/cmp_luasnip",
-  {
     "catppuccin/nvim",
     name = "catppuccin",
     config = true,
@@ -362,5 +349,3 @@ P = function(t)
   print(vim.inspect(t))
   return t
 end
-
-require("saep.settings")

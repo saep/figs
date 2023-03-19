@@ -1,4 +1,6 @@
 require("saep.lsp")
+require("saep.settings")
+require("saep.filetypes")
 
 if vim.g.neovide then
   require("saep.neovide")
@@ -6,13 +8,7 @@ end
 
 require("saep.keys")
 
--- Appearance
-vim.opt.background = "dark"
-vim.cmd "highlight WinSeparator guibg=None"
-vim.opt.hlsearch = false
-vim.o.ch = 0 -- comand height: Removes bottom line of nothingness
-vim.o.laststatus = 2
-
+-- Must be set here for some reason as the hydras aren't colored otherwise
 vim.cmd.colorscheme "catppuccin"
 
 -- Figure out highlighting group

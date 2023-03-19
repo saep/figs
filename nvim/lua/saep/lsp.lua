@@ -1,4 +1,3 @@
--- Helper functions {{{1
 local function executableOnPath(executable)
   if (vim.fn.executable(executable) == 1) then
     return executable
@@ -7,12 +6,53 @@ local function executableOnPath(executable)
   end
 end
 
-local on_attach = require('saep.keys').lsp_on_attach
+vim.keymap.set("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true, desc = "previous diagnostic" })
+vim.keymap.set("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true, desc = "next diagnostic" })
 
--- Setup lspconfig. {{{1
-local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- on_attach function for language servers
+--
+-- This sets up keybindings which only work when a language server is used.
+---@param client any
+---@param bufnr any
+---@diagnostic disable-next-line client is unused, but required for the on_attach signature
+local on_attach = function(client, bufnr)
+  local opts = function(desc, args)
+    local opts = { silent = true, buffer = bufnr, desc = desc }
+    if (args) then
+      for key, value in pairs(args) do
+        opts[key] = value
+      end
+    end
+    return opts
+  end
+  if (bufnr) then
+    vim.keymap.set("n", "<Leader>u", vim.lsp.buf.references, opts("usages"))
+    vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts("hover docs"))
+    vim.keymap.set("n", "H", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts("cursor diagnostics"))
+    vim.keymap.set("n", "L", "<cmd>Lspsaga show_line_diagnostics<CR>", opts("line diagnostics"))
 
--- lua {{{2
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+    -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+    -- vim.keymap.set('n', '<space>wl', function()
+    --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    -- end, opts("vim inspect"))
+    vim.keymap.set({ "n" }, "<Leader>ll", vim.lsp.codelens.run, opts("code lens"))
+    vim.keymap.set({ "n" }, "<Leader>lf", function() vim.lsp.buf.format { async = false } end, opts("format buffer"))
+    vim.keymap.set({ "n" }, "<Leader>ld", vim.lsp.buf.definition, opts("definition"))
+    vim.keymap.set({ "n" }, "<Leader>lD", vim.lsp.buf.declaration, opts("declaration"))
+    vim.keymap.set({ "n" }, "<Leader>li", vim.lsp.buf.implementation, opts("implementation"))
+    vim.keymap.set({ "n" }, "<Leader>lr", "<cmd>Lspsaga rename<CR>", opts("rename"))
+    vim.keymap.set({ "n" }, "<Leader>lt", vim.lsp.buf.type_definition, opts("type definition"))
+    vim.keymap.set({ "n" }, "<Leader>lu", vim.lsp.buf.references, opts("usages"))
+    vim.keymap.set({ "n" }, "<Leader>lc", "<cmd>Lspsaga code_action<CR>", opts("code action"))
+    vim.keymap.set({ "n" }, "<Leader>lp", "<cmd>Lspsaga peek_definition<CR>", opts("peek definition"))
+  end
+end
+
+local capabilities = require('cmp_nvim_lsp')
+    .default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
 local luaLanguageServer = executableOnPath('lua-language-server')
     or executableOnPath('lua-language-server.sh')
 
@@ -57,12 +97,10 @@ if (luaLanguageServer ~= nil) then
   }
 end
 
--- elm {{{2
 require('lspconfig').elmls.setup {
   on_attach = on_attach
 }
 
--- go {{{2
 require('lspconfig').gopls.setup {
   on_attach = on_attach,
   settings = {
@@ -72,8 +110,10 @@ require('lspconfig').gopls.setup {
   }
 }
 
--- nix {{{2
 require('lspconfig').rnix.setup {
   on_attach = on_attach
 }
 
+return {
+  on_attach = on_attach
+}

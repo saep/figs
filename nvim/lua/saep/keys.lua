@@ -1,9 +1,5 @@
--- This module defines standard keybindings and returns a table that contains
--- the function 'createLspKeymapForBuffer' which should be used in 'on_attach'
--- for lsp servers.
-
--- Set a default timeout len (/ms)
-vim.opt.timeoutlen = 500
+-- Set a default timeout len (/ms) which is used by which-key to dealy displaying key bindings
+vim.opt.timeoutlen = 250
 vim.g.mapleader = " "
 vim.g.maplocalleader = vim.api.nvim_replace_termcodes('<BS>', false, false, true)
 
@@ -199,77 +195,3 @@ local hydraGit = hydra {
   }
 }
 map("Git hydra", "n", "<leader>g", function() hydraGit:activate() end)
-
-vim.keymap.set("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true, desc = "previous diagnostic" })
-vim.keymap.set("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true, desc = "next diagnostic" })
-
--- on_attach function for language servers
---
--- This sets up keybindings which only work when a language server is used.
----@param client any
----@param bufnr any
----@diagnostic disable-next-line client is unused, but required for the on_attach signature
-local lsp_on_attach = function(client, bufnr)
-  local opts = function(desc, args)
-    local opts = { silent = true, buffer = bufnr, desc = desc }
-    if (args) then
-      for key, value in pairs(args) do
-        opts[key] = value
-      end
-    end
-    return opts
-  end
-  if (bufnr) then
-    vim.keymap.set("n", "<Leader>u", vim.lsp.buf.references, opts("usages"))
-    vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts("hover docs"))
-    vim.keymap.set("n", "H", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts("cursor diagnostics"))
-    vim.keymap.set("n", "L", "<cmd>Lspsaga show_line_diagnostics<CR>", opts("line diagnostics"))
-
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-    -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-    -- vim.keymap.set('n', '<space>wl', function()
-    --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    -- end, opts("vim inspect"))
-
-    local lspHydra = hydra({
-      name = "LSP",
-      mode = "n",
-      config = {
-        color = "blue",
-        hint = {
-          border = "rounded",
-        }
-      },
-      hint = [[
-      commands              goto
-  ------------------  ^^  -------------------  ^
-   _f_: format buffer      _d_: definition
-   _r_: rename             _D_: declaration
-   _u_: usages             _i_: implementation
-   _l_: code lens          _t_: type_definition
-   _h_: hoogle             _p_: peek definition
-   _c_: code action
-  ]],
-      heads = {
-        { "l",     vim.lsp.codelens.run,                                              opts("code lens") },
-        { "f",     function() vim.lsp.buf.format { async = false } end,               opts("format buffer") },
-        { "d",     vim.lsp.buf.definition,                                            opts("definition") },
-        { "D",     vim.lsp.buf.declaration,                                           opts("declaration") },
-        { "h",     function() require('haskell-tools').hoogle.hoogle_signature() end, opts("hoogle") },
-        { "i",     vim.lsp.buf.implementation,                                        opts("implementation") },
-        { "r",     "<cmd>Lspsaga rename<CR>",                                         opts("rename") },
-        { "t",     vim.lsp.buf.type_definition,                                       opts("type defintion") },
-        { "u",     vim.lsp.buf.references,                                            opts("usages") },
-        { "c",     "<cmd>Lspsaga code_action<CR>",                                    opts("code action") },
-        { "p",     "<cmd>Lspsaga peek_definition<CR>",                                opts("preview definition") },
-        { "<Esc>", nil,                                                               { exit = true, desc = "quit" } },
-      },
-    })
-    vim.keymap.set("n", "<Leader>l", function() lspHydra:activate() end, opts("lsp commands"))
-  end
-end
-
-return {
-  lsp_on_attach = lsp_on_attach,
-}
