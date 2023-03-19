@@ -180,6 +180,7 @@ require("lazy").setup({
       -- plugins are specifically for neotest and I want the configuration to
       -- be here
       "mrcjkb/neotest-haskell",
+      "rouge8/neotest-rust",
     },
     ft = { "haskell" },
     config = true,
@@ -188,7 +189,9 @@ require("lazy").setup({
         adapters = {
           require("neotest-haskell") {
             build_tools = { "cabal" },
-          }
+          },
+          require("neotest-rust") {
+          },
         },
       }
     end,
