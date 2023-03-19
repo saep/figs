@@ -132,7 +132,20 @@ require("lazy").setup({
     config = true,
   },
   "neovim/nvim-lspconfig",
-  "glepnir/lspsaga.nvim",
+  {
+    "glepnir/lspsaga.nvim",
+    opts = {
+      symbol_in_winbar = {
+        enable = true,
+        separator = ' ',
+        show_file = true,
+        hide_keyword = true,
+        folder_level = 2,
+        respect_root = false,
+        color_mode = true,
+      },
+    },
+  },
   "tpope/vim-fugitive",
   {
     "lewis6991/gitsigns.nvim",
