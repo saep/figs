@@ -1,4 +1,3 @@
-require("saep.cmp")
 require("saep.lsp")
 
 if vim.g.neovide then
