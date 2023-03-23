@@ -31,6 +31,7 @@
     parinfer-rust # magic parens
     procs # similar to ps
     ripgrep # similar to grep
+    rust-script
     tealdeer # common examples instead of man page
     trash-cli
     tokei # similar to cloc (count lines of code)
