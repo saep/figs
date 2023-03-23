@@ -27,7 +27,8 @@ local on_attach = function(client, bufnr)
   end
   if (bufnr) then
     vim.keymap.set("n", "<Leader>u", vim.lsp.buf.references, opts("usages"))
-    vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts("hover docs"))
+    -- vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts("hover docs"))
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts("hover docs"))
     vim.keymap.set("n", "H", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts("cursor diagnostics"))
     vim.keymap.set("n", "L", "<cmd>Lspsaga show_line_diagnostics<CR>", opts("line diagnostics"))
 
@@ -42,11 +43,15 @@ local on_attach = function(client, bufnr)
     vim.keymap.set({ "n" }, "<Leader>ld", vim.lsp.buf.definition, opts("definition"))
     vim.keymap.set({ "n" }, "<Leader>lD", vim.lsp.buf.declaration, opts("declaration"))
     vim.keymap.set({ "n" }, "<Leader>li", vim.lsp.buf.implementation, opts("implementation"))
-    vim.keymap.set({ "n" }, "<Leader>lr", "<cmd>Lspsaga rename<CR>", opts("rename"))
+    -- vim.keymap.set({ "n" }, "<Leader>lr", "<cmd>Lspsaga rename<CR>", opts("rename"))
+    vim.keymap.set({ "n" }, "<Leader>lr", vim.lsp.buf.rename, opts("rename"))
     vim.keymap.set({ "n" }, "<Leader>lt", vim.lsp.buf.type_definition, opts("type definition"))
     vim.keymap.set({ "n" }, "<Leader>lu", vim.lsp.buf.references, opts("usages"))
-    vim.keymap.set({ "n" }, "<Leader>lc", "<cmd>Lspsaga code_action<CR>", opts("code action"))
+    -- vim.keymap.set({ "n" }, "<Leader>lc", "<cmd>Lspsaga code_action<CR>", opts("code action"))
+    vim.keymap.set({ "n" }, "<Leader>lc", vim.lsp.buf.code_action, opts("code action"))
     vim.keymap.set({ "n" }, "<Leader>lp", "<cmd>Lspsaga peek_definition<CR>", opts("peek definition"))
+    -- vim.keymap.set({ "n" }, "<Leader>dl", "<cmd>Lspsaga show_line_diagnostics<Cr>", opts("show line diagnostics"))
+    -- vim.keymap.set({ "n" }, "<Leader>dc", "<cmd>Lspsaga show_cursor_diagnostics<Cr>", opts("show line diagnostics"))
   end
 end
 
