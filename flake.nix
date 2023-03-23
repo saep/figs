@@ -12,17 +12,6 @@
       url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # neovim plugins that are either not in nix or for which I want to follow a
-    # specific branch
-    lspsaga = {
-      url = "github:glepnir/lspsaga.nvim";
-      flake = false;
-    };
-    neotest-haskell = {
-      url = "github:saep/neotest-haskell/feature/run-tests-for-simple-cabal-projects";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -31,8 +20,6 @@
     , nur
     , home-manager
     , nixgl
-    , lspsaga
-    , neotest-haskell
     }:
     let hm = home-manager;
     in
@@ -46,17 +33,6 @@
         overlays = [
           nixgl.overlay
           nur.overlay
-          neotest-haskell.overlays.default
-          (final: prev: {
-            vimPlugins = prev.vimPlugins // {
-              lspsaga-nvim = pkgs.vimUtils.buildVimPluginFrom2Nix {
-                pname = "lspsaga-nvim";
-                version = "HEAD";
-                src = lspsaga;
-              };
-              saep-neotest-haskell = neotest-haskell.packages.x86_64-linux.nvim-plugin;
-            };
-          })
         ];
       };
       hmModules = {
