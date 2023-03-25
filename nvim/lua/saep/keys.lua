@@ -15,6 +15,7 @@ map("format gq", "v", "Q", "gq")
 map("repeat", "v", ".", "<Cmd>normal .<CR>")
 map("ESC", "t", "<C-]>", "<C-\\><C-n>")
 map("join lines", "n", "J", "mzJ`z")
+map(":write", "n", "<Leader>s", ":write<CR>")
 
 map("move selection down", "v", "J", ":m '>+1<CR>gv=gv")
 map("move selection up", "v", "K", ":m '<-2<CR>gv=gv")
