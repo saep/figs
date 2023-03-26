@@ -51,6 +51,9 @@ in
     mimeApps = {
       enable = true;
     };
+    systemDirs = {
+      data = [ "/home/${username}/.nix-profile/share" ];
+    };
   };
 
   # configuration files {{{1
@@ -228,7 +231,7 @@ in
     rofi = {
       enable = true;
       font = "Hasklug Nerd Font 14";
-      terminal = "wezterm";
+      terminal = "kitty";
       theme = ./rofi-catppucin-mocha-theme.rasi;
       extraConfig = {
         modi = "drun,window";
