@@ -9,6 +9,9 @@ typeset -U path
 export EDITOR='nvim'
 export VISUAL=$EDITOR
 
+export MANPAGER='nvim +Man!'
+export MANWIDTH=999
+
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_DATA_HOME="${HOME}/.local/share"
@@ -48,12 +51,25 @@ doas-command-line() {
 zle -N doas-command-line
 # prepend the current command with "doas"
 bindkey "^os" doas-command-line
+
+# Ctrl-z to toggle between program and terminal
+fancy-ctrl-z () {
+  if [[ $#BUFFER -eq 0 ]]; then
+    BUFFER="fg"
+    zle accept-line -w
+  else
+    zle push-input -w
+    zle clear-screen -w
+  fi
+}
+zle -N fancy-ctrl-z
 bindkey "^z" fancy-ctrl-z
 
 alias ghci-pretty="stack ghci --ghci-options \"-interactive-print=Text.Pretty.Simple.pPrint\" --package pretty-simple $@"
 
 alias gd="git diff -w $@"
 alias mb="mvn package -T8 -DskipTests -Dmaven.javadoc.skip=true $@"
+alias ls=exa
 
 function mvn-env() {
     echo "Executing maven with ${MAVEN_SETTINGS_FILE}"
@@ -70,20 +86,6 @@ function abs() {
     toCopy="`pwd`/$1"
     echo -n "$toCopy" | xsel -ib
     echo "Put in clipboard: $toCopy"
-}
-
-function doom() {
-    exe="${HOME}/.emacs.d/bin/doom"
-    if [[ -x ${exe} ]]; then
-        ${exe} $@
-    else
-        echo "doom emacs is not installed"
-    fi
-}
-
-function stack-test-match() {
-    match="\"$@\""
-    stack test "--ta=--match ${match}" --file-watch
 }
 
 function npm-bin {

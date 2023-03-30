@@ -14,7 +14,6 @@
     bottom # similar to htop
     curl
     delta # diff
-    direnv
     difftastic # diff
     du-dust # similar to du 
     evcxr # rust repl
@@ -70,6 +69,11 @@
         syntax_theme = "MochaDark";
         modal = true;
       };
+    };
+    direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      enableNushellIntegration = true;
     };
     git = {
       enable = true;
@@ -239,22 +243,6 @@
       enable = true;
       dotDir = ".config/zsh";
       enableSyntaxHighlighting = true;
-      oh-my-zsh = {
-        enable = true;
-        plugins = [
-          "colored-man-pages"
-          "direnv"
-          "fancy-ctrl-z"
-          "git"
-          "mvn"
-          "pass"
-          "ripgrep"
-          "stack"
-          "themes"
-        ];
-        custom = "${builtins.toString ./.}/zsh/custom";
-        theme = "saep";
-      };
       initExtra = ''
         ${lib.strings.fileContents ./zsh/zshrc}
       '';
