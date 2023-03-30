@@ -17,7 +17,6 @@
     difftastic # diff
     du-dust # similar to du 
     evcxr # rust repl
-    exa # similar to ls
     fd # similar to find
     gnumake
     graphviz
@@ -41,7 +40,6 @@
   home.shellAliases = {
     e = "nvim";
     g = "git";
-    l = "exa -lah --time-style long-iso";
     ".." = "cd ..";
     "..." = "cd ../..";
     "...." = "cd ../../..";
