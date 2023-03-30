@@ -69,7 +69,7 @@ alias ghci-pretty="stack ghci --ghci-options \"-interactive-print=Text.Pretty.Si
 
 alias gd="git diff -w $@"
 alias mb="mvn package -T8 -DskipTests -Dmaven.javadoc.skip=true $@"
-alias ls=exa
+alias ls="br -ds $@"
 
 function mvn-env() {
     echo "Executing maven with ${MAVEN_SETTINGS_FILE}"
