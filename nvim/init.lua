@@ -141,6 +141,7 @@ require("lazy").setup({
     "folke/trouble.nvim",
     config = true,
   },
+  "chrisgrieser/nvim-spider",
   {
     "nvim-tree/nvim-tree.lua",
     config = true,

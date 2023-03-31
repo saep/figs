@@ -49,6 +49,11 @@ map("live grep", "n", "<leader>fg", require('telescope.builtin').live_grep)
 map("neovim help", "n", "<leader>fh", require('telescope.builtin').help_tags)
 map("nvim-tree", "n", "<leader>ft", "<Cmd>NvimTreeFindFileToggle<CR>")
 map("find project ", "n", "<leader>fp", require('telescope').extensions.project.project)
+	
+vim.keymap.set({"n", "o", "x"}, "w", function() require("spider").motion("w") end, { desc = "Spider-w" })
+vim.keymap.set({"n", "o", "x"}, "e", function() require("spider").motion("e") end, { desc = "Spider-e" })
+vim.keymap.set({"n", "o", "x"}, "b", function() require("spider").motion("b") end, { desc = "Spider-b" })
+vim.keymap.set({"n", "o", "x"}, "ge", function() require("spider").motion("ge") end, { desc = "Spider-ge" })
 
 -- t -- test bindings
 map("neotest run nearest", "n", "<Leader>tt", function() require('neotest').run.run() end)
