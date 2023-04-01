@@ -7,6 +7,7 @@ if vim.g.neovide then
 end
 
 require("saep.keys")
+require("saep.snippets")
 
 -- Must be set here for some reason as the hydras aren't colored otherwise
 vim.cmd.colorscheme "catppuccin"
