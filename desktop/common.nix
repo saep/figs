@@ -33,7 +33,6 @@ in
   qt = {
     enable = true;
     style.name = "adwaita-dark";
-    style.package = pkgs.adwaita-dark;
   };
 
   # xdg {{{1
