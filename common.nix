@@ -66,7 +66,29 @@
       enableZshIntegration = true;
       settings = {
         syntax_theme = "MochaDark";
-        modal = true;
+        verbs = [
+          {
+            execution = "cd {directory}";
+            key = "ctrl-t";
+            from_shell = true;
+          }
+          {
+            key = "ctrl-j";
+            internal = ":line_down";
+          }
+          {
+            key = "ctrl-k";
+            internal = ":line_up";
+          }
+          {
+            key = "ctrl-l";
+            internal = ":panel_right";
+          }
+          {
+            key = "ctrl-h";
+            internal = ":panel_left";
+          }
+        ];
       };
     };
     direnv = {

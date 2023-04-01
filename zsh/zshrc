@@ -65,6 +65,8 @@ fancy-ctrl-z () {
 zle -N fancy-ctrl-z
 bindkey "^z" fancy-ctrl-z
 
+bindkey -s '^t' 'br^M'
+
 alias ghci-pretty="stack ghci --ghci-options \"-interactive-print=Text.Pretty.Simple.pPrint\" --package pretty-simple $@"
 
 alias gd="git diff -w $@"
