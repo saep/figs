@@ -88,6 +88,10 @@
             key = "ctrl-h";
             internal = ":panel_left";
           }
+          {
+            key = "ctrl-o";
+            internal = ":parent";
+          }
         ];
       };
     };

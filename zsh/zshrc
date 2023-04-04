@@ -25,10 +25,97 @@ export NODE_VERSION_PREFIX=v
 [[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
 
 # User configuration
+
+
+stty stop undef     #disable ESCs
+stty start undef    #disable ESCq
+setopt no_flowcontrol
+setopt nobeep
+
+setopt nohup
+setopt completeinword
+setopt pushd_ignore_dups
+setopt noclobber
+
+setopt hist_allow_clobber
+setopt extended_history
+setopt share_history
+setopt histignorealldups
+setopt hist_ignore_space
+setopt hist_reduce_blanks
+setopt histverify # show the history line before Executing
+
+setopt correct # correct little mistakes in the called program
+setopt auto_cd # you don't have to type cd to cd !
+setopt extended_glob # more powerful patterns
+setopt rc_quotes
+setopt nonomatch
+setopt noglobdots
+
+## Completion settings
+autoload -Uz compinit ; compinit
+zstyle ':completion:::::' completer _complete _approximate _expand _ignored
+# structure completions
+zstyle ':completion:*:descriptions' format $'%{\e[0;31m%}completing %B%d%b%{\e[0m%}'
+# start menu completion only if it could find no unambiguous initial string
+zstyle ':completion:*:correct:*'       insert-unambiguous true
+zstyle ':completion:*:corrections'     format $'%{\e[0;31m%}%d (errors: %e)%{\e[0m%}'
+zstyle ':completion:*:correct:*'       original true
+
+# activate color-completion
+zstyle ':completion:*:default'         list-colors ${(s.:.)LS_COLORS}
+
+# separate matches into groups
+zstyle ':completion:*:matches'         group 'yes'
+zstyle ':completion:*'                 group-name ''
+
+# if there are more than 5 options allow selecting from a menu
+zstyle ':completion:*'               menu select=4
+zmodload zsh/complist
+bindkey -M menuselect '\C-o' accept-and-menu-complete
+
+# on processes completion complete all user processes
+zstyle ':completion:*:processes'       command 'ps -au$USER'
+
+# offer indexes before parameters in subscripts
+zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
+
+# Ignore completion functions for commands you don't have:
+zstyle ':completion::(^approximate*):*:functions' ignored-patterns '_*'
+
+# Provide more processes in completion of programs like killall:
+zstyle ':completion:*:processes-names' command 'ps c -u ${USER} -o command | uniq'
+
+zstyle ':completion:*:man:*'      menu yes select
+
+# Search path for sudo completion
+zstyle ':completion:*:sudo:*' command-path /usr/local/sbin \
+    /usr/local/bin  \
+    /usr/sbin       \
+    /usr/bin        \
+    /sbin           \
+    /bin            \
+    /usr/X11R6/bin
+
+# provide .. as a completion
+zstyle ':completion:*' special-dirs ..
+
+# ignore some files in the auto completions
+zstyle ':completion:*:*files' ignored-patterns '*?~'
+zstyle ':completion:*:*:(e|emacs|less|rm|mv):*' ignore-line true
+zstyle ':completion:*' ignore-parents parent pwd
+
+zstyle ':completion::approximate*:*' prefix-needed false
+
 bindkey '\C-w' kill-region
 bindkey '\eq' push-line-or-edit # M-q (original: push-line)
 bindkey ' ' magic-space
 bindkey '\e.' insert-last-word
+bindkey '^r' history-incremental-search-backward
+bindkey '^s' history-incremental-search-forward
+bindkey '^a' beginning-of-line
+bindkey '^e' end-of-line
+bindkey '^k' kill-line
 
 autoload -z edit-command-line
 zle -N edit-command-line
@@ -71,7 +158,6 @@ alias ghci-pretty="stack ghci --ghci-options \"-interactive-print=Text.Pretty.Si
 
 alias gd="git diff -w $@"
 alias mb="mvn package -T8 -DskipTests -Dmaven.javadoc.skip=true $@"
-alias ls="br -ds $@"
 
 function mvn-env() {
     echo "Executing maven with ${MAVEN_SETTINGS_FILE}"
@@ -96,3 +182,4 @@ function npm-bin {
 
 [[ "$TERM" == "xterm-kitty" ]] && alias ssh='TERM=xterm ssh $@'
 
+compinit
