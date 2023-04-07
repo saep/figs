@@ -93,6 +93,10 @@ require("lazy").setup({
     config = true,
   },
   {
+    "windwp/nvim-ts-autotag",
+    config = true,
+  },
+  {
     "neovim/nvim-lspconfig",
   },
   {
