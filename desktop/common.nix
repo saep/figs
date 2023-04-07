@@ -30,6 +30,16 @@ in
     variant = "altgr-intl";
     options = [ "ctrl:nocaps" ];
   };
+  dconf = {
+    enable = true;
+  };
+  gtk = {
+    enable = true;
+    theme = {
+      package = pkgs.gnome.gnome-themes-extra;
+      name = "Adwaita-dark";
+    };
+  };
   qt = {
     enable = true;
     style.name = "adwaita-dark";
