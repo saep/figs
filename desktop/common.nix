@@ -221,7 +221,7 @@ in
       terminal = "wezterm";
       theme = ./rofi-catppucin-mocha-theme.rasi;
       extraConfig = {
-        modi = "drun,ssh,window,filebrowser";
+        modi = "drun,window";
         show-icons = true;
         drun-display-format= "{icon} {name}";
         location= 0;
