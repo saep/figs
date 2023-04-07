@@ -53,7 +53,6 @@ import XMonad.Layout.TwoPane
 import XMonad.Layout.WorkspaceDir
 import XMonad.Prompt
 import XMonad.Prompt.FuzzyMatch (fuzzyMatch, fuzzySort)
-import XMonad.Prompt.Shell (shellPrompt)
 import XMonad.Prompt.Window (WindowPrompt (..), allWindows, windowMultiPrompt)
 import qualified XMonad.StackSet as W
 import XMonad.Util.EZConfig (additionalKeysP, removeKeysP, parseKey)
@@ -63,9 +62,11 @@ import XMonad.Util.NamedScratchpad (NamedScratchpad (..), customFloating, namedS
 import XMonad.Util.Parser (runParser, eof)
 import XMonad.Util.Run
 import XMonad.Util.WorkspaceCompare (getSortByIndex)
+import System.Environment (setEnv)
 
 main :: IO ()
 main = do
+  setEnv "HOST" =<< getHostName -- OnHost layout doesn't seem to work otherwise
   myConfig <- initMyConfig
   xmonad . javaHack . ewmh . docks $ applyMyConfig myConfig
 
@@ -185,9 +186,9 @@ myLayout ws =
   trackFloating
     . useTransientFor
     . layoutHintsToCenter
-    . onWorkspace (myFullWorkspaceId Mehl) (workspaceDir "~/Documents" tab)
-    . onWorkspace (myFullWorkspaceId Dev) ((dev ||| tab) `ifUltraWideScreenOrElse` tab)
-    . onWorkspace (myFullWorkspaceId Emacs) (workspaceDir "~/src/org" full)
+    . onWorkspace (myFullWorkspaceId Mehl) (workspaceDir "~/Documents" (tab ||| tall))
+    . onWorkspace (myFullWorkspaceId Dev) ((dev ||| tab ||| tall) `ifUltraWideScreenOrElse` (tab ||| tall))
+    . onWorkspace (myFullWorkspaceId Emacs) (workspaceDir "~/src/org" (tab ||| full))
     . onWorkspace (myFullWorkspaceId IM) (tall ||| im)
     . onWorkspace (myFullWorkspaceId Browser) (workspaceDir "~/Downloads" ((tall ||| full) `ifUltraWideScreenOrElse` (full ||| tall)))
     $ tall ||| tab ||| full
