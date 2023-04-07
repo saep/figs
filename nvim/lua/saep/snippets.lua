@@ -27,9 +27,9 @@ local c = ls.choice_node
 
 ls.add_snippets("rust", {
   s("fn", {
-    t("fn "), i(1, "function_name"), t("("), i("&self"), t(") "),
-    c(2, {
-      i(2),
+    t("fn "), i(1, "function_name"), t("("), i(2, "&self"), t(") "),
+    c(3, {
+      i(1),
       sn(nil, { t("-> "), i(1), t(" ") }),
       sn(nil, { t("-> Result<"), i(1), t(", "), i(2), t("> ") }),
     }),
