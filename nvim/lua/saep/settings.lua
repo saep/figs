@@ -21,7 +21,7 @@ vim.opt.spellfile = vim.fn.stdpath("cache") .. "/ende.utf-8.add"
 vim.opt.background = "dark"
 vim.cmd "highlight WinSeparator guibg=None"
 vim.opt.hlsearch = false
-vim.o.ch = 0 -- comand height: Removes bottom line of nothingness
+vim.o.ch = 1 -- comand height: Removes bottom line of nothingness if set to 0, but causes too many Hit-Enter-Prompts currently :-(
 vim.o.laststatus = 2
 
 local function go_to_last_known_position()
