@@ -39,7 +39,7 @@
   ];
 
   home.shellAliases = {
-    e = "nvim";
+    e = "[ -n \"$DISPLAY\" ] && neovide --nofork || nvim";
     g = "git";
     ".." = "cd ..";
     "..." = "cd ../..";
