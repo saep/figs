@@ -197,7 +197,7 @@ myLayout ws =
     myFullWorkspaceId w = ws ^. workspaceIdOf (Name w)
     full = smartBorders Full
     tab = noBorders . avoidStruts $ tabbed shrinkText myTheme
-    dev = combineTwoP (TwoPane 0.03 0.6) tab tall (Or (ClassName "jetbrains-idea") (ClassName "Emacs"))
+    dev = combineTwoP (TwoPane 0.03 0.6) tab tall $ foldr (Or . ClassName) (ClassName "neovide") ["jetbrains-idea", "Emacs"]
     tall = avoidStruts $ smartBorders $ layoutHints $ mouseResizableTile {draggerType = FixedDragger 2 6}
     im =
       let signalDesktop = Full
@@ -356,7 +356,7 @@ applyMyConfig myConfig@MyConfig {..} =
         `removeKeysP` ["M-S-q"]
 
 scratchpads :: [NamedScratchpad]
-scratchpads = 
+scratchpads =
   [ NS "keepassxc" "keepassxc" (className =? "KeePassXC") (customFloating $ W.RationalRect (1/3) (1/4) (1/3) (1/2))
   ]
 
