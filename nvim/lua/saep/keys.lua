@@ -29,6 +29,7 @@ map("window down", "n", "<leader>wj", "<C-w>j")
 map("window up", "n", "<leader>wk", "<C-w>k")
 map("window right", "n", "<leader>wl", "<C-w>l")
 map("window left", "n", "<leader>wh", "<C-w>h")
+map("window only", "n", "<leader>wo", "<C-w>o")
 
 map("window down", { "t" }, "<A-j>", [[<C-\><C-n><C-w>j]])
 map("window up", { "t" }, "<A-k>", [[<C-\><C-n><C-w>k]])
