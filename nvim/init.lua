@@ -217,6 +217,9 @@ require("lazy").setup({
     },
     branch = '1.x.x',
     ft = { "cabal", "haskell", },
+    cond = function()
+      return vim.fn.executable("haskell-language-server-wrapper") == 1
+    end,
     opts = function()
       return {
         hls = {
