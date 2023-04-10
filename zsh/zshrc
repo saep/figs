@@ -114,8 +114,11 @@ bindkey '\e.' insert-last-word
 bindkey '^r' history-incremental-search-backward
 bindkey '^s' history-incremental-search-forward
 bindkey '^a' beginning-of-line
+bindkey '^[[H' beginning-of-line
 bindkey '^e' end-of-line
+bindkey '^[[F' end-of-line
 bindkey '^k' kill-line
+bindkey '^[[3~' delete-char
 
 autoload -z edit-command-line
 zle -N edit-command-line
