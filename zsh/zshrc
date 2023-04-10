@@ -180,6 +180,15 @@ function npm-bin {
     export PATH="$(npm bin):$PATH"; npm $@
 }
 
+function take {
+  if [[ -z $1 ]]; then
+    echo "No argument given"
+  else 
+    [[ -d $1 ]] || mkdir -p $1
+    cd $1
+  fi
+}
+
 [[ "$TERM" == "xterm-kitty" ]] && alias ssh='TERM=xterm ssh $@'
 
 compinit
