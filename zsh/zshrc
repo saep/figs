@@ -192,6 +192,14 @@ function take {
   fi
 }
 
+function e {
+  if [[ -n $DISPLAY ]] && [[ -x $commands[neovide] ]]; then
+    neovide --nofork 
+  else
+    nvim $@
+  fi
+}
+
 [[ "$TERM" == "xterm-kitty" ]] && alias ssh='TERM=xterm ssh $@'
 
 compinit
