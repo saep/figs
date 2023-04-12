@@ -15,7 +15,7 @@ map("format gq", "v", "Q", "gq")
 map("repeat", "v", ".", "<Cmd>normal .<CR>")
 map("ESC", "t", "<C-]>", "<C-\\><C-n>")
 map("join lines", "n", "J", "mzJ`z")
-map(":write", "n", "<Leader>s", ":write<CR>")
+map(":write", "n", "<leader>s", "<Cmd>wall<CR>")
 
 map("move selection down", "v", "J", ":m '>+1<CR>gv=gv")
 map("move selection up", "v", "K", ":m '<-2<CR>gv=gv")
@@ -65,7 +65,10 @@ vim.keymap.set({ "n", "o", "x" }, "ge", function() require("spider").motion("ge"
 map("Trouble toggle", "n", "<leader>tg", "<Cmd>TroubleToggle<CR>")
 
 -- t -- test/trouble bindings
-map("neotest run nearest", "n", "<Leader>tt", function() require('neotest').run.run() end)
+map("neotest run nearest", "n", "<Leader>tt", function()
+  vim.api.nvim_command("silent write")
+  require('neotest').run.run()
+end)
 map("neotest open output", "n", "<Leader>to", function() require('neotest').output.open() end)
 map("neotest summary", "n", "<Leader>ts", function() require('neotest').summary.toggle() end)
 
