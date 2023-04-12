@@ -141,10 +141,6 @@ require("lazy").setup({
     config = true,
   },
   "anuvyklack/hydra.nvim",
-  {
-    "folke/trouble.nvim",
-    config = true,
-  },
   "chrisgrieser/nvim-spider",
   {
     "nvim-tree/nvim-tree.lua",

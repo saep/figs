@@ -35,7 +35,6 @@
   "telescope-project.nvim": { "branch": "master", "commit": "fa081e35ba7397e5147a51ece693aa3afda167fc" },
   "telescope.nvim": { "branch": "0.1.x", "commit": "9de317bdea2bc393074651179c4fc7f93e9b2d56" },
   "toggleterm.nvim": { "branch": "main", "commit": "1c5996ee3c30b54751093fe68d40676859e7778f" },
-  "trouble.nvim": { "branch": "main", "commit": "2ae7237c2917d661f458443c9a88680f8ca2d7b2" },
   "vim-commentary": { "branch": "master", "commit": "e87cd90dc09c2a203e13af9704bd0ef79303d755" },
   "vim-exchange": { "branch": "master", "commit": "784d63083ad7d613aa96f00021cd0dfb126a781a" },
   "vim-fugitive": { "branch": "master", "commit": "ef99f1d90cdb33a52931aed5868785b51fb9411d" },
