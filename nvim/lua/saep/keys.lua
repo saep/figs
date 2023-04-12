@@ -62,7 +62,9 @@ vim.keymap.set({ "n", "o", "x" }, "e", function() require("spider").motion("e") 
 vim.keymap.set({ "n", "o", "x" }, "b", function() require("spider").motion("b") end, { desc = "Spider-b" })
 vim.keymap.set({ "n", "o", "x" }, "ge", function() require("spider").motion("ge") end, { desc = "Spider-ge" })
 
--- t -- test bindings
+map("Trouble toggle", "n", "<leader>tg", "<Cmd>TroubleToggle<CR>")
+
+-- t -- test/trouble bindings
 map("neotest run nearest", "n", "<Leader>tt", function() require('neotest').run.run() end)
 map("neotest open output", "n", "<Leader>to", function() require('neotest').output.open() end)
 map("neotest summary", "n", "<Leader>ts", function() require('neotest').summary.toggle() end)
