@@ -170,10 +170,24 @@ require("lazy").setup({
       },
     },
   },
-  "tpope/vim-commentary",
+  {
+    "echasnovski/mini.nvim",
+    config = function ()
+      require("mini.bufremove").setup{}
+      require("mini.comment").setup{}
+      require("mini.jump").setup{
+        mapping = {
+          repeat_jump = nil,
+        },
+      }
+      require("mini.jump2d").setup{}
+      require("mini.surround").setup{
+        highlight_duration = 300,
+        search_method = 'cover_or_next',
+      }
+    end
+  },
   "tpope/vim-speeddating",
-  "tpope/vim-surround",
-  "tpope/vim-unimpaired",
   "tpope/vim-repeat",
   "tommcdo/vim-exchange",
   {
@@ -197,12 +211,6 @@ require("lazy").setup({
           },
         },
       }
-    end,
-  },
-  {
-    "ggandor/leap.nvim",
-    config = function()
-      require("leap").add_default_mappings()
     end,
   },
   {
@@ -239,6 +247,7 @@ require("lazy").setup({
     },
   },
   "hrsh7th/cmp-nvim-lsp",
+  "hrsh7th/cmp-nvim-lua",
   "hrsh7th/cmp-buffer",
   "hrsh7th/cmp-path",
   "hrsh7th/cmp-cmdline",
