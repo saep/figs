@@ -1,10 +1,14 @@
+local next = require("saep.next")
+
 -- Set a default timeout len (/ms) which is used by which-key to dealy displaying key bindings
 vim.opt.timeoutlen = 250
 vim.g.mapleader = " "
 vim.g.maplocalleader = vim.api.nvim_replace_termcodes('<BS>', false, false, true)
 
-local map = function(description, modes, lhs, rhs)
-  vim.keymap.set(modes, lhs, rhs, { desc = description })
+local map = function(description, modes, lhs, rhs, opts)
+  opts = opts or {}
+  opts.desc = description
+  vim.keymap.set(modes, lhs, rhs, opts)
 end
 
 map("local leader", { "n" }, "<LocalLeader>", "<cmd>lua require'which-key'.show('<LocalLeader>', {mode='n'})<cr>")
@@ -15,7 +19,9 @@ map("format gq", "v", "Q", "gq")
 map("repeat", "v", ".", "<Cmd>normal .<CR>")
 map("ESC", "t", "<C-]>", "<C-\\><C-n>")
 map("join lines", "n", "J", "mzJ`z")
-map(":write", "n", "<leader>s", "<Cmd>wall<CR>")
+map(":wall", "n", "<leader>s", "<Cmd>wall<CR>")
+map("n and center", "n", "n", function() vim.api.nvim_feedkeys("nzz", "n", true) end)
+map("N and center", "n", "N", function() vim.api.nvim_feedkeys("Nzz", "n", true) end)
 
 map("move selection down", "v", "J", ":m '>+1<CR>gv=gv")
 map("move selection up", "v", "K", ":m '<-2<CR>gv=gv")
@@ -31,10 +37,10 @@ map("window right", "n", "<leader>wl", "<C-w>l")
 map("window left", "n", "<leader>wh", "<C-w>h")
 map("window only", "n", "<leader>wo", "<C-w>o")
 map("window close", "n", "<leader>wc", "<Cmd>quit<CR>")
-map("window delete buffer", "n", "<leader>wd", function ()
+map("window delete buffer", "n", "<leader>wd", function()
   require("mini.bufremove").wipeout()
 end)
-map("window delete buffer", "n", "<leader>wh", function ()
+map("window delete buffer", "n", "<leader>wh", function()
   require("mini.bufremove").unshow_in_window()
 end)
 for i = 1, 9 do
@@ -63,10 +69,27 @@ map("neovim help", "n", "<leader>fh", require('telescope.builtin').help_tags)
 map("nvim-tree", "n", "<leader>ft", "<Cmd>NvimTreeFindFileToggle<CR>")
 map("find project ", "n", "<leader>fp", require('telescope').extensions.project.project)
 
-vim.keymap.set({ "n", "o", "x" }, "w", function() require("spider").motion("w") end, { desc = "Spider-w" })
-vim.keymap.set({ "n", "o", "x" }, "e", function() require("spider").motion("e") end, { desc = "Spider-e" })
-vim.keymap.set({ "n", "o", "x" }, "b", function() require("spider").motion("b") end, { desc = "Spider-b" })
-vim.keymap.set({ "n", "o", "x" }, "ge", function() require("spider").motion("ge") end, { desc = "Spider-ge" })
+map("Spider-w", { "n", "o", "x" }, "w", function() require("spider").motion("w") end)
+map("Spider-e", { "n", "o", "x" }, "e", function() require("spider").motion("e") end)
+map("Spider-b", { "n", "o", "x" }, "b", function() require("spider").motion("b") end)
+map("Spider-ge", { "n", "o", "x" }, "ge", function() require("spider").motion("ge") end)
+
+map("next thing", "n", ";", function() next.next() end)
+map("previous thing", "n", ",", function() next.prev() end)
+map("close thing ", "n", "[", function() next.close() end)
+map("select thing", "n", "]]", function() next.select_in_telescope() end)
+map("next diagnostic", "n", "]e", function()
+  next.push(next.actions.lspsaga_diagnostic)
+  next.next()
+end)
+map("next qf item", "n", "]q", function()
+  next.push(next.actions.qf)
+  next.next()
+end, { silent = true, })
+map("next loc item", "n", "]l", function()
+  next.push(next.actions.loclist)
+  next.next()
+end, { silent = true })
 
 -- t -- test bindings
 map("neotest run nearest", "n", "<leader>tt", function()
@@ -93,18 +116,18 @@ map("nvim-tree current buffer", "n", "-", toggle_replace)
 
 
 local ls = require("luasnip")
-vim.keymap.set({ "i", "s" }, "<C-j>", function()
+map("next in snippet", { "i", "s" }, "<C-j>", function()
   if (ls.expand_or_jumpable()) then
     ls.expand_or_jump()
   end
-end, { desc = "next in snippet", silent = true })
-vim.keymap.set({ "i", "s" }, "<C-k>", function()
+end, { silent = true })
+map("prev in snippet", { "i", "s" }, "<C-k>", function()
     if (ls.jumpable(-1)) then
       ls.jump(-1)
     end
   end,
-  { desc = "prev in snippet", silent = true })
-vim.keymap.set("i", "<C-l>", function()
+  { silent = true })
+map("change snippet choice", "i", "<C-l>", function()
   if ls.choice_active() then
     ls.change_choice(1)
   end

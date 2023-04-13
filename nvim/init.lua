@@ -172,16 +172,16 @@ require("lazy").setup({
   },
   {
     "echasnovski/mini.nvim",
-    config = function ()
-      require("mini.bufremove").setup{}
-      require("mini.comment").setup{}
-      require("mini.jump").setup{
+    config = function()
+      require("mini.bufremove").setup {}
+      require("mini.comment").setup {}
+      require("mini.jump").setup {
         mapping = {
           repeat_jump = nil,
         },
       }
-      require("mini.jump2d").setup{}
-      require("mini.surround").setup{
+      require("mini.jump2d").setup {}
+      require("mini.surround").setup {
         highlight_duration = 300,
         search_method = 'cover_or_next',
       }
@@ -335,7 +335,7 @@ require("lazy").setup({
         globalstatus = false,
       },
       sections = {
-        lualine_a = { 'mode' },
+        lualine_a = { 'require("saep.next").current()', 'mode' },
         lualine_b = { 'branch', 'diff', 'diagnostics' },
         lualine_c = {
           {

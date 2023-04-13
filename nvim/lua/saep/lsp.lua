@@ -6,9 +6,6 @@ local function executableOnPath(executable)
   end
 end
 
-vim.keymap.set("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true, desc = "previous diagnostic" })
-vim.keymap.set("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true, desc = "next diagnostic" })
-
 -- on_attach function for language servers
 --
 -- This sets up keybindings which only work when a language server is used.
