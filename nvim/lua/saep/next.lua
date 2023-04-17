@@ -69,6 +69,15 @@ local nextActions = {
       return diagnosticsOfBuffer and #diagnosticsOfBuffer > 0
     end,
   },
+  scroll_last_window = {
+    short = "w",
+    description = "Scroll last window",
+    next = function() send_keys("<C-w>p<C-d><C-w>p") end,
+    prev = function() send_keys("<C-w>p<C-u><C-w>p") end,
+    canBeExecuted = function()
+      return true
+    end,
+  },
   scroll = {
     short = "s",
     description = "Scroll - <C-d> <C-u>",
@@ -126,7 +135,7 @@ auto_select_next_action = function()
     nextActions.loclist,
     nextActions.qf,
     nextActions.lspsaga_diagnostic,
-    nextActions.scroll,
+    nextActions.scroll_last_window,
   }
   for _, action in ipairs(selectable) do
     if action.canBeExecuted() then
