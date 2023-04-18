@@ -26,6 +26,7 @@
       pkgs.nixgl.nixGLIntel
       keepassxc
       neovide
+      chromium
 
       xdg-utils
 
