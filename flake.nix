@@ -41,6 +41,7 @@
         desktop = {
           common = ./desktop/common.nix;
           xcape = ./desktop/xcape.nix;
+          xmonad = ./desktop/xmonad.nix;
         };
         dev = {
           java = ./dev/java.nix;
@@ -58,6 +59,7 @@
           common
           nvim
           desktop.common
+          desktop.xmonad
           private
           misc.syncthing
         ];
@@ -73,12 +75,34 @@
           # then flake can be added to the arguments of e.g. home.nix
         };
       };
+      homeConfigurations."saep@magma" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = with hmModules; [
+          common
+          desktop.common
+          nvim
+          private
+          misc.syncthing
+        ];
+        extraSpecialArgs = {
+          username = "saep";
+          stateVersion = home-manager-state-version;
+          /* dpi = 96; */
+          dpi = 144;
+          color = color;
+          isNixos = false;
+          # If the config needs attributes from a flake:
+          # inherit flake;
+          # then flake can be added to the arguments of e.g. home.nix
+        };
+      };
       homeConfigurations."saep@swaep" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = with hmModules; [
           common
           nvim
           desktop.common
+          desktop.xmonad
           private
           desktop.xcape
           misc.syncthing
