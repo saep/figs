@@ -145,15 +145,18 @@ require("lazy").setup({
   {
     "nvim-tree/nvim-tree.lua",
     config = true,
-    opts = {
-      view = {
-        mappings = {
-          list = {
-            { key = "<CR>", action = "edit_in_place" },
-          },
-        },
-      },
-    },
+    opts = function()
+      local function on_attach(bufnr)
+        local api = require("nvim-tree.api")
+        local function opts(desc)
+          return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+        end
+        vim.keymap.set("n", "<CR>", api.node.open.replace_tree_buffer, opts("edit in place"))
+      end
+      return {
+        on_attach = on_attach
+      }
+    end,
   },
   {
     "nvim-tree/nvim-web-devicons",

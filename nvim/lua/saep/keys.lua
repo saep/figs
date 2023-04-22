@@ -104,7 +104,7 @@ map("neotest open output", "n", "<leader>to", function() require('neotest').outp
 map("neotest summary", "n", "<leader>ts", function() require('neotest').summary.toggle() end)
 
 local function toggle_replace()
-  local view = require "nvim-tree.view"
+  local view = require("nvim-tree.view")
   if view.is_visible() then
     view.close()
   else
