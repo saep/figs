@@ -51,7 +51,7 @@
             "browser.urlbar.placeholderName" = "DuckDuckGo";
             "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
             "media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
-            "media.hardwaremediakeys.enabled" = false;
+            "media.hardwaremediakeys.enabled" = true;
           };
           userChrome = ''
             #TabsToolbar
