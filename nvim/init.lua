@@ -142,26 +142,9 @@ require("lazy").setup({
   "anuvyklack/hydra.nvim",
   "chrisgrieser/nvim-spider",
   {
-    "nvim-tree/nvim-tree.lua",
-    config = true,
-    opts = function()
-      local function on_attach(bufnr)
-        local api = require("nvim-tree.api")
-        local function opts(desc)
-          return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
-        end
-        vim.keymap.set("n", "<CR>", api.node.open.replace_tree_buffer, opts("edit in place"))
-      end
-      return {
-        on_attach = on_attach
-      }
-    end,
-  },
-  {
-    "nvim-tree/nvim-web-devicons",
-    dependencies = {
-      "nvim-tree/nvim-tree.lua",
-    },
+    'stevearc/oil.nvim',
+    opts = {},
+    dependencies = { "nvim-tree/nvim-web-devicons" },
   },
   {
     "akinsho/toggleterm.nvim",

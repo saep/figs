@@ -66,7 +66,6 @@ map("find buffer", "n", "<leader>fb", require('telescope.builtin').buffers)
 map("find files", "n", "<leader>ff", function() require('telescope.builtin').find_files({ follow = true }) end)
 map("live grep", "n", "<leader>fg", require('telescope.builtin').live_grep)
 map("neovim help", "n", "<leader>fh", require('telescope.builtin').help_tags)
-map("nvim-tree", "n", "<leader>ft", "<Cmd>NvimTreeFindFileToggle<CR>")
 map("find project ", "n", "<leader>fp", require('telescope').extensions.project.project)
 
 map("Spider-w", { "n", "o", "x" }, "w", function() require("spider").motion("w") end)
@@ -103,17 +102,7 @@ end)
 map("neotest open output", "n", "<leader>to", function() require('neotest').output.open() end)
 map("neotest summary", "n", "<leader>ts", function() require('neotest').summary.toggle() end)
 
-local function toggle_replace()
-  local view = require("nvim-tree.view")
-  if view.is_visible() then
-    view.close()
-  else
-    require("nvim-tree").open_replacing_current_buffer()
-  end
-end
-
-map("nvim-tree current buffer", "n", "-", toggle_replace)
-
+map("oi", "n", "-", require("oil").open)
 
 local ls = require("luasnip")
 map("next in snippet", { "i", "s" }, "<C-j>", function()
