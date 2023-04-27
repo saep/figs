@@ -29,7 +29,6 @@ require("lazy").setup({
         ensure_installed = {
           "bash",
           "haskell",
-          "help",
           "lua",
           "markdown",
           "markdown_inline",
