@@ -1,4 +1,4 @@
-{ config, pkgs, lib, username, stateVersion, ... }:
+{ config, pkgs, lib, username, stateVersion, isNixos, color, dpi, ... }:
 let
   lock-screen =
     if isNixos then
@@ -302,37 +302,37 @@ in
         };
       };
     };
-    xsession = {
-      enable = true;
-      profileExtra = ''
-        export PATH="$HOME/.nix-profile/bin:$PATH"
+  };
+  xsession = {
+    enable = true;
+    profileExtra = ''
+      export PATH="$HOME/.nix-profile/bin:$PATH"
 
-        xset s 900
-        xss-lock --notifier="${lock-screen-bin}" --transfer-sleep-lock "${lock-screen-bin}" &
+      xset s 900
+      xss-lock --notifier="${lock-screen-bin}" --transfer-sleep-lock "${lock-screen-bin}" &
 
-        eval $(ssh-agent)
+      eval $(ssh-agent)
 
-        export GTK_THEME='Adwaita:dark'
-        export QT_SCALE_FACTOR="0.5"
-        [ -x $HOME/.fehbg ] && "$HOME/.fehbg"
-        xrdb ${config.xresources.path}
-      '';
-      windowManager = {
-        xmonad = {
-          enable = true;
-          extraPackages = with pkgs; haskellPackages: [
-            haskellPackages.xmonad-contrib
+      export GTK_THEME='Adwaita:dark'
+      export QT_SCALE_FACTOR="0.5"
+      [ -x $HOME/.fehbg ] && "$HOME/.fehbg"
+      xrdb ${config.xresources.path}
+    '';
+    windowManager = {
+      xmonad = {
+        enable = true;
+        extraPackages = with pkgs; haskellPackages: [
+          haskellPackages.xmonad-contrib
             haskellPackages.megaparsec
             haskellPackages.relude
             haskellPackages.lens
             haskellPackages.pointedlist
             haskellPackages.generic-lens
             haskellPackages.hostname
-          ];
-          config = ./xmonad/Main.hs;
-          libFiles = {
-            "MyWorkspaces.hs" = ./xmonad/lib/MyWorkspaces.hs;
-          };
+        ];
+        config = ./xmonad/Main.hs;
+        libFiles = {
+          "MyWorkspaces.hs" = ./xmonad/lib/MyWorkspaces.hs;
         };
       };
     };
