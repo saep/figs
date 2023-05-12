@@ -43,6 +43,7 @@
     ".." = "cd ..";
     "..." = "cd ../..";
     "...." = "cd ../../..";
+    dc = "docker-compose";
   };
 
   home.file.".ghci".source = ./dev/ghci;

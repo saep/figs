@@ -159,7 +159,35 @@ bindkey -s '^t' 'br^M'
 
 alias ghci-pretty="stack ghci --ghci-options \"-interactive-print=Text.Pretty.Simple.pPrint\" --package pretty-simple $@"
 
+
+# Check if main exists and use instead of master
+function git_main_branch() {
+  command git rev-parse --git-dir &>/dev/null || return
+  local ref
+  for ref in refs/{heads,remotes/{origin,upstream}}/{main,trunk,mainline,default}; do
+    if command git show-ref -q --verify $ref; then
+      echo ${ref:t}
+      return
+    fi
+  done
+  echo master
+}
+
+# Check for develop and similarly named branches
+function git_develop_branch() {
+  command git rev-parse --git-dir &>/dev/null || return
+  local branch
+  for branch in dev devel development; do
+    if command git show-ref -q --verify refs/heads/$branch; then
+      echo $branch
+      return
+    fi
+  done
+  echo develop
+}
+
 alias gd="git diff -w $@"
+alias gbda='git branch --no-color --merged | command grep -vE "^([+*]|\s*($(git_main_branch)|$(git_develop_branch))\s*$)" | command xargs git branch --delete 2>/dev/null'
 alias mb="mvn package -T8 -DskipTests -Dmaven.javadoc.skip=true $@"
 
 function mvn-env() {
