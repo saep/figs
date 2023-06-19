@@ -19,6 +19,7 @@ nmap <space> <Leader>
 nnoremap <Leader><space> <C-S-6>
 
 vnoremap x X
+nnoremap K :action QuickJavaDoc<CR>
 
 nnoremap <Leader>b :action RecentFiles<CR>
 nnoremap <Leader>c :action GotoClass<CR>
