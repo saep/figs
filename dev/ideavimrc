@@ -32,7 +32,8 @@ nnoremap <Leader>ft :action SelectInProjectView<CR>
 nnoremap <Leader>m :action ExtractMethod<CR>
 nnoremap <Leader>lf :action ReformatCode<CR>
 nnoremap <Leader>o :action OptimizeImports<CR>
-nnoremap <Leader>x :action Rerun<CR>
+nnoremap <Leader>x :action RunClass<CR>
+nnoremap <Leader>z :action CompileDirty<CR>
 nnoremap <Leader>wc :action CloseEditor<CR>
 
 nnoremap gii :action Inline<CR>
