@@ -2,7 +2,7 @@
   description = "saep's xmonad configuration";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-23.05";
 
     flake-utils = {
       url = "github:numtide/flake-utils";

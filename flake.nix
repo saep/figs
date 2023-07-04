@@ -2,10 +2,10 @@
   description = "saep's Home Manager flake";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-23.05";
     nur.url = "github:nix-community/NUR";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixgl = {
@@ -80,6 +80,7 @@
         modules = with hmModules; [
           common
           desktop.common
+	  desktop.xmonad
           nvim
           private
           misc.syncthing
@@ -90,7 +91,7 @@
           /* dpi = 96; */
           dpi = 144;
           color = color;
-          isNixos = false;
+          isNixos = true;
           # If the config needs attributes from a flake:
           # inherit flake;
           # then flake can be added to the arguments of e.g. home.nix
