@@ -41,11 +41,9 @@ import XMonad.Hooks.WindowSwallowing
 import XMonad.Hooks.WorkspaceHistory
 import XMonad.Layout.ComboP
 import XMonad.Layout.Fullscreen as Full
-import qualified XMonad.Layout.IM as IM
 import XMonad.Layout.LayoutHints
 import XMonad.Layout.MouseResizableTile
 import XMonad.Layout.NoBorders (noBorders, smartBorders)
-import XMonad.Layout.OnHost
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Tabbed
 import XMonad.Layout.TrackFloating
@@ -186,28 +184,18 @@ myLayout ws =
   trackFloating
     . useTransientFor
     . layoutHintsToCenter
-    . onWorkspace (myFullWorkspaceId Mehl) (workspaceDir "~/Documents" (tab ||| tall))
-    . onWorkspace (myFullWorkspaceId Dev) ((dev ||| tab ||| tall) `ifUltraWideScreenOrElse` (tab ||| tall))
+    . Full.fullscreenFull
+    . onWorkspace (myFullWorkspaceId Mehl) (workspaceDir "~/Documents" (tall ||| tab))
+    . onWorkspace (myFullWorkspaceId Dev) (tall ||| tab ||| dev)
     . onWorkspace (myFullWorkspaceId Emacs) (workspaceDir "~/src/org" (tab ||| full))
-    . onWorkspace (myFullWorkspaceId IM) (tall ||| im)
-    . onWorkspace (myFullWorkspaceId Browser) (workspaceDir "~/Downloads" ((tall ||| full) `ifUltraWideScreenOrElse` (full ||| tall)))
-    $ tall ||| tab ||| full
+    . onWorkspace (myFullWorkspaceId Browser) (workspaceDir "~/Downloads" (tall ||| tab ||| full))
+    $ tall ||| tab ||| full ||| dev
   where
-    ifUltraWideScreenOrElse = onHosts ["monoid", "pc2-switte"]
     myFullWorkspaceId w = ws ^. workspaceIdOf (Name w)
     full = smartBorders Full
     tab = noBorders . avoidStruts $ tabbed shrinkText myTheme
     dev = combineTwoP (TwoPane 0.03 0.6) tab tall $ foldr (Or . ClassName) (ClassName "neovide") ["jetbrains-idea", "Emacs"]
     tall = avoidStruts $ smartBorders $ layoutHints $ mouseResizableTile {draggerType = FixedDragger 2 6}
-    im =
-      let signalDesktop = Full
-          gajim = IM.gridIM (1 % 4) (Role "roster")
-       in avoidStruts $
-            combineTwoP
-              (TwoPane 0.03 0.4)
-              signalDesktop
-              gajim
-              (ClassName "Signal")
 
 data MyWorkspace
   = Root
@@ -361,7 +349,7 @@ scratchpads =
   ]
 
 myManageHook :: ManageHook
-myManageHook = composeAll chromeApps <> insertPosition Below Newer <> namedScratchpadManageHook scratchpads
+myManageHook = composeAll chromeApps <> insertPosition Below Newer <> namedScratchpadManageHook scratchpads <> Full.fullscreenManageHook
   where
     myWorkspaces = mkWorkspaces
     chromeApps = mapMaybe moveChromeAppToWorkspace myChromeApps
