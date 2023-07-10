@@ -32,6 +32,7 @@
 
       # other
       remmina
+      pavucontrol
 
       # fonts
       (nerdfonts.override { fonts = [ "FiraCode" "Hasklig" "DroidSansMono" ]; })
@@ -244,6 +245,12 @@
     mpd = {
       enable = true;
       musicDirectory = "${config.home.homeDirectory}/Music";
+      extraConfig = ''
+        audio_output {
+          type "pulse"
+          name "PA"
+        }
+      '';
     };
     mpdris2 = {
       enable = true;
