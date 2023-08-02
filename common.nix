@@ -215,7 +215,6 @@
       enable = true;
       clock24 = true;
       prefix = "M-r";
-      shell = "${pkgs.nushell}/bin/nu";
       terminal = "screen-256color";
       keyMode = "vi";
       extraConfig = ''
