@@ -40,6 +40,7 @@
         nvim = ./nvim.nix;
         desktop = {
           common = ./desktop/common.nix;
+          kde = ./desktop/kde.nix;
           xcape = ./desktop/xcape.nix;
           xmonad = ./desktop/xmonad.nix;
         };
@@ -59,6 +60,7 @@
           common
           nvim
           desktop.common
+          desktop.kde
           desktop.xmonad
           private
           misc.syncthing
@@ -80,6 +82,7 @@
         modules = with hmModules; [
           common
           desktop.common
+          desktop.kde
           nvim
           private
           misc.syncthing

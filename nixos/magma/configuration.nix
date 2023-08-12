@@ -70,7 +70,10 @@
     };
   };
 
-  programs.zsh.enable = true;
+  programs = {
+    zsh.enable = true;
+    kdeconnect.enable = true;
+  };
 
   users.users.saep = {
     isNormalUser = true;
