@@ -183,7 +183,7 @@
       in
       {
         enable = true;
-        enableNushellIntegration = true;
+        enableNushellIntegration = false;
         settings = {
           # Other config here
           format = "$all"; # Remove this line to disable the default prompt format
@@ -198,7 +198,7 @@
             } + /palettes/${flavour}.toml));
       };
     nushell = {
-      enable = true;
+      enable = false;
       configFile.source = ./nushell/config.nu;
       envFile.source = ./nushell/env.nu;
     };
