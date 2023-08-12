@@ -80,7 +80,6 @@
         modules = with hmModules; [
           common
           desktop.common
-	  desktop.xmonad
           nvim
           private
           misc.syncthing
