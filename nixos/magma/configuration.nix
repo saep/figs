@@ -3,7 +3,8 @@
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
@@ -18,7 +19,7 @@
   };
 
   networking.hostName = "magma";
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   time.timeZone = "Europe/Berlin";
 
@@ -47,7 +48,7 @@
     };
   };
   services.xserver.desktopManager.plasma5.enable = true;
-  
+
 
   # Configure keymap in X11
   services.xserver = {
@@ -57,10 +58,9 @@
   };
 
   # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio = {
+  services.pipewire = {
     enable = true;
-    package = pkgs.pulseaudioFull;
+    pulse.enable = true;
   };
   hardware.bluetooth = {
     enable = true;
