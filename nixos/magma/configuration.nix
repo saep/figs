@@ -35,6 +35,20 @@
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
+  security.sudo = {
+    enable = true;
+    extraRules = [
+      {
+        groups = [ "users" ];
+        commands = [
+          {
+            command = ''/run/current-system/sw/bin/headsetcontrol'';
+            options = [ "NOPASSWD" ];
+          }
+        ];
+      }
+    ];
+  };
   services.udev.extraRules = ''
     ACTION!="add|change", GOTO="headset_end"
       
