@@ -86,6 +86,7 @@
 
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
+    usbutils
     wineWowPackages.staging
     winetricks
   ];
