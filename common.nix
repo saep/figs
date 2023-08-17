@@ -254,7 +254,7 @@
   services = {
     gpg-agent = {
       enable = true;
-      enableSshSupport = false;
+      enableSshSupport = true;
       enableZshIntegration = true;
     };
   };
