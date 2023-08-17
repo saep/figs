@@ -188,6 +188,12 @@
 
   services.openssh.enable = true;
 
+  services.printing.enable = true;
+  services.avahi.enable = true;
+  services.avahi.nssmdns = true;
+  # for a WiFi printer
+  services.avahi.openFirewall = true;
+
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
     8384 22000 # syncthing
