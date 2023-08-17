@@ -24,10 +24,10 @@ in
     options = [ "ctrl:nocaps" ];
   };
   dconf = {
-    enable = false; # needs to be enabled on system level first
+    enable = true; # needs to be enabled on system level first
   };
   gtk = {
-    enable = false; # needs dconf enabled
+    enable = true; # needs dconf enabled
     theme = {
       package = pkgs.gnome.gnome-themes-extra;
       name = "Adwaita-dark";
