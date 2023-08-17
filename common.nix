@@ -48,9 +48,14 @@
 
   home.file.".ghci".source = ./dev/ghci;
 
-  xdg.configFile."nix/nix.conf".text = ''
-    experimental-features = nix-command flakes
-  '';
+  xdg = {
+    configFile."nix/nix.conf".text = ''
+      experimental-features = nix-command flakes
+    '';
+    systemDirs = {
+      data = [ "/usr/local/share" "/usr/share" ];
+    };
+  };
 
   programs = {
     # Let Home Manager install and manage itself.
