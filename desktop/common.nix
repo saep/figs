@@ -39,6 +39,15 @@
     ];
 
   programs = {
+    chromium = {
+      enable = true;
+      package = pkgs.brave;
+      extensions = [
+        { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; } # vimium
+        { id = "oboonakemofpalcgghocfoadofidjkkk"; } # keepassxc-browser
+        { id = "bkkmolkhemgaeaeggcmfbghljjjoofoh"; } # catppuccin mocha
+      ];
+    };
     firefox = {
       enable = true;
       package =
