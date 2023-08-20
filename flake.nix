@@ -30,6 +30,9 @@
       color = (import ./colors/cattpuccin/mocha.nix).color;
       pkgs = import nixpkgs {
         system = "x86_64-linux";
+        config = {
+          allowUnFree = true;
+        };
         overlays = [
           nixgl.overlay
           nur.overlay
@@ -41,6 +44,7 @@
         desktop = {
           common = ./desktop/common.nix;
           kde = ./desktop/kde.nix;
+          ssh-agent = ./desktop/ssh-agent.nix;
           xcape = ./desktop/xcape.nix;
           xmonad = ./desktop/xmonad.nix;
         };
@@ -83,6 +87,7 @@
           common
           desktop.common
           desktop.kde
+          desktop.ssh-agent
           nvim
           private
           misc.syncthing
