@@ -29,12 +29,10 @@ require("lazy").setup({
         ensure_installed = {
           "bash",
           "haskell",
-          "lua",
           "markdown",
           "markdown_inline",
           "org",
           "nix",
-          "vim",
         },
         sync_install = false,
         auto_install = true,
