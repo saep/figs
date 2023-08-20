@@ -184,6 +184,7 @@
     usbutils
     wineWowPackages.staging
     winetricks
+    wl-clipboard
   ];
 
   services.openssh.enable = true;
