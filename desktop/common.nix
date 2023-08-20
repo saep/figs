@@ -60,6 +60,18 @@
             {
               visibility: collapse;
             }
+            #statuspanel[type="overLink"] #statuspanel-label
+            #statuspanel[type="status"] #statuspanel-label[value^="Look"],
+            #statuspanel[type="status"] #statuspanel-label[value^="Connect"],
+            #statuspanel[type="status"] #statuspanel-label[value^="Send"],
+            #statuspanel[type="status"] #statuspanel-label[value^="Transfer"],
+            #statuspanel[type="status"] #statuspanel-label[value^="Read"],
+            #statuspanel[type="status"] #statuspanel-label[value^="Wrote"],
+            #statuspanel[type="status"] #statuspanel-label[value^="Wait"],
+            #statuspanel[type="status"] #statuspanel-label[value*="TLS handshake"],
+            #statuspanel[type="status"] #statuspanel-label[value*="FTP transaction"] {
+            display:none!important;
+            }
           '';
           extensions = with pkgs.nur.repos.rycee.firefox-addons; [
             consent-o-matic
