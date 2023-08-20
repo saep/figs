@@ -20,6 +20,7 @@ vim.opt.spellfile = vim.fn.stdpath("cache") .. "/ende.utf-8.add"
 vim.o.pumblend = 15
 vim.o.pumheight = 15
 vim.o.winblend = 15
+vim.o.signcolumn = "yes"
 
 vim.opt.background = "dark"
 vim.cmd "highlight WinSeparator guibg=None"
