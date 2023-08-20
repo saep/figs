@@ -14,6 +14,13 @@
     enable = true;
     mimeApps = {
       enable = true;
+      defaultApplications = {
+        "applications/pdf" = "org.pwmt.zathura-pdf-mupdf.desktop";
+        "x-scheme-handler/http" = "brave-browser.desktop";
+        "x-scheme-handler/https" = "brave-browser.desktop";
+        "text/html" = "brave-browser.desktop";
+        "inode/directory" = "org.kde.dolphin.desktop";
+      };
     };
     systemDirs = {
       data = [ "/home/${username}/.nix-profile/share" ];
@@ -28,6 +35,7 @@
       neovide
       chromium
 
+      dolphin
       xdg-utils
 
       # other
