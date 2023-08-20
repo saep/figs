@@ -32,7 +32,6 @@
     [
       pkgs.nixgl.nixGLIntel
       keepassxc
-      neovide
       chromium
 
       dolphin
