@@ -16,7 +16,6 @@
     delta # diff
     difftastic # diff
     du-dust # similar to du 
-    evcxr # rust repl
     fd # similar to find
     gnumake
     graphviz
