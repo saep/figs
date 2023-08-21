@@ -167,7 +167,7 @@
     };
 
     helix = {
-      enable = true;
+      enable = false;
       settings = {
         theme = "base16";
         editor = {
