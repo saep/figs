@@ -40,7 +40,7 @@ map("window close", "n", "<leader>wc", "<Cmd>quit<CR>")
 map("window delete buffer", "n", "<leader>wd", function()
   require("mini.bufremove").wipeout()
 end)
-map("window delete buffer", "n", "<leader>wh", function()
+map("window delete buffer", "n", "<leader>wu", function()
   require("mini.bufremove").unshow_in_window()
 end)
 for i = 1, 9 do
