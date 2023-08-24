@@ -81,10 +81,7 @@ require("lazy").setup({
       },
     },
   },
-  {
-    "eraserhd/parinfer-rust",
-    build = 'nix-shell --run \"cargo build --release \"',
-  },
+  "eraserhd/parinfer-rust",
   {
     "windwp/nvim-ts-autotag",
     config = true,

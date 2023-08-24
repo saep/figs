@@ -21,7 +21,10 @@
     graphviz
     htop
     hyperfine # similar to time
+
     neovim
+    vimPlugins.parinfer-rust
+
     inotify-tools
     isa-l # igzip is a really fast gzip
     jq
