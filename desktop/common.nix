@@ -54,6 +54,7 @@
         { id = "oboonakemofpalcgghocfoadofidjkkk"; } # keepassxc-browser
         { id = "bkkmolkhemgaeaeggcmfbghljjjoofoh"; } # catppuccin mocha
         { id = "alageihdeogmjlkgifaeefodfbdbljjf"; } # auto high quality youtube
+        { id = "mnjggcdmjocbbbhaepdhchncahnbgone"; } # sponsorblock for youtube
       ];
     };
     firefox = {
