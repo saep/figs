@@ -25,6 +25,20 @@
     systemDirs = {
       data = [ "/home/${username}/.nix-profile/share" ];
     };
+    desktopEntries = {
+      whatsapp = {
+        name = "Whatsapp";
+        exec = "${pkgs.brave}/bin/brave --app=https://web.whatsapp.com";
+        terminal = false;
+        icon = "brave-browser";
+      };
+      youtube = {
+        name = "Youtube";
+        exec = "${pkgs.brave}/bin/brave --app=https://youtube.com";
+        terminal = false;
+        icon = "brave-browser";
+      };
+    };
   };
 
   home.packages =
