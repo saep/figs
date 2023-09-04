@@ -132,7 +132,6 @@ require("lazy").setup({
     config = true,
   },
   "anuvyklack/hydra.nvim",
-  "chrisgrieser/nvim-spider",
   {
     'stevearc/oil.nvim',
     opts = {},
