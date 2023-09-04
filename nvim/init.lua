@@ -126,7 +126,6 @@ require("lazy").setup({
     },
   },
   "norcalli/nvim-colorizer.lua",
-  "tpope/vim-fugitive",
   {
     "NeogitOrg/neogit",
     dependencies = {

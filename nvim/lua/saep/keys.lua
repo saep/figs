@@ -228,7 +228,7 @@ local hydraGit = hydra {
     { "d",     gitsigns.toggle_deleted,                           { nowait = true } },
     { "b",     gitsigns.blame_line },
     { "B",     function() gitsigns.blame_line { full = true } end },
-    { "g",     "<Cmd>Git<CR>",                                    { exit = true } },
+    { "g",     "<Cmd>Neogit<CR>",                                 { exit = true } },
     { "<Esc>", nil,                                               { exit = true, nowait = true, desc = "exit" } },
   }
 }
