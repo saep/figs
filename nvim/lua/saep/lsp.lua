@@ -116,6 +116,10 @@ require('lspconfig').rnix.setup {
   on_attach = on_attach
 }
 
+require('lspconfig').tailwindcss.setup {
+  on_attach = on_attach
+}
+
 return {
   on_attach = on_attach
 }
