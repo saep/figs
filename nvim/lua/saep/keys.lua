@@ -68,11 +68,6 @@ map("live grep", "n", "<leader>fg", require('telescope.builtin').live_grep)
 map("neovim help", "n", "<leader>fh", require('telescope.builtin').help_tags)
 map("find project ", "n", "<leader>fp", require('telescope').extensions.project.project)
 
-map("Spider-w", { "n", "o", "x" }, "w", function() require("spider").motion("w") end)
-map("Spider-e", { "n", "o", "x" }, "e", function() require("spider").motion("e") end)
-map("Spider-b", { "n", "o", "x" }, "b", function() require("spider").motion("b") end)
-map("Spider-ge", { "n", "o", "x" }, "ge", function() require("spider").motion("ge") end)
-
 map("next thing", "n", ";", function() next.next() end)
 map("previous thing", "n", ",", function() next.prev() end)
 map("close thing ", "n", "[", function() next.close() end)
