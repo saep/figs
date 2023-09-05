@@ -120,6 +120,12 @@ require('lspconfig').tailwindcss.setup {
   on_attach = on_attach
 }
 
+require('lspconfig').angularls.setup {}
+
+require('lspconfig').tsserver.setup {}
+
+require('lspconfig').eslint.setup {}
+
 return {
   on_attach = on_attach
 }
