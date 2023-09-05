@@ -162,6 +162,7 @@ require("lazy").setup({
         highlight_duration = 300,
         search_method = 'cover_or_next',
       }
+      require("mini.align").setup {}
     end
   },
   "tpope/vim-speeddating",
