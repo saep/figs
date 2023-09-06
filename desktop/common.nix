@@ -48,7 +48,6 @@
       keepassxc
       chromium
 
-      dolphin
       xdg-utils
 
       # other
