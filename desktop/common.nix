@@ -68,6 +68,7 @@
         { id = "bkkmolkhemgaeaeggcmfbghljjjoofoh"; } # catppuccin mocha
         { id = "alageihdeogmjlkgifaeefodfbdbljjf"; } # auto high quality youtube
         { id = "mnjggcdmjocbbbhaepdhchncahnbgone"; } # sponsorblock for youtube
+        { id = "cimiefiiaegbelhefglklhhakcgmhkai"; } # plasma integration
       ];
     };
     firefox = {
