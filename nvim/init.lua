@@ -100,6 +100,13 @@ require("lazy").setup({
       local rt = require("rust-tools")
       rt.setup({
         server = {
+          settings = {
+            ["rust-analyzer"] = {
+              cargo = {
+                features = "all",
+              }
+            },
+          },
           on_attach = function(client, bufnr)
             require("saep.lsp").on_attach(client, bufnr)
             -- Hover actions
