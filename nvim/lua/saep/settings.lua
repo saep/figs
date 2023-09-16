@@ -21,6 +21,8 @@ vim.o.pumblend = 15
 vim.o.pumheight = 15
 vim.o.winblend = 15
 vim.o.signcolumn = "yes"
+vim.o.number = true
+vim.o.relativenumber = true
 
 vim.opt.background = "dark"
 vim.cmd "highlight WinSeparator guibg=None"
