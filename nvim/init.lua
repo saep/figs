@@ -184,6 +184,7 @@ require("lazy").setup({
   "tpope/vim-speeddating",
   "tpope/vim-repeat",
   "tommcdo/vim-exchange",
+  "mg979/vim-visual-multi",
   {
     "nvim-neotest/neotest",
     dependencies = {
