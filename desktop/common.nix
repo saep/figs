@@ -16,9 +16,9 @@
       enable = true;
       defaultApplications = {
         "applications/pdf" = "org.pwmt.zathura-pdf-mupdf.desktop";
-        "x-scheme-handler/http" = "brave-browser.desktop";
-        "x-scheme-handler/https" = "brave-browser.desktop";
-        "text/html" = "brave-browser.desktop";
+        "x-scheme-handler/http" = "firefox.desktop";
+        "x-scheme-handler/https" = "firefox.desktop";
+        "text/html" = "firefox.desktop";
         "inode/directory" = "org.kde.dolphin.desktop";
       };
     };
