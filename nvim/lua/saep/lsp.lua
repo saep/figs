@@ -126,6 +126,12 @@ require('lspconfig').tsserver.setup {}
 
 require('lspconfig').eslint.setup {}
 
+require('lspconfig').html.setup {}
+
+require('lspconfig').cssls.setup {
+  capabilities = capabilities,
+}
+
 return {
   on_attach = on_attach
 }
