@@ -54,6 +54,8 @@ map("window up", { "t" }, "<A-k>", [[<C-\><C-n><C-w>k]])
 map("window right", { "t" }, "<A-l>", [[<C-\><C-n><C-w>l]])
 map("window left", { "t" }, "<A-h>", [[<C-\><C-n><C-w>h]])
 
+map("yank to clipboard", { "n", "v" }, "Y", [["+y]])
+
 map("previous buffer", "n", "<leader><space>", "<C-^>")
 
 map("open diagnostics popup", "n", "<leader>d", vim.diagnostic.open_float)
