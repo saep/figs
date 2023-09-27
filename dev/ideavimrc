@@ -34,6 +34,7 @@ nnoremap <Leader>ff :action GotoFile<CR>
 nnoremap <Leader>ft :action SelectInProjectView<CR>
 nnoremap <Leader>m :action ExtractMethod<CR>
 nnoremap <Leader>lf :action ReformatCode<CR>
+vnoremap <Leader>lf :action ReformatCode<CR>
 nnoremap <Leader>o :action OptimizeImports<CR>
 nnoremap <Leader>x :action RunClass<CR>
 nnoremap <Leader>z :action CompileDirty<CR>
