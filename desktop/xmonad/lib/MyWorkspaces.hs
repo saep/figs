@@ -12,7 +12,6 @@
 {-# LANGUAGE ScopedTypeVariables #-}
 {-# LANGUAGE TypeApplications #-}
 {-# LANGUAGE TypeFamilies #-}
-{-# LANGUAGE TypeSynonymInstances #-}
 {-# LANGUAGE NoImplicitPrelude #-}
 {-# LANGUAGE NoMonomorphismRestriction #-}
 {-# OPTIONS_GHC -Wno-redundant-constraints #-}
@@ -66,7 +65,7 @@ instance WorkspaceNodeId String where
       where
         to' (Name name_) = name_
         to' (WsId name_) = name_
-        from' name_ = WsId name_
+        from' = WsId
 
 mkWorkspaceNodeIdIso ::
     (Show ws, Enum ws, Bounded ws, Ord ws) =>
