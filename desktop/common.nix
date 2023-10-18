@@ -28,15 +28,15 @@
     desktopEntries = {
       whatsapp = {
         name = "Whatsapp";
-        exec = "${pkgs.brave}/bin/brave --app=https://web.whatsapp.com";
+        exec = "${pkgs.chromium}/bin/chromium --app=https://web.whatsapp.com";
         terminal = false;
-        icon = "brave-browser";
+        icon = "chromium-browser";
       };
       youtube = {
         name = "Youtube";
-        exec = "${pkgs.brave}/bin/brave --app=https://youtube.com";
+        exec = "${pkgs.chromium}/bin/chromium --app=https://youtube.com";
         terminal = false;
-        icon = "brave-browser";
+        icon = "chromium-browser";
       };
     };
   };
@@ -62,7 +62,7 @@
   programs = {
     chromium = {
       enable = true;
-      package = pkgs.brave;
+      package = pkgs.chromium;
       extensions = [
         { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; } # vimium
         { id = "oboonakemofpalcgghocfoadofidjkkk"; } # keepassxc-browser
