@@ -21,7 +21,6 @@ import Data.Generics.Product ()
 import Data.Generics.Sum ()
 import qualified Data.List.PointedList.Circular as PList
 import qualified Data.Map.Strict as Map
-import Data.Ratio ((%))
 import qualified Data.Set as Set
 import Data.Tree as Tree
 import MyWorkspaces
