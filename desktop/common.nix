@@ -107,6 +107,7 @@
           '';
           extensions = with pkgs.nur.repos.rycee.firefox-addons; [
             consent-o-matic
+            darkreader
             foxyproxy-standard
             floccus
             keepassxc-browser
