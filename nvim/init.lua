@@ -226,20 +226,14 @@ require("lazy").setup({
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope.nvim',
     },
-    branch = '1.x.x',
-    ft = { "cabal", "haskell", },
-    cond = function()
-      return vim.fn.executable("haskell-language-server-wrapper") == 1
-    end,
-    opts = function()
-      return {
+    version = '^3',
+    ft = { "cabal", "haskell", 'cabalproject', },
+    init = function()
+      vim.g.haskell_tools = {
         hls = {
-          on_attach = require("saep.lsp").on_attach,
-          settings = {
-            haskell = {
-              formattingProvider = 'fourmolu',
-            },
-          },
+          on_attach = function(client, bufnr, ht)
+            require("saep.lsp").on_attach(client, bufnr)
+          end,
         },
       }
     end,
