@@ -15,6 +15,7 @@ require("lazy").setup({
   "nvim-lua/plenary.nvim",
   {
     "nvim-treesitter/nvim-treesitter",
+    pin = true;
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
       "nvim-treesitter/nvim-treesitter-context",
