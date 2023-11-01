@@ -132,6 +132,8 @@ require('lspconfig').cssls.setup {
   capabilities = capabilities,
 }
 
+require('lspconfig').dhall_lsp_server.setup {}
+
 return {
   on_attach = on_attach
 }
