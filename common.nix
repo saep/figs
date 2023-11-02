@@ -109,7 +109,7 @@
     };
     git = {
       enable = true;
-      difftastic.enable = true;
+      delta.enable = true;
       userName = "Sebastian Witte";
       extraConfig = {
         difftool = {
