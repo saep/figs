@@ -111,6 +111,9 @@
       enable = true;
       delta.enable = true;
       userName = "Sebastian Witte";
+      aliases = {
+        st = "status";
+      };
       extraConfig = {
         difftool = {
           prompt = false;
