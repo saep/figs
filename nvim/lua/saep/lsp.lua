@@ -120,19 +120,29 @@ require('lspconfig').tailwindcss.setup {
   on_attach = on_attach
 }
 
-require('lspconfig').angularls.setup {}
+require('lspconfig').angularls.setup {
+  on_attach = on_attach
+}
 
-require('lspconfig').tsserver.setup {}
+require('lspconfig').tsserver.setup {
+  on_attach = on_attach
+}
 
-require('lspconfig').eslint.setup {}
+require('lspconfig').eslint.setup {
+  on_attach = on_attach
+}
 
-require('lspconfig').html.setup {}
+require('lspconfig').html.setup {
+  on_attach = on_attach
+}
 
 require('lspconfig').cssls.setup {
   capabilities = capabilities,
 }
 
-require('lspconfig').dhall_lsp_server.setup {}
+require('lspconfig').dhall_lsp_server.setup {
+  on_attach = on_attach
+}
 
 return {
   on_attach = on_attach
