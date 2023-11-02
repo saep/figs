@@ -127,6 +127,11 @@
         init = {
           defaultBranch = "develop";
         };
+        rebase = {
+          autoStash = true;
+          autosquash = true;
+          updateRefs = true;
+        };
         merge = {
           conflictstyle = "diff3";
         };
