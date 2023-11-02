@@ -118,6 +118,9 @@
         difftool = {
           prompt = false;
         };
+        rerere = {
+          enabled = true;
+        };
         core = {
           autocrlf = "input";
         };
