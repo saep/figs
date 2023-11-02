@@ -118,8 +118,6 @@
         difftool = {
           prompt = false;
         };
-        mergetool.fugitive.cmd = ''nvim -f -c "Gvdiffsplit!" "$MERGED"'';
-        merge.tool = "fugitive";
         core = {
           autocrlf = "input";
         };
