@@ -174,26 +174,28 @@
   };
 
   programs = {
-    zsh.enable = true;
     kdeconnect.enable = true;
   };
 
   users.users.saep = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
-    shell = pkgs.zsh;
+    shell = pkgs.bash;
     packages = with pkgs; [
     ];
   };
 
   nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = with pkgs; [
-    headsetcontrol
-    usbutils
-    wineWowPackages.staging
-    winetricks
-    wl-clipboard
-  ];
+  environment = {
+    pathsToLink = [ "/share/bash-completion" ];
+    systemPackages = with pkgs; [
+      headsetcontrol
+      usbutils
+      wineWowPackages.staging
+      winetricks
+      wl-clipboard
+    ];
+  };
 
   services.openssh.enable = true;
 
@@ -205,10 +207,12 @@
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
-    8384 22000 # syncthing
+    8384
+    22000 # syncthing
   ];
   networking.firewall.allowedUDPPorts = [
-    22000 21027 # syncthing
+    22000
+    21027 # syncthing
   ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
