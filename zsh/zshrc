@@ -130,17 +130,17 @@ zle -N insert-datestamp
 #k# Insert a timestamp on the command line (yyyy-mm-dd)
 bindkey '^ed' insert-datestamp
 
-# run command line as user root via doas:
-doas-command-line() {
+# run command line as user root via sudo:
+sudo-command-line() {
     [[ -z $BUFFER ]] && zle up-history
-    if [[ $BUFFER != doas\ * ]]; then
-        BUFFER="doas $BUFFER"
+    if [[ $BUFFER != sudo\ * ]]; then
+        BUFFER="sudo $BUFFER"
         CURSOR=$(( CURSOR+5 ))
     fi
 }
-zle -N doas-command-line
-# prepend the current command with "doas"
-bindkey "^os" doas-command-line
+zle -N sudo-command-line
+# prepend the current command with "sudo"
+bindkey "^os" sudo-command-line
 
 # Ctrl-z to toggle between program and terminal
 fancy-ctrl-z () {
