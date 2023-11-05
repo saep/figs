@@ -66,7 +66,32 @@
     };
     autojump = {
       enable = true;
+      enableBashIntegration = true;
       enableZshIntegration = true;
+    };
+    bash = {
+      enable = true;
+      enableCompletion = true;
+      historyControl = [ "erasedups" "ignorespace" ];
+      historyIgnore = [
+        "ls"
+        "cd"
+        "exit"
+        ":wq"
+        ":w"
+        ":q"
+      ];
+      shellOptions = [
+        "histappend"
+        "checkwinsize"
+        "extglob"
+        "globstar"
+      ];
+      initExtra = ''
+      export PATH="$HOME/.local/bin:$PATH"
+      PROMPT_COMMAND="''${PROMPT_COMMAND:+$PROMPT_COMMAND$';'}history -a;history -c;history -r"
+      export PROMPT_COMMAND
+      '';
     };
     broot = {
       enable = true;
@@ -104,7 +129,7 @@
     };
     direnv = {
       enable = true;
-      enableZshIntegration = true;
+      enableZshIntegration = false;
       enableNushellIntegration = true;
     };
     git = {
@@ -219,7 +244,7 @@
       envFile.source = ./nushell/env.nu;
     };
     zsh = {
-      enable = true;
+      enable = false;
       dotDir = ".config/zsh";
       enableSyntaxHighlighting = true;
       initExtra = ''

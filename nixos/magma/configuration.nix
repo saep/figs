@@ -174,14 +174,13 @@
   };
 
   programs = {
-    zsh.enable = true;
     kdeconnect.enable = true;
   };
 
   users.users.saep = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
-    shell = pkgs.zsh;
+    shell = pkgs.bash;
     packages = with pkgs; [
     ];
   };
