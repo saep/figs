@@ -7,11 +7,9 @@
 
   # Manually add ssh-agent as long as it isn't in the stable home manager branch.
   # Copied from https://github.com/nix-community/home-manager/blob/master/modules/services/ssh-agent.nix
-  home.sessionVariablesExtra = ''
-    if [[ -z "$SSH_AUTH_SOCK" ]]; then
-      export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent
-    fi
-  '';
+  systemd.user.sessionVariables = {
+      SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/ssh-agent";
+  };
 
   systemd.user.services.ssh-agent = {
     Install.WantedBy = [ "default.target" ];
