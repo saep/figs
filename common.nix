@@ -1,4 +1,4 @@
-{ config, pkgs, lib, username, stateVersion, ... }:
+{ config, pkgs, lib, username, stateVersion, color, ... }:
 
 {
   home.username = username;
@@ -13,6 +13,7 @@
     borgbackup
     bottom # similar to htop
     curl
+    erdtree
     delta # diff
     difftastic # diff
     du-dust # similar to du 
@@ -131,6 +132,21 @@
       enable = true;
       enableZshIntegration = false;
       enableNushellIntegration = true;
+    };
+    fzf = {
+      enable = true;
+      colors = {
+        bg = color.background;
+        fg = color.foreground;
+      };
+      changeDirWidgetCommand = "fd --type d";
+      changeDirWidgetOptions = [
+        "--preview 'erd --force-color --icons --human --hidden --inverted --truncate {}'" 
+      ];
+      fileWidgetCommand = "fd --type f";
+      fileWidgetOptions = [
+        "--preview 'bat --force-colorization --paging=never --line-range :100 {}'"
+      ];
     };
     git = {
       enable = true;
