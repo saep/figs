@@ -154,7 +154,9 @@ require("lazy").setup({
       "sindrets/diffview.nvim",        -- optional
       "ibhagwan/fzf-lua",              -- optional
     },
-    config = true
+    config = {
+      disable_hint = true;
+    },
   },
   {
     "lewis6991/gitsigns.nvim",
