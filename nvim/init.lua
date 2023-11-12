@@ -237,6 +237,18 @@ require("lazy").setup({
           on_attach = function(client, bufnr, ht)
             require("saep.lsp").on_attach(client, bufnr)
           end,
+          settings = {
+            haskell = {
+              formattingProvider = "fourmolu",
+              plugin = {
+                fourmolu = {
+                  config = {
+                    external = true,
+                  }
+                },
+              },
+            },
+          },
         },
       }
     end,
