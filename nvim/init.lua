@@ -15,7 +15,7 @@ require("lazy").setup({
   "nvim-lua/plenary.nvim",
   {
     "nvim-treesitter/nvim-treesitter",
-    pin = true;
+    pin = true,
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
       "nvim-treesitter/nvim-treesitter-context",
@@ -155,7 +155,7 @@ require("lazy").setup({
       "ibhagwan/fzf-lua",              -- optional
     },
     config = {
-      disable_hint = true;
+      disable_hint = true,
     },
   },
   {
@@ -164,7 +164,7 @@ require("lazy").setup({
   },
   "anuvyklack/hydra.nvim",
   {
-    'stevearc/oil.nvim',
+    "stevearc/oil.nvim",
     opts = {},
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
@@ -173,7 +173,7 @@ require("lazy").setup({
     opts = {
       open_mapping = [[<C-t>]],
       float_opts = {
-        border = 'curved'
+        border = "curved"
       },
     },
   },
@@ -191,7 +191,7 @@ require("lazy").setup({
       require("mini.pairs").setup {}
       require("mini.surround").setup {
         highlight_duration = 300,
-        search_method = 'cover_or_next',
+        search_method = "cover_or_next",
       }
       require("mini.align").setup {}
     end
@@ -224,13 +224,13 @@ require("lazy").setup({
     end,
   },
   {
-    'mrcjkb/haskell-tools.nvim',
+    "mrcjkb/haskell-tools.nvim",
     dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
     },
-    version = '^3',
-    ft = { "cabal", "haskell", 'cabalproject', },
+    version = "^3",
+    ft = { "cabal", "haskell", "cabalproject", },
     init = function()
       vim.g.haskell_tools = {
         hls = {
