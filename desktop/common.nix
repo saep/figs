@@ -104,6 +104,9 @@
             #statuspanel[type="status"] #statuspanel-label[value*="FTP transaction"] {
             display:none!important;
             }
+            #main-window[sizemode="fullscreen"] statuspanel {
+              display: none !important;
+            }
           '';
           extensions = with pkgs.nur.repos.rycee.firefox-addons; [
             consent-o-matic
