@@ -271,7 +271,7 @@
     zsh = {
       enable = false;
       dotDir = ".config/zsh";
-      enableSyntaxHighlighting = true;
+      syntaxHighlighting.enable = true;
       initExtra = ''
         ${lib.strings.fileContents ./zsh/zshrc}
       '';
@@ -315,7 +315,7 @@
   services = {
     gpg-agent = {
       enable = true;
-      enableSshSupport = true;
+      enableSshSupport = false;
       enableZshIntegration = true;
     };
   };
