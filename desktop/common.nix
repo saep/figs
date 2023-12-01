@@ -73,8 +73,6 @@
     };
     firefox = {
       enable = true;
-      package =
-        pkgs.firefox.override { cfg = { enableTridactylNative = true; }; };
       profiles = {
         default = {
           id = 0;
@@ -104,9 +102,6 @@
             #statuspanel[type="status"] #statuspanel-label[value*="FTP transaction"] {
             display:none!important;
             }
-            #main-window[sizemode="fullscreen"] statuspanel {
-              display: none !important;
-            }
           '';
           extensions = with pkgs.nur.repos.rycee.firefox-addons; [
             consent-o-matic
@@ -117,7 +112,7 @@
             privacy-badger
             sponsorblock
             tree-style-tab
-            tridactyl
+            vimium
             ublock-origin
           ];
         };
