@@ -23,12 +23,6 @@
           sumneko-lua-language-server
           lua51Packages.jsregexp
 
-          # elm
-          elmPackages.elm
-          elmPackages.elm-test
-          elmPackages.elm-format
-          elmPackages.elm-language-server
-
           # go
           gcc # tests can't be run without it
           go
