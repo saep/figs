@@ -89,18 +89,18 @@
         "globstar"
       ];
       initExtra = ''
-      source "''${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh"
+        source "''${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh"
 
-      export PATH="$HOME/.local/bin:$PATH"
+        export PATH="$HOME/.local/bin:$PATH"
 
-      PROMPT_COMMAND="''${PROMPT_COMMAND:+$PROMPT_COMMAND$';'}history -a;history -c;history -r"
-      export PROMPT_COMMAND
+        PROMPT_COMMAND="''${PROMPT_COMMAND:+$PROMPT_COMMAND$';'}history -a;history -c;history -r"
+        export PROMPT_COMMAND
 
-      bind 'set show-all-if-ambiguous on'
-      bind 'TAB:menu-complete'
+        bind 'set show-all-if-ambiguous on'
+        bind 'TAB:menu-complete'
 
-      export EDITOR=nvim
-      export VISUAL="$EDITOR"
+        export EDITOR=nvim
+        export VISUAL="$EDITOR"
       '';
     };
     broot = {
@@ -150,7 +150,7 @@
       };
       changeDirWidgetCommand = "fd --type d";
       changeDirWidgetOptions = [
-        "--preview 'erd --force-color --icons --human --hidden --inverted --truncate {}'" 
+        "--preview 'erd --force-color --icons --human --hidden --inverted --truncate {}'"
       ];
       fileWidgetCommand = "fd --type f";
       fileWidgetOptions = [
