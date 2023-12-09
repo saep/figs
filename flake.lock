@@ -36,6 +36,22 @@
         "type": "github"
       }
     },
+    "neotest": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1699863439,
+        "narHash": "sha256-9bUy2JZ52fVK9uY2M8qDHmW4o0YDEI+zcy/MCM+p6Ok=",
+        "owner": "nvim-neotest",
+        "repo": "neotest",
+        "rev": "d424d262d01bccc1e0b038c9a7220a755afd2a1f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-neotest",
+        "repo": "neotest",
+        "type": "github"
+      }
+    },
     "nixgl": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -90,6 +106,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "neotest": "neotest",
         "nixgl": "nixgl",
         "nixpkgs": "nixpkgs",
         "nur": "nur"

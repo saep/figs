@@ -6,6 +6,18 @@ local function executableOnPath(executable)
   end
 end
 
+require("lspsaga").setup {
+  symbol_in_winbar = {
+    enable = true,
+    separator = ' ',
+    show_file = true,
+    hide_keyword = true,
+    folder_level = 2,
+    respect_root = false,
+    color_mode = true,
+  },
+}
+
 -- on_attach function for language servers
 --
 -- This sets up keybindings which only work when a language server is used.
@@ -142,6 +154,55 @@ require('lspconfig').cssls.setup {
 
 require('lspconfig').dhall_lsp_server.setup {
   on_attach = on_attach
+}
+
+--    ft = { "cabal", "haskell", "cabalproject", },
+vim.g.haskell_tools = {
+  hls = {
+    ---@diagnostic disable-next-line: unused-local
+    on_attach = function(client, bufnr, ht)
+      vim.keymap.set(
+        { "n" },
+        "<Leader>lh",
+        function()
+          require('haskell-tools').hoogle.hoogle_signature()
+        end,
+        { desc = "hoogle signature search" }
+      )
+      on_attach(client, bufnr)
+    end,
+    settings = {
+      haskell = {
+        formattingProvider = "fourmolu",
+        plugin = {
+          fourmolu = {
+            config = {
+              external = true,
+            }
+          },
+        },
+      },
+    },
+  },
+}
+
+require("rust-tools").setup {
+  server = {
+    settings = {
+      ["rust-analyzer"] = {
+        cargo = {
+          features = "all",
+        }
+      },
+    },
+    on_attach = function(client, bufnr)
+      on_attach(client, bufnr)
+      -- Hover actions
+      vim.keymap.set("n", "<C-space>", require("rust-tools").hover_actions.hover_actions, { buffer = bufnr })
+      -- Code action groups
+      vim.keymap.set("n", "<Leader>a", require("rust-tools").code_action_group.code_action_group, { buffer = bufnr })
+    end,
+  },
 }
 
 return {

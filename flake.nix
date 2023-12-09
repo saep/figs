@@ -12,6 +12,11 @@
       url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    neotest = {
+      url = "github:nvim-neotest/neotest";
+      flake = false;
+    };
   };
 
   outputs =
@@ -20,6 +25,7 @@
     , nur
     , home-manager
     , nixgl
+    , neotest
     }:
     let hm = home-manager;
     in
@@ -36,6 +42,15 @@
         overlays = [
           nixgl.overlay
           nur.overlay
+          (final: prev: {
+            vimPlugins = prev.vimPlugins // {
+              saep-neotest = pkgs.vimUtils.buildVimPlugin {
+                pname = "neotest";
+                version = "HEAD";
+                src = neotest;
+              };
+            };
+          })
         ];
       };
       hmModules = {
@@ -99,6 +114,7 @@
           dpi = 144;
           color = color;
           isNixos = true;
+          saepfigsDirectory = "git/saep/figs";
           # If the config needs attributes from a flake:
           # inherit flake;
           # then flake can be added to the arguments of e.g. home.nix

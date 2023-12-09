@@ -1,16 +1,28 @@
+require("saep.catppuccin")
 require("saep.lsp")
 require("saep.settings")
-require("saep.filetypes")
 
 if vim.g.neovide then
   require("saep.neovide")
 end
 
-require("saep.keys")
+require("saep.cmp")
+require("saep.mini")
+require("saep.lualine")
+require("saep.neogit")
+require("saep.neotest")
+require("orgmode").setup_ts_grammar()
+require("saep.rest")
 require("saep.snippets")
+require("oil").setup()
+require("saep.telescope")
+require("saep.toggleterm")
+require("saep.treesitter")
+
+require("saep.keys")
 
 -- Must be set here for some reason as the hydras aren't colored otherwise
-vim.cmd.colorscheme "catppuccin"
+vim.cmd.colorscheme("catppuccin")
 
 -- Figure out highlighting group
 function SynStack()

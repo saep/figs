@@ -23,14 +23,10 @@
     htop
     hyperfine # similar to time
 
-    neovim
-    vimPlugins.parinfer-rust
-
     inotify-tools
     isa-l # igzip is a really fast gzip
     jq
     mprocs # tmux-esque for long running processes
-    parinfer-rust # magic parens
     procs # similar to ps
     ripgrep # similar to grep
     rust-script

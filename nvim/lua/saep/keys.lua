@@ -11,6 +11,16 @@ local map = function(description, modes, lhs, rhs, opts)
   vim.keymap.set(modes, lhs, rhs, opts)
 end
 
+require("which-key").setup {
+  plugins = {
+    presets = {
+      windows = false,
+      nav = false,
+    }
+  },
+}
+
+
 map("local leader", { "n" }, "<LocalLeader>", "<cmd>lua require'which-key'.show('<LocalLeader>', {mode='n'})<cr>")
 
 map("ESC", "i", "jk", "<ESC>")
@@ -68,7 +78,6 @@ map("find buffer", "n", "<leader>fb", require('telescope.builtin').buffers)
 map("find files", "n", "<leader>ff", function() require('telescope.builtin').find_files({ follow = true }) end)
 map("live grep", "n", "<leader>fg", require('telescope.builtin').live_grep)
 map("neovim help", "n", "<leader>fh", require('telescope.builtin').help_tags)
-map("find project ", "n", "<leader>fp", require('telescope').extensions.project.project)
 
 map("next thing", "n", ";", function() next.next() end)
 map("previous thing", "n", ",", function() next.prev() end)
@@ -119,119 +128,4 @@ map("change snippet choice", "i", "<C-l>", function()
   end
 end)
 
-local hydra = require "hydra"
-local hydraWindow = hydra {
-  name = "Window",
-  mode = { "n" },
-  config = {
-    color = "red",
-    hint = {
-      border = "rounded",
-    }
-  },
-  hint = [[
-   Move   ^^^^^  Swap  ^^^^^     Resize
-  ------- ^^^^^------- ^^^^^ --------------
-  ^   _k_ ^^      _K_  ^^^       _<C-k>_
-   _h_   _l_   _H_   _L_ ^^  _<C-h>_   _<C-l>_
-  ^   _j_   ^^    _J_    ^^^     _<C-j>_
-  ^^^^^^^^^^
-  ^
-   Open              Split
-  ---------------   ---------------  ^
-   _f_: file         _s_: horizontally
-   _b_: buffer       _v_: vertically
-   _t_: terminal     _o_: only
-   _g_: live grep    _c_: close
-  ^^                 _=_: equalize
-  ]],
-  heads = {
-    { "h",     "<C-w>h" },
-    { "H",     "<C-w>H" },
-    { "<C-h>", "<Cmd>winc <<CR>", },
-    { "j",     "<C-w>j" },
-    { "J",     "<C-w>J" },
-    { "<C-j>", "<Cmd>winc -<CR>", },
-    { "k",     "<C-w>k" },
-    { "<C-k>", "<Cmd>winc +<CR>" },
-    { "K",     "<C-w>K" },
-    { "l",     "<C-w>l" },
-    { "<C-l>", "<Cmd>winc ><CR>", },
-    { "L",     "<C-w>L" },
-    { "o",     "<Cmd>only<CR>" },
-    { "c",     "<Cmd>q<CR>" },
-    { "s",     "<Cmd>sp<CR>" },
-    { "v",     "<Cmd>vsp<CR>" },
-    { "b",     "<Cmd>Telescope buffers<CR>",    { exit = true } },
-    { "f",     "<Cmd>Telescope find_files<CR>", { exit = true } },
-    { "g",     "<Cmd>Telescope live_grep<CR>",  { exit = true } },
-    { "t",     "<Cmd>term<CR>",                 { exit = true } },
-    { "=",     "<C-w>=" },
-    { "<Esc>", nil,                             { exit = true, desc = "quit" } },
-  }
-}
-map("persistent window hydra", "n", "<C-w>", function() hydraWindow:activate() end)
-
-local gitsigns = require "gitsigns"
-local hydraGit = hydra {
-  name = "Git",
-  hint = [[
-  _J_: next hunk   _s_: stage hunk        _d_: show deleted   _b_: blame line
-  _K_: prev hunk   _u_: undo last stage   _p_: preview hunk   _B_: blame show full  ^
-  ^ ^              _S_: stage buffer      ^ ^
-  ^
-  ^ ^              _g_: status
-   ]],
-  config = {
-    color = "pink",
-    invoke_on_body = true,
-    hint = {
-      border = "rounded"
-    },
-    on_enter = function()
-      if pcall(vim.cmd, "mkview") then
-        vim.cmd "silent! %foldopen!"
-        vim.bo.modifiable = false
-        gitsigns.toggle_signs(true)
-        gitsigns.toggle_linehl(true)
-      end
-    end,
-    on_exit = function()
-      local cursor_pos = vim.api.nvim_win_get_cursor(0)
-      if pcall(vim.cmd, "loadview") then
-        vim.api.nvim_win_set_cursor(0, cursor_pos)
-        vim.cmd "normal zv"
-        gitsigns.toggle_signs(false)
-        gitsigns.toggle_linehl(false)
-        gitsigns.toggle_deleted(false)
-      end
-    end,
-  },
-  mode = { "n", "x" },
-  heads = {
-    { "J",
-      function()
-        if vim.wo.diff then return "]c" end
-        vim.schedule(function() gitsigns.next_hunk() end)
-        return "<Ignore>"
-      end
-    },
-    { "K",
-      function()
-        if vim.wo.diff then return "[c" end
-        vim.schedule(function() gitsigns.prev_hunk() end)
-        return "<Ignore>"
-      end,
-    },
-    { "s",     "<Cmd>Gitsigns stage_hunk<CR>",                    { silent = true } },
-    { "u",     gitsigns.undo_stage_hunk },
-    { "S",     gitsigns.stage_buffer },
-    { "p",     gitsigns.preview_hunk },
-    { "d",     gitsigns.toggle_deleted,                           { nowait = true } },
-    { "b",     gitsigns.blame_line },
-    { "B",     function() gitsigns.blame_line { full = true } end },
-    { "g",     "<Cmd>Neogit<CR>",                                 { exit = true } },
-    { "<Esc>", nil,                                               { exit = true, nowait = true, desc = "exit" } },
-  }
-}
-map("Git hydra", "n", "<leader>g", function() hydraGit:activate() end)
+map("neogit", "n", "<leader>gg", "<cmd>Neogit<cr>")
