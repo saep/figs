@@ -25,6 +25,7 @@
         cmp-nvim-lsp
         cmp-nvim-lua
         cmp-path
+        comment-nvim
         diffview-nvim
         fzf-lua # for neogit
         haskell-tools-nvim
