@@ -5,19 +5,19 @@ require("saep.settings")
 if vim.g.neovide then
   require("saep.neovide")
 end
-
-require("saep.cmp")
-require("saep.mini")
-require("saep.lualine")
-require("saep.neogit")
-require("saep.neotest")
-require("orgmode").setup_ts_grammar()
-require("saep.rest")
 require("saep.snippets")
-require("oil").setup()
-require("saep.telescope")
-require("saep.toggleterm")
-require("saep.treesitter")
+
+require("saep.plugins.cmp")
+require("saep.plugins.mini")
+require("saep.plugins.lualine")
+require("saep.plugins.neogit")
+require("saep.plugins.neotest")
+require("saep.plugins.orgmode")
+require("saep.plugins.rest")
+require("saep.plugins.oil")
+require("saep.plugins.telescope")
+require("saep.plugins.toggleterm")
+require("saep.plugins.treesitter")
 
 require("saep.keys")
 
