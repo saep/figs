@@ -41,6 +41,7 @@
         nvim-cmp
         nvim-dap
         nvim-lspconfig
+        nvim-surround
         nvim-treesitter.withAllGrammars
         nvim-treesitter-textobjects
         nvim-treesitter-context
