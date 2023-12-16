@@ -29,6 +29,7 @@
         diffview-nvim
         fzf-lua # for neogit
         haskell-tools-nvim
+        leap-nvim
         lspsaga-nvim
         lualine-nvim
         mini-nvim
