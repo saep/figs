@@ -7,17 +7,14 @@ if vim.g.neovide then
 end
 require("saep.snippets")
 
-require("saep.plugins.cmp")
-require("saep.plugins.mini")
-require("saep.plugins.lualine")
-require("saep.plugins.neogit")
-require("saep.plugins.neotest")
-require("saep.plugins.orgmode")
-require("saep.plugins.rest")
-require("saep.plugins.oil")
-require("saep.plugins.telescope")
-require("saep.plugins.toggleterm")
-require("saep.plugins.treesitter")
+local plugin_configs = vim.api.nvim_get_runtime_file("lua/saep/plugins/*.lua", true)
+for _, config_file in ipairs(plugin_configs) do
+  local start, _ = string.find(config_file, "lua/saep/plugins/")
+  if start then
+    local module = string.sub(config_file, start + 4, config_file:len() - 4):gsub("/", ".")
+    require(module)
+  end
+end
 
 require("saep.keys")
 
