@@ -35,7 +35,7 @@ ls.add_snippets("rust", {
     }),
     t({ "{", "    " }),
     i(0),
-    t({"", "}"}),
+    t({ "", "}" }),
   }),
   s("mt (test module)", {
     t({
@@ -47,5 +47,16 @@ ls.add_snippets("rust", {
     t({
       "",
       "}" })
-  })
+  }),
+  s("st (struct)", {
+    c(2, {
+      i(1),
+      sn(nil, { t("#[derive("), i(1, "Debug"), t({")]" , ""}) }),
+      sn(nil, { t("#[derive(Debug, PartialEq, Eq"), i(1), t({")]" , ""}) }),
+      sn(nil, { t("#[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Clone"), i(1), t({")]" , ""}) }),
+    }),
+    t("struct "), i(1, "StructName"), t({ " {", "    " }),
+    i(0),
+    t({ "", "}", "" }),
+  }),
 })
