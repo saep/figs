@@ -122,7 +122,7 @@ map("prev in snippet", { "i", "s" }, "<C-k>", function()
     end
   end,
   { silent = true })
-map("change snippet choice", "i", "<C-l>", function()
+map("change snippet choice", {"i", "s" }, "<C-l>", function()
   if ls.choice_active() then
     ls.change_choice(1)
   end
