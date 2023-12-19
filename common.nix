@@ -93,7 +93,6 @@
         export PROMPT_COMMAND
 
         bind 'set show-all-if-ambiguous on'
-        bind 'TAB:menu-complete'
 
         export EDITOR=nvim
         export VISUAL="$EDITOR"
