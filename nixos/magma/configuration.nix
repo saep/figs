@@ -68,6 +68,9 @@
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="0ab5", TAG+="uaccess"
       
     LABEL="headset_end"
+
+    # Keymapp Flashing rules for the Voyager
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="3297", MODE:="0666", SYMLINK+="ignition_dfu"
   '';
 
   # Enable the X11 windowing system.
