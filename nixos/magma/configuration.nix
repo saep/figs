@@ -118,7 +118,7 @@
 
   users.users.saep = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "docker" ];
     shell = pkgs.bash;
     packages = with pkgs; [
     ];
@@ -155,6 +155,12 @@
   ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+
+  virtualisation.docker.enable = true;
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
+  };
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
