@@ -8,13 +8,21 @@
       ./hardware-configuration.nix
     ];
 
-  boot.loader = {
-    efi.canTouchEfiVariables = true;
-    grub = {
-      enable = true;
-      device = "nodev";
-      efiSupport = true;
-      enableCryptodisk = true;
+  boot = {
+    # Enable BBR congestion control
+    kernelModules = [ "tcp_bbr" ];
+    kernel.sysctl."net.ipv4.tcp_congestion_control" = "bbr";
+    # default is fq_codel
+    kernel.sysctl."net.core.default_qdisc" = "fq"; # see https://news.ycombinator.com/item?id=14814530
+
+    loader = {
+      efi.canTouchEfiVariables = true;
+      grub = {
+        enable = true;
+        device = "nodev";
+        efiSupport = true;
+        enableCryptodisk = true;
+      };
     };
   };
 
