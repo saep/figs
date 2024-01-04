@@ -94,6 +94,8 @@
 
         bind 'set show-all-if-ambiguous on'
 
+        bind '"^G":"br^M"'
+
         export EDITOR=nvim
         export VISUAL="$EDITOR"
       '';
@@ -106,7 +108,7 @@
         verbs = [
           {
             execution = "cd {directory}";
-            key = "ctrl-t";
+            key = "ctrl-g";
             from_shell = true;
           }
           {
