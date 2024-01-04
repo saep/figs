@@ -1,4 +1,5 @@
-require("telescope").setup({
+local telescope = require("telescope")
+telescope.setup({
   defaults = {
     layout_strategy = "flex",
     layout_config = {
@@ -8,4 +9,10 @@ require("telescope").setup({
       height = 0.99,
     },
   },
+  extensions = {
+    ["ui-select"] = {
+    }
+  }
 })
+
+telescope.load_extension("ui-select")

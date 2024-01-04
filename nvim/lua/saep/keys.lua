@@ -122,10 +122,13 @@ map("prev in snippet", { "i", "s" }, "<C-k>", function()
     end
   end,
   { silent = true })
-map("change snippet choice", {"i", "s" }, "<C-l>", function()
+map("change snippet choice", { "i", "s" }, "<C-l>", function()
   if ls.choice_active() then
     ls.change_choice(1)
   end
+end)
+map("edit snippet", { "n" }, "<Leader>fs", function()
+  require("luasnip.loaders").edit_snippet_files()
 end)
 
 map("neogit", "n", "<leader>gg", "<cmd>Neogit<cr>")

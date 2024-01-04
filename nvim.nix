@@ -55,6 +55,7 @@
         parinfer-rust
         plenary-nvim
         telescope-nvim
+        telescope-ui-select-nvim
         toggleterm-nvim
         vim-exchange
         vim-repeat
