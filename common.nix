@@ -94,7 +94,7 @@
 
         bind 'set show-all-if-ambiguous on'
 
-        bind '"^G":"br^M"'
+        bind -x '"\C-g":"br"'
 
         export EDITOR=nvim
         export VISUAL="$EDITOR"
