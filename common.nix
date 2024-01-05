@@ -69,8 +69,10 @@
     bash = {
       enable = true;
       enableCompletion = true;
-      historyControl = [ "erasedups" "ignorespace" ];
+      historyControl = [ "erasedups" "ignorespace" "ignoredups" ];
       historyIgnore = [
+        "j"
+        "br"
         "ls"
         "cd"
         "exit"
