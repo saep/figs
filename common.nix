@@ -263,7 +263,7 @@
             } + /palettes/${flavour}.toml));
       };
     nushell = {
-      enable = false;
+      enable = true;
       configFile.source = ./nushell/config.nu;
       envFile.source = ./nushell/env.nu;
     };
