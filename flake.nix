@@ -26,7 +26,10 @@
     , home-manager
     , nixgl
     , neotest
-    }:
+    } @inputs:
+    let
+      inherit (self) outputs;
+    in
     rec
     {
       home-manager-state-version = "22.05";
@@ -148,6 +151,12 @@
             color = color;
             isNixos = true;
           };
+        };
+      };
+      nixosConfigurations = {
+        magma = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [ ./nixos/magma/configuration.nix ];
         };
       };
     };
