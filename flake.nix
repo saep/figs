@@ -27,12 +27,9 @@
     , nixgl
     , neotest
     }:
-    let hm = home-manager;
-    in
     rec
     {
       home-manager-state-version = "22.05";
-      home-manager = hm;
       color = (import ./colors/catppuccin/mocha.nix).color;
       pkgs = import nixpkgs {
         system = "x86_64-linux";
