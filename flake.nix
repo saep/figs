@@ -72,83 +72,85 @@
       };
 
       # configuration for personal computers
-      homeConfigurations."saep@monoid" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = with hmModules; [
-          common
-          nvim
-          desktop.common
-          desktop.kde
-          desktop.xmonad
-          private
-          misc.syncthing
-        ];
-        extraSpecialArgs = {
-          username = "saep";
-          stateVersion = home-manager-state-version;
-          /* dpi = 96; */
-          dpi = 144;
-          color = color;
-          isNixos = true;
-          # If the config needs attributes from a flake:
-          # inherit flake;
-          # then flake can be added to the arguments of e.g. home.nix
+      homeConfigurations = {
+        "saep@monoid" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = with hmModules; [
+            common
+            nvim
+            desktop.common
+            desktop.kde
+            desktop.xmonad
+            private
+            misc.syncthing
+          ];
+          extraSpecialArgs = {
+            username = "saep";
+            stateVersion = home-manager-state-version;
+            /* dpi = 96; */
+            dpi = 144;
+            color = color;
+            isNixos = true;
+            # If the config needs attributes from a flake:
+            # inherit flake;
+            # then flake can be added to the arguments of e.g. home.nix
+          };
         };
-      };
-      homeConfigurations."saep@magma" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = with hmModules; [
-          common
-          desktop.common
-          desktop.kde
-          nvim
-          private
-          misc.syncthing
-        ];
-        extraSpecialArgs = {
-          username = "saep";
-          stateVersion = home-manager-state-version;
-          /* dpi = 96; */
-          dpi = 144;
-          color = color;
-          isNixos = true;
-          saepfigsDirectory = "git/saep/figs";
-          # If the config needs attributes from a flake:
-          # inherit flake;
-          # then flake can be added to the arguments of e.g. home.nix
+        "saep@magma" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = with hmModules; [
+            common
+            desktop.common
+            desktop.kde
+            nvim
+            private
+            misc.syncthing
+          ];
+          extraSpecialArgs = {
+            username = "saep";
+            stateVersion = home-manager-state-version;
+            /* dpi = 96; */
+            dpi = 144;
+            color = color;
+            isNixos = true;
+            saepfigsDirectory = "git/saep/figs";
+            # If the config needs attributes from a flake:
+            # inherit flake;
+            # then flake can be added to the arguments of e.g. home.nix
+          };
         };
-      };
-      homeConfigurations."saep@swaep" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = with hmModules; [
-          common
-          nvim
-          desktop.common
-          desktop.xmonad
-          private
-          desktop.xcape
-          misc.syncthing
-        ];
-        extraSpecialArgs = {
-          username = "saep";
-          stateVersion = home-manager-state-version;
-          dpi = 96;
-          color = color;
-          isNixos = false;
+        "saep@swaep" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = with hmModules; [
+            common
+            nvim
+            desktop.common
+            desktop.xmonad
+            private
+            desktop.xcape
+            misc.syncthing
+          ];
+          extraSpecialArgs = {
+            username = "saep";
+            stateVersion = home-manager-state-version;
+            dpi = 96;
+            color = color;
+            isNixos = false;
+          };
         };
-      };
-      homeConfigurations."saep@nixos-wsl" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = with hmModules; [
-          common
-          nvim
-          private
-        ];
-        extraSpecialArgs = {
-          username = "saep";
-          stateVersion = home-manager-state-version;
-          color = color;
-          isNixos = true;
+        "saep@nixos-wsl" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = with hmModules; [
+            common
+            nvim
+            private
+          ];
+          extraSpecialArgs = {
+            username = "saep";
+            stateVersion = home-manager-state-version;
+            color = color;
+            isNixos = true;
+          };
         };
       };
     };
