@@ -122,6 +122,7 @@
 
   programs = {
     kdeconnect.enable = true;
+    dconf.enable = true;
   };
 
   users.users.saep = {
