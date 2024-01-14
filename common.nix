@@ -62,9 +62,7 @@
       enable = true;
     };
     autojump = {
-      enable = true;
-      enableBashIntegration = true;
-      enableZshIntegration = true;
+      enable = false;
     };
     bash = {
       enable = true;
@@ -308,6 +306,9 @@
         bind-key -r h select-pane -L
         bind-key -r l select-pane -R
       '';
+    };
+    zoxide = {
+      enable = true;
     };
   };
 
