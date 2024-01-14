@@ -13,7 +13,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    neotest = {
+    neotest-src = {
       url = "github:nvim-neotest/neotest";
       flake = false;
     };
@@ -25,10 +25,23 @@
     , nur
     , home-manager
     , nixgl
-    , neotest
+    , neotest-src
     } @inputs:
     let
       inherit (self) outputs;
+      overlays = [
+        nixgl.overlay
+        nur.overlay
+        (final: prev: {
+          vimPlugins = prev.vimPlugins // {
+            saep-neotest = final.vimUtils.buildVimPlugin {
+              pname = "neotest";
+              version = "HEAD";
+              src = neotest-src;
+            };
+          };
+        })
+      ];
     in
     rec
     {
@@ -39,19 +52,7 @@
         config = {
           allowUnFree = true;
         };
-        overlays = [
-          nixgl.overlay
-          nur.overlay
-          (final: prev: {
-            vimPlugins = prev.vimPlugins // {
-              saep-neotest = pkgs.vimUtils.buildVimPlugin {
-                pname = "neotest";
-                version = "HEAD";
-                src = neotest;
-              };
-            };
-          })
-        ];
+        overlays = overlays;
       };
       hmModules = {
         common = ./common.nix;
@@ -155,8 +156,34 @@
       };
       nixosConfigurations = {
         magma = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [ ./nixos/magma/configuration.nix ];
+          specialArgs = { inherit inputs outputs overlays; };
+          modules = let username = "saep"; in [
+            ./nixos/magma/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.users.saep = {
+                home.username = username;
+                home.homeDirectory = "/home/${username}";
+                home.stateVersion = home-manager-state-version;
+                imports = with hmModules ; [
+                  common
+                  desktop.common
+                  desktop.kde
+                  nvim
+                  private
+                  misc.syncthing
+                ];
+              };
+              home-manager.extraSpecialArgs = {
+                inherit pkgs;
+                username = username;
+                stateVersion = home-manager-state-version;
+                color = color;
+                isNixos = true;
+                saepfigsDirectory = "git/${username}/figs";
+              };
+            }
+          ];
         };
       };
     };

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, overlays, ... }:
 
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -134,6 +134,7 @@
   };
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = overlays;
   environment = {
     pathsToLink = [ "/share/bash-completion" ];
     systemPackages = with pkgs; [

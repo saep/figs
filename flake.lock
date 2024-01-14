@@ -36,7 +36,7 @@
         "type": "github"
       }
     },
-    "neotest": {
+    "neotest-src": {
       "flake": false,
       "locked": {
         "lastModified": 1704390747,
@@ -106,7 +106,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "neotest": "neotest",
+        "neotest-src": "neotest-src",
         "nixgl": "nixgl",
         "nixpkgs": "nixpkgs",
         "nur": "nur"
