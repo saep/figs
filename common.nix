@@ -112,6 +112,10 @@
             from_shell = true;
           }
           {
+            key = "ctrl-t";
+            internal = ":toggle_stage";
+          }
+          {
             key = "ctrl-j";
             internal = ":line_down";
           }
