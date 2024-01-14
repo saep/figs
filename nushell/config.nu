@@ -764,5 +764,15 @@ $env.config = {
             mode: emacs
             event: {edit: capitalizechar}
         }
+        {
+          name: broot
+          modifier: CONTROL
+          keycode: char_g
+          mode: emacs
+          event: {
+            send: executehostcommand,
+            cmd: "br"
+          }
+        }
     ]
 }

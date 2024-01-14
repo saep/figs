@@ -264,6 +264,12 @@
       enable = true;
       configFile.source = ./nushell/config.nu;
       envFile.source = ./nushell/env.nu;
+      extraConfig = ''
+        source ${
+          pkgs.runCommand "br.nushell" { nativeBuildInputs = [ pkgs.broot ]; }
+          "broot --print-shell-function nushell > $out"
+        }
+      '';
     };
     zsh = {
       enable = false;
