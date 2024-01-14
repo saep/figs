@@ -134,6 +134,9 @@
         ];
       };
     };
+    carapace = {
+      enable = true;
+    };
     direnv = {
       enable = true;
       enableZshIntegration = false;
