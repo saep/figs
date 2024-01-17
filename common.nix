@@ -274,7 +274,7 @@
       extraConfig = ''
         source ${
           pkgs.runCommand "br.nushell" { nativeBuildInputs = [ pkgs.broot ]; }
-          "broot --print-shell-function nushell > $out"
+          "broot --print-shell-function nushell | sed 's/def-env/def --env/' > $out"
         }
       '';
     };
