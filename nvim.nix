@@ -34,7 +34,7 @@
         lualine-nvim
         mini-nvim
         neogit
-        saep-neotest
+        neotest
         neotest-haskell
         neotest-plenary
         neotest-rust

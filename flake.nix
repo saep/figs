@@ -12,11 +12,6 @@
       url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    neotest-src = {
-      url = "github:nvim-neotest/neotest";
-      flake = false;
-    };
   };
 
   outputs =
@@ -25,22 +20,12 @@
     , nur
     , home-manager
     , nixgl
-    , neotest-src
     } @inputs:
     let
       inherit (self) outputs;
       overlays = [
         nixgl.overlay
         nur.overlay
-        (final: prev: {
-          vimPlugins = prev.vimPlugins // {
-            saep-neotest = final.vimUtils.buildVimPlugin {
-              pname = "neotest";
-              version = "HEAD";
-              src = neotest-src;
-            };
-          };
-        })
       ];
     in
     rec
