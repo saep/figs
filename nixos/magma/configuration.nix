@@ -97,10 +97,10 @@
 
 
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "us";
-    xkbVariant = "altgr-intl";
-    xkbOptions = "ctrl:nocaps";
+    variant = "altgr-intl";
+    options = "ctrl:nocaps";
   };
 
   # Enable sound.
