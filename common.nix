@@ -227,6 +227,7 @@
         # custom shell variables
         ".envrc"
         ".env"
+        ".direnv/"
 
         "tags"
       ];
