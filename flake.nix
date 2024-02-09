@@ -31,6 +31,7 @@
     rec
     {
       home-manager-state-version = "22.05";
+      hm = home-manager;
       color = (import ./colors/catppuccin/mocha.nix).color;
       pkgs = import nixpkgs {
         system = "x86_64-linux";
