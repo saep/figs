@@ -128,13 +128,17 @@ require('lspconfig').rnix.setup {
   on_attach = on_attach
 }
 
-require('lspconfig').tailwindcss.setup {
-  on_attach = on_attach
-}
+if executableOnPath('tailwindcss-language-server') then
+  require('lspconfig').tailwindcss.setup {
+    on_attach = on_attach
+  }
+end
 
-require('lspconfig').angularls.setup {
-  on_attach = on_attach
-}
+if executableOnPath('ngserver') then
+  require('lspconfig').angularls.setup {
+    on_attach = on_attach
+  }
+end
 
 require('lspconfig').tsserver.setup {
   on_attach = on_attach
