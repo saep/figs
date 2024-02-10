@@ -49,7 +49,6 @@
         nvim-ts-autotag
         nvim-web-devicons
         oil-nvim
-        orgmode
         rest-nvim
         rust-tools-nvim
         parinfer-rust
