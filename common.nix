@@ -195,6 +195,12 @@
         push = {
           default = "simple";
         };
+        branch = {
+          sort = "-committerdate";
+        };
+        column = {
+          ui = "auto";
+        };
         github = {
           user = "saep";
         };
