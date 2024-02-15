@@ -50,6 +50,8 @@
 
       xdg-utils
 
+      neovide
+
       # other
       remmina
       pavucontrol
