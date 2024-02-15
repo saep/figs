@@ -77,6 +77,8 @@ map("find buffer", "n", "<leader>b", require('telescope.builtin').buffers)
 map("find buffer", "n", "<leader>fb", require('telescope.builtin').buffers)
 map("find files", "n", "<leader>ff", function() require('telescope.builtin').find_files({ follow = true }) end)
 map("live grep", "n", "<leader>fg", require('telescope.builtin').live_grep)
+map("find project", "n", "<leader>fp",
+  function() require('telescope').extensions.project.project({ display_type = "full" }) end)
 map("neovim help", "n", "<leader>fh", require('telescope.builtin').help_tags)
 
 map("next thing", "n", ";", function() next.next() end)

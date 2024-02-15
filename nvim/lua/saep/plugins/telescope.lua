@@ -15,8 +15,15 @@ telescope.setup({
   },
   extensions = {
     ["ui-select"] = {
-    }
+    },
+    ["project"] = {
+      on_project_selected = function(prompt_bufnr)
+        require("telescope._extensions.project.actions").change_working_directory(prompt_bufnr, false)
+        require("neogit").open()
+      end
+    },
   }
 })
 
 telescope.load_extension("ui-select")
+telescope.load_extension('project')
