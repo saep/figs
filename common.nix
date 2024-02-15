@@ -278,6 +278,9 @@
       enable = true;
       configFile.source = ./nushell/config.nu;
       envFile.source = ./nushell/env.nu;
+      shellAliases = {
+        e = "${pkgs.neovim}";
+      };
       extraConfig = ''
         source ${
           pkgs.runCommand "br.nushell" { nativeBuildInputs = [ pkgs.broot ]; }
