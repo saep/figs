@@ -407,7 +407,7 @@
             cursor: $color_palette.blue
         }
 
-        $env.config = ($env.config | merge {color_config: catppuccin_mocha})
+        $env.config = ($env.config | merge {color_config: $catppuccin_mocha})
       '';
     };
     zsh = {
