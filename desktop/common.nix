@@ -121,7 +121,7 @@
       };
     };
     rofi = {
-      enable = true;
+      enable = false;
       font = "Hasklug Nerd Font 14";
       terminal = "kitty";
       theme = ./rofi-catppucin-mocha-theme.rasi;
