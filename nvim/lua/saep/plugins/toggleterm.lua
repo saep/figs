@@ -3,4 +3,5 @@ require("toggleterm").setup {
   float_opts = {
     border = "curved"
   },
+  shell = "nu",
 }
