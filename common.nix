@@ -281,6 +281,10 @@
       shellAliases = {
         e = "${pkgs.neovim}";
       };
+      environmentVariables = {
+        EDITOR = "${pkgs.neovim}";
+        VISUAL = "${pkgs.neovim}";
+      };
       extraConfig = ''
         source ${
           pkgs.runCommand "br.nushell" { nativeBuildInputs = [ pkgs.broot ]; }
