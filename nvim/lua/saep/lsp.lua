@@ -111,6 +111,10 @@ if (luaLanguageServer ~= nil) then
   }
 end
 
+require("lspconfig").bashls.setup {
+  on_attach = on_attach
+}
+
 require('lspconfig').elmls.setup {
   on_attach = on_attach
 }

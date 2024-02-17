@@ -71,6 +71,7 @@
 
         # bash/shell
         shellcheck
+        nodePackages.bash-language-server
 
         # nix
         nixfmt
