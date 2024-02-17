@@ -279,11 +279,11 @@
       configFile.source = ./nushell/config.nu;
       envFile.source = ./nushell/env.nu;
       shellAliases = {
-        e = "${pkgs.neovim}";
+        e = "/home/${username}/.nix-profile/bin/nvim";
       };
       environmentVariables = {
-        EDITOR = "${pkgs.neovim}";
-        VISUAL = "${pkgs.neovim}";
+        EDITOR = "/home/${username}/.nix-profile/bin/nvim";
+        VISUAL = "/home/${username}/.nix-profile/bin/nvim";
       };
       extraConfig = ''
         source ${
