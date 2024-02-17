@@ -165,3 +165,18 @@ map("harpoon next", "n", "<C-,>", function() harpoon:list():prev() end)
 map("harpoon next", "n", "<C-.>", function() harpoon:list():next() end)
 
 map("harpoon window", "n", "<C-e>", function() toggle_telescope(harpoon:list()) end)
+
+local Terminal  = require('toggleterm.terminal').Terminal
+local floating_terminal = Terminal:new({
+  cmd = "nu",
+  dir = "git_dir",
+  direction = "float",
+})
+
+local bottom_terminal = Terminal:new({
+  cmd = "nu",
+  dir = "git_dir",
+})
+
+map("floating terminal", {"n", "t"}, "<A-t>", function() floating_terminal:toggle() end)
+map("bottom terminal", {"n", "t"}, "<C-t>", function() bottom_terminal:toggle() end)
