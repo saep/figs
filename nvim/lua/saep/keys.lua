@@ -134,3 +134,34 @@ map("edit snippet", { "n" }, "<Leader>fs", function()
 end)
 
 map("neogit", "n", "<leader>gg", "<cmd>Neogit<cr>")
+
+
+local harpoon = require("harpoon")
+local conf = require("telescope.config").values
+local function toggle_telescope(harpoon_files)
+    local file_paths = {}
+    for _, item in ipairs(harpoon_files.items) do
+        table.insert(file_paths, item.value)
+    end
+
+    require("telescope.pickers").new({}, {
+        prompt_title = "Harpoon",
+        finder = require("telescope.finders").new_table({
+            results = file_paths,
+        }),
+        previewer = conf.file_previewer({}),
+        sorter = conf.generic_sorter({}),
+    }):find()
+end
+
+map("harpoon append", "n", "<leader>aa", function() harpoon:list():append() end)
+map("harpoon 1", "n", "<leader>aj", function() harpoon:list():select(1) end)
+map("harpoon 2", "n", "<leader>ak", function() harpoon:list():select(2) end)
+map("harpoon 3", "n", "<leader>al", function() harpoon:list():select(3) end)
+map("harpoon 4", "n", "<leader>a;", function() harpoon:list():select(4) end)
+map("harpoon 4", "n", "<leader>ar", function() harpoon:list():remove() end)
+
+map("harpoon next", "n", "<C-,>", function() harpoon:list():prev() end)
+map("harpoon next", "n", "<C-.>", function() harpoon:list():next() end)
+
+map("harpoon window", "n", "<C-e>", function() toggle_telescope(harpoon:list()) end)
