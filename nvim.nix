@@ -59,6 +59,9 @@
         telescope-ui-select-nvim
         toggleterm-nvim
         vim-exchange
+        vim-dadbod
+        vim-dadbod-ui
+        vim-dadbod-completion
         vim-repeat
         vim-speeddating
         vim-visual-multi
