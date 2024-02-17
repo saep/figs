@@ -1,11 +1,9 @@
-require("rest-nvim").setup{
-  -- Open request results in a horizontal split
+require("rest-nvim").setup {
   result_split_horizontal = false,
   -- Keep the http file buffer above|left when split horizontal|vertical
   result_split_in_place = false,
-  -- Skip SSL verification, useful for unknown certificates
+  stay_in_current_window_after_split = true,
   skip_ssl_verification = false,
-  -- Encode URL before making request
   encode_url = true,
   -- Highlight request on run
   highlight = {
@@ -35,3 +33,15 @@ require("rest-nvim").setup{
   custom_dynamic_variables = {},
   yank_dry_run = true,
 }
+
+local set_http_filetype = vim.api.nvim_create_augroup("set_http_filetype", { clear = true })
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = { "*.http" },
+  callback = function()
+    if vim.o.filetype ~= "http" then
+      vim.o.filetype = "http"
+    end
+  end,
+  group = set_http_filetype,
+})
+

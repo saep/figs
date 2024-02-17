@@ -139,19 +139,19 @@ map("neogit", "n", "<leader>gg", "<cmd>Neogit<cr>")
 local harpoon = require("harpoon")
 local conf = require("telescope.config").values
 local function toggle_telescope(harpoon_files)
-    local file_paths = {}
-    for _, item in ipairs(harpoon_files.items) do
-        table.insert(file_paths, item.value)
-    end
+  local file_paths = {}
+  for _, item in ipairs(harpoon_files.items) do
+    table.insert(file_paths, item.value)
+  end
 
-    require("telescope.pickers").new({}, {
-        prompt_title = "Harpoon",
-        finder = require("telescope.finders").new_table({
-            results = file_paths,
-        }),
-        previewer = conf.file_previewer({}),
-        sorter = conf.generic_sorter({}),
-    }):find()
+  require("telescope.pickers").new({}, {
+    prompt_title = "Harpoon",
+    finder = require("telescope.finders").new_table({
+      results = file_paths,
+    }),
+    previewer = conf.file_previewer({}),
+    sorter = conf.generic_sorter({}),
+  }):find()
 end
 
 map("harpoon append", "n", "<leader>aa", function() harpoon:list():append() end)
@@ -166,17 +166,39 @@ map("harpoon next", "n", "<C-.>", function() harpoon:list():next() end)
 
 map("harpoon window", "n", "<C-e>", function() toggle_telescope(harpoon:list()) end)
 
-local Terminal  = require('toggleterm.terminal').Terminal
+local Terminal          = require('toggleterm.terminal').Terminal
 local floating_terminal = Terminal:new({
   cmd = "nu",
   dir = "git_dir",
   direction = "float",
 })
 
-local bottom_terminal = Terminal:new({
+local bottom_terminal   = Terminal:new({
   cmd = "nu",
   dir = "git_dir",
 })
 
-map("floating terminal", {"n", "t"}, "<A-t>", function() floating_terminal:toggle() end)
-map("bottom terminal", {"n", "t"}, "<C-t>", function() bottom_terminal:toggle() end)
+map("floating terminal", { "n", "t" }, "<A-t>", function() floating_terminal:toggle() end)
+map("bottom terminal", { "n", "t" }, "<C-t>", function() bottom_terminal:toggle() end)
+
+local http_group = vim.api.nvim_create_augroup("http_autocommands", { clear = true })
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = { "*.http" },
+  callback = function()
+    if vim.o.filetype ~= "http" then
+      vim.o.filetype = "http"
+    end
+  end,
+  group = http_group,
+})
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "http", },
+  callback = function(ev)
+    map("http request under cursor", "n", "<LocalLeader>t",
+      function() require("rest-nvim").run() end,
+      { buffer = ev.buf })
+    map("http request last", "n", "<LocalLeader>x",
+      function() require("rest-nvim").last() end)
+  end,
+  group = http_group,
+})
