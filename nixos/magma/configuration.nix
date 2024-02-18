@@ -152,6 +152,7 @@
     pathsToLink = [ "/share/bash-completion" ];
     systemPackages = with pkgs; [
       headsetcontrol
+      lsof
       usbutils
       wineWowPackages.staging
       winetricks
