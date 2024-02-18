@@ -194,24 +194,11 @@ vim.g.haskell_tools = {
   },
 }
 
-require("rust-tools").setup {
-  server = {
-    settings = {
-      ["rust-analyzer"] = {
-        cargo = {
-          features = "all",
-        }
-      },
-    },
-    on_attach = function(client, bufnr)
-      on_attach(client, bufnr)
-      -- Hover actions
-      vim.keymap.set("n", "<C-space>", require("rust-tools").hover_actions.hover_actions, { buffer = bufnr })
-      -- Code action groups
-      vim.keymap.set("n", "<Leader>a", require("rust-tools").code_action_group.code_action_group, { buffer = bufnr })
-    end,
-  },
-}
+if executableOnPath("rust-analyzer") then
+  require("lspconfig").rust_analyzer.setup {
+    on_attach = on_attach
+  }
+end
 
 return {
   on_attach = on_attach

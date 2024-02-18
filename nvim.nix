@@ -51,7 +51,6 @@
         nvim-web-devicons
         oil-nvim
         rest-nvim
-        rust-tools-nvim
         parinfer-rust
         plenary-nvim
         telescope-nvim
