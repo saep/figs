@@ -53,6 +53,7 @@
         rest-nvim
         parinfer-rust
         plenary-nvim
+        rustaceanvim
         telescope-nvim
         telescope-project-nvim
         telescope-ui-select-nvim

@@ -5,5 +5,6 @@ require("neotest").setup {
     },
     require("neotest-rust") {
     },
+    -- once available require('rustaceanvim.neotest') ,
   },
 }

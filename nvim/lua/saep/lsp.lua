@@ -23,8 +23,10 @@ require("lspsaga").setup {
 -- This sets up keybindings which only work when a language server is used.
 ---@param client any
 ---@param bufnr any
+---@param opt_overrides any
 ---@diagnostic disable-next-line client is unused, but required for the on_attach signature
-local on_attach = function(client, bufnr)
+local on_attach = function(client, bufnr, opt_overrides)
+  local overrides = opt_overrides or {}
   local opts = function(desc, args)
     local opts = { silent = true, buffer = bufnr, desc = desc }
     if (args) then
@@ -38,7 +40,8 @@ local on_attach = function(client, bufnr)
     vim.keymap.set("n", "<Leader>u", vim.lsp.buf.references, opts("usages"))
     -- vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts("hover docs"))
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts("hover docs"))
-    vim.keymap.set("n", "H", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts("cursor diagnostics"))
+    vim.keymap.set("n", "H", overrides.cursor_diagnostics or "<cmd>Lspsaga show_cursor_diagnostics<CR>",
+      opts("cursor diagnostics"))
     vim.keymap.set("n", "L", "<cmd>Lspsaga show_line_diagnostics<CR>", opts("line diagnostics"))
 
     -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -194,11 +197,27 @@ vim.g.haskell_tools = {
   },
 }
 
-if executableOnPath("rust-analyzer") then
-  require("lspconfig").rust_analyzer.setup {
-    on_attach = on_attach
-  }
-end
+vim.g.rustaceanvim = {
+  -- Plugin configuration
+  tools = {
+  },
+  -- LSP configuration
+  server = {
+    on_attach = function(client, bufnr)
+      on_attach(client, bufnr, {
+        cursor_diagnostics = "<cmd>RustLsp renderDiagnostic<CR>"
+      })
+    end,
+    default_settings = {
+      -- rust-analyzer language server configuration
+      ['rust-analyzer'] = {
+      },
+    },
+  },
+  -- DAP configuration
+  dap = {
+  },
+}
 
 return {
   on_attach = on_attach
