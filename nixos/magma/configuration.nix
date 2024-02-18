@@ -60,6 +60,19 @@
           }
         ];
       }
+      {
+        users = [ "saep" ];
+        commands = [
+          {
+            command = ''/run/current-system/sw/bin/nixos-rebuild --flake .#magma switch'';
+            options = [ "NOPASSWD" ];
+          }
+          {
+            command = ''/run/current-system/sw/bin/nixos-rebuild --flake .#magma boot'';
+            options = [ "NOPASSWD" ];
+          }
+        ];
+      }
     ];
   };
   services.udev.extraRules = ''
