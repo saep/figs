@@ -64,11 +64,7 @@
         users = [ "saep" ];
         commands = [
           {
-            command = ''/run/current-system/sw/bin/nixos-rebuild --flake .#magma switch'';
-            options = [ "NOPASSWD" ];
-          }
-          {
-            command = ''/run/current-system/sw/bin/nixos-rebuild --flake .#magma boot'';
+            command = "/run/current-system/sw/bin/nixos-rebuild";
             options = [ "NOPASSWD" ];
           }
         ];
