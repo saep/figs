@@ -3,8 +3,6 @@ require("neotest").setup {
     require("neotest-haskell") {
       build_tools = { "cabal" },
     },
-    require("neotest-rust") {
-    },
-    -- once available require('rustaceanvim.neotest') ,
+    require('rustaceanvim.neotest'),
   },
 }

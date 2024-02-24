@@ -38,7 +38,6 @@
         neotest
         neotest-haskell
         neotest-plenary
-        neotest-rust
         nvim-colorizer-lua
         nvim-cmp
         nvim-dap

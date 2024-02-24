@@ -12,6 +12,10 @@
       url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    rustaceanvim = {
+      url = "github:mrcjkb/rustaceanvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -20,12 +24,27 @@
     , nur
     , home-manager
     , nixgl
+    , rustaceanvim
     } @inputs:
     let
       inherit (self) outputs;
       overlays = [
         nixgl.overlay
         nur.overlay
+        (self: super:
+          let
+            rustaceanvim = super.vimUtils.buildVimPlugin {
+              name = "rustaceanvim";
+              src = inputs.rustaceanvim;
+            };
+          in
+          {
+            vimPlugins =
+              super.vimPlugins // {
+                inherit rustaceanvim;
+              };
+          }
+        )
       ];
     in
     rec
@@ -143,33 +162,34 @@
       nixosConfigurations = {
         magma = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs overlays; };
-          modules = let username = "saep"; in [
-            ./nixos/magma/configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.users.saep = {
-                home.username = username;
-                home.homeDirectory = "/home/${username}";
-                home.stateVersion = home-manager-state-version;
-                imports = with hmModules ; [
-                  common
-                  desktop.common
-                  desktop.kde
-                  nvim
-                  private
-                  misc.syncthing
-                ];
-              };
-              home-manager.extraSpecialArgs = {
-                inherit pkgs;
-                username = username;
-                stateVersion = home-manager-state-version;
-                color = color;
-                isNixos = true;
-                saepfigsDirectory = "git/${username}/figs";
-              };
-            }
-          ];
+          modules = let username = "saep"; in
+            [
+              ./nixos/magma/configuration.nix
+              home-manager.nixosModules.home-manager
+              {
+                home-manager.users.saep = {
+                  home.username = username;
+                  home.homeDirectory = "/home/${username}";
+                  home.stateVersion = home-manager-state-version;
+                  imports = with hmModules ; [
+                    common
+                    desktop.common
+                    desktop.kde
+                    nvim
+                    private
+                    misc.syncthing
+                  ];
+                };
+                home-manager.extraSpecialArgs = {
+                  inherit pkgs;
+                  username = username;
+                  stateVersion = home-manager-state-version;
+                  color = color;
+                  isNixos = true;
+                  saepfigsDirectory = "git/${username}/figs";
+                };
+              }
+            ];
         };
       };
     };
