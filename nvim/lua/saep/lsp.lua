@@ -214,9 +214,8 @@ vim.g.rustaceanvim = {
       },
     },
   },
-  -- DAP configuration
-  dap = {
-  },
+  -- dap = {
+  -- },
 }
 
 return {
