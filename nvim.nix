@@ -54,7 +54,6 @@
         plenary-nvim
         rustaceanvim
         telescope-nvim
-        telescope-project-nvim
         telescope-ui-select-nvim
         toggleterm-nvim
         vim-exchange
