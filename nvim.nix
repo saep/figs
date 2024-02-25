@@ -26,6 +26,7 @@
         cmp-nvim-lua
         cmp-path
         comment-nvim
+        conform-nvim
         diffview-nvim
         fzf-lua # for neogit
         harpoon2
