@@ -12,6 +12,7 @@
     bat # should have been rat
     borgbackup
     bottom # similar to htop
+    btop # similar to htop
     curl
     erdtree
     delta # diff
@@ -29,7 +30,6 @@
     mprocs # tmux-esque for long running processes
     procs # similar to ps
     ripgrep # similar to grep
-    rust-script
     tealdeer # common examples instead of man page
     trash-cli
     tokei # similar to cloc (count lines of code)
