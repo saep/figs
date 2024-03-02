@@ -82,6 +82,7 @@
         # lua
         sumneko-lua-language-server
         lua51Packages.jsregexp
+        stylua
 
         # go
         gcc # tests can't be run without it
