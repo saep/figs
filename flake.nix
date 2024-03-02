@@ -16,6 +16,10 @@
       url = "github:mrcjkb/rustaceanvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    neogit = {
+      url = "github:saep/neogit/open-or-scroll-commit-view";
+      flake = false;
+    };
   };
 
   outputs =
@@ -25,6 +29,7 @@
     , home-manager
     , nixgl
     , rustaceanvim
+    , neogit
     } @inputs:
     let
       inherit (self) outputs;
@@ -37,11 +42,16 @@
               name = "rustaceanvim";
               src = inputs.rustaceanvim;
             };
+            neogit = super.vimUtils.buildVimPlugin {
+              name = "neogit";
+              src = inputs.neogit;
+            };
           in
           {
             vimPlugins =
               super.vimPlugins // {
                 inherit rustaceanvim;
+                inherit neogit;
               };
           }
         )

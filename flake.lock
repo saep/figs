@@ -255,6 +255,23 @@
         "type": "github"
       }
     },
+    "neogit": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1709399090,
+        "narHash": "sha256-fsu/zUBzkd/MLAnGRz4kwi4bGKAg6+bW+45unyna9B8=",
+        "owner": "saep",
+        "repo": "neogit",
+        "rev": "56dc41946c88da81b0c6cf03f692113f19b9d90b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "saep",
+        "ref": "open-or-scroll-commit-view",
+        "repo": "neogit",
+        "type": "github"
+      }
+    },
     "neorocks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -456,11 +473,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1709366185,
-        "narHash": "sha256-K8CZc7mWQ2p2UiCzi9WVuzuUgG4nZe+BwTb3S6AYAsg=",
+        "lastModified": 1709397861,
+        "narHash": "sha256-sB7GQ2mb+b0hwGCUaYNlFUmvg3OsmKnx2xtDs/hOkHA=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "a539b9e38cd2604dae50937d80f181cca533a462",
+        "rev": "3635ceabe30c7434fd847edc466e41b45c3149e4",
         "type": "github"
       },
       "original": {
@@ -520,6 +537,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "neogit": "neogit",
         "nixgl": "nixgl",
         "nixpkgs": "nixpkgs",
         "nur": "nur",
@@ -537,11 +555,11 @@
         "pre-commit-hooks": "pre-commit-hooks_2"
       },
       "locked": {
-        "lastModified": 1709308484,
-        "narHash": "sha256-JyvaDySQp8qhC8u0sswjfPq5HlnK0CN9O7NbqacBgEI=",
+        "lastModified": 1709397704,
+        "narHash": "sha256-z8SercTey75FHfvGj5oQGFeukiTPxONBKyAfGeWTfz4=",
         "owner": "mrcjkb",
         "repo": "rustaceanvim",
-        "rev": "001dd498894e4c554e92af507fb27739146c177d",
+        "rev": "67c09704d1a2ceab8be26b203e913d1f8bfe127c",
         "type": "github"
       },
       "original": {
