@@ -284,7 +284,7 @@
       environmentVariables = {
         EDITOR = "/home/${username}/.nix-profile/bin/nvim";
         VISUAL = "/home/${username}/.nix-profile/bin/nvim";
-        MANPAGER = "nvim +Man!";
+        MANPAGER = ''"nvim +Man!"'';
       };
       extraConfig = ''
         source ${
