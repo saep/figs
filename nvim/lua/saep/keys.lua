@@ -83,6 +83,7 @@ map("find files", "n", "<leader>ff", function()
 end)
 map("live grep", "n", "<leader>fg", require("telescope.builtin").live_grep)
 map("neovim help", "n", "<leader>fh", require("telescope.builtin").help_tags)
+map("textcase", { "n", "v" }, "ga.", "<Cmd>TextCaseOpenTelescope<CR>")
 
 map("next thing", "n", ";", function()
 	next.next()
