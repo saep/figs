@@ -25,26 +25,25 @@ vim.o.number = true
 vim.o.relativenumber = true
 
 vim.opt.background = "dark"
-vim.cmd "highlight WinSeparator guibg=None"
+vim.cmd("highlight WinSeparator guibg=None")
 vim.opt.hlsearch = false
 vim.o.ch = 1 -- comand height: Removes bottom line of nothingness if set to 0, but causes too many Hit-Enter-Prompts currently :-(
 vim.o.laststatus = 2
 
 local function go_to_last_known_position()
-  if ((vim.fn.line("'\"") > 1) and (vim.fn.line("'\"") <= vim.fn.line("$"))) then
-    return vim.api.nvim_command("exe \"normal! g`\\\"\"")
-  else
-    return nil
-  end
+	if (vim.fn.line("'\"") > 1) and (vim.fn.line("'\"") <= vim.fn.line("$")) then
+		return vim.api.nvim_command('exe "normal! g`\\""')
+	else
+		return nil
+	end
 end
 
 vim.api.nvim_create_augroup("vimrcEx", {})
-vim.api.nvim_create_autocmd({ "BufReadPost" },
-  {
-    callback = go_to_last_known_position,
-    desc = "Go to last known position when opening a buffer",
-    group = "vimrcEx",
-    pattern = "*"
-  })
+vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+	callback = go_to_last_known_position,
+	desc = "Go to last known position when opening a buffer",
+	group = "vimrcEx",
+	pattern = "*",
+})
 
 return {}
