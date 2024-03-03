@@ -41,4 +41,14 @@ return {
 		i(0),
 		t({ "", "}", "" }),
 	}),
+	s(",l (let x = x;)", {
+		t("let "),
+		i(1, "var"),
+		t(" = "),
+		d(2, function(args)
+			return sn(nil, {
+				t(args[1]),
+			})
+		end, { 1 }),
+	}),
 }, {}
