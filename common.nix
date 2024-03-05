@@ -14,7 +14,6 @@
     bottom # similar to htop
     btop # similar to htop
     curl
-    erdtree
     delta # diff
     difftastic # diff
     du-dust # similar to du 
