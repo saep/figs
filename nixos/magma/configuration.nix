@@ -132,6 +132,7 @@
   programs = {
     kdeconnect.enable = true;
     dconf.enable = true;
+    steam.enable = true;
   };
 
   users.users.saep = {
