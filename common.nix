@@ -16,7 +16,7 @@
     curl
     delta # diff
     difftastic # diff
-    du-dust # similar to du 
+    du-dust # similar to du
     duckdb
     fd # similar to find
     gnumake
@@ -51,39 +51,19 @@
     configFile."nix/nix.conf".text = ''
       experimental-features = nix-command flakes
     '';
-    systemDirs = {
-      data = [ "/usr/local/share" "/usr/share" ];
-    };
+    systemDirs = { data = [ "/usr/local/share" "/usr/share" ]; };
   };
 
   programs = {
     # Let Home Manager install and manage itself.
-    home-manager = {
-      enable = true;
-    };
-    autojump = {
-      enable = false;
-    };
+    home-manager = { enable = true; };
+    autojump = { enable = false; };
     bash = {
       enable = true;
       enableCompletion = true;
       historyControl = [ "erasedups" "ignorespace" "ignoredups" ];
-      historyIgnore = [
-        "j"
-        "br"
-        "ls"
-        "cd"
-        "exit"
-        ":wq"
-        ":w"
-        ":q"
-      ];
-      shellOptions = [
-        "histappend"
-        "checkwinsize"
-        "extglob"
-        "globstar"
-      ];
+      historyIgnore = [ "j" "br" "ls" "cd" "exit" ":wq" ":w" ":q" ];
+      shellOptions = [ "histappend" "checkwinsize" "extglob" "globstar" ];
       initExtra = ''
         source "''${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh"
 
@@ -138,9 +118,7 @@
         ];
       };
     };
-    carapace = {
-      enable = true;
-    };
+    carapace = { enable = true; };
     direnv = {
       enable = true;
       enableZshIntegration = false;
@@ -165,45 +143,23 @@
       enable = true;
       delta.enable = true;
       userName = "Sebastian Witte";
-      aliases = {
-        st = "status";
-      };
+      aliases = { st = "status"; };
       extraConfig = {
-        difftool = {
-          prompt = false;
-        };
-        rerere = {
-          enabled = true;
-        };
-        core = {
-          autocrlf = "input";
-        };
-        init = {
-          defaultBranch = "develop";
-        };
+        difftool = { prompt = false; };
+        rerere = { enabled = true; };
+        core = { autocrlf = "input"; };
+        init = { defaultBranch = "develop"; };
         rebase = {
           autoStash = true;
           autosquash = true;
           updateRefs = true;
         };
-        merge = {
-          conflictstyle = "diff3";
-        };
-        pull = {
-          rebase = true;
-        };
-        push = {
-          default = "simple";
-        };
-        branch = {
-          sort = "-committerdate";
-        };
-        column = {
-          ui = "auto";
-        };
-        github = {
-          user = "saep";
-        };
+        merge = { conflictstyle = "diff3"; };
+        pull = { rebase = true; };
+        push = { default = "simple"; };
+        branch = { sort = "-committerdate"; };
+        column = { ui = "auto"; };
+        github = { user = "saep"; };
       };
       ignores = [
         # vim temporary files
@@ -243,9 +199,7 @@
       enable = false;
       settings = {
         theme = "base16";
-        editor = {
-          line-number = "relative";
-        };
+        editor = { line-number = "relative"; };
         editor.cursor-shape = {
           insert = "bar";
           normal = "block";
@@ -255,32 +209,28 @@
     };
 
     starship =
-      let
-        flavour = "mocha"; # One of `latte`, `frappe`, `macchiato`, or `mocha`
-      in
-      {
+      let flavour = "mocha"; # One of `latte`, `frappe`, `macchiato`, or `mocha`
+      in {
         enable = true;
         enableNushellIntegration = true;
         settings = {
           # Other config here
-          format = "$all"; # Remove this line to disable the default prompt format
+          format =
+            "$all"; # Remove this line to disable the default prompt format
           palette = "catppuccin_${flavour}";
-        } // builtins.fromTOML (builtins.readFile
-          (pkgs.fetchFromGitHub
-            {
-              owner = "catppuccin";
-              repo = "starship";
-              rev = "3e3e54410c3189053f4da7a7043261361a1ed1bc"; # Replace with the latest commit hash
-              sha256 = "soEBVlq3ULeiZFAdQYMRFuswIIhI9bclIU8WXjxd7oY=";
-            } + /palettes/${flavour}.toml));
+        } // builtins.fromTOML (builtins.readFile (pkgs.fetchFromGitHub {
+          owner = "catppuccin";
+          repo = "starship";
+          rev =
+            "3e3e54410c3189053f4da7a7043261361a1ed1bc"; # Replace with the latest commit hash
+          sha256 = "soEBVlq3ULeiZFAdQYMRFuswIIhI9bclIU8WXjxd7oY=";
+        } + /palettes/${flavour}.toml));
       };
     nushell = {
       enable = true;
       configFile.source = ./nushell/config.nu;
       envFile.source = ./nushell/env.nu;
-      shellAliases = {
-        e = "/home/${username}/.nix-profile/bin/nvim";
-      };
+      shellAliases = { e = "/home/${username}/.nix-profile/bin/nvim"; };
       environmentVariables = {
         EDITOR = "/home/${username}/.nix-profile/bin/nvim";
         VISUAL = "/home/${username}/.nix-profile/bin/nvim";
@@ -453,9 +403,7 @@
         bind-key -r l select-pane -R
       '';
     };
-    zoxide = {
-      enable = true;
-    };
+    zoxide = { enable = true; };
   };
 
   services = {

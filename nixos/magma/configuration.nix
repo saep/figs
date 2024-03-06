@@ -2,18 +2,18 @@
 
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   boot = {
     # Enable BBR congestion control
     kernelModules = [ "tcp_bbr" ];
     kernel.sysctl."net.ipv4.tcp_congestion_control" = "bbr";
     # default is fq_codel
-    kernel.sysctl."net.core.default_qdisc" = "fq"; # see https://news.ycombinator.com/item?id=14814530
+    kernel.sysctl."net.core.default_qdisc" =
+      "fq"; # see https://news.ycombinator.com/item?id=14814530
 
     loader = {
       efi.canTouchEfiVariables = true;
@@ -27,15 +27,14 @@
   };
 
   networking.hostName = "magma";
-  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable =
+    true; # Easiest to use and most distros use this by default.
 
   time.timeZone = "Europe/Berlin";
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
-    extraLocaleSettings = {
-      LC_TIME = "de_DE.UTF-8";
-    };
+    extraLocaleSettings = { LC_TIME = "de_DE.UTF-8"; };
   };
   console = {
     font = "Lat2-Terminus16";
@@ -53,21 +52,17 @@
     extraRules = [
       {
         groups = [ "users" ];
-        commands = [
-          {
-            command = ''/run/current-system/sw/bin/headsetcontrol'';
-            options = [ "NOPASSWD" ];
-          }
-        ];
+        commands = [{
+          command = "/run/current-system/sw/bin/headsetcontrol";
+          options = [ "NOPASSWD" ];
+        }];
       }
       {
         users = [ "saep" ];
-        commands = [
-          {
-            command = "/run/current-system/sw/bin/nixos-rebuild";
-            options = [ "NOPASSWD" ];
-          }
-        ];
+        commands = [{
+          command = "/run/current-system/sw/bin/nixos-rebuild";
+          options = [ "NOPASSWD" ];
+        }];
       }
     ];
   };
@@ -104,7 +99,6 @@
   };
   services.xserver.desktopManager.plasma5.enable = true;
 
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -120,11 +114,7 @@
   hardware = {
     bluetooth = {
       enable = true;
-      settings = {
-        General = {
-          Enable = "Source,Sink,Media,Socket";
-        };
-      };
+      settings = { General = { Enable = "Source,Sink,Media,Socket"; }; };
     };
     keyboard.zsa.enable = true;
   };
@@ -139,8 +129,7 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "docker" ];
     shell = pkgs.bash;
-    packages = with pkgs; [
-    ];
+    packages = with pkgs; [ ];
   };
 
   nixpkgs.config.allowUnfree = true;

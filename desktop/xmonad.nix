@@ -1,19 +1,17 @@
 { config, pkgs, lib, username, stateVersion, isNixos, color, dpi, ... }:
 let
-  lock-screen =
-    if isNixos then
-      pkgs.writeShellScriptBin "lock-screen.sh" ''
-        ${pkgs.xdotool}/bin/xdotool mousemove 0 0
-        exec ${pkgs.i3lock}/bin/i3lock -c 1E1E1E
-      ''
-    else
-      pkgs.writeShellScriptBin "lock-screen.sh" ''
-        ${pkgs.xdotool}/bin/xdotool mousemove 0 0
-        exec /usr/bin/i3lock -c 1E1E1E
-      '';
+  lock-screen = if isNixos then
+    pkgs.writeShellScriptBin "lock-screen.sh" ''
+      ${pkgs.xdotool}/bin/xdotool mousemove 0 0
+      exec ${pkgs.i3lock}/bin/i3lock -c 1E1E1E
+    ''
+  else
+    pkgs.writeShellScriptBin "lock-screen.sh" ''
+      ${pkgs.xdotool}/bin/xdotool mousemove 0 0
+      exec /usr/bin/i3lock -c 1E1E1E
+    '';
   lock-screen-bin = "${lock-screen}/bin/lock-screen.sh";
-in
-{
+in {
   home.username = username;
   home.homeDirectory = "/home/${username}";
   home.stateVersion = stateVersion;
@@ -37,134 +35,133 @@ in
     enable = true;
     style.name = "adwaita-dark";
   };
-  home.packages =
-    let
-      # Must use i3lock of debian system because pam files contains @include
-      # statments and only debian-based systems use that...
-      nixos-packages = if !isNixos then [ ] else with pkgs; [ i3lock ];
-    in
-    with pkgs;
-    nixos-packages ++
-    [
-      lock-screen
+  home.packages = let
+    # Must use i3lock of debian system because pam files contains @include
+    # statments and only debian-based systems use that...
+    nixos-packages = if !isNixos then [ ] else with pkgs; [ i3lock ];
+  in with pkgs;
+  nixos-packages ++ [
+    lock-screen
 
-      # window manager utilites
-      alsa-utils
-      autorandr
-      brightnessctl
-      feh
-      hsetroot
-      maim
-      playerctl
-      wmctrl
-      xdotool
-      xorg.iceauth
-      xorg.setxkbmap
-      xorg.xauth
-      xorg.xprop
-      xorg.xrdb
-      xorg.xset
-      xorg.xsetroot
-      xsel
-      xss-lock
-    ];
+    # window manager utilites
+    alsa-utils
+    autorandr
+    brightnessctl
+    feh
+    hsetroot
+    maim
+    playerctl
+    wmctrl
+    xdotool
+    xorg.iceauth
+    xorg.setxkbmap
+    xorg.xauth
+    xorg.xprop
+    xorg.xrdb
+    xorg.xset
+    xorg.xsetroot
+    xsel
+    xss-lock
+  ];
 
-  xresources = let color = (import ../colors/saeparized.nix).color; in
-    {
-      properties = {
-        # Xft settings
-        "Xft*dpi" = dpi;
-        "Xft*antialias" = true;
-        "Xft*rgba" = "rgb";
-        "Xft*hinting" = true;
-        "Xft*hintstyle" = "hintslight";
-        # Terminal settings
-        "XTerm*utf8" = 1;
-        "XTerm.termName" = "xterm-256color";
-        "*.bellIsUrgent" = true;
-        "*.saveLines" = 4096;
-        "*.scrollTtyOutput" = false;
-        "*.fastScroll" = true;
-        ## Let the Meta (Alt) key send escape as other terminals do
-        "*.metaSendsEscape" = true;
+  xresources = let color = (import ../colors/saeparized.nix).color;
+  in {
+    properties = {
+      # Xft settings
+      "Xft*dpi" = dpi;
+      "Xft*antialias" = true;
+      "Xft*rgba" = "rgb";
+      "Xft*hinting" = true;
+      "Xft*hintstyle" = "hintslight";
+      # Terminal settings
+      "XTerm*utf8" = 1;
+      "XTerm.termName" = "xterm-256color";
+      "*.bellIsUrgent" = true;
+      "*.saveLines" = 4096;
+      "*.scrollTtyOutput" = false;
+      "*.fastScroll" = true;
+      ## Let the Meta (Alt) key send escape as other terminals do
+      "*.metaSendsEscape" = true;
 
-        # Font
-        "*faceName" = "Hasklug Nerd Font Mono";
-        "*faceSize" = 14;
-        ## Face size for normal=;
-        "*.VT100*faceSize" = 14;
-        ## Face sizes for alternates=;
-        ## Unreadable=;
-        "*.VT100*faceSize1" = 10;
-        ## Tiny=;
-        "*.VT100*faceSize2" = 12;
-        ## Small=;
-        "*.VT100*faceSize3" = 14;
-        ## Medium=;
-        "*.VT100*faceSize4" = 16;
-        ## Large=;
-        "*.VT100*faceSize5" = 20;
-        ## Huge=;
-        "*.VT100*faceSize6" = 24;
+      # Font
+      "*faceName" = "Hasklug Nerd Font Mono";
+      "*faceSize" = 14;
+      ## Face size for normal=;
+      "*.VT100*faceSize" = 14;
+      ## Face sizes for alternates=;
+      ## Unreadable=;
+      "*.VT100*faceSize1" = 10;
+      ## Tiny=;
+      "*.VT100*faceSize2" = 12;
+      ## Small=;
+      "*.VT100*faceSize3" = 14;
+      ## Medium=;
+      "*.VT100*faceSize4" = 16;
+      ## Large=;
+      "*.VT100*faceSize5" = 20;
+      ## Huge=;
+      "*.VT100*faceSize6" = 24;
 
-        # A character class for URLs
-        "*.charClass" = [ "33:48" "35-47:48" "58-59:48" "61:48" "63-64:48" "95:48" "126:48" ];
+      # A character class for URLs
+      "*.charClass" =
+        [ "33:48" "35-47:48" "58-59:48" "61:48" "63-64:48" "95:48" "126:48" ];
 
-        # Color definitions
-        "*background" = color.background;
-        "*foreground" = color.foreground;
-        "*fading" = "5";
-        "*fadeColor" = color.normal.black;
-        "*cursorColor" = color.normal.white;
-        "*pointerColorBackground" = color.bright.blue;
-        "*pointerColorForeGround" = color.bright.red;
-        "*color0" = color.color0;
-        "*color8" = color.color8;
-        "*color1" = color.color1;
-        "*color9" = color.color9;
-        "*color2" = color.color2;
-        "*color10" = color.color10;
-        "*color3" = color.color3;
-        "*color11" = color.color11;
-        "*color4" = color.color4;
-        "*color12" = color.color12;
-        "*color5" = color.color5;
-        "*color13" = color.color13;
-        "*color6" = color.color6;
-        "*color14" = color.color14;
-        "*color7" = color.color7;
-        "*color15" = color.color15;
+      # Color definitions
+      "*background" = color.background;
+      "*foreground" = color.foreground;
+      "*fading" = "5";
+      "*fadeColor" = color.normal.black;
+      "*cursorColor" = color.normal.white;
+      "*pointerColorBackground" = color.bright.blue;
+      "*pointerColorForeGround" = color.bright.red;
+      "*color0" = color.color0;
+      "*color8" = color.color8;
+      "*color1" = color.color1;
+      "*color9" = color.color9;
+      "*color2" = color.color2;
+      "*color10" = color.color10;
+      "*color3" = color.color3;
+      "*color11" = color.color11;
+      "*color4" = color.color4;
+      "*color12" = color.color12;
+      "*color5" = color.color5;
+      "*color13" = color.color13;
+      "*color6" = color.color6;
+      "*color14" = color.color14;
+      "*color7" = color.color7;
+      "*color15" = color.color15;
 
-        # Key bindings
-        "*.scrollKey" = true;
-        "*.alternateScroll" = true;
-      };
-      extraConfig =
-        ''
-          ! Keybindings:
-          ! Copy/Paste with Ctrls-Shift-C/V
-          ! Decrease/Increase font-size
-          ! Clickable URLs
-          *.VT100.translations: #override\n\
-                  Shift Ctrl <KeyPress> v:insert-selection(CLIPBOARD)\n\
-                  Shift Ctrl <KeyPress> c:select-set(CLIPBOARD)\n\
-                  Shift Ctrl <Key> bracketleft: smaller-vt-font()\n\
-                  Shift Ctrl <Key> bracketright: larger-vt-font()\n\
-                  Meta <Btn1Up>: exec-formatted("xdg-open '%t'", PRIMARY)\n
-        '';
+      # Key bindings
+      "*.scrollKey" = true;
+      "*.alternateScroll" = true;
     };
+    extraConfig = ''
+      ! Keybindings:
+      ! Copy/Paste with Ctrls-Shift-C/V
+      ! Decrease/Increase font-size
+      ! Clickable URLs
+      *.VT100.translations: #override\n\
+              Shift Ctrl <KeyPress> v:insert-selection(CLIPBOARD)\n\
+              Shift Ctrl <KeyPress> c:select-set(CLIPBOARD)\n\
+              Shift Ctrl <Key> bracketleft: smaller-vt-font()\n\
+              Shift Ctrl <Key> bracketright: larger-vt-font()\n\
+              Meta <Btn1Up>: exec-formatted("xdg-open '%t'", PRIMARY)\n
+    '';
+  };
 
   services = {
     sxhkd = {
       enable = true;
       keybindings = {
         "XF86Audio{Prev,Next,Play}" = "playerctl {prevous,next,play-pause}";
-        "XF86Audio{LowerVolume,RaiseVolume,Mute}" = "amixer -q sset Master {3%-,3%+,toggle}";
+        "XF86Audio{LowerVolume,RaiseVolume,Mute}" =
+          "amixer -q sset Master {3%-,3%+,toggle}";
         "super + XF86Audio{Lower,Raise}Volume" = "playerctl {previous,next}";
         "super + XF86AudioMute" = "amixer sset Master toggle";
         "XF86MonBrightness{Up,Down}" = "brightnessctl set {5%-,5%+}";
         "ctrl + alt + l" = lock-screen-bin;
-        "super + {BackSpace, backslash, bracketleft}" = "dunstctl {close-all, history-pop, context}";
+        "super + {BackSpace, backslash, bracketleft}" =
+          "dunstctl {close-all, history-pop, context}";
       };
     };
     xsettingsd = {
@@ -185,9 +182,7 @@ in
       enable = true;
       tray = "always";
     };
-    unclutter = {
-      enable = false;
-    };
+    unclutter = { enable = false; };
     dunst = {
       enable = true;
       settings = {
@@ -321,19 +316,18 @@ in
     windowManager = {
       xmonad = {
         enable = true;
-        extraPackages = with pkgs; haskellPackages: [
-          haskellPackages.xmonad-contrib
+        extraPackages = with pkgs;
+          haskellPackages: [
+            haskellPackages.xmonad-contrib
             haskellPackages.megaparsec
             haskellPackages.relude
             haskellPackages.lens
             haskellPackages.pointedlist
             haskellPackages.generic-lens
             haskellPackages.hostname
-        ];
+          ];
         config = ./xmonad/Main.hs;
-        libFiles = {
-          "MyWorkspaces.hs" = ./xmonad/lib/MyWorkspaces.hs;
-        };
+        libFiles = { "MyWorkspaces.hs" = ./xmonad/lib/MyWorkspaces.hs; };
       };
     };
   };

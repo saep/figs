@@ -5,9 +5,5 @@
   home.homeDirectory = "/home/${username}";
   home.stateVersion = stateVersion;
 
-  services = {
-    syncthing = {
-      enable = true;
-    };
-  };
+  services = { syncthing = { enable = true; }; };
 }

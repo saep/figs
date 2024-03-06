@@ -4,12 +4,10 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [
-      (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules =
+    [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
@@ -22,34 +20,27 @@
     };
   };
 
-  fileSystems."/" =
-    {
-      device = "/dev/mapper/nixos-root";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/mapper/nixos-root";
+    fsType = "ext4";
+  };
 
-  fileSystems."/home" =
-    {
-      device = "/dev/mapper/nixos-home";
-      fsType = "ext4";
-    };
+  fileSystems."/home" = {
+    device = "/dev/mapper/nixos-home";
+    fsType = "ext4";
+  };
 
-  fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-uuid/99EB-E4B5";
-      fsType = "vfat";
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/99EB-E4B5";
+    fsType = "vfat";
+  };
 
-  systemd.tmpfiles.rules = [
-    "d /home/saep/.var 770 saep users"
-  ];
-  fileSystems."/home/saep/.var" =
-    {
-      depends = [ "/home" ];
-      device = "/dev/mapper/games-steam";
-      fsType = "ext4";
-    };
-
+  systemd.tmpfiles.rules = [ "d /home/saep/.var 770 saep users" ];
+  fileSystems."/home/saep/.var" = {
+    depends = [ "/home" ];
+    device = "/dev/mapper/games-steam";
+    fsType = "ext4";
+  };
 
   swapDevices = [ ];
 
@@ -62,5 +53,6 @@
   # networking.interfaces.wlp17s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode =
+    lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

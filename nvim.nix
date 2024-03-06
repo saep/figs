@@ -5,8 +5,8 @@
   home.homeDirectory = "/home/${username}";
   home.stateVersion = stateVersion;
 
-  xdg.configFile."nvim/".source = config.lib.file.mkOutOfStoreSymlink "/home/${username}/${saepfigsDirectory}/nvim/";
-
+  xdg.configFile."nvim/".source = config.lib.file.mkOutOfStoreSymlink
+    "/home/${username}/${saepfigsDirectory}/nvim/";
 
   programs = {
     neovim = {

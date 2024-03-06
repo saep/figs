@@ -1,7 +1,8 @@
 require("conform").setup({
 	formatters_by_ft = {
-		haskell = { "fourmolu" },
+		haskell = { "fourmolu", "ormolu" },
 		lua = { "stylua" },
+		nix = { "nixfmt" },
 		sql = { "pg_format" },
 	},
 	format_on_save = {
