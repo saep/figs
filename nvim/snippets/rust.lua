@@ -8,7 +8,7 @@ return {
 		c(3, {
 			i(1),
 			sn(nil, { t("-> "), i(1), t(" ") }),
-			sn(nil, { t("-> Result<"), i(1), t(", "), i(2), t("> ") }),
+			sn(nil, { t("-> Result<"), i(1, "()"), t(", "), i(2, "anyhow::Error"), t("> ") }),
 		}),
 		t({ "{", "    " }),
 		i(0),
