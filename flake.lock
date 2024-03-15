@@ -22,11 +22,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1709578243,
-        "narHash": "sha256-hF96D+c2PBmAFhymMw3z8hou++lqKtZ7IzpFbYeL1/Y=",
+        "lastModified": 1710506163,
+        "narHash": "sha256-Xpl2LzbAIUHcTkAZ08UZM0USxVaQn194I8ma9c8wnAA=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "23ff9821bcaec12981e32049e8687f25f11e5ef3",
+        "rev": "dc2f3812b41f825ed466c24c4211160d75cb890c",
         "type": "github"
       },
       "original": {
@@ -90,11 +90,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1709663114,
-        "narHash": "sha256-Hcqk1xCefIewT5JJwpV3r8AaK1RKAuHzmDOmNbCjqTU=",
+        "lastModified": 1710513145,
+        "narHash": "sha256-xE+/w6uQ/r5XMer5uiN9HC/Q3hHHX1Rd1DN4FLoXgZs=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "7c1d4e3ad76aebc91aed3f6b86f730b3cf9d86ad",
+        "rev": "62da0b2e6be210815ef721a1c62348752eccbbfe",
         "type": "github"
       },
       "original": {
@@ -116,11 +116,11 @@
     "rustaceanvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1709572024,
-        "narHash": "sha256-7Af31MI7cQx80pdKmDFz9ogKhyO8M46YSSEuG3GAIVA=",
+        "lastModified": 1710468696,
+        "narHash": "sha256-kd0IgnjkLWGgNE1WoY4w6WpTpZBkE/YH6Y1mbupHJFs=",
         "owner": "mrcjkb",
         "repo": "rustaceanvim",
-        "rev": "387ca846d632f8c90631536341ca1778b4c2c497",
+        "rev": "69a22c2ec63ab375190006751562b62ebb318250",
         "type": "github"
       },
       "original": {
