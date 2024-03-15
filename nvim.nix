@@ -78,7 +78,6 @@
 
         # nix
         nixfmt
-        rnix-lsp
 
         # lua
         sumneko-lua-language-server

@@ -135,10 +135,6 @@ require("lspconfig").gopls.setup({
 	},
 })
 
-require("lspconfig").rnix.setup({
-	on_attach = on_attach,
-})
-
 if executableOnPath("tailwindcss-language-server") then
 	require("lspconfig").tailwindcss.setup({
 		on_attach = on_attach,
