@@ -2,7 +2,8 @@
   description = "saep's Home Manager flake";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    # nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "git+file:///home/saep/git/nixpkgs";
     nur = { url = "github:nix-community/NUR"; };
     home-manager = {
       url = "github:nix-community/home-manager";
