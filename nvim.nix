@@ -35,6 +35,7 @@
         lspsaga-nvim
         lualine-nvim
         mini-nvim
+        neodev-nvim
         neogit
         neotest
         neotest-haskell
