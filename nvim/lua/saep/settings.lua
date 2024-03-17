@@ -38,11 +38,11 @@ local function go_to_last_known_position()
 	end
 end
 
-vim.api.nvim_create_augroup("vimrcEx", {})
+local vimrc_ex_group = vim.api.nvim_create_augroup("vimrcEx", {})
 vim.api.nvim_create_autocmd({ "BufReadPost" }, {
 	callback = go_to_last_known_position,
 	desc = "Go to last known position when opening a buffer",
-	group = "vimrcEx",
+	group = vimrc_ex_group,
 	pattern = "*",
 })
 
