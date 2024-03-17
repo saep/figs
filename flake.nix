@@ -63,7 +63,6 @@
           common = ./desktop/common.nix;
           kde = ./desktop/kde.nix;
           xcape = ./desktop/xcape.nix;
-          xmonad = ./desktop/xmonad.nix;
         };
         dev = { java = ./dev/java.nix; };
         misc = { syncthing = ./misc/syncthing.nix; };
@@ -101,7 +100,6 @@
             common
             nvim
             desktop.common
-            desktop.xmonad
             private
             desktop.xcape
             misc.syncthing
