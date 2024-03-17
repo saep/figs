@@ -59,11 +59,7 @@
       hmModules = {
         common = ./common.nix;
         nvim = ./nvim.nix;
-        desktop = {
-          common = ./desktop/common.nix;
-          kde = ./desktop/kde.nix;
-          xcape = ./desktop/xcape.nix;
-        };
+        desktop = { common = ./desktop/common.nix; };
         dev = { java = ./dev/java.nix; };
         misc = { syncthing = ./misc/syncthing.nix; };
         private = ./private.nix;
@@ -76,7 +72,6 @@
           modules = with hmModules; [
             common
             desktop.common
-            desktop.kde
             nvim
             private
             misc.syncthing
@@ -101,7 +96,6 @@
             nvim
             desktop.common
             private
-            desktop.xcape
             misc.syncthing
           ];
           extraSpecialArgs = {
@@ -138,7 +132,6 @@
                 imports = with hmModules; [
                   common
                   desktop.common
-                  desktop.kde
                   nvim
                   private
                   misc.syncthing
