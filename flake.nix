@@ -21,10 +21,14 @@
       url = "github:saep/neogit/open-or-scroll-commit-view";
       flake = false;
     };
+    one-small-step-for-vimkind = {
+      url = "github:jbyuki/one-small-step-for-vimkind";
+      flake = false;
+    };
   };
 
-  outputs =
-    { self, nixpkgs, nur, home-manager, nixgl, rustaceanvim, neogit }@inputs:
+  outputs = { self, nixpkgs, nur, home-manager, nixgl, rustaceanvim, neogit
+    , one-small-step-for-vimkind }@inputs:
     let
       inherit (self) outputs;
       overlays = [
@@ -40,10 +44,15 @@
               name = "neogit";
               src = inputs.neogit;
             };
+            one-small-step-for-vimkind = super.vimUtils.buildVimPlugin {
+              name = "one-small-step-for-vimkind";
+              src = inputs.one-small-step-for-vimkind;
+            };
           in {
             vimPlugins = super.vimPlugins // {
               inherit rustaceanvim;
               inherit neogit;
+              inherit one-small-step-for-vimkind;
             };
           })
       ];

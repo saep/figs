@@ -75,12 +75,26 @@ map("yank to clipboard", { "n", "v" }, "Y", [["+y]])
 
 map("previous buffer", "n", "<leader><space>", "<C-^>")
 
-map("open diagnostics popup", "n", "<leader>d", vim.diagnostic.open_float)
+-- debug and diagnostics
+map("open diagnostics popup", "n", "<leader>dd", vim.diagnostic.open_float)
 map("next", "n", "<leader>dn", vim.diagnostic.goto_next)
 map("previous", "n", "<leader>dp", vim.diagnostic.goto_prev)
-map("open in location list", "n", "<leader>dq", vim.diagnostic.setloclist)
+map("open diagnostics in location list", "n", "<leader>dq", vim.diagnostic.setloclist)
 
-map("find buffer", "n", "<leader>b", require("telescope.builtin").buffers)
+map("set breakpoint", "n", "<Leader>db", require("dap").toggle_breakpoint)
+map("continue", "n", "<Leader>dc", require("dap").continue)
+map("step over", "n", "<Leader>do", require("dap").step_over)
+map("step into", "n", "<Leader>di", require("dap").step_into)
+map("launch debugging session", "n", "<Leader>ds", function()
+	local ft = vim.o.filetype
+	if ft == "lua" then
+		require("osv").launch({ port = 8086 })
+	else
+		print("No debugger configured for filetype " .. ft)
+	end
+end)
+map("toggle dapui", "n", "<Leader>du", require("dapui").toggle)
+
 map("find buffer", "n", "<leader>fb", require("telescope.builtin").buffers)
 map("find files", "n", "<leader>ff", function()
 	require("telescope.builtin").find_files({ follow = true })

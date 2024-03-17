@@ -103,6 +103,22 @@
         "type": "github"
       }
     },
+    "one-small-step-for-vimkind": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1703330350,
+        "narHash": "sha256-VACSEN50FSzQmAjpFW45yXvc68wnRhzfboYvps3sOBE=",
+        "owner": "jbyuki",
+        "repo": "one-small-step-for-vimkind",
+        "rev": "aaee281bdaa3141d9d0cdb3dec468532da61124f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jbyuki",
+        "repo": "one-small-step-for-vimkind",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
@@ -110,6 +126,7 @@
         "nixgl": "nixgl",
         "nixpkgs": "nixpkgs",
         "nur": "nur",
+        "one-small-step-for-vimkind": "one-small-step-for-vimkind",
         "rustaceanvim": "rustaceanvim"
       }
     },

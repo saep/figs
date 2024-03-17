@@ -43,6 +43,7 @@
         nvim-colorizer-lua
         nvim-cmp
         nvim-dap
+        one-small-step-for-vimkind
         nvim-dap-ui
         nvim-lspconfig
         nvim-surround
