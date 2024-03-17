@@ -8,6 +8,9 @@
   ];
 
   boot = {
+    # Xbox controller doesn't in steam with the newer 6.6 or 6.7 kernel
+    # at time of writing 2024-03-17
+    kernelPackages = pkgs.linuxPackages_6_1;
     # Enable BBR congestion control
     kernelModules = [ "tcp_bbr" ];
     kernel.sysctl."net.ipv4.tcp_congestion_control" = "bbr";
