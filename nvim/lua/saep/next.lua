@@ -1,7 +1,7 @@
 local pickers = require("telescope.pickers")
 local finders = require("telescope.finders")
 local conf = require("telescope.config").values
-local actions = require("telescope.actions")
+local ts_actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
 
 local function send_keys(keys)
@@ -9,11 +9,13 @@ local function send_keys(keys)
 	vim.api.nvim_feedkeys(key, "n", false)
 end
 
+local M = {}
+
 local auto_select_next_action
-local nextActions = {
+M.actions = {
 	auto = {
 		short = "a",
-		description = "Automatically perforn an action based on context",
+		description = "Automatically perform an action based on context",
 		next = function()
 			auto_select_next_action().next()
 		end,
@@ -126,11 +128,11 @@ function Stack:pop()
 		table.remove(self.items, lastIndex)
 		return action
 	end
-	return nextActions.auto
+	return M.actions.auto
 end
 
 function Stack:peek()
-	return self.items[#self.items] or nextActions.auto
+	return self.items[#self.items] or M.actions.auto
 end
 
 function Stack:push(item)
@@ -150,10 +152,11 @@ end
 
 auto_select_next_action = function()
 	local selectable = {
-		nextActions.loclist,
-		nextActions.qf,
-		nextActions.lspsaga_diagnostic,
-		nextActions.scroll_last_window,
+		M.actions.loclist,
+		M.actions.qf,
+		M.actions.lspsaga_diagnostic,
+		M.actions.scroll_last_window,
+		M.actions.scroll,
 	}
 	for _, action in ipairs(selectable) do
 		if action.canBeExecuted() then
@@ -162,21 +165,21 @@ auto_select_next_action = function()
 	end
 end
 
-local function to_next()
+M.next = function()
 	local action = NextState:peek()
 	if action and action.next then
 		pcall(action.next)
 	end
 end
 
-local function to_prev()
+M.prev = function()
 	local action = NextState:peek()
 	if action and action.prev then
 		pcall(action.prev)
 	end
 end
 
-local function close()
+M.close = function()
 	local action = NextState:pop()
 	if action and action.close then
 		pcall(action.close)
@@ -185,7 +188,7 @@ end
 
 local function create_telescope_results()
 	local results = {}
-	for k, t in pairs(nextActions) do
+	for k, t in pairs(M.actions) do
 		if t.canBeExecuted() then
 			table.insert(results, { tostring(k), t })
 		end
@@ -209,9 +212,9 @@ local function select_in_telescope(opts)
 				end,
 			}),
 			sorter = conf.generic_sorter(opts),
-			attach_mappings = function(prompt_bufnr, map)
-				actions.select_default:replace(function()
-					actions.close(prompt_bufnr)
+			attach_mappings = function(prompt_bufnr)
+				ts_actions.select_default:replace(function()
+					ts_actions.close(prompt_bufnr)
 					local selection = action_state.get_selected_entry()
 					NextState:push(selection.value[2])
 				end)
@@ -221,19 +224,17 @@ local function select_in_telescope(opts)
 		:find()
 end
 
-return {
-	next = to_next,
-	prev = to_prev,
-	close = close,
-	current = function()
-		local c = NextState:peek()
-		return (c and c.short) or "a"
-	end,
-	select_in_telescope = function(opts)
-		select_in_telescope(opts or require("telescope.themes").get_dropdown({}))
-	end,
-	actions = nextActions,
-	push = function(action)
-		NextState:push(action)
-	end,
-}
+M.current = function()
+	local c = NextState:peek()
+	return (c and c.short) or "a"
+end
+
+M.select_in_telescope = function(opts)
+	select_in_telescope(opts or require("telescope.themes").get_dropdown({}))
+end
+
+M.push = function(action)
+	NextState:push(action)
+end
+
+return M
