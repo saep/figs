@@ -143,7 +143,17 @@
       enable = true;
       delta.enable = true;
       userName = "Sebastian Witte";
-      aliases = { st = "status"; };
+      aliases = {
+        cb = "switch -c";
+        st = "status";
+        fa = "fetch --all";
+        fo = "fetch origin";
+        fu = "fetch uptream";
+        pf = "push --force-with-lease";
+        rod = "!git fetch origin && git rebase origin/develop";
+        rom = "!git fetch origin && git rebase origin/main";
+        rum = "!git fetch upstream && git rebase upstream/main";
+      };
       extraConfig = {
         difftool = { prompt = false; };
         rerere = { enabled = true; };
@@ -230,7 +240,10 @@
       enable = true;
       configFile.source = ./nushell/config.nu;
       envFile.source = ./nushell/env.nu;
-      shellAliases = { e = "/home/${username}/.nix-profile/bin/nvim"; };
+      shellAliases = {
+        g = "git";
+        e = "/home/${username}/.nix-profile/bin/nvim";
+      };
       environmentVariables = {
         EDITOR = "/home/${username}/.nix-profile/bin/nvim";
         VISUAL = "/home/${username}/.nix-profile/bin/nvim";
