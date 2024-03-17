@@ -43,6 +43,7 @@
         nvim-colorizer-lua
         nvim-cmp
         nvim-dap
+        nvim-dap-ui
         nvim-lspconfig
         nvim-surround
         nvim-treesitter.withAllGrammars
