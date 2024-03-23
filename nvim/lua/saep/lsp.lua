@@ -155,6 +155,10 @@ require("lspconfig").eslint.setup({
 	on_attach = on_attach,
 })
 
+require("lspconfig").gleam.setup({
+	on_attach = on_attach,
+})
+
 require("lspconfig").html.setup({
 	on_attach = on_attach,
 })

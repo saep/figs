@@ -1,5 +1,6 @@
 require("conform").setup({
 	formatters_by_ft = {
+		gleam = { "gleam format" },
 		haskell = { "fourmolu", "ormolu" },
 		lua = { "stylua" },
 		nix = { "nixfmt" },
