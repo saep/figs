@@ -1,4 +1,4 @@
-{ config, pkgs, lib, username, stateVersion, color, ... }:
+{ config, pkgs, lib, username, stateVersion, color, saepfigsDirectory, ... }:
 
 {
   home.username = username;
@@ -35,6 +35,11 @@
     tokei # similar to cloc (count lines of code)
     wakeonlan
     zip
+
+    # Time tracking
+    timewarrior
+    taskopen
+    python3
   ];
 
   home.shellAliases = {
@@ -47,10 +52,20 @@
 
   home.file.".ghci".source = ./dev/ghci;
 
+  # doesn't work properly with xdg.configFile even though the documentations suggests it should
+  home.file.".taskopenrc".source = config.lib.file.mkOutOfStoreSymlink
+    "/home/${username}/${saepfigsDirectory}/tasks/taskopenrc";
+
   xdg = {
     configFile."nix/nix.conf".text = ''
       experimental-features = nix-command flakes
     '';
+
+    configFile."timewarrior/timewarrior.cfg".text = "";
+    dataFile."task/hooks/on-modify.timewarrior".source =
+      "${pkgs.timewarrior.outPath}/share/doc/timew/ext/on-modify.timewarrior";
+    dataFile."task/hooks/on-modify.timewarrior".executable = true;
+
     systemDirs = { data = [ "/usr/local/share" "/usr/share" ]; };
   };
 
@@ -374,6 +389,7 @@
         $env.config = ($env.config | merge {color_config: $catppuccin_mocha})
       '';
     };
+    taskwarrior = { enable = true; };
     zsh = {
       enable = false;
       dotDir = ".config/zsh";

@@ -17,6 +17,7 @@
         "x-scheme-handler/http" = "firefox.desktop";
         "x-scheme-handler/https" = "firefox.desktop";
         "text/html" = "firefox.desktop";
+        "x-scheme-handler/file" = "neovide.desktop";
         "inode/directory" = "org.kde.dolphin.desktop";
       };
     };
