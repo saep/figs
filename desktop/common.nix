@@ -1,6 +1,6 @@
 # Applications used on desktop computers and laptops
-{ config, pkgs, lib, username, stateVersion, dpi, color, isNixos ? false, ...
-}: {
+{ config, pkgs, lib, username, stateVersion, dpi, color, saepfigsDirectory
+, isNixos ? false, ... }: {
   home.username = username;
   home.homeDirectory = "/home/${username}";
   home.stateVersion = stateVersion;
@@ -36,6 +36,9 @@
         icon = "chromium-browser";
       };
     };
+    configFile."wezterm/wezterm.lua".source =
+      config.lib.file.mkOutOfStoreSymlink
+      "/home/${username}/${saepfigsDirectory}/desktop/wezterm.lua";
   };
 
   home.packages = with pkgs; [
@@ -138,20 +141,11 @@
       };
     };
     wezterm = {
-      enable = false; # kind of buggy; can't start multiple windows
+      enable = true;
       package = let wrapper = pkgs.nixgl.nixGLIntel;
       in pkgs.writeShellScriptBin "wezterm" ''
         ${wrapper}/bin/nixGLIntel ${pkgs.wezterm}/bin/wezterm "$@"
       '';
-      extraConfig = ''
-        return {
-          color_scheme = "Catppuccin Mocha",
-          font = wezterm.font("Hasklug Nerd Font"),
-          font_size = 14.0,
-          enable_tab_bar = false,
-        }
-      '';
-
     };
 
     # kitty {{{2
