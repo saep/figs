@@ -9,16 +9,9 @@ require("lualine").setup({
 		globalstatus = false,
 	},
 	sections = {
-		lualine_a = { 'require("saep.next").current()', "mode" },
+		lualine_a = { "mode" },
 		lualine_b = { "branch", "diff", "diagnostics" },
-		lualine_c = {
-			{
-				function()
-					return tostring(vim.fn.winnr())
-				end,
-			},
-			"filename",
-		},
+		lualine_c = { "filename" },
 		lualine_x = { "encoding", "fileformat", "filetype" },
 		lualine_y = { "progress" },
 		lualine_z = { "location" },
@@ -26,18 +19,18 @@ require("lualine").setup({
 	inactive_sections = {
 		lualine_a = {},
 		lualine_b = {},
-		lualine_c = {
-			{
-				function()
-					return tostring(vim.fn.winnr())
-				end,
-			},
-			"filename",
-		},
+		lualine_c = { "filename" },
 		lualine_x = {},
 		lualine_y = {},
 		lualine_z = {},
 	},
-	tabline = {},
+	tabline = {
+		lualine_a = { "tabs" },
+		lualine_b = { "filename" },
+		lualine_c = {},
+		lualine_x = {},
+		lualine_y = {},
+		lualine_z = { 'require("saep.next").current()' },
+	},
 	extensions = {},
 })
