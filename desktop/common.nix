@@ -142,6 +142,9 @@
     };
     wezterm = {
       enable = true;
+      # error message when trying to source non-existent file
+      enableBashIntegration = false;
+      enableZshIntegration = false;
       package = let wrapper = pkgs.nixgl.nixGLIntel;
       in pkgs.writeShellScriptBin "wezterm" ''
         ${wrapper}/bin/nixGLIntel ${pkgs.wezterm}/bin/wezterm "$@"
