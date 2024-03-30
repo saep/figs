@@ -5,5 +5,4 @@ require("toggleterm").setup({
 		width = vim.o.columns - 4,
 		height = vim.o.lines - 6,
 	},
-	shell = "nu",
 })

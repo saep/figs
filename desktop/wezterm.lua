@@ -2,7 +2,6 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 
 local config = wezterm.config_builder()
-config.default_prog = { "nu" }
 config.color_scheme = "Catppuccin Mocha"
 config.font = wezterm.font("Hasklug Nerd Font")
 config.font_size = 14.0

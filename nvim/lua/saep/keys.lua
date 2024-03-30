@@ -224,13 +224,11 @@ end)
 
 local Terminal = require("toggleterm.terminal").Terminal
 local floating_terminal = Terminal:new({
-	cmd = "nu",
 	dir = "git_dir",
 	direction = "float",
 })
 
 local bottom_terminal = Terminal:new({
-	cmd = "nu",
 	dir = "git_dir",
 })
 
