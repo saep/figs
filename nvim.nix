@@ -56,6 +56,7 @@
         rest-nvim
         parinfer-rust
         plenary-nvim
+        rainbow-delimiters-nvim
         rustaceanvim
         telescope-nvim
         telescope-ui-select-nvim
