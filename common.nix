@@ -73,12 +73,35 @@
     # Let Home Manager install and manage itself.
     home-manager = { enable = true; };
     autojump = { enable = false; };
+    readline = {
+      enable = true;
+      variables = {
+        show-all-if-ambiguous = true;
+        menu-complete-display-prefix = true;
+        colored-completion-prefix = true;
+        colored-stats = true;
+      };
+      extraConfig = ''
+        TAB: menu-complete
+      '';
+    };
     bash = {
       enable = true;
       enableCompletion = true;
+      historySize = 10000000;
       historyControl = [ "erasedups" "ignorespace" "ignoredups" ];
-      historyIgnore = [ "j" "br" "ls" "cd" "exit" ":wq" ":w" ":q" ];
+      historyIgnore = [ "j" "br" "ls" "cd" "exit" ":wq" ":w" ":q" "z" ];
       shellOptions = [ "histappend" "checkwinsize" "extglob" "globstar" ];
+      sessionVariables = let editor = "nvim";
+      in {
+        EDITOR = editor;
+        VISUAL = editor;
+        MANPAGER = "nvim +Man!";
+      };
+      shellAliases = {
+        g = "git";
+        e = "$EDITOR";
+      };
       initExtra = ''
         source "''${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh"
 
@@ -87,12 +110,7 @@
         PROMPT_COMMAND="''${PROMPT_COMMAND:+$PROMPT_COMMAND$';'}history -a;history -c;history -r"
         export PROMPT_COMMAND
 
-        bind 'set show-all-if-ambiguous on'
-
         bind -x '"\C-g":"br"'
-
-        export EDITOR=nvim
-        export VISUAL="$EDITOR"
       '';
     };
     broot = {
