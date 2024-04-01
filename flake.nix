@@ -18,7 +18,7 @@
       flake = false;
     };
     neogit = {
-      url = "github:saep/neogit/open-or-scroll-commit-view";
+      url = "github:NeogitOrg/neogit";
       flake = false;
     };
     one-small-step-for-vimkind = {

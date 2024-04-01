@@ -38,16 +38,15 @@
     "neogit": {
       "flake": false,
       "locked": {
-        "lastModified": 1711634914,
-        "narHash": "sha256-XfGfddYh4uxXiVBfv8qzHN37w63jDPgVrq9vU8tCF08=",
-        "owner": "saep",
+        "lastModified": 1711891167,
+        "narHash": "sha256-qU7M3McNN7LGSQHJl3/6PNDqdm/uFRkWA1/yMtDlD+s=",
+        "owner": "NeogitOrg",
         "repo": "neogit",
-        "rev": "2420b934ded4e0461663467927746a2f6997974f",
+        "rev": "c0b1d4dfc8ba6371857868ca7c4d33954cf002fd",
         "type": "github"
       },
       "original": {
-        "owner": "saep",
-        "ref": "open-or-scroll-commit-view",
+        "owner": "NeogitOrg",
         "repo": "neogit",
         "type": "github"
       }
