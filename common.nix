@@ -36,6 +36,8 @@
     wakeonlan
     zip
 
+    html-tidy
+
     # Time tracking
     timewarrior
     taskopen
