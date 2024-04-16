@@ -20,3 +20,4 @@ telescope.setup({
 
 telescope.load_extension("ui-select")
 telescope.load_extension("textcase")
+telescope.load_extension("rest")

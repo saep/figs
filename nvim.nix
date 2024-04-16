@@ -106,6 +106,14 @@
         parinfer-rust # magic parens
         vimPlugins.parinfer-rust
       ];
+      extraLuaPackages =
+        luaPkgs: with luaPkgs; [
+          # nvim-rest dependencies
+          lua-curl
+          nvim-nio
+          mimetypes
+          xml2lua
+        ];
     };
   };
 }

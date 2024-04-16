@@ -252,12 +252,9 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "http" },
 	callback = function(ev)
-		map("http request under cursor", "n", "<LocalLeader>t", function()
-			require("rest-nvim").run()
-		end, { buffer = ev.buf })
-		map("http request last", "n", "<LocalLeader>x", function()
-			require("rest-nvim").last()
-		end)
+		map("http request under cursor", "n", "<LocalLeader>t", "<cmd>Rest run<cr>", { buffer = ev.buf })
+		map("http request last", "n", "<LocalLeader>x", "<cmd>Rest run last<cr>")
+		map("http request last", "n", "<LocalLeader>e", require("telescope").extensions.rest.select_env)
 	end,
 	group = http_group,
 })
