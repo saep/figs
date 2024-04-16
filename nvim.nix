@@ -1,12 +1,19 @@
-{ config, pkgs, lib, username, stateVersion, saepfigsDirectory, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  username,
+  stateVersion,
+  saepfigsDirectory,
+  ...
+}:
 
 {
   home.username = username;
   home.homeDirectory = "/home/${username}";
   home.stateVersion = stateVersion;
 
-  xdg.configFile."nvim/".source = config.lib.file.mkOutOfStoreSymlink
-    "/home/${username}/${saepfigsDirectory}/nvim/";
+  xdg.configFile."nvim/".source = config.lib.file.mkOutOfStoreSymlink "/home/${username}/${saepfigsDirectory}/nvim/";
 
   programs = {
     neovim = {
@@ -83,7 +90,7 @@
         nodePackages.bash-language-server
 
         # nix
-        nixfmt
+        nixfmt-rfc-style
 
         # lua
         sumneko-lua-language-server
@@ -101,5 +108,4 @@
       ];
     };
   };
-
 }
