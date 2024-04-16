@@ -92,7 +92,7 @@
   services.xserver.enable = true;
 
   # Enable the Plasma 5 Desktop Environment.
-  services.xserver.displayManager = {
+  services.displayManager = {
     sddm.enable = true;
     defaultSession = "plasmawayland";
     autoLogin = {
