@@ -2,6 +2,8 @@ require("conform").setup({
 	formatters_by_ft = {
 		gleam = { "gleam format" },
 		haskell = { "fourmolu", "ormolu" },
+		javascript = { "prettier" },
+		typescript = { "prettier" },
 		lua = { "stylua" },
 		markdown = { "my_comrak", "prettier" },
 		nix = { "nixfmt" },
