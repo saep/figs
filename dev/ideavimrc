@@ -37,6 +37,7 @@ nnoremap <Leader>lf :action ReformatCode<CR>
 vnoremap <Leader>lf :action ReformatCode<CR>
 nnoremap <Leader>o :action OptimizeImports<CR>
 nnoremap <Leader>x :action RunClass<CR>
+nnoremap <Leader>tt :action RunClass<CR>
 nnoremap <Leader>z :action CompileDirty<CR>
 nnoremap <Leader>wc :action CloseEditor<CR>
 
@@ -78,3 +79,13 @@ nnoremap [6 :action ToggleBookmark6<CR>
 nnoremap [7 :action ToggleBookmark7<CR>
 nnoremap [8 :action ToggleBookmark8<CR>
 nnoremap [9 :action ToggleBookmark9<CR>
+
+nnoremap <A-h> <C-w>h
+nnoremap <A-l> <C-w>l
+nnoremap <A-k> <C-w>k
+nnoremap <A-j> <C-w>j
+inoremap <A-h> <C-w>h
+inoremap <A-l> <C-w>l
+inoremap <A-k> <C-w>k
+inoremap <A-j> <C-w>j
+
