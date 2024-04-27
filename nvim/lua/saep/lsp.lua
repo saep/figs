@@ -6,18 +6,6 @@ local function executableOnPath(executable)
 	end
 end
 
-require("lspsaga").setup({
-	symbol_in_winbar = {
-		enable = true,
-		separator = " ",
-		show_file = true,
-		hide_keyword = true,
-		folder_level = 2,
-		respect_root = false,
-		color_mode = true,
-	},
-})
-
 -- on_attach function for language servers
 --
 -- This sets up keybindings which only work when a language server is used.
@@ -37,9 +25,10 @@ local on_attach = function(client, bufnr, opt_overrides)
 		return opts
 	end
 	if bufnr then
-		vim.keymap.set("n", "<Leader>u", vim.lsp.buf.references, opts("usages"))
-		-- vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts("hover docs"))
-		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts("hover docs"))
+		-- vim.keymap.set("n", "<Leader>u", vim.lsp.buf.references, opts("usages"))
+		vim.keymap.set("n", "<Leader>u", "<cmd>Lspsaga finder<CR>", opts("usages"))
+		vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts("hover docs"))
+		-- vim.keymap.set("n", "K", vim.lsp.buf.hover, opts("hover docs"))
 		vim.keymap.set(
 			"n",
 			"H",

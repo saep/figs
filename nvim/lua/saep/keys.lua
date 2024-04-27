@@ -105,6 +105,27 @@ map("live grep", "n", "<leader>fg", require("telescope.builtin").live_grep)
 map("neovim help", "n", "<leader>fh", require("telescope.builtin").help_tags)
 map("textcase", { "n", "v" }, "ga.", "<Cmd>TextCaseOpenTelescope<CR>")
 
+map("quickfix next", "n", "]q", function()
+	vim.api.nvim_command("cnext")
+end)
+map("quickfix prev", "n", "[q", function()
+	vim.api.nvim_command("cprevious")
+end)
+
+map("loclist next", "n", "]l", function()
+	vim.api.nvim_command("lnext")
+end)
+map("loclist prev", "n", "[l", function()
+	vim.api.nvim_command("lprevious")
+end)
+
+map("diagnostic next", "n", "]e", function()
+	vim.api.nvim_command("Lspsaga diagnostic_jump_next")
+end)
+map("diagnostic prev", "n", "[e", function()
+	vim.api.nvim_command("Lspsaga diagnostic_jump_prev")
+end)
+
 -- t -- test bindings
 map("neotest run nearest", "n", "<leader>tt", function()
 	vim.api.nvim_command("silent write")
@@ -195,22 +216,7 @@ map("harpoon window", "n", "<C-e>", function()
 	toggle_telescope(harpoon:list())
 end)
 
-local Terminal = require("toggleterm.terminal").Terminal
-local floating_terminal = Terminal:new({
-	dir = "git_dir",
-	direction = "float",
-})
-
-local bottom_terminal = Terminal:new({
-	dir = "git_dir",
-})
-
-map("floating terminal", { "n", "t" }, "<A-t>", function()
-	floating_terminal:toggle()
-end)
-map("bottom terminal", { "n", "t" }, "<C-t>", function()
-	bottom_terminal:toggle()
-end)
+map("floating terminal", { "n", "t" }, "<A-t>", "<cmd>Lspsaga term_toggle<CR>")
 
 local http_group = vim.api.nvim_create_augroup("http_autocommands", { clear = true })
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
