@@ -30,7 +30,7 @@ require("lualine").setup({
 		lualine_c = {},
 		lualine_x = {},
 		lualine_y = {},
-		lualine_z = { 'require("saep.next").current()' },
+		lualine_z = {},
 	},
 	extensions = {},
 })

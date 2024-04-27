@@ -1,5 +1,3 @@
-local next = require("saep.next")
-
 -- Set a default timeout len (/ms) which is used by which-key to dealy displaying key bindings
 vim.opt.timeoutlen = 250
 vim.g.mapleader = " "
@@ -106,31 +104,6 @@ end)
 map("live grep", "n", "<leader>fg", require("telescope.builtin").live_grep)
 map("neovim help", "n", "<leader>fh", require("telescope.builtin").help_tags)
 map("textcase", { "n", "v" }, "ga.", "<Cmd>TextCaseOpenTelescope<CR>")
-
-map("next thing", "n", ";", function()
-	next.next()
-end)
-map("previous thing", "n", ",", function()
-	next.prev()
-end)
-map("close thing ", "n", "[c", function()
-	next.close()
-end)
-map("select thing", "n", "]]", function()
-	next.select_in_telescope()
-end)
-map("next diagnostic", "n", "]e", function()
-	next.push(next.actions.lspsaga_diagnostic)
-	next.next()
-end)
-map("next qf item", "n", "]q", function()
-	next.push(next.actions.qf)
-	next.next()
-end, { silent = true })
-map("next loc item", "n", "]l", function()
-	next.push(next.actions.loclist)
-	next.next()
-end, { silent = true })
 
 -- t -- test bindings
 map("neotest run nearest", "n", "<leader>tt", function()
