@@ -1,7 +1,15 @@
-{ config, pkgs, overlays, ... }:
+{
+  config,
+  pkgs,
+  overlays,
+  ...
+}:
 
 {
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -15,8 +23,7 @@
     kernelModules = [ "tcp_bbr" ];
     kernel.sysctl."net.ipv4.tcp_congestion_control" = "bbr";
     # default is fq_codel
-    kernel.sysctl."net.core.default_qdisc" =
-      "fq"; # see https://news.ycombinator.com/item?id=14814530
+    kernel.sysctl."net.core.default_qdisc" = "fq"; # see https://news.ycombinator.com/item?id=14814530
 
     loader = {
       efi.canTouchEfiVariables = true;
@@ -30,14 +37,15 @@
   };
 
   networking.hostName = "magma";
-  networking.networkmanager.enable =
-    true; # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   time.timeZone = "Europe/Berlin";
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
-    extraLocaleSettings = { LC_TIME = "de_DE.UTF-8"; };
+    extraLocaleSettings = {
+      LC_TIME = "de_DE.UTF-8";
+    };
   };
   console = {
     font = "Lat2-Terminus16";
@@ -55,17 +63,21 @@
     extraRules = [
       {
         groups = [ "users" ];
-        commands = [{
-          command = "/run/current-system/sw/bin/headsetcontrol";
-          options = [ "NOPASSWD" ];
-        }];
+        commands = [
+          {
+            command = "/run/current-system/sw/bin/headsetcontrol";
+            options = [ "NOPASSWD" ];
+          }
+        ];
       }
       {
         users = [ "saep" ];
-        commands = [{
-          command = "/run/current-system/sw/bin/nixos-rebuild";
-          options = [ "NOPASSWD" ];
-        }];
+        commands = [
+          {
+            command = "/run/current-system/sw/bin/nixos-rebuild";
+            options = [ "NOPASSWD" ];
+          }
+        ];
       }
     ];
   };
@@ -117,7 +129,11 @@
   hardware = {
     bluetooth = {
       enable = true;
-      settings = { General = { Enable = "Source,Sink,Media,Socket"; }; };
+      settings = {
+        General = {
+          Enable = "Source,Sink,Media,Socket";
+        };
+      };
     };
     keyboard.zsa.enable = true;
   };
@@ -125,12 +141,17 @@
   programs = {
     kdeconnect.enable = true;
     dconf.enable = true;
+    gamemode.enable = true;
     steam.enable = true;
+    steam.gamescopeSession.enable = true;
   };
 
   users.users.saep = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "docker" ];
+    extraGroups = [
+      "wheel"
+      "docker"
+    ];
     shell = pkgs.bash;
     packages = with pkgs; [ ];
   };
@@ -142,6 +163,7 @@
     systemPackages = with pkgs; [
       headsetcontrol
       lsof
+      mangohud
       usbutils
       wineWowPackages.staging
       winetricks
@@ -188,6 +210,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
-
 }
-
