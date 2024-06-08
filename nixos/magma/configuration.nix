@@ -57,6 +57,7 @@
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
+  services.ratbagd.enable = true; # piper mouse
 
   security.sudo = {
     enable = true;
@@ -164,6 +165,7 @@
       headsetcontrol
       lsof
       mangohud
+      piper
       usbutils
       wineWowPackages.staging
       winetricks
