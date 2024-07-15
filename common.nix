@@ -91,6 +91,14 @@
     autojump = {
       enable = false;
     };
+    atuin = {
+      enable = true;
+      settings = {
+        auto_sync = false;
+        update_check = false;
+        filter_mode_shell_up_key_binding = "directory";
+      };
+    };
     readline = {
       enable = true;
       variables = {
