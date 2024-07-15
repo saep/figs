@@ -1,4 +1,13 @@
-{ config, pkgs, lib, username, stateVersion, color, saepfigsDirectory, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  username,
+  stateVersion,
+  color,
+  saepfigsDirectory,
+  ...
+}:
 
 {
   home.username = username;
@@ -55,8 +64,7 @@
   home.file.".ghci".source = ./dev/ghci;
 
   # doesn't work properly with xdg.configFile even though the documentations suggests it should
-  home.file.".taskopenrc".source = config.lib.file.mkOutOfStoreSymlink
-    "/home/${username}/${saepfigsDirectory}/tasks/taskopenrc";
+  home.file.".taskopenrc".source = config.lib.file.mkOutOfStoreSymlink "/home/${username}/${saepfigsDirectory}/tasks/taskopenrc";
 
   xdg = {
     configFile."nix/nix.conf".text = ''
@@ -64,17 +72,25 @@
     '';
 
     configFile."timewarrior/timewarrior.cfg".text = "";
-    dataFile."task/hooks/on-modify.timewarrior".source =
-      "${pkgs.timewarrior.outPath}/share/doc/timew/ext/on-modify.timewarrior";
+    dataFile."task/hooks/on-modify.timewarrior".source = "${pkgs.timewarrior.outPath}/share/doc/timew/ext/on-modify.timewarrior";
     dataFile."task/hooks/on-modify.timewarrior".executable = true;
 
-    systemDirs = { data = [ "/usr/local/share" "/usr/share" ]; };
+    systemDirs = {
+      data = [
+        "/usr/local/share"
+        "/usr/share"
+      ];
+    };
   };
 
   programs = {
     # Let Home Manager install and manage itself.
-    home-manager = { enable = true; };
-    autojump = { enable = false; };
+    home-manager = {
+      enable = true;
+    };
+    autojump = {
+      enable = false;
+    };
     readline = {
       enable = true;
       variables = {
@@ -91,15 +107,37 @@
       enable = true;
       enableCompletion = true;
       historySize = 10000000;
-      historyControl = [ "erasedups" "ignorespace" "ignoredups" ];
-      historyIgnore = [ "j" "br" "ls" "cd" "exit" ":wq" ":w" ":q" "z" ];
-      shellOptions = [ "histappend" "checkwinsize" "extglob" "globstar" ];
-      sessionVariables = let editor = "nvim";
-      in {
-        EDITOR = editor;
-        VISUAL = editor;
-        MANPAGER = "nvim +Man!";
-      };
+      historyControl = [
+        "erasedups"
+        "ignorespace"
+        "ignoredups"
+      ];
+      historyIgnore = [
+        "j"
+        "br"
+        "ls"
+        "cd"
+        "exit"
+        ":wq"
+        ":w"
+        ":q"
+        "z"
+      ];
+      shellOptions = [
+        "histappend"
+        "checkwinsize"
+        "extglob"
+        "globstar"
+      ];
+      sessionVariables =
+        let
+          editor = "nvim";
+        in
+        {
+          EDITOR = editor;
+          VISUAL = editor;
+          MANPAGER = "nvim +Man!";
+        };
       shellAliases = {
         g = "git";
         e = "$EDITOR";
@@ -153,7 +191,9 @@
         ];
       };
     };
-    carapace = { enable = true; };
+    carapace = {
+      enable = true;
+    };
     direnv = {
       enable = true;
       enableZshIntegration = false;
@@ -169,9 +209,7 @@
         "--preview 'erd --force-color --icons --human --hidden --inverted --truncate {}'"
       ];
       fileWidgetCommand = "fd --type f";
-      fileWidgetOptions = [
-        "--preview 'bat --force-colorization --paging=never --line-range :100 {}'"
-      ];
+      fileWidgetOptions = [ "--preview 'bat --force-colorization --paging=never --line-range :100 {}'" ];
     };
     git = {
       enable = true;
@@ -189,21 +227,41 @@
         rum = "!git fetch upstream && git rebase upstream/main";
       };
       extraConfig = {
-        difftool = { prompt = false; };
-        rerere = { enabled = true; };
-        core = { autocrlf = "input"; };
-        init = { defaultBranch = "develop"; };
+        difftool = {
+          prompt = false;
+        };
+        rerere = {
+          enabled = true;
+        };
+        core = {
+          autocrlf = "input";
+        };
+        init = {
+          defaultBranch = "develop";
+        };
         rebase = {
           autoStash = true;
           autosquash = true;
           updateRefs = true;
         };
-        merge = { conflictstyle = "diff3"; };
-        pull = { rebase = true; };
-        push = { default = "simple"; };
-        branch = { sort = "-committerdate"; };
-        column = { ui = "auto"; };
-        github = { user = "saep"; };
+        merge = {
+          conflictstyle = "diff3";
+        };
+        pull = {
+          rebase = true;
+        };
+        push = {
+          default = "simple";
+        };
+        branch = {
+          sort = "-committerdate";
+        };
+        column = {
+          ui = "auto";
+        };
+        github = {
+          user = "saep";
+        };
       };
       ignores = [
         # vim temporary files
@@ -243,7 +301,9 @@
       enable = false;
       settings = {
         theme = "base16";
-        editor = { line-number = "relative"; };
+        editor = {
+          line-number = "relative";
+        };
         editor.cursor-shape = {
           insert = "bar";
           normal = "block";
@@ -253,22 +313,32 @@
     };
 
     starship =
-      let flavour = "mocha"; # One of `latte`, `frappe`, `macchiato`, or `mocha`
-      in {
+      let
+        flavour = "mocha"; # One of `latte`, `frappe`, `macchiato`, or `mocha`
+      in
+      {
         enable = true;
-        settings = {
-          # Remove this line to disable the default prompt format
-          format = "$all";
-          palette = "catppuccin_${flavour}";
-        } // builtins.fromTOML (builtins.readFile (pkgs.fetchFromGitHub {
-          owner = "catppuccin";
-          repo = "starship";
-          rev =
-            "3e3e54410c3189053f4da7a7043261361a1ed1bc"; # Replace with the latest commit hash
-          sha256 = "soEBVlq3ULeiZFAdQYMRFuswIIhI9bclIU8WXjxd7oY=";
-        } + /palettes/${flavour}.toml));
+        settings =
+          {
+            # Remove this line to disable the default prompt format
+            format = "$all";
+            palette = "catppuccin_${flavour}";
+          }
+          // builtins.fromTOML (
+            builtins.readFile (
+              pkgs.fetchFromGitHub {
+                owner = "catppuccin";
+                repo = "starship";
+                rev = "3e3e54410c3189053f4da7a7043261361a1ed1bc"; # Replace with the latest commit hash
+                sha256 = "soEBVlq3ULeiZFAdQYMRFuswIIhI9bclIU8WXjxd7oY=";
+              }
+              + /palettes/${flavour}.toml
+            )
+          );
       };
-    taskwarrior = { enable = true; };
+    taskwarrior = {
+      enable = true;
+    };
     zsh = {
       enable = false;
       dotDir = ".config/zsh";
@@ -311,7 +381,9 @@
         bind-key -r l select-pane -R
       '';
     };
-    zoxide = { enable = true; };
+    zoxide = {
+      enable = true;
+    };
   };
 
   services = {
