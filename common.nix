@@ -199,7 +199,7 @@
       enableZshIntegration = false;
     };
     fzf = {
-      enable = true;
+      enable = false;
       colors = {
         bg = color.background;
         fg = color.foreground;
