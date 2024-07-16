@@ -97,6 +97,17 @@
         auto_sync = false;
         update_check = false;
         filter_mode_shell_up_key_binding = "directory";
+        history_filter = [
+          "^z "
+          "^ls "
+          "^ls$"
+          "^l "
+          "^l$"
+          "^cd "
+          "^cd$"
+          "^br "
+          "^br$"
+        ];
       };
     };
     readline = {
