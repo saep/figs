@@ -23,7 +23,6 @@
       vimAlias = true;
       vimdiffAlias = true;
       plugins = with pkgs.vimPlugins; [
-        lazy-nvim
         catppuccin-nvim
         luasnip
         cmp-buffer
