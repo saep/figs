@@ -83,6 +83,7 @@
       extraPackages = with pkgs; [
         curl
         jq
+        fzf
         tree-sitter
 
         # bash/shell
