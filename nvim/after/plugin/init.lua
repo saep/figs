@@ -15,7 +15,6 @@ for _, config_file in ipairs(plugin_configs) do
 	end
 end
 
-require("saep.lsp")
 require("saep.keys")
 
 -- Must be set here for some reason as the hydras aren't colored otherwise
