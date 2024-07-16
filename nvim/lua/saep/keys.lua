@@ -186,8 +186,8 @@ local function toggle_telescope(harpoon_files)
 		:find()
 end
 
-map("harpoon append", "n", "<leader>aa", function()
-	harpoon:list():append()
+map("harpoon add", "n", "<leader>aa", function()
+	harpoon:list():add()
 end)
 map("harpoon 1", "n", "<leader>aj", function()
 	harpoon:list():select(1)
