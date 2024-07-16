@@ -89,6 +89,12 @@
         shellcheck
         nodePackages.bash-language-server
 
+        # html/css
+        nodePackages.vscode-langservers-extracted
+
+        #json
+        nodePackages.vscode-json-languageserver
+
         # nix
         nixfmt-rfc-style
 
