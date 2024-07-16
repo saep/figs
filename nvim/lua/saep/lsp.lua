@@ -196,6 +196,7 @@ vim.g.rustaceanvim = {
 				cursor_diagnostics = "<cmd>RustLsp renderDiagnostic<CR>",
 			})
 		end,
+		capabilities = capabilities,
 		default_settings = {
 			-- rust-analyzer language server configuration
 			["rust-analyzer"] = {},
@@ -203,8 +204,4 @@ vim.g.rustaceanvim = {
 	},
 	-- dap = {
 	-- },
-}
-
-return {
-	on_attach = on_attach,
 }
