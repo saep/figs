@@ -97,6 +97,7 @@ map("launch debugging session", "n", "<Leader>ds", function()
 end)
 map("toggle dapui", "n", "<Leader>du", require("dapui").toggle)
 
+map("find buffer", "n", "<leader>b", require("telescope.builtin").buffers)
 map("find buffer", "n", "<leader>fb", require("telescope.builtin").buffers)
 map("find files", "n", "<leader>ff", function()
 	require("telescope.builtin").find_files({ follow = true })
