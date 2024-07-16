@@ -164,7 +164,7 @@ map("edit snippet", { "n" }, "<Leader>fs", function()
 	require("luasnip.loaders").edit_snippet_files()
 end)
 
-map("neogit", "n", "<leader>gg", "<cmd>Neogit<cr>")
+map("neogit", "n", "<leader>gg", "<cmd>Git<cr>")
 
 local harpoon = require("harpoon")
 local conf = require("telescope.config").values

@@ -34,15 +34,15 @@
         comment-nvim
         conform-nvim
         diffview-nvim
-        fzf-lua # for neogit
         harpoon2
         haskell-tools-nvim
+        fugitive
+        fugitive-gitlab-vim
         leap-nvim
         lspsaga-nvim
         lualine-nvim
         mini-nvim
         neodev-nvim
-        neogit
         neotest
         neotest-haskell
         neotest-plenary
@@ -82,7 +82,6 @@
       extraPackages = with pkgs; [
         curl
         jq
-        fzf
         tree-sitter
 
         # bash/shell
