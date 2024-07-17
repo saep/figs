@@ -1,7 +1,31 @@
+local replace_whitespace_with_underscores_on_leave = {
+	node_callbacks = {
+		[events.leave] = function(node)
+			local text_with_spaces = node:get_text()
+			print(vim.inspect(text_with_spaces))
+			local text_with_underscores = {}
+			for _, t in ipairs(text_with_spaces) do
+				local u = t:gsub("%s+", "_")
+				table.insert(text_with_underscores, u)
+			end
+			print(vim.inspect(text_with_underscores))
+			local from_pos, to_pos = node.mark:pos_begin_end_raw()
+			vim.api.nvim_buf_set_text(
+				0,
+				from_pos[1],
+				from_pos[2],
+				to_pos[1],
+				to_pos[2],
+				{ table.concat(text_with_underscores, "_") }
+			)
+		end,
+	},
+}
+
 return {
 	s(",fn", {
 		t("fn "),
-		i(1, "function_name"),
+		i(1, "function_name", replace_whitespace_with_underscores_on_leave),
 		t("("),
 		i(2, "&self"),
 		t(") "),
@@ -50,5 +74,12 @@ return {
 				t(args[1]),
 			})
 		end, { 1 }),
+	}),
+	s(",tt #[tokio::test]", {
+		t({ "#[tokio::test]", "async fn " }),
+		i(1, "function_name", replace_whitespace_with_underscores_on_leave),
+		t({ "() {", "    " }),
+		i(0),
+		t({ "", "}" }),
 	}),
 }, {}
