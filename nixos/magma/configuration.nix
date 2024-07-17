@@ -107,13 +107,13 @@
   # Enable the Plasma 5 Desktop Environment.
   services.displayManager = {
     sddm.enable = true;
-    defaultSession = "plasmawayland";
+    defaultSession = "plasma";
     autoLogin = {
       enable = false;
       user = "saep";
     };
   };
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -154,7 +154,10 @@
       "docker"
     ];
     shell = pkgs.bash;
-    packages = with pkgs; [ ];
+    packages = with pkgs; [
+      kdePackages.kdeplasma-addons
+      kdePackages.kcolorchooser
+    ];
   };
 
   nixpkgs.config.allowUnfree = true;
