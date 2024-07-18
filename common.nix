@@ -162,8 +162,6 @@
         e = "$EDITOR";
       };
       initExtra = ''
-        source "''${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh"
-
         export PATH="$HOME/.local/bin:$PATH"
 
         PROMPT_COMMAND="''${PROMPT_COMMAND:+$PROMPT_COMMAND$';'}history -a;history -c;history -r"
