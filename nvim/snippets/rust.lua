@@ -82,6 +82,7 @@ return {
 				t(args[1]),
 			})
 		end, { 1 }),
+		t(";"),
 	}),
 	s({ trig = ",tt", name = "#[tokio::test]" }, {
 		t({ "#[tokio::test]", "async fn " }),
