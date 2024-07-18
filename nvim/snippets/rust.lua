@@ -98,4 +98,11 @@ return {
 		i(0),
 		t({ "", "})" }),
 	}),
+	s({ trig = "as", name = "asserts" }, {
+		c(1, {
+			sn(nil, { t("assert!("), i(1), t(");") }),
+			sn(nil, { t("assert_eq!("), i(1), t(");") }),
+			sn(nil, { t("assert_neq!("), i(1), t(");") }),
+		}),
+	}),
 }, {}
