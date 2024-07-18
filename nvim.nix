@@ -46,6 +46,7 @@
         neotest
         neotest-haskell
         neotest-plenary
+        nvim-autopairs
         nvim-colorizer-lua
         nvim-cmp
         nvim-dap
