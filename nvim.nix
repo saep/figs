@@ -66,6 +66,7 @@
         rainbow-delimiters-nvim
         rustaceanvim
         telescope-nvim
+        telescope-fzf-native-nvim
         telescope-ui-select-nvim
         text-case-nvim
         toggleterm-nvim
