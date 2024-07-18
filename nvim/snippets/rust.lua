@@ -105,4 +105,28 @@ return {
 			sn(nil, { t("assert_neq!("), i(1), t(");") }),
 		}),
 	}),
+	postfix({ trig = '"', match_pattern = '"[^"]+$' }, {
+		-- t("format!("),
+		-- f(function(_, parent)
+		-- 	return parent.snippet.env.POSTFIX_MATCH
+		-- end, {}),
+		-- t('", '),
+		-- i(1),
+		d(1, function(_, parent)
+			local str, n = parent.env.POSTFIX_MATCH:gsub("{}", {})
+			if n <= 0 then
+				return sn(nil, { t(str), t('"') })
+			end
+			local nodes = {}
+			table.insert(nodes, t("format!("))
+			table.insert(nodes, t(str))
+			table.insert(nodes, t('"'))
+			for j = 1, n do
+				table.insert(nodes, t(", "))
+				table.insert(nodes, i(j, "arg" .. j))
+			end
+			table.insert(nodes, t(")"))
+			return sn(nil, nodes)
+		end),
+	}),
 }, {}
