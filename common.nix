@@ -111,7 +111,7 @@
       };
     };
     readline = {
-      enable = true;
+      enable = false; # carapace should handle completions
       variables = {
         show-all-if-ambiguous = true;
         menu-complete-display-prefix = true;
