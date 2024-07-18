@@ -91,4 +91,11 @@ return {
 		i(0, "todo()"),
 		t({ "", "}" }),
 	}),
+	s({ trig = "json!", name = "serde_json::json!" }, {
+		t({ "serde_json::json!({", '    "' }),
+		i(1),
+		t('": '),
+		i(0),
+		t({ "", "})" }),
+	}),
 }, {}
