@@ -172,7 +172,6 @@
     };
     broot = {
       enable = true;
-      enableZshIntegration = true;
       settings = {
         syntax_theme = "MochaDark";
         verbs = [
@@ -213,7 +212,6 @@
     };
     direnv = {
       enable = true;
-      enableZshIntegration = false;
     };
     fzf = {
       enable = false;
@@ -409,7 +407,6 @@
     gpg-agent = {
       enable = true;
       enableSshSupport = false;
-      enableZshIntegration = true;
     };
   };
 
