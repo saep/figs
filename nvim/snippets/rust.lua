@@ -23,7 +23,7 @@ local replace_whitespace_with_underscores_on_leave = {
 }
 
 return {
-	s({ trig = ",fn", name = "function" }, {
+	s({ trig = "f", name = "function" }, {
 		t("fn "),
 		i(1, "function_name", replace_whitespace_with_underscores_on_leave),
 		t("("),
@@ -46,7 +46,7 @@ return {
 		i(0, "todo!()"),
 		t({ "", "}" }),
 	}),
-	s({ trig = ",mt", name = "test module" }, {
+	s({ trig = "tm", name = "test module" }, {
 		t({
 			"#[cfg(test)]",
 			"mod test {",
@@ -60,7 +60,7 @@ return {
 			"}",
 		}),
 	}),
-	s({ trig = ",st", name = "struct" }, {
+	s({ trig = "s", name = "struct" }, {
 		c(2, {
 			i(1),
 			sn(nil, { t("#[derive("), i(1, "Debug"), t({ ")]", "" }) }),
@@ -73,18 +73,27 @@ return {
 		i(0),
 		t({ "", "}", "" }),
 	}),
-	s({ trig = ",l", name = "let x = x;" }, {
+	s({ trig = "l", name = "let x = x;" }, {
 		t("let "),
 		i(1, "var"),
 		t(" = "),
 		d(2, function(args)
 			return sn(nil, {
-				t(args[1]),
+				i(1, args[1]),
 			})
 		end, { 1 }),
 		t(";"),
 	}),
-	s({ trig = ",tt", name = "#[tokio::test]" }, {
+	s({ trig = "i", name = "impl for " }, {
+		t("impl "),
+		i(1, "Trait"),
+		t(" for "),
+		i(2, "Type"),
+		t({ " {", "    " }),
+		i(0),
+		t({ "", "}" }),
+	}),
+	s({ trig = "tt", name = "#[tokio::test]" }, {
 		t({ "#[tokio::test]", "async fn " }),
 		i(1, "function_name", replace_whitespace_with_underscores_on_leave),
 		t({ "() {", "    " }),
