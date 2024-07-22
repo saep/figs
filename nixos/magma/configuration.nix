@@ -174,6 +174,25 @@
     ];
   };
 
+  systemd.timers."turn-off-headset-lights" = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnBootSec = "1m";
+      OnUnitActiveSec = "5m";
+      Unit = "turn-off-headset-lights";
+    };
+  };
+
+  systemd.services."turn-off-headset-lights" = {
+    script = ''
+      ${pkgs.headsetcontrol}/bin/headsetcontrol -l 0 >/dev/null
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "saep";
+    };
+  };
+
   services.openssh.enable = true;
 
   services.printing.enable = true;
