@@ -5,6 +5,7 @@ require("conform").setup({
 		lua = { "stylua" },
 		nix = { "nixfmt" },
 		sql = { "pg_format" },
+		rust = { "cargo fmt" },
 	},
 	format_on_save = {
 		timeout_ms = 500,
