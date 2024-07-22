@@ -214,17 +214,19 @@
       enable = true;
     };
     fzf = {
-      enable = false;
+      enable = true;
       colors = {
         bg = color.background;
         fg = color.foreground;
       };
       changeDirWidgetCommand = "fd --type d";
       changeDirWidgetOptions = [
-        "--preview 'erd --force-color --icons --human --hidden --inverted --truncate {}'"
+        "--preview '${pkgs.erdtree}/bin/erd --force-color --icons --human --hidden --inverted --truncate {}'"
       ];
-      fileWidgetCommand = "fd --type f";
-      fileWidgetOptions = [ "--preview 'bat --force-colorization --paging=never --line-range :100 {}'" ];
+      fileWidgetCommand = "${pkgs.fd}/bin/fd --type f";
+      fileWidgetOptions = [
+        "--preview '${pkgs.bat}/bin/bat --force-colorization --paging=never --line-range :100 {}'"
+      ];
     };
     git = {
       enable = true;
