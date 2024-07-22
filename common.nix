@@ -92,7 +92,7 @@
       enable = false;
     };
     atuin = {
-      enable = true;
+      enable = false;
       settings = {
         auto_sync = false;
         update_check = false;
