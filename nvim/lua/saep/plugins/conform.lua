@@ -3,9 +3,10 @@ require("conform").setup({
 		gleam = { "gleam format" },
 		haskell = { "fourmolu", "ormolu" },
 		lua = { "stylua" },
+		markdown = { "prettier" },
 		nix = { "nixfmt" },
-		sql = { "pg_format" },
 		rust = { "cargo fmt" },
+		sql = { "pg_format" },
 	},
 	format_on_save = {
 		timeout_ms = 500,
