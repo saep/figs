@@ -94,8 +94,11 @@
         # html/css
         nodePackages.vscode-langservers-extracted
 
-        #json
+        # json
         nodePackages.vscode-json-languageserver
+
+        # markdown
+        comrak
 
         # nix
         nixfmt-rfc-style
