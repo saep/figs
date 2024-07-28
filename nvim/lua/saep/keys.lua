@@ -1,4 +1,4 @@
--- Set a default timeout len (/ms) which is used by which-key to dealy displaying key bindings
+-- Set a default timeout length (/ms) which is used by which-key to delay displaying key bindings
 vim.opt.timeoutlen = 250
 vim.g.mapleader = " "
 vim.g.maplocalleader = vim.api.nvim_replace_termcodes("<BS>", false, false, true)
@@ -10,7 +10,11 @@ local map = function(description, modes, lhs, rhs, opts)
 end
 
 require("which-key").setup({
+	preset = "modern",
 	plugins = {
+		spelling = {
+			enabled = false,
+		},
 		presets = {
 			windows = false,
 			nav = false,
@@ -96,6 +100,10 @@ map("launch debugging session", "n", "<Leader>ds", function()
 	end
 end)
 map("toggle dapui", "n", "<Leader>du", require("dapui").toggle)
+
+map("spell suggestion", "n", "z=", function()
+	require("telescope.builtin").spell_suggest(require("telescope.themes").get_cursor({}))
+end)
 
 map("find buffer", "n", "<leader>b", require("telescope.builtin").buffers)
 map("find buffer", "n", "<leader>fb", require("telescope.builtin").buffers)
