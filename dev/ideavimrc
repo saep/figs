@@ -4,6 +4,7 @@ set ideajoin
 set commentary
 set exchange
 set argtextobj
+set sneak
 " disable ideavim in dialogs
 set ideavimsupport=
 set clipboard+=ideaput
