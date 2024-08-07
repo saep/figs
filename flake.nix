@@ -4,7 +4,9 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
     # nixpkgs.url = "git+file:///home/saep/git/nixpkgs";
-    nur = { url = "github:nix-community/NUR"; };
+    nur = {
+      url = "github:nix-community/NUR";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,14 +29,24 @@
     };
   };
 
-  outputs = { self, nixpkgs, nur, home-manager, nixgl, rustaceanvim, neogit
-    , one-small-step-for-vimkind }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nur,
+      home-manager,
+      nixgl,
+      rustaceanvim,
+      neogit,
+      one-small-step-for-vimkind,
+    }@inputs:
     let
       inherit (self) outputs;
       overlays = [
         nixgl.overlay
         nur.overlay
-        (self: super:
+        (
+          self: super:
           let
             rustaceanvim = super.vimUtils.buildVimPlugin {
               name = "rustaceanvim";
@@ -48,29 +60,40 @@
               name = "one-small-step-for-vimkind";
               src = inputs.one-small-step-for-vimkind;
             };
-          in {
+          in
+          {
             vimPlugins = super.vimPlugins // {
               inherit rustaceanvim;
               inherit neogit;
               inherit one-small-step-for-vimkind;
             };
-          })
+          }
+        )
       ];
-    in rec {
+    in
+    rec {
       home-manager-state-version = "22.05";
       hm = home-manager;
       color = (import ./colors/catppuccin/mocha.nix).color;
       pkgs = import nixpkgs {
         system = "x86_64-linux";
-        config = { allowUnFree = true; };
+        config = {
+          allowUnFree = true;
+        };
         overlays = overlays;
       };
       hmModules = {
         common = ./common.nix;
         nvim = ./nvim.nix;
-        desktop = { common = ./desktop/common.nix; };
-        dev = { java = ./dev/java.nix; };
-        misc = { syncthing = ./misc/syncthing.nix; };
+        desktop = {
+          common = ./desktop/common.nix;
+        };
+        dev = {
+          java = ./dev/java.nix;
+        };
+        misc = {
+          syncthing = ./misc/syncthing.nix;
+        };
         private = ./private.nix;
       };
 
@@ -95,7 +118,11 @@
         };
         "saep@nixos-wsl" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = with hmModules; [ common nvim private ];
+          modules = with hmModules; [
+            common
+            nvim
+            private
+          ];
           extraSpecialArgs = {
             username = "saep";
             stateVersion = home-manager-state-version;
@@ -106,34 +133,39 @@
       };
       nixosConfigurations = {
         magma = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs overlays; };
-          modules = let username = "saep";
-          in [
-            ./nixos/magma/configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.users.saep = {
-                home.username = username;
-                home.homeDirectory = "/home/${username}";
-                home.stateVersion = home-manager-state-version;
-                imports = with hmModules; [
-                  common
-                  desktop.common
-                  nvim
-                  private
-                  misc.syncthing
-                ];
-              };
-              home-manager.extraSpecialArgs = {
-                inherit pkgs;
-                username = username;
-                stateVersion = home-manager-state-version;
-                color = color;
-                isNixos = true;
-                saepfigsDirectory = "git/${username}/figs";
-              };
-            }
-          ];
+          specialArgs = {
+            inherit inputs outputs overlays;
+          };
+          modules =
+            let
+              username = "saep";
+            in
+            [
+              ./nixos/magma/configuration.nix
+              home-manager.nixosModules.home-manager
+              {
+                home-manager.users.saep = {
+                  home.username = username;
+                  home.homeDirectory = "/home/${username}";
+                  home.stateVersion = home-manager-state-version;
+                  imports = with hmModules; [
+                    common
+                    desktop.common
+                    nvim
+                    private
+                    misc.syncthing
+                  ];
+                };
+                home-manager.extraSpecialArgs = {
+                  inherit pkgs;
+                  username = username;
+                  stateVersion = home-manager-state-version;
+                  color = color;
+                  isNixos = true;
+                  saepfigsDirectory = "git/${username}/figs";
+                };
+              }
+            ];
         };
       };
     };
