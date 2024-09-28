@@ -46,4 +46,16 @@ vim.api.nvim_create_autocmd({ "BufReadPost" }, {
 	pattern = "*",
 })
 
+local terminal_open_augroup = vim.api.nvim_create_augroup("terminal_open", {})
+vim.api.nvim_create_autocmd({ "TermOpen" }, {
+	callback = function()
+		vim.opt_local.number = false
+		vim.opt_local.relativenumber = false
+		vim.cmd(":startinsert")
+	end,
+	desc = "Disable line numbers in terminal windows",
+	group = terminal_open_augroup,
+	pattern = "*",
+})
+
 return {}
