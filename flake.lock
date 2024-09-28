@@ -118,6 +118,22 @@
         "type": "github"
       }
     },
+    "render-markdown": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1727503575,
+        "narHash": "sha256-flX0NauKE/+FQfFSH1uTDbY7Qb0Hp1/NXgWtfu0T/v8=",
+        "owner": "MeanderingProgrammer",
+        "repo": "render-markdown.nvim",
+        "rev": "d3a565eb4c46005a390d4b19f80f9ad719607df6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MeanderingProgrammer",
+        "repo": "render-markdown.nvim",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
@@ -126,6 +142,7 @@
         "nixpkgs": "nixpkgs",
         "nur": "nur",
         "one-small-step-for-vimkind": "one-small-step-for-vimkind",
+        "render-markdown": "render-markdown",
         "rustaceanvim": "rustaceanvim"
       }
     },

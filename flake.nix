@@ -27,6 +27,10 @@
       url = "github:jbyuki/one-small-step-for-vimkind";
       flake = false;
     };
+    render-markdown = {
+      url = "github:MeanderingProgrammer/render-markdown.nvim";
+      flake = false;
+    };
   };
 
   outputs =
@@ -39,6 +43,7 @@
       rustaceanvim,
       neogit,
       one-small-step-for-vimkind,
+      render-markdown,
     }@inputs:
     let
       inherit (self) outputs;
@@ -60,12 +65,17 @@
               name = "one-small-step-for-vimkind";
               src = inputs.one-small-step-for-vimkind;
             };
+            render-markdown = super.vimUtils.buildVimPlugin {
+              name = "render-markdown";
+              src = inputs.render-markdown;
+            };
           in
           {
             vimPlugins = super.vimPlugins // {
               inherit rustaceanvim;
               inherit neogit;
               inherit one-small-step-for-vimkind;
+              inherit render-markdown;
             };
           }
         )

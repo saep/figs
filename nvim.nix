@@ -64,6 +64,7 @@
         parinfer-rust
         plenary-nvim
         rainbow-delimiters-nvim
+        render-markdown
         rustaceanvim
         telescope-nvim
         telescope-fzf-native-nvim
