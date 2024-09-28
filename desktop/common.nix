@@ -165,7 +165,7 @@
       };
     };
     wezterm = {
-      enable = true;
+      enable = false; # currently broken https://github.com/wez/wezterm/issues/5990
       # error message when trying to source non-existent file
       enableBashIntegration = false;
       enableZshIntegration = false;
