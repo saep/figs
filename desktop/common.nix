@@ -1,12 +1,25 @@
 # Applications used on desktop computers and laptops
-{ config, pkgs, lib, username, stateVersion, dpi, color, saepfigsDirectory
-, isNixos ? false, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  username,
+  stateVersion,
+  dpi,
+  color,
+  saepfigsDirectory,
+  isNixos ? false,
+  ...
+}:
+{
   home.username = username;
   home.homeDirectory = "/home/${username}";
   home.stateVersion = stateVersion;
 
   fonts.fontconfig.enable = true;
-  home.language = { base = "en_US.UTF-8"; };
+  home.language = {
+    base = "en_US.UTF-8";
+  };
 
   xdg = {
     enable = true;
@@ -21,7 +34,9 @@
         "inode/directory" = "pcmanfm-qt.desktop";
       };
     };
-    systemDirs = { data = [ "/home/${username}/.nix-profile/share" ]; };
+    systemDirs = {
+      data = [ "/home/${username}/.nix-profile/share" ];
+    };
     desktopEntries = {
       whatsapp = {
         name = "Whatsapp";
@@ -36,29 +51,39 @@
         icon = "chromium-browser";
       };
     };
-    configFile."wezterm/wezterm.lua".source =
-      config.lib.file.mkOutOfStoreSymlink
-      "/home/${username}/${saepfigsDirectory}/desktop/wezterm.lua";
+    configFile."wezterm/wezterm.lua".source = config.lib.file.mkOutOfStoreSymlink "/home/${username}/${saepfigsDirectory}/desktop/wezterm.lua";
   };
 
-  home.packages = with pkgs; [
-    pkgs.nixgl.nixGLIntel
-    keepassxc
-    chromium
+  home.packages =
+    with pkgs;
+    let
+      optNixGL = if isNixos then [ ] else [ pkgs.nixgl.nixGLIntel ];
+    in
+    optNixGL
+    ++ [
 
-    xdg-utils
+      keepassxc
+      chromium
 
-    pcmanfm-qt
+      xdg-utils
 
-    neovide
+      pcmanfm-qt
 
-    # other
-    remmina
-    pavucontrol
+      neovide
 
-    # fonts
-    (nerdfonts.override { fonts = [ "FiraCode" "Hasklig" "DroidSansMono" ]; })
-  ];
+      # other
+      remmina
+      pavucontrol
+
+      # fonts
+      (nerdfonts.override {
+        fonts = [
+          "FiraCode"
+          "Hasklig"
+          "DroidSansMono"
+        ];
+      })
+    ];
 
   programs = {
     chromium = {
@@ -84,8 +109,7 @@
             "browser.startup.page" = 3; # restore previous tabs and windows
             "browser.urlbar.placeholderName" = "DuckDuckGo";
             "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-            "media.videocontrols.picture-in-picture.video-toggle.enabled" =
-              false;
+            "media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
             "media.hardwaremediakeys.enabled" = true;
           };
           userChrome = ''
@@ -145,32 +169,49 @@
       # error message when trying to source non-existent file
       enableBashIntegration = false;
       enableZshIntegration = false;
-      package = let wrapper = pkgs.nixgl.nixGLIntel;
-      in pkgs.writeShellScriptBin "wezterm" ''
-        ${wrapper}/bin/nixGLIntel ${pkgs.wezterm}/bin/wezterm "$@"
-      '';
+      package =
+        if isNixos then
+          pkgs.wezterm
+        else
+          let
+            wrapper = pkgs.nixgl.nixGLIntel;
+          in
+          pkgs.writeShellScriptBin "wezterm" ''
+            ${wrapper}/bin/nixGLIntel ${pkgs.wezterm}/bin/wezterm "$@"
+          '';
     };
 
     # kitty {{{2
     kitty = {
       enable = true;
-      package = let wrapper = pkgs.nixgl.nixGLIntel;
-      in pkgs.writeShellScriptBin "kitty" ''
-        ${wrapper}/bin/nixGLIntel ${pkgs.kitty}/bin/kitty "$@"
-      '';
+      package =
+        if isNixos then
+          pkgs.kitty
+        else
+          let
+            wrapper = pkgs.nixgl.nixGLIntel;
+          in
+          pkgs.writeShellScriptBin "kitty" ''
+            ${wrapper}/bin/nixGLIntel ${pkgs.kitty}/bin/kitty "$@"
+          '';
       font = {
         name = "Hasklug Nerd Font";
         size = 14;
       };
-      theme = "Catppuccin-Mocha";
-      settings = { enable_audio_bell = false; };
+      themeFile = "Catppuccin-Mocha";
+      settings = {
+        enable_audio_bell = false;
+      };
     };
     alacritty = {
       enable = false;
-      package = let wrapper = pkgs.nixgl.nixGLIntel;
-      in pkgs.writeShellScriptBin "alacritty" ''
-        ${wrapper}/bin/nixGLIntel ${pkgs.alacritty}/bin/alacritty "$@"
-      '';
+      package =
+        let
+          wrapper = pkgs.nixgl.nixGLIntel;
+        in
+        pkgs.writeShellScriptBin "alacritty" ''
+          ${wrapper}/bin/nixGLIntel ${pkgs.alacritty}/bin/alacritty "$@"
+        '';
       settings = {
         window = {
           padding = {
@@ -181,64 +222,72 @@
           gtk_theme_variant = "dark";
         };
         font = {
-          normal = { family = "Hasklug Nerd Font"; };
+          normal = {
+            family = "Hasklug Nerd Font";
+          };
           size = 14.0;
         };
-        colors = let
-          color = (import ../colors/saeparized.nix).color;
-          normal = color.normal;
-          bright = color.bright;
-        in {
-          inherit normal;
-          inherit bright;
-          primary = {
-            background = color.background;
-            foreground = color.foreground;
-          };
-          cursor = {
-            text = color.background;
-            cursor = color.foreground;
-          };
-          selection = {
-            text = color.selectionForeground;
-            background = color.selectionBackground;
-          };
-          cursor = {
-            style = "Block";
-            unfocused_hollow = true;
-          };
-          url = {
-            launcher = {
-              program = "xdg-open";
-              args = [ ];
+        colors =
+          let
+            color = (import ../colors/saeparized.nix).color;
+            normal = color.normal;
+            bright = color.bright;
+          in
+          {
+            inherit normal;
+            inherit bright;
+            primary = {
+              background = color.background;
+              foreground = color.foreground;
             };
-            modifiers = "None";
+            cursor = {
+              text = color.background;
+              cursor = color.foreground;
+            };
+            selection = {
+              text = color.selectionForeground;
+              background = color.selectionBackground;
+            };
+            cursor = {
+              style = "Block";
+              unfocused_hollow = true;
+            };
+            url = {
+              launcher = {
+                program = "xdg-open";
+                args = [ ];
+              };
+              modifiers = "None";
+            };
+            mouse_bindings = [
+              {
+                mouse = "Middle";
+                action = "PasteSelection";
+              }
+            ];
+            key_bindings = [
+              {
+                key = "Key0";
+                mods = "Control|Alt";
+                action = "ResetFontSize";
+              }
+              {
+                key = "RBracket";
+                mods = "Control|Alt";
+                action = "IncreaseFontSize";
+              }
+              {
+                key = "LBracket";
+                mods = "Control|Alt";
+                action = "DecreaseFontSize";
+              }
+            ];
           };
-          mouse_bindings = [{
-            mouse = "Middle";
-            action = "PasteSelection";
-          }];
-          key_bindings = [
-            {
-              key = "Key0";
-              mods = "Control|Alt";
-              action = "ResetFontSize";
-            }
-            {
-              key = "RBracket";
-              mods = "Control|Alt";
-              action = "IncreaseFontSize";
-            }
-            {
-              key = "LBracket";
-              mods = "Control|Alt";
-              action = "DecreaseFontSize";
-            }
-          ];
-        };
       };
     };
-    ncmpcpp = { enable = true; };
+    ncmpcpp = {
+      enable = true;
+    };
     zathura = {
       enable = true;
       options = {
@@ -297,4 +346,3 @@
     };
   };
 }
-
