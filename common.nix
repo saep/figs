@@ -168,6 +168,10 @@
         export PROMPT_COMMAND
 
         bind -x '"\C-g":"br"'
+
+        unset LD_LIBRARY_PATH
+        unset LIBVA_DRIVERS_PATH
+        unset LIBGL_DRIVERS_PATH
       '';
     };
     broot = {
