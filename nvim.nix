@@ -64,7 +64,6 @@
         nvim-web-devicons
         oil-nvim
         rest-nvim
-        parinfer-rust
         plenary-nvim
         rainbow-delimiters-nvim
         render-markdown
@@ -124,9 +123,6 @@
         # clojure
         clojure
         clojure-lsp
-
-        parinfer-rust # magic parens
-        vimPlugins.parinfer-rust
       ];
       extraLuaPackages =
         luaPkgs: with luaPkgs; [
