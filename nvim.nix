@@ -28,12 +28,14 @@
         luasnip
         cmp-buffer
         cmp-cmdline
+        cmp-conjure
         cmp_luasnip
         cmp-nvim-lsp
         cmp-nvim-lua
         cmp-path
         comment-nvim
         conform-nvim
+        conjure
         diffview-nvim
         fzf-lua # for neogit
         harpoon2
@@ -102,6 +104,9 @@
         # markdown
         comrak
 
+        #rust
+        evcxr
+
         # nix
         nixfmt-rfc-style
 
@@ -115,6 +120,10 @@
         go
         gofumpt
         gopls
+
+        # clojure
+        clojure
+        clojure-lsp
 
         parinfer-rust # magic parens
         vimPlugins.parinfer-rust

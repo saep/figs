@@ -26,6 +26,7 @@ cmp.setup({
 		{ name = "nvim_lua" },
 		{ name = "luasnip" },
 		{ name = "orgmode" },
+		{ name = "conjure" },
 	}, {
 		{ name = "buffer" },
 	}),
