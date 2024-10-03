@@ -126,20 +126,6 @@
             isNixos = false;
           };
         };
-        "saep@nixos-wsl" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = with hmModules; [
-            common
-            nvim
-            private
-          ];
-          extraSpecialArgs = {
-            username = "saep";
-            stateVersion = home-manager-state-version;
-            color = color;
-            isNixos = true;
-          };
-        };
       };
       nixosConfigurations = {
         magma = nixpkgs.lib.nixosSystem {
