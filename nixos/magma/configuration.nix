@@ -52,7 +52,10 @@
   services.flatpak.enable = true;
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.kdePackages.xdg-desktop-portal-kde
+    ];
   };
   services.ratbagd.enable = true; # piper mouse
 
@@ -155,6 +158,7 @@
     packages = with pkgs; [
       kdePackages.kdeplasma-addons
       kdePackages.kcolorchooser
+
     ];
   };
 
@@ -163,6 +167,10 @@
   environment = {
     pathsToLink = [ "/share/bash-completion" ];
     systemPackages = with pkgs; [
+      (catppuccin-kde.override { flavour = [ "mocha" ]; })
+      catppuccin-cursors
+      catppuccin-sddm
+      kdePackages.sddm-kcm
       headsetcontrol
       lsof
       mangohud
