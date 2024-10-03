@@ -145,25 +145,6 @@
         };
       };
     };
-    rofi = {
-      enable = false;
-      font = "Hasklug Nerd Font 14";
-      terminal = "kitty";
-      theme = ./rofi-catppucin-mocha-theme.rasi;
-      extraConfig = {
-        modi = "drun,window";
-        show-icons = true;
-        drun-display-format = "{icon} {name}";
-        location = 0;
-        disable-history = false;
-        hide-scrollbar = true;
-        display-drun = "   Apps ";
-        display-run = "   Run ";
-        display-window = " 﩯  Window";
-        display-Network = " 󰤨  Network";
-        sidebar-mode = true;
-      };
-    };
     wezterm = {
       enable = false; # currently broken https://github.com/wez/wezterm/issues/5990
       # error message when trying to source non-existent file
