@@ -78,6 +78,7 @@
         vim-dadbod-ui
         vim-dadbod-completion
         vim-repeat
+        vim-sexp-mappings-for-regular-people
         vim-speeddating
         vim-visual-multi
         which-key-nvim
