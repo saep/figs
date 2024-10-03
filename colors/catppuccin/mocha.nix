@@ -1,4 +1,5 @@
 # Mocha variant of https://github.com/catppuccin/catppuccin
+# See if the program supports catppuccin natively with catppuccin-nix before using this!
 {
   color = rec {
     # Color definitions

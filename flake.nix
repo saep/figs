@@ -15,6 +15,9 @@
       url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    catppuccin = {
+      url = "github:catppuccin/nix";
+    };
     rustaceanvim = {
       url = "github:mrcjkb/rustaceanvim";
       flake = false;
@@ -40,6 +43,7 @@
       nur,
       home-manager,
       nixgl,
+      catppuccin,
       rustaceanvim,
       neogit,
       one-small-step-for-vimkind,
@@ -112,6 +116,7 @@
         "saep@swaep" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = with hmModules; [
+            catppuccin.homeManagerModules.catppuccin
             common
             nvim
             desktop.common
@@ -145,6 +150,7 @@
                   home.homeDirectory = "/home/${username}";
                   home.stateVersion = home-manager-state-version;
                   imports = with hmModules; [
+                    catppuccin.homeManagerModules.catppuccin
                     common
                     desktop.common
                     nvim

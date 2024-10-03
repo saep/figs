@@ -14,6 +14,12 @@
   home.homeDirectory = "/home/${username}";
   home.stateVersion = stateVersion;
 
+  catppuccin = {
+    enable = true;
+    flavor = "mocha";
+    accent = "mauve";
+  };
+
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
@@ -203,10 +209,6 @@
     };
     fzf = {
       enable = true;
-      colors = {
-        bg = color.background;
-        fg = color.foreground;
-      };
       changeDirWidgetCommand = "fd --type d";
       changeDirWidgetOptions = [
         "--preview '${pkgs.erdtree}/bin/erd --force-color --icons --human --hidden --inverted --truncate {}'"
@@ -317,30 +319,13 @@
       };
     };
 
-    starship =
-      let
-        flavour = "mocha"; # One of `latte`, `frappe`, `macchiato`, or `mocha`
-      in
-      {
-        enable = true;
-        settings =
-          {
-            # Remove this line to disable the default prompt format
-            format = "$all";
-            palette = "catppuccin_${flavour}";
-          }
-          // builtins.fromTOML (
-            builtins.readFile (
-              pkgs.fetchFromGitHub {
-                owner = "catppuccin";
-                repo = "starship";
-                rev = "3e3e54410c3189053f4da7a7043261361a1ed1bc"; # Replace with the latest commit hash
-                sha256 = "soEBVlq3ULeiZFAdQYMRFuswIIhI9bclIU8WXjxd7oY=";
-              }
-              + /palettes/${flavour}.toml
-            )
-          );
+    starship = {
+      enable = true;
+      settings = {
+        # Remove this line to disable the default prompt format
+        format = "$all";
       };
+    };
     zsh = {
       enable = false;
       dotDir = ".config/zsh";

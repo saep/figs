@@ -18,6 +18,7 @@
   programs = {
     neovim = {
       enable = true;
+      catppuccin.enable = false; # incompatible with how I configure neovim
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;
