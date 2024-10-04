@@ -55,6 +55,7 @@
         nvim-dap
         one-small-step-for-vimkind
         nvim-dap-ui
+        nvim-lint
         nvim-lspconfig
         nvim-surround
         nvim-treesitter.withAllGrammars
@@ -124,6 +125,9 @@
         # clojure
         clojure
         clojure-lsp
+
+        # spell and gramar checker
+        vale
       ];
       extraLuaPackages =
         luaPkgs: with luaPkgs; [
