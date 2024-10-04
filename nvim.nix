@@ -40,6 +40,7 @@
         fzf-lua # for neogit
         harpoon2
         haskell-tools-nvim
+        image-nvim
         leap-nvim
         lspsaga-nvim
         lualine-nvim
@@ -131,12 +132,15 @@
 
         # spell and gramar checker
         vale
+
+        imagemagick
       ];
       extraLuaPackages =
         luaPkgs: with luaPkgs; [
           # nvim-rest dependencies
           lua-curl
           nvim-nio
+          magick
           mimetypes
           xml2lua
         ];
