@@ -108,6 +108,9 @@
         #rust
         evcxr
 
+        # scheme
+        mitscheme
+
         # nix
         nixfmt-rfc-style
 
