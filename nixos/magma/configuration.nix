@@ -106,7 +106,11 @@
 
   # Enable the Plasma 5 Desktop Environment.
   services.displayManager = {
-    sddm.enable = true;
+    sddm = {
+      enable = true;
+      wayland.enable = true;
+      theme = "Catppuccin mocha";
+    };
     defaultSession = "plasma";
     autoLogin = {
       enable = false;
