@@ -26,10 +26,6 @@
       url = "github:jbyuki/one-small-step-for-vimkind";
       flake = false;
     };
-    render-markdown = {
-      url = "github:MeanderingProgrammer/render-markdown.nvim";
-      flake = false;
-    };
   };
 
   outputs =
@@ -42,16 +38,14 @@
       catppuccin,
       neogit,
       one-small-step-for-vimkind,
-      render-markdown,
     }@inputs:
     let
       inherit (self) outputs;
       overlays = [
         nixgl.overlay
         nur.overlay
-        (
-          self: super:
-          let
+        (self: super: {
+          vimPlugins = super.vimPlugins // {
             neogit = super.vimUtils.buildVimPlugin {
               name = "neogit";
               src = inputs.neogit;
@@ -60,19 +54,8 @@
               name = "one-small-step-for-vimkind";
               src = inputs.one-small-step-for-vimkind;
             };
-            render-markdown = super.vimUtils.buildVimPlugin {
-              name = "render-markdown";
-              src = inputs.render-markdown;
-            };
-          in
-          {
-            vimPlugins = super.vimPlugins // {
-              inherit neogit;
-              inherit one-small-step-for-vimkind;
-              inherit render-markdown;
-            };
-          }
-        )
+          };
+        })
       ];
     in
     rec {

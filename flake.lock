@@ -133,22 +133,6 @@
         "type": "github"
       }
     },
-    "render-markdown": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1728046164,
-        "narHash": "sha256-n/sMiz6ztfzAwidL7CaRaUW5m07i9i6cemthE1L4Pes=",
-        "owner": "MeanderingProgrammer",
-        "repo": "render-markdown.nvim",
-        "rev": "fe1002fddc61207e4ef4325d4bc0ca33697bbc7a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "MeanderingProgrammer",
-        "repo": "render-markdown.nvim",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "catppuccin": "catppuccin",
@@ -157,8 +141,7 @@
         "nixgl": "nixgl",
         "nixpkgs": "nixpkgs",
         "nur": "nur",
-        "one-small-step-for-vimkind": "one-small-step-for-vimkind",
-        "render-markdown": "render-markdown"
+        "one-small-step-for-vimkind": "one-small-step-for-vimkind"
       }
     }
   },

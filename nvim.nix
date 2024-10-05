@@ -68,7 +68,7 @@
         rest-nvim
         plenary-nvim
         rainbow-delimiters-nvim
-        render-markdown
+        render-markdown-nvim
         rustaceanvim
         telescope-nvim
         telescope-fzf-native-nvim
