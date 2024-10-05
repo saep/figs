@@ -135,22 +135,6 @@ map("diagnostic prev", "n", "[e", function()
 	vim.api.nvim_command("Lspsaga diagnostic_jump_prev")
 end)
 
--- t -- test bindings
-map("neotest run nearest", "n", "<leader>tt", function()
-	vim.api.nvim_command("silent write")
-	require("neotest").run.run()
-end)
-map("neotest run file", "n", "<leader>tf", function()
-	vim.api.nvim_command("silent write")
-	require("neotest").run.run(vim.fn.expand("%"))
-end)
-map("neotest open output", "n", "<leader>to", function()
-	require("neotest").output.open()
-end)
-map("neotest summary", "n", "<leader>ts", function()
-	require("neotest").summary.toggle()
-end)
-
 map("oi", "n", "-", require("oil").open)
 
 local ls = require("luasnip")

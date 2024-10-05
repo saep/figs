@@ -47,9 +47,6 @@
         mini-nvim
         neodev-nvim
         neogit
-        neotest
-        neotest-haskell
-        neotest-plenary
         nvim-autopairs
         nvim-colorizer-lua
         nvim-cmp
