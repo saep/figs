@@ -109,7 +109,7 @@
     sddm = {
       enable = true;
       wayland.enable = true;
-      theme = "Catppuccin mocha";
+      theme = "catppuccin-mocha";
     };
     defaultSession = "plasma";
     autoLogin = {
