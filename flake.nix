@@ -18,10 +18,6 @@
     catppuccin = {
       url = "github:catppuccin/nix";
     };
-    rustaceanvim = {
-      url = "github:mrcjkb/rustaceanvim";
-      flake = false;
-    };
     neogit = {
       url = "github:NeogitOrg/neogit";
       flake = false;
@@ -44,7 +40,6 @@
       home-manager,
       nixgl,
       catppuccin,
-      rustaceanvim,
       neogit,
       one-small-step-for-vimkind,
       render-markdown,
@@ -57,10 +52,6 @@
         (
           self: super:
           let
-            rustaceanvim = super.vimUtils.buildVimPlugin {
-              name = "rustaceanvim";
-              src = inputs.rustaceanvim;
-            };
             neogit = super.vimUtils.buildVimPlugin {
               name = "neogit";
               src = inputs.neogit;
@@ -76,7 +67,6 @@
           in
           {
             vimPlugins = super.vimPlugins // {
-              inherit rustaceanvim;
               inherit neogit;
               inherit one-small-step-for-vimkind;
               inherit render-markdown;
