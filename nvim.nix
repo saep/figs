@@ -108,6 +108,7 @@
 
         #rust
         evcxr
+        lldb
 
         # scheme
         mitscheme
