@@ -17,7 +17,7 @@
   catppuccin = {
     enable = true;
     flavor = "mocha";
-    accent = "mauve";
+    accent = "blue";
   };
 
   fonts.fontconfig.enable = true;
