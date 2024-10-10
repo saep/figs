@@ -109,7 +109,7 @@
     sddm = {
       enable = true;
       wayland.enable = true;
-      theme = "catppuccin-mocha";
+      catppuccin.enable = true;
     };
     defaultSession = "plasma";
     autoLogin = {
@@ -172,9 +172,6 @@
     pathsToLink = [ "/share/bash-completion" ];
     systemPackages = with pkgs; [
       (catppuccin-kde.override { flavour = [ "mocha" ]; })
-      catppuccin-cursors
-      catppuccin-sddm
-      kdePackages.sddm-kcm
       headsetcontrol
       lsof
       mangohud

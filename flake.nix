@@ -116,6 +116,7 @@
             in
             [
               ./nixos/magma/configuration.nix
+              catppuccin.nixosModules.catppuccin
               home-manager.nixosModules.home-manager
               {
                 home-manager.users.saep = {
