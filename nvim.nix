@@ -128,6 +128,9 @@
         clojure
         clojure-lsp
 
+        # postgresql
+        pgformatter
+
         # spell and gramar checker
         vale
 
