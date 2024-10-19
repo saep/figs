@@ -1,7 +1,13 @@
 -- Set a default timeout length (/ms) which is used by which-key to delay displaying key bindings
 vim.opt.timeoutlen = 250
 vim.g.mapleader = " "
-vim.g.maplocalleader = vim.api.nvim_replace_termcodes("<BS>", false, false, true)
+
+-- Set localleader to <BS>
+vim.g.maplocalleader = "\\"
+vim.api.nvim_set_keymap("n", "<BS>", ":WhichKey \\<cr>", { noremap = true, silent = true })
+-- The below definition works, but which-key doesn't work with that and sometimes plugins
+-- act weird with such a local leader.
+-- vim.g.maplocalleader = vim.api.nvim_replace_termcodes("<BS>", false, false, true)
 
 local map = function(description, modes, lhs, rhs, opts)
 	opts = opts or {}
