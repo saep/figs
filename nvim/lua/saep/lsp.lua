@@ -157,30 +157,23 @@ require("lspconfig").dhall_lsp_server.setup({
 	on_attach = on_attach,
 })
 
---    ft = { "cabal", "haskell", "cabalproject", },
-vim.g.haskell_tools = {
-	hls = {
-		---@diagnostic disable-next-line: unused-local
-		on_attach = function(client, bufnr, ht)
-			vim.keymap.set({ "n" }, "<Leader>lh", function()
-				require("haskell-tools").hoogle.hoogle_signature()
-			end, { desc = "hoogle signature search" })
-			on_attach(client, bufnr)
-		end,
-		settings = {
-			haskell = {
-				formattingProvider = "fourmolu",
-				plugin = {
-					fourmolu = {
-						config = {
-							external = true,
-						},
+require("lspconfig")["hls"].setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	filetypes = { "haskell", "lhaskell", "cabal" },
+	settings = {
+		haskell = {
+			formattingProvider = "fourmolu",
+			plugin = {
+				fourmolu = {
+					config = {
+						external = true,
 					},
 				},
 			},
 		},
 	},
-}
+})
 
 require("lspconfig").rust_analyzer.setup({
 	on_attach = on_attach,

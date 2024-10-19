@@ -39,7 +39,6 @@
         diffview-nvim
         fzf-lua # for neogit
         harpoon2
-        haskell-tools-nvim
         image-nvim
         leap-nvim
         lspsaga-nvim
