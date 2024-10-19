@@ -25,8 +25,7 @@ local on_attach = function(client, bufnr, opt_overrides)
 		return opts
 	end
 	if bufnr then
-		-- vim.keymap.set("n", "<Leader>u", vim.lsp.buf.references, opts("usages"))
-		vim.keymap.set("n", "<Leader>u", "<cmd>Lspsaga finder<CR>", opts("usages"))
+		vim.keymap.set("n", "<Leader>u", vim.lsp.buf.references, opts("usages"))
 		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts("hover docs"))
 		vim.keymap.set(
 			"n",
