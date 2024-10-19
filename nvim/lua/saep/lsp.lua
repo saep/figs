@@ -182,22 +182,17 @@ vim.g.haskell_tools = {
 	},
 }
 
-vim.g.rustaceanvim = {
-	-- Plugin configuration
-	tools = {},
-	-- LSP configuration
-	server = {
-		on_attach = function(client, bufnr)
-			on_attach(client, bufnr, {
-				cursor_diagnostics = "<cmd>RustLsp renderDiagnostic<CR>",
-			})
-		end,
-		capabilities = capabilities,
-		default_settings = {
-			-- rust-analyzer language server configuration
-			["rust-analyzer"] = {},
+require("lspconfig").rust_analyzer.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	settings = {
+		["rust-analyzer"] = {
+			diagnostics = {
+				enable = true,
+			},
+			cargo = {
+				features = "all,",
+			},
 		},
 	},
-	-- dap = {
-	-- },
-}
+})
