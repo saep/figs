@@ -43,6 +43,7 @@
     inotify-tools
     isa-l # igzip is a really fast gzip
     jq
+    yq-go
     mprocs # tmux-esque for long running processes
     procs # similar to ps
     ripgrep # similar to grep
