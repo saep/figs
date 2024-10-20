@@ -38,7 +38,6 @@
         conjure
         diffview-nvim
         fzf-lua # for neogit
-        harpoon2
         image-nvim
         leap-nvim
         lspsaga-nvim
