@@ -22,11 +22,17 @@ cmp.setup({
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
 	}),
 	sources = cmp.config.sources({
-		{ name = "nvim_lsp" },
-		{ name = "nvim_lua" },
+		{
+			name = "nvim_lsp",
+			entry_filter = function(entry)
+				local completionKind = cmp.lsp.CompletionItemKind
+				return completionKind.Snippet ~= entry:get_kind() and completionKind.Keyword ~= entry:get_kind()
+			end,
+		},
 		{ name = "luasnip" },
-		{ name = "orgmode" },
+		{ name = "nvim_lua" },
 		{ name = "conjure" },
+		{ name = "path" },
 	}, {
 		{ name = "buffer" },
 	}),
