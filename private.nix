@@ -1,9 +1,16 @@
-{ config, pkgs, lib, username, stateVersion, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  username,
+  stateVersion,
+  ...
+}:
 
 {
   home.username = username;
   home.homeDirectory = "/home/${username}";
   home.stateVersion = stateVersion;
 
-  programs.git.userEmail = "woozletoff@gmail.com";
+  programs.git.userEmail = "saep@saep.rocks";
 }
