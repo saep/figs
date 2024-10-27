@@ -69,8 +69,6 @@
 
       pcmanfm-qt
 
-      neovide
-
       # other
       remmina
       pavucontrol
