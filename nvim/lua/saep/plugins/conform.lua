@@ -5,7 +5,7 @@ require("conform").setup({
 		lua = { "stylua" },
 		markdown = { "my_comrak", "prettier" },
 		nix = { "nixfmt" },
-		rust = { "cargo fmt" },
+		rust = { "rustfmt", lsp_format = "fallback" },
 		sql = { "pg_format" },
 	},
 	format_on_save = function(bufnr)
