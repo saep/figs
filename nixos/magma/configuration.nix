@@ -150,6 +150,7 @@
     gamemode.enable = true;
     steam.enable = true;
     steam.gamescopeSession.enable = true;
+    virt-manager.enable = true;
   };
 
   users.users.saep = {
@@ -222,10 +223,15 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  virtualisation.docker.enable = true;
-  virtualisation.docker.rootless = {
-    enable = true;
-    setSocketVariable = true;
+  virtualisation = {
+    libvirtd.enable = true;
+    docker = {
+      enable = true;
+      rootless = {
+        enable = true;
+        setSocketVariable = true;
+      };
+    };
   };
 
   # Copy the NixOS configuration file and link it from the resulting system
