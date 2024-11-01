@@ -214,7 +214,7 @@
       enable = true;
       changeDirWidgetCommand = "fd --type d";
       changeDirWidgetOptions = [
-        "--preview '${pkgs.erdtree}/bin/erd --force-color --icons --human --hidden --inverted --truncate {}'"
+        "--preview '${pkgs.erdtree}/bin/erd --color force --icons --human --hidden --truncate {}'"
       ];
       fileWidgetCommand = "${pkgs.fd}/bin/fd --type f";
       fileWidgetOptions = [
