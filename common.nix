@@ -161,6 +161,7 @@
         export PATH="$HOME/.local/bin:$PATH"
 
         PROMPT_COMMAND="''${PROMPT_COMMAND:+$PROMPT_COMMAND$';'}history -a;history -c;history -r"
+        PROMPT_COMMAND="''${PROMPT_COMMAND/;;/;}"
         export PROMPT_COMMAND
 
         bind -x '"\C-g":"br"'
