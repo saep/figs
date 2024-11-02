@@ -53,6 +53,8 @@
     wakeonlan
     zip
 
+    nu_scripts
+
     html-tidy
   ];
 
@@ -146,12 +148,12 @@
       ];
       sessionVariables =
         let
-          editor = "nvim";
+          editor = "/home/${username}/.nix-profile/bin/nvim";
         in
         {
           EDITOR = editor;
           VISUAL = editor;
-          MANPAGER = "nvim +Man!";
+          MANPAGER = "${editor} +Man!";
         };
       shellAliases = {
         g = "git";
@@ -320,6 +322,23 @@
           select = "underline";
         };
       };
+    };
+
+    nushell = {
+      enable = true;
+      environmentVariables =
+        let
+          editor = "/home/${username}/.nix-profile/bin/nvim";
+        in
+        {
+          EDITOR = editor;
+          VISUAL = editor;
+          MANPAGER = "${editor} +Man!";
+        };
+      configFile.source = ./nushell/config.nu;
+      extraConfig = ''
+        source ${pkgs.nu_scripts}/share/nu_scripts/themes/nu-themes/catppuccin-mocha.nu
+      '';
     };
 
     starship = {
