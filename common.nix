@@ -324,22 +324,25 @@
       };
     };
 
-    nushell = {
-      enable = true;
-      environmentVariables =
-        let
-          editor = "/home/${username}/.nix-profile/bin/nvim";
-        in
-        {
+    nushell =
+      let
+        editor = "/home/${username}/.nix-profile/bin/nvim";
+      in
+      {
+        enable = true;
+        environmentVariables = {
           EDITOR = editor;
           VISUAL = editor;
           MANPAGER = "${editor} +Man!";
         };
-      configFile.source = ./nushell/config.nu;
-      extraConfig = ''
-        source ${pkgs.nu_scripts}/share/nu_scripts/themes/nu-themes/catppuccin-mocha.nu
-      '';
-    };
+        configFile.source = ./nushell/config.nu;
+        extraConfig = ''
+          source ${pkgs.nu_scripts}/share/nu_scripts/themes/nu-themes/catppuccin-mocha.nu
+        '';
+        shellAliases = {
+          e = "${editor}";
+        };
+      };
 
     starship = {
       enable = true;
