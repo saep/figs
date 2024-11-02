@@ -130,26 +130,37 @@ end
 if executableOnPath("ngserver") then
 	require("lspconfig").angularls.setup({
 		on_attach = on_attach,
+		capabilities = capabilities,
 	})
 end
 
+require("lspconfig").nushell.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
 require("lspconfig").ts_ls.setup({
 	on_attach = on_attach,
+	capabilities = capabilities,
 })
 
 require("lspconfig").eslint.setup({
 	on_attach = on_attach,
+	capabilities = capabilities,
 })
 
 require("lspconfig").gleam.setup({
 	on_attach = on_attach,
+	capabilities = capabilities,
 })
 
 require("lspconfig").html.setup({
 	on_attach = on_attach,
+	capabilities = capabilities,
 })
 
 require("lspconfig").cssls.setup({
+	on_attach = on_attach,
 	capabilities = capabilities,
 })
 
