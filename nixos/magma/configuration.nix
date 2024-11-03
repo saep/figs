@@ -63,7 +63,10 @@
     enable = true;
     extraRules = [
       {
-        groups = [ "users" ];
+        groups = [
+          "users"
+          "libvirtd"
+        ];
         commands = [
           {
             command = "/run/current-system/sw/bin/headsetcontrol";
