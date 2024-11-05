@@ -2,11 +2,8 @@
 {
   config,
   pkgs,
-  lib,
   username,
   stateVersion,
-  dpi,
-  color,
   saepfigsDirectory,
   isNixos ? false,
   ...

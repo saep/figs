@@ -4,7 +4,6 @@
   lib,
   username,
   stateVersion,
-  color,
   saepfigsDirectory,
   ...
 }:
@@ -155,6 +154,7 @@
           EDITOR = editor;
           VISUAL = editor;
           MANPAGER = "${editor} +Man!";
+          FLAKE_PATH = "${saepfigsDirectory}";
         };
       shellAliases = {
         g = "git";

@@ -115,6 +115,7 @@
         mitscheme
 
         # nix
+        nixd
         nixfmt-rfc-style
 
         # lua

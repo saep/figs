@@ -134,6 +134,42 @@ if executableOnPath("ngserver") then
 	})
 end
 
+local function hostname()
+	local f = io.popen("uname -n")
+	if f then
+		local n = f:read("*a") or ""
+		f:close()
+		n = string.gsub(n, "\n$", "")
+		return n
+	end
+end
+local host = hostname()
+
+local flakeDir = os.getenv("FLAKE_PATH")
+require("lspconfig").nixd.setup({
+	cmd = { "nixd" },
+	setttings = {
+		nixd = {
+			nixpkgs = {
+				expr = "import <nixpkgs>{ }",
+			},
+			formatting = {
+				command = { "nixfmt" },
+			},
+			options = {
+				nixos = {
+					expr = '(builtins.getFlake "' .. flakeDir .. '").nixosConfigurations.' .. host .. ".options",
+				},
+				home_manager = {
+					expr = '(builtins.getFlake "' .. flakeDir .. '").homeConfigurations.' .. host .. ".options",
+				},
+			},
+		},
+	},
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
 require("lspconfig").nushell.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,

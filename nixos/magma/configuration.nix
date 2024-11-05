@@ -1,6 +1,6 @@
 {
-  config,
   pkgs,
+  inputs,
   overlays,
   ...
 }:
@@ -37,6 +37,8 @@
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   time.timeZone = "Europe/Berlin";
+
+  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
