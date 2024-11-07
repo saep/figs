@@ -154,7 +154,6 @@
           EDITOR = editor;
           VISUAL = editor;
           MANPAGER = "${editor} +Man!";
-          FLAKE_PATH = "${saepfigsDirectory}";
         };
       shellAliases = {
         g = "git";
@@ -339,6 +338,7 @@
           EDITOR = editor;
           VISUAL = editor;
           MANPAGER = "${editor} +Man!";
+          FLAKE_PATH = "${saepfigsDirectory}";
         };
         configFile.source = ./nushell/config.nu;
         extraConfig = ''
