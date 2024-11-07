@@ -32,6 +32,7 @@
     {
       self,
       nixpkgs,
+      nur,
       home-manager,
       nixgl,
       catppuccin,
@@ -119,7 +120,7 @@
             in
             [
               ./nixos/magma/configuration.nix
-              puts.catppuccin.nixosModules.catppuccin
+              catppuccin.nixosModules.catppuccin
               home-manager.nixosModules.home-manager
               {
                 home-manager.users.saep = {
