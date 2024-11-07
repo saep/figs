@@ -33,21 +33,25 @@
       self,
       nixpkgs,
       home-manager,
+      nixgl,
+      catppuccin,
+      neogit,
+      one-small-step-for-vimkind,
     }@inputs:
     let
       inherit (self) outputs;
       overlays = [
-        inputs.nixgl.overlay
-        inputs.nur.overlay
+        nixgl.overlay
+        nur.overlay
         (self: super: {
           vimPlugins = super.vimPlugins // {
             neogit = super.vimUtils.buildVimPlugin {
               name = "neogit";
-              src = inputs.neogit;
+              src = neogit;
             };
             one-small-step-for-vimkind = super.vimUtils.buildVimPlugin {
               name = "one-small-step-for-vimkind";
-              src = inputs.one-small-step-for-vimkind;
+              src = one-small-step-for-vimkind;
             };
             nvim-treesitter-nu = super.vimUtils.buildVimPlugin {
               name = "nvim-treesitter-nu";
@@ -88,7 +92,7 @@
         "saep@swaep" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = with hmModules; [
-            inputs.catppuccin.homeManagerModules.catppuccin
+            catppuccin.homeManagerModules.catppuccin
             common
             nvim
             desktop.common
@@ -115,7 +119,7 @@
             in
             [
               ./nixos/magma/configuration.nix
-              inputs.catppuccin.nixosModules.catppuccin
+              puts.catppuccin.nixosModules.catppuccin
               home-manager.nixosModules.home-manager
               {
                 home-manager.users.saep = {
@@ -123,7 +127,7 @@
                   home.homeDirectory = "/home/${username}";
                   home.stateVersion = home-manager-state-version;
                   imports = with hmModules; [
-                    inputs.catppuccin.homeManagerModules.catppuccin
+                    catppuccin.homeManagerModules.catppuccin
                     common
                     desktop.common
                     nvim
