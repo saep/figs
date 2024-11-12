@@ -343,6 +343,7 @@
         configFile.source = ./nushell/config.nu;
         extraConfig = ''
           source ${pkgs.nu_scripts}/share/nu_scripts/themes/nu-themes/catppuccin-mocha.nu
+          unset LD_LIBRARY_PATH
         '';
         shellAliases = {
           e = "${editor}";
