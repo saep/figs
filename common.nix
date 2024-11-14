@@ -339,6 +339,8 @@
           VISUAL = editor;
           MANPAGER = "${editor} +Man!";
           FLAKE_PATH = "${saepfigsDirectory}";
+          # These are set by nixgl and shouldn't be inside a shell session
+          LD_LIBRARY_PATH = null;
         };
         configFile.source = ./nushell/config.nu;
         extraConfig = ''
