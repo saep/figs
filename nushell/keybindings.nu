@@ -1,5 +1,14 @@
 let keybindings = [
       {
+        name: "cut to end"
+        modifier: control
+        keycode: char_k
+        mode: [emacs, vi_insert]
+        event: {
+          edit: CutToEnd
+        }
+      }
+      {
         name: broot
         modifier: control
         keycode: char_g
