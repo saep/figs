@@ -164,6 +164,7 @@ map("edit snippet", { "n" }, "<Leader>fs", function()
 end)
 
 map("neogit", "n", "<leader>gg", "<cmd>Neogit<cr>")
+map("neogit", "n", "<leader>gl", "<cmd>Neogit log<cr>")
 
 map("floating terminal", { "n", "t" }, "<A-t>", "<cmd>Lspsaga term_toggle nu<CR>")
 
