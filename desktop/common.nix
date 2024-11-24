@@ -23,6 +23,7 @@
     mimeApps = {
       enable = true;
       defaultApplications = {
+        "text/*" = "nvim.desktop";
         "applications/pdf" = "org.pwmt.zathura-pdf-mupdf.desktop";
         "x-scheme-handler/http" = "firefox.desktop";
         "x-scheme-handler/https" = "firefox.desktop";
