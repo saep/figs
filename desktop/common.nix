@@ -102,6 +102,7 @@
           settings = {
             "browser.aboutConfig.showWarning" = false;
             "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+            "browser.search.suggest.enabled" = false; # they are terrible for advanced users
             "browser.startup.page" = 3; # restore previous tabs and windows
             "browser.urlbar.placeholderName" = "DuckDuckGo";
             "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
