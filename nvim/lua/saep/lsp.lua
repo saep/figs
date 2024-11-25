@@ -6,15 +6,32 @@ local function executableOnPath(executable)
 	end
 end
 
+vim.diagnostic.config({
+	virtual_text = false,
+})
+
+local function max_severity_diagnostics()
+	local severity = nil
+	local res = {}
+	for _, d in ipairs(vim.diagnostic.get()) do
+		if not severity or d.severity < severity then
+			res = {}
+			severity = d.severity
+		end
+		if d.severity == severity then
+			table.insert(res, d)
+		end
+	end
+	vim.diagnostic.setqflist({ severity = severity })
+end
+
 -- on_attach function for language servers
 --
 -- This sets up keybindings which only work when a language server is used.
 ---@param client any
 ---@param bufnr any
----@param opt_overrides any
 ---@diagnostic disable-next-line client is unused, but required for the on_attach signature
-local on_attach = function(client, bufnr, opt_overrides)
-	local overrides = opt_overrides or {}
+local on_attach = function(client, bufnr)
 	local opts = function(desc, args)
 		local opts = { silent = true, buffer = bufnr, desc = desc }
 		if args then
@@ -27,13 +44,8 @@ local on_attach = function(client, bufnr, opt_overrides)
 	if bufnr then
 		vim.keymap.set("n", "<Leader>u", vim.lsp.buf.references, opts("usages"))
 		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts("hover docs"))
-		vim.keymap.set(
-			"n",
-			"H",
-			overrides.cursor_diagnostics or "<cmd>Lspsaga show_cursor_diagnostics<CR>",
-			opts("cursor diagnostics")
-		)
-		vim.keymap.set("n", "L", "<cmd>Lspsaga show_line_diagnostics<CR>", opts("line diagnostics"))
+		vim.keymap.set("n", "H", max_severity_diagnostics, opts("cursor diagnostics"))
+		vim.keymap.set("n", "L", vim.diagnostic.open_float, opts("line diagnostics"))
 
 		-- See `:help vim.lsp.*` for documentation on any of the below functions
 		vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts("add workspace folder"))
