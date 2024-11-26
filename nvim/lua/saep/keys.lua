@@ -166,7 +166,7 @@ end)
 map("neogit", "n", "<leader>gg", "<cmd>Neogit<cr>")
 map("neogit", "n", "<leader>gl", "<cmd>Neogit log<cr>")
 
-map("floating terminal", { "n", "t" }, "<A-t>", "<cmd>Lspsaga term_toggle nu<CR>")
+map("floating terminal", { "n", "t" }, "<A-t>", Float_term)
 
 local http_group = vim.api.nvim_create_augroup("http_autocommands", { clear = true })
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
