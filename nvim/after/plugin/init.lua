@@ -35,3 +35,5 @@ end
 
 -- Fix saving spell checking by prepending a specific writable directory to the runtimepath.
 vim.opt.rtp:prepend("~/.local/share/nvim/site/")
+
+vim.opt.cmdheight = 0
