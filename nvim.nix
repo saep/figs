@@ -40,7 +40,6 @@
         fzf-lua # for neogit
         image-nvim
         leap-nvim
-        lspsaga-nvim
         lualine-nvim
         mini-nvim
         neodev-nvim

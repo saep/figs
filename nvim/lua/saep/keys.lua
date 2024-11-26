@@ -134,12 +134,8 @@ map("loclist prev", "n", "[l", function()
 	vim.api.nvim_command("lprevious")
 end)
 
-map("diagnostic next", "n", "]e", function()
-	vim.api.nvim_command("Lspsaga diagnostic_jump_next")
-end)
-map("diagnostic prev", "n", "[e", function()
-	vim.api.nvim_command("Lspsaga diagnostic_jump_prev")
-end)
+map("diagnostic next", "n", "]e", vim.diagnostic.goto_next)
+map("diagnostic prev", "n", "[e", vim.diagnostic.goto_prev)
 
 map("oi", "n", "-", require("oil").open)
 
