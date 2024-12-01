@@ -143,8 +143,6 @@
         pgformatter
 
         imagemagick
-        parinfer-rust # magic parens
-        vimPlugins.parinfer-rust
       ];
       extraLuaPackages =
         luaPkgs: with luaPkgs; [
