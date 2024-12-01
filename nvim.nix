@@ -38,6 +38,7 @@
         conjure
         diffview-nvim
         fzf-lua # for neogit
+        FTerm-nvim
         image-nvim
         leap-nvim
         lualine-nvim
