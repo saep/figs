@@ -113,10 +113,17 @@ end
 
 require("lspconfig").bashls.setup({
 	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
+require("lspconfig").clojure_lsp.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
 })
 
 require("lspconfig").elmls.setup({
 	on_attach = on_attach,
+	capabilities = capabilities,
 })
 
 require("lspconfig").gopls.setup({
