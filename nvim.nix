@@ -80,6 +80,7 @@
         vim-dadbod-ui
         vim-dadbod-completion
         vim-repeat
+        vim-sexp
         vim-sexp-mappings-for-regular-people
         vim-speeddating
         vim-visual-multi
