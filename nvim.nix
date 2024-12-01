@@ -44,7 +44,6 @@
         mini-nvim
         neodev-nvim
         neogit
-        nvim-autopairs
         nvim-colorizer-lua
         nvim-cmp
         nvim-dap
