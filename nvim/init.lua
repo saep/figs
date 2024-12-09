@@ -20,3 +20,14 @@ end
 require("saep.lsp")
 
 vim.opt.runtimepath:append("/home/saep/git/neogit")
+
+vim.g.sexp_mappings = {
+	sexp_move_to_prev_top_element = "", -- '[[',
+	sexp_move_to_next_top_element = "", -- ']]',
+	sexp_select_prev_element = "", -- '[e',
+	sexp_select_next_element = "", -- ']e',
+	sexp_swap_list_backward = "", -- '<M-k>',
+	sexp_swap_list_forward = "", -- '<M-j>',
+	sexp_swap_element_backward = "", -- '<M-h>',
+	sexp_swap_element_forward = "", -- '<M-l>',
+}
