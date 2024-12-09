@@ -47,10 +47,9 @@ local on_attach = function(client, bufnr)
 		vim.keymap.set("n", "H", max_severity_diagnostics, opts("cursor diagnostics"))
 		vim.keymap.set("n", "L", vim.diagnostic.open_float, opts("line diagnostics"))
 
-		-- See `:help vim.lsp.*` for documentation on any of the below functions
-		vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts("add workspace folder"))
-		vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts("remove workspace folder"))
-		vim.keymap.set("n", "<space>wl", vim.lsp.buf.list_workspace_folders, opts("list workspace folders"))
+		vim.keymap.set("n", "<space>lwa", vim.lsp.buf.add_workspace_folder, opts("add workspace folder"))
+		vim.keymap.set("n", "<space>lwr", vim.lsp.buf.remove_workspace_folder, opts("remove workspace folder"))
+		vim.keymap.set("n", "<space>lwl", vim.lsp.buf.list_workspace_folders, opts("list workspace folders"))
 		vim.keymap.set({ "n" }, "<Leader>ll", vim.lsp.codelens.run, opts("code lens"))
 		vim.keymap.set({ "n" }, "<Leader>lf", function()
 			vim.lsp.buf.format({ async = false })
