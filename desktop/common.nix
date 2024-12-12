@@ -108,6 +108,8 @@
             "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
             "media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
             "media.hardwaremediakeys.enabled" = true;
+            "sidebar.verticalTabs" = true;
+            "sidebar.main.tools" = "";
           };
           userChrome = ''
             #TabsToolbar
@@ -135,7 +137,6 @@
             keepassxc-browser
             privacy-badger
             sponsorblock
-            tree-style-tab
             vimium
             ublock-origin
           ];
