@@ -31,31 +31,31 @@ vim.o.ch = 1 -- comand height: Removes bottom line of nothingness if set to 0, b
 vim.o.laststatus = 2
 
 local function go_to_last_known_position()
-	if (vim.fn.line("'\"") > 1) and (vim.fn.line("'\"") <= vim.fn.line("$")) then
-		return vim.api.nvim_command('exe "normal! g`\\""')
-	else
-		return nil
-	end
+  if (vim.fn.line("'\"") > 1) and (vim.fn.line("'\"") <= vim.fn.line("$")) then
+    return vim.api.nvim_command('exe "normal! g`\\""')
+  else
+    return nil
+  end
 end
 
 local vimrc_ex_group = vim.api.nvim_create_augroup("vimrcEx", {})
 vim.api.nvim_create_autocmd({ "BufReadPost" }, {
-	callback = go_to_last_known_position,
-	desc = "Go to last known position when opening a buffer",
-	group = vimrc_ex_group,
-	pattern = "*",
+  callback = go_to_last_known_position,
+  desc = "Go to last known position when opening a buffer",
+  group = vimrc_ex_group,
+  pattern = "*",
 })
 
 local terminal_open_augroup = vim.api.nvim_create_augroup("terminal_open", {})
 vim.api.nvim_create_autocmd({ "TermOpen" }, {
-	callback = function()
-		vim.opt_local.number = false
-		vim.opt_local.relativenumber = false
-		vim.cmd(":startinsert")
-	end,
-	desc = "Disable line numbers in terminal windows",
-	group = terminal_open_augroup,
-	pattern = "*",
+  callback = function()
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+    vim.cmd(":startinsert")
+  end,
+  desc = "Disable line numbers in terminal windows",
+  group = terminal_open_augroup,
+  pattern = "*",
 })
 
 return {}
