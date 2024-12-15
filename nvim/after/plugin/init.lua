@@ -25,3 +25,17 @@ vim.opt.rtp:prepend("~/.local/share/nvim/site/")
 
 -- I'd like this to be 0, but it's often a bit jank
 vim.opt.cmdheight = 1
+
+vim.filetype.add({
+  pattern = {
+    [".*"] = {
+      function(path, bufnr)
+        local content = vim.api.nvim_buf_get_lines(bufnr, 0, 1, false)[1] or ""
+        if string.find(content, "^#!/usr/bin/env%s+bb$") then
+          return "clojure"
+        end
+      end,
+      { priority = 1 },
+    },
+  },
+})
