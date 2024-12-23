@@ -72,13 +72,9 @@
       pavucontrol
 
       # fonts
-      (nerdfonts.override {
-        fonts = [
-          "FiraCode"
-          "Hasklig"
-          "DroidSansMono"
-        ];
-      })
+      pkgs.nerd-fonts.fira-code
+      pkgs.nerd-fonts.hasklug
+      pkgs.nerd-fonts.droid-sans-mono
     ];
 
   programs = {
