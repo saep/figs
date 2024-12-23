@@ -24,6 +24,7 @@
   home.packages = with pkgs; [
     # command line utilities
     age # encrypt things with SSH-Keys
+    babashka # bash, but clojure
     bat # should have been rat
     borgbackup
     bottom # similar to htop
