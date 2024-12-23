@@ -19,7 +19,7 @@ end
 
 require("saep.lsp")
 
-vim.opt.runtimepath:append("/home/saep/git/neogit")
+-- vim.opt.runtimepath:append("/home/saep/git/neogit")
 
 vim.g.sexp_mappings = {
   sexp_move_to_prev_top_element = "", -- '[[',
