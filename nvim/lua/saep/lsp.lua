@@ -176,6 +176,18 @@ end
 local host = hostname()
 
 local flakeDir = os.getenv("FLAKE_PATH")
+local nixd_options = {}
+if flakeDir then
+  nixd_options = {
+    nixos = {
+      expr = '(builtins.getFlake "' .. flakeDir .. '").nixosConfigurations.' .. host .. ".options",
+    },
+    home_manager = {
+      expr = '(builtins.getFlake "' .. flakeDir .. '").homeConfigurations.' .. host .. ".options",
+    },
+  }
+end
+
 require("lspconfig").nixd.setup({
   cmd = { "nixd" },
   setttings = {
@@ -186,22 +198,7 @@ require("lspconfig").nixd.setup({
       formatting = {
         command = { "nixfmt" },
       },
-      options = {
-        nixos = {
-          expr = '(builtins.getFlake "'
-            .. flakeDir
-            .. '").nixosConfigurations.'
-            .. host
-            .. ".options",
-        },
-        home_manager = {
-          expr = '(builtins.getFlake "'
-            .. flakeDir
-            .. '").homeConfigurations.'
-            .. host
-            .. ".options",
-        },
-      },
+      options = nixd_options,
     },
   },
   on_attach = on_attach,
