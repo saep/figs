@@ -11,20 +11,6 @@ require("nvim-treesitter.configs").setup({
   autotag = {
     enable = true,
   },
-  textobjects = {
-    select = {
-      enable = true,
-      keymaps = {
-        -- You can use the capture groups defined in textobjects.scm
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
-        ["ac"] = "@class.outer",
-        ["ic"] = "@class.inner",
-        ["ia"] = "@parameter.inner",
-        ["aa"] = "@parameter.outer",
-      },
-    },
-  },
   incremental_selection = {
     enable = true,
     keymaps = {
