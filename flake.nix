@@ -43,7 +43,7 @@
       inherit (self) outputs;
       overlays = [
         nixgl.overlay
-        nur.overlay
+        nur.overlays.default
         (self: super: {
           remmina = super.remmina.overrideAttrs (prev: {
             version = "ecb29e7830037dd3ee618472c80b5e8eaecf1ce0";
