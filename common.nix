@@ -72,7 +72,8 @@
     configFile."nix/nix.conf".text = ''
       experimental-features = nix-command flakes
     '';
-    configFile."nushell/keybindings.nu".source = config.lib.file.mkOutOfStoreSymlink "/home/${username}/${saepfigsDirectory}/nushell/keybindings.nu";
+    configFile."nushell/keybindings.nu".source =
+      config.lib.file.mkOutOfStoreSymlink "/home/${username}/${saepfigsDirectory}/nushell/keybindings.nu";
 
     systemDirs = {
       data = [

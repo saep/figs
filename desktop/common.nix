@@ -24,6 +24,8 @@
       enable = true;
       defaultApplications = {
         "text/*" = "nvim.desktop";
+        "text/plain" = "nvim.desktop";
+        "application/json" = "nvim.desktop";
         "applications/pdf" = "org.pwmt.zathura-pdf-mupdf.desktop";
         "x-scheme-handler/http" = "firefox.desktop";
         "x-scheme-handler/https" = "firefox.desktop";
@@ -49,7 +51,8 @@
         icon = "chromium-browser";
       };
     };
-    configFile."wezterm/wezterm.lua".source = config.lib.file.mkOutOfStoreSymlink "/home/${username}/${saepfigsDirectory}/desktop/wezterm.lua";
+    configFile."wezterm/wezterm.lua".source =
+      config.lib.file.mkOutOfStoreSymlink "/home/${username}/${saepfigsDirectory}/desktop/wezterm.lua";
   };
 
   home.packages =
