@@ -109,12 +109,13 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
+  catppuccin.sddm.enable = true;
+
   # Enable the Plasma 5 Desktop Environment.
   services.displayManager = {
     sddm = {
       enable = true;
       wayland.enable = true;
-      catppuccin.enable = true;
     };
     defaultSession = "plasma";
     autoLogin = {

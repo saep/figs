@@ -13,12 +13,13 @@
   home.homeDirectory = "/home/${username}";
   home.stateVersion = stateVersion;
 
-  xdg.configFile."nvim/".source = config.lib.file.mkOutOfStoreSymlink "/home/${username}/${saepfigsDirectory}/nvim/";
+  xdg.configFile."nvim/".source =
+    config.lib.file.mkOutOfStoreSymlink "/home/${username}/${saepfigsDirectory}/nvim/";
 
+  catppuccin.nvim.enable = false; # incompatible with how I configure neovim
   programs = {
     neovim = {
       enable = true;
-      catppuccin.enable = false; # incompatible with how I configure neovim
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;
