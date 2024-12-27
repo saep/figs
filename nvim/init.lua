@@ -17,6 +17,7 @@ P = function(t)
   return t
 end
 
+require("saep.float")
 require("saep.lsp")
 
 -- vim.opt.runtimepath:append("/home/saep/git/neogit")

@@ -92,6 +92,8 @@ map("yank to clipboard", { "n", "v" }, "Y", [["+y]])
 
 map("previous buffer", "n", "<leader><space>", "<C-^>")
 
+map("floating terminal", { "n", "t" }, "<A-t>", "<Cmd>Floaterminal<CR>")
+
 -- debug and diagnostics
 map("open diagnostics popup", "n", "<leader>dd", vim.diagnostic.open_float)
 map("next", "n", "<leader>dn", vim.diagnostic.goto_next)
