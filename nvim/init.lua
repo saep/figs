@@ -27,6 +27,7 @@ require("snacks").setup({
   notify = { enabled = true },
   scope = { enabled = true },
   scroll = { enabled = true },
+  zen = { enabled = true },
 })
 require("saep.lsp")
 

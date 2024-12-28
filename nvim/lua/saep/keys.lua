@@ -79,6 +79,8 @@ for i = 1, 9 do
   map("window " .. i, "t", "<A-" .. i .. ">", [[<C-\><C-n>]] .. i .. [[<C-w>w]])
 end
 
+map("zen-mode", "n", "<Leader>wz", Snacks.zen.zen)
+
 map("window down", { "t" }, "<A-j>", [[<C-\><C-n><C-w>j]])
 map("window up", { "t" }, "<A-k>", [[<C-\><C-n><C-w>k]])
 map("window right", { "t" }, "<A-l>", [[<C-\><C-n><C-w>l]])
