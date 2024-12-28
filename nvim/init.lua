@@ -18,6 +18,16 @@ P = function(t)
 end
 
 require("saep.float")
+require("snacks").setup({
+  animate = { enabled = true },
+  bigfile = { enabled = true },
+  indent = { enabled = true },
+  input = { enabled = true },
+  notifier = { enabled = true },
+  notify = { enabled = true },
+  scope = { enabled = true },
+  scroll = { enabled = true },
+})
 require("saep.lsp")
 
 -- vim.opt.runtimepath:append("/home/saep/git/neogit")
@@ -32,14 +42,3 @@ vim.g.sexp_mappings = {
   sexp_swap_element_backward = "", -- '<M-h>',
   sexp_swap_element_forward = "", -- '<M-l>',
 }
-
-require("snacks").setup({
-  animate = { enabled = true },
-  bigfile = { enabled = true },
-  indent = { enabled = true },
-  input = { enabled = true },
-  notifier = { enabled = true },
-  notify = { enabled = true },
-  scope = { enabled = true },
-  scroll = { enabled = true },
-})
