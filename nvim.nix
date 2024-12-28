@@ -75,7 +75,6 @@
         telescope-fzf-native-nvim
         telescope-ui-select-nvim
         text-case-nvim
-        toggleterm-nvim
         vim-exchange
         vim-dadbod
         vim-dadbod-ui

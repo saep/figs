@@ -17,7 +17,6 @@ P = function(t)
   return t
 end
 
-require("saep.float")
 require("snacks").setup({
   animate = { enabled = true },
   bigfile = { enabled = true },
@@ -27,6 +26,7 @@ require("snacks").setup({
   notify = { enabled = true },
   scope = { enabled = true },
   scroll = { enabled = true },
+  terminal = { enabled = true },
   zen = { enabled = true },
 })
 require("saep.lsp")
