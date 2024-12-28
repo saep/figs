@@ -34,7 +34,6 @@
         cmp-nvim-lsp
         cmp-nvim-lua
         cmp-path
-        comment-nvim
         conform-nvim
         conjure
         diffview-nvim
