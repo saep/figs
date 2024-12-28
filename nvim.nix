@@ -70,6 +70,7 @@
         plenary-nvim
         rainbow-delimiters-nvim
         render-markdown-nvim
+        snacks
         telescope-nvim
         telescope-fzf-native-nvim
         telescope-ui-select-nvim

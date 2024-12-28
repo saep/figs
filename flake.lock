@@ -364,7 +364,24 @@
         "nixgl": "nixgl",
         "nixpkgs": "nixpkgs_2",
         "nur": "nur",
-        "one-small-step-for-vimkind": "one-small-step-for-vimkind"
+        "one-small-step-for-vimkind": "one-small-step-for-vimkind",
+        "snacks": "snacks"
+      }
+    },
+    "snacks": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1734701557,
+        "narHash": "sha256-Gvd2QfAgrpRxJvZ41LAOPRrDGwVdeZUb8BGrzzcpcHU=",
+        "owner": "folke",
+        "repo": "snacks.nvim",
+        "rev": "98df370703b3c47a297988f3e55ce99628639590",
+        "type": "github"
+      },
+      "original": {
+        "owner": "folke",
+        "repo": "snacks.nvim",
+        "type": "github"
       }
     },
     "systems": {

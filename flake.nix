@@ -26,6 +26,10 @@
       url = "github:jbyuki/one-small-step-for-vimkind";
       flake = false;
     };
+    snacks = {
+      url = "github:folke/snacks.nvim";
+      flake = false;
+    };
   };
 
   outputs =
@@ -38,6 +42,7 @@
       catppuccin,
       neogit,
       one-small-step-for-vimkind,
+      snacks,
     }@inputs:
     let
       inherit (self) outputs;
@@ -66,6 +71,10 @@
             nvim-treesitter-nu = super.vimUtils.buildVimPlugin {
               name = "nvim-treesitter-nu";
               src = super.tree-sitter-grammars.tree-sitter-nu.src;
+            };
+            snacks = super.vimUtils.buildVimPlugin {
+              name = "snacks";
+              src = snacks;
             };
           };
         })
