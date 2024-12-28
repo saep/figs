@@ -87,7 +87,6 @@
         vim-visual-multi
         which-key-nvim
         twilight-nvim
-        zen-mode-nvim
       ];
       extraPackages = with pkgs; [
         curl
