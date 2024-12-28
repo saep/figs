@@ -51,6 +51,8 @@
         icon = "chromium-browser";
       };
     };
+    configFile."ghostty".source =
+      config.lib.file.mkOutOfStoreSymlink "/home/${username}/${saepfigsDirectory}/config/ghostty";
   };
 
   home.packages =

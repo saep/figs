@@ -180,6 +180,7 @@
     systemPackages = with pkgs; [
       (catppuccin-kde.override { flavour = [ "mocha" ]; })
       headsetcontrol
+      inputs.ghostty.packages.x86_64-linux.default
       lsof
       mangohud
       piper
