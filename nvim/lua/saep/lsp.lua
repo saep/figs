@@ -80,17 +80,12 @@ local on_attach = function(client, bufnr)
   end
 end
 
-local capabilities =
-  require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-
-local luaLanguageServer = executableOnPath("lua-language-server")
-  or executableOnPath("lua-language-server.sh")
-
-if luaLanguageServer ~= nil then
-  require("lspconfig")["lua_ls"].setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
-    cmd = { luaLanguageServer },
+local lsp_server_opts = {
+  lua_ls = {
+    can_start = function()
+      return executableOnPath("lua-language-server")
+    end,
+    cmd = { "lua-language-server" },
     settings = {
       Lua = {
         runtime = {
@@ -124,45 +119,60 @@ if luaLanguageServer ~= nil then
         },
       },
     },
-  })
-end
-
-require("lspconfig").bashls.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
-
-require("lspconfig").clojure_lsp.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
-
-require("lspconfig").elmls.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
-
-require("lspconfig").gopls.setup({
-  on_attach = on_attach,
-  settings = {
-    gopls = {
-      gofumpt = true,
+  },
+  bashls = {},
+  clojure_lsp = {},
+  gopls = {
+    settings = {
+      gopls = {
+        gofumpt = true,
+      },
     },
   },
-})
-
-if executableOnPath("tailwindcss-language-server") then
-  require("lspconfig").tailwindcss.setup({
-    on_attach = on_attach,
-  })
-end
-
-if executableOnPath("ngserver") then
-  require("lspconfig").angularls.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-  })
-end
+  tailwindcss = {
+    can_start = function()
+      return executableOnPath("tailwindcss-language-server")
+    end,
+  },
+  angularls = {
+    can_start = function()
+      return executableOnPath("ngserver")
+    end,
+  },
+  nushell = {},
+  ts_ls = {},
+  eslint = {},
+  gleam = {},
+  html = {},
+  cssls = {},
+  hls = {
+    filetypes = { "haskell", "lhaskell", "cabal" },
+    settings = {
+      haskell = {
+        formattingProvider = "fourmolu",
+        plugin = {
+          fourmolu = {
+            config = {
+              external = true,
+            },
+          },
+        },
+      },
+    },
+  },
+  rust_analyzer = {
+    settings = {
+      ["rust-analyzer"] = {
+        diagnostics = {
+          enable = true,
+        },
+        cargo = {
+          features = "all,",
+        },
+      },
+    },
+  },
+}
 
 local function hostname()
   local f = io.popen("uname -n")
@@ -188,7 +198,7 @@ if flakeDir then
   }
 end
 
-require("lspconfig").nixd.setup({
+lsp_server_opts["nixd"] = {
   cmd = { "nixd" },
   setttings = {
     nixd = {
@@ -201,73 +211,16 @@ require("lspconfig").nixd.setup({
       options = nixd_options,
     },
   },
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
+}
 
-require("lspconfig").nushell.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
-
-require("lspconfig").ts_ls.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
-
-require("lspconfig").eslint.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
-
-require("lspconfig").gleam.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
-
-require("lspconfig").html.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
-
-require("lspconfig").cssls.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-})
-
-require("lspconfig").dhall_lsp_server.setup({
-  on_attach = on_attach,
-})
-
-require("lspconfig")["hls"].setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  filetypes = { "haskell", "lhaskell", "cabal" },
-  settings = {
-    haskell = {
-      formattingProvider = "fourmolu",
-      plugin = {
-        fourmolu = {
-          config = {
-            external = true,
-          },
-        },
-      },
-    },
-  },
-})
-
-require("lspconfig").rust_analyzer.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    ["rust-analyzer"] = {
-      diagnostics = {
-        enable = true,
-      },
-      cargo = {
-        features = "all,",
-      },
-    },
-  },
-})
+local cmp_nvim_lsp = require("cmp_nvim_lsp")
+local lspconfig = require("lspconfig")
+for server, config in pairs(lsp_server_opts) do
+  if not config.can_start or config.can_start() then
+    config.can_start = nil
+    config.capabilities =
+      cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
+    config.on_attach = on_attach
+    lspconfig[server].setup(config)
+  end
+end
