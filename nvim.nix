@@ -53,7 +53,6 @@
         nvim-lspconfig
         nvim-surround
         (nvim-treesitter.withPlugins (_: nvim-treesitter.allGrammars))
-        nvim-treesitter-textobjects
         nvim-treesitter-context
         nvim-ts-autotag
         nvim-web-devicons
