@@ -72,10 +72,6 @@
               name = "one-small-step-for-vimkind";
               src = one-small-step-for-vimkind;
             };
-            nvim-treesitter-nu = super.vimUtils.buildVimPlugin {
-              name = "nvim-treesitter-nu";
-              src = super.tree-sitter-grammars.tree-sitter-nu.src;
-            };
             snacks = super.vimUtils.buildVimPlugin {
               name = "snacks";
               src = snacks;

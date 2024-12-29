@@ -52,15 +52,8 @@
         nvim-lint
         nvim-lspconfig
         nvim-surround
-        (nvim-treesitter.withPlugins (
-          _:
-          nvim-treesitter.allGrammars
-          ++ [
-            pkgs.tree-sitter-grammars.tree-sitter-nu
-          ]
-        ))
+        (nvim-treesitter.withPlugins (_: nvim-treesitter.allGrammars))
         nvim-treesitter-textobjects
-        nvim-treesitter-nu
         nvim-treesitter-context
         nvim-ts-autotag
         nvim-web-devicons
