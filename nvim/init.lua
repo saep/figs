@@ -22,6 +22,7 @@ require("snacks").setup({
   bigfile = { enabled = true },
   indent = { enabled = true },
   input = { enabled = true },
+  git = { enabled = true },
   notifier = { enabled = true },
   notify = { enabled = true },
   scope = { enabled = true },

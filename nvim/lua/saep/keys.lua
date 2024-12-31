@@ -172,6 +172,7 @@ end)
 
 map("neogit", "n", "<leader>gg", "<cmd>Neogit<cr>")
 map("neogit", "n", "<leader>gl", "<cmd>Neogit log<cr>")
+map("blame line", { "n", "v" }, "<leader>gb", Snacks.git.blame_line)
 
 local http_group = vim.api.nvim_create_augroup("http_autocommands", { clear = true })
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
