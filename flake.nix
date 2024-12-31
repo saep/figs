@@ -26,10 +26,6 @@
       url = "github:jbyuki/one-small-step-for-vimkind";
       flake = false;
     };
-    snacks = {
-      url = "github:folke/snacks.nvim";
-      flake = false;
-    };
   };
 
   outputs =
@@ -42,7 +38,6 @@
       catppuccin,
       neogit,
       one-small-step-for-vimkind,
-      snacks,
     }@inputs:
     let
       inherit (self) outputs;
@@ -67,10 +62,6 @@
             one-small-step-for-vimkind = super.vimUtils.buildVimPlugin {
               name = "one-small-step-for-vimkind";
               src = one-small-step-for-vimkind;
-            };
-            snacks = super.vimUtils.buildVimPlugin {
-              name = "snacks";
-              src = snacks;
             };
           };
         })

@@ -61,7 +61,7 @@
         plenary-nvim
         rainbow-delimiters-nvim
         render-markdown-nvim
-        snacks
+        snacks-nvim
         telescope-nvim
         telescope-fzf-native-nvim
         telescope-ui-select-nvim
