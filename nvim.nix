@@ -135,15 +135,6 @@
 
         imagemagick
       ];
-      extraLuaPackages =
-        luaPkgs: with luaPkgs; [
-          # nvim-rest dependencies
-          lua-curl
-          nvim-nio
-          magick
-          mimetypes
-          xml2lua
-        ];
     };
   };
 }
