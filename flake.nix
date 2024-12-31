@@ -18,9 +18,6 @@
     catppuccin = {
       url = "github:catppuccin/nix";
     };
-    ghostty = {
-      url = "github:ghostty-org/ghostty";
-    };
     neogit = {
       url = "github:NeogitOrg/neogit";
       flake = false;
@@ -43,7 +40,6 @@
       home-manager,
       nixgl,
       catppuccin,
-      ghostty,
       neogit,
       one-small-step-for-vimkind,
       snacks,
