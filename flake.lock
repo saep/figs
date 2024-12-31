@@ -197,22 +197,6 @@
         "type": "github"
       }
     },
-    "neogit": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1735079892,
-        "narHash": "sha256-BNYvOc67293izb8/JXQOs+leKx7+rowHWaVrtGQNM4c=",
-        "owner": "NeogitOrg",
-        "repo": "neogit",
-        "rev": "9ea60f79e370d8f4847efc145e53afe4b0613fc1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NeogitOrg",
-        "repo": "neogit",
-        "type": "github"
-      }
-    },
     "nixgl": {
       "inputs": {
         "flake-utils": "flake-utils_2",
@@ -360,28 +344,10 @@
       "inputs": {
         "catppuccin": "catppuccin",
         "home-manager": "home-manager_2",
-        "neogit": "neogit",
         "nixgl": "nixgl",
         "nixpkgs": "nixpkgs_2",
         "nur": "nur",
-        "one-small-step-for-vimkind": "one-small-step-for-vimkind",
-        "snacks": "snacks"
-      }
-    },
-    "snacks": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1735622661,
-        "narHash": "sha256-wvd3Hb5of/luB6/Psw4SLcxl9h9NnpTPOqw57jY8Ufc=",
-        "owner": "folke",
-        "repo": "snacks.nvim",
-        "rev": "d312053f78b4fb55523def179ac502438dd93193",
-        "type": "github"
-      },
-      "original": {
-        "owner": "folke",
-        "repo": "snacks.nvim",
-        "type": "github"
+        "one-small-step-for-vimkind": "one-small-step-for-vimkind"
       }
     },
     "systems": {

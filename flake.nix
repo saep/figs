@@ -18,10 +18,6 @@
     catppuccin = {
       url = "github:catppuccin/nix";
     };
-    neogit = {
-      url = "github:NeogitOrg/neogit";
-      flake = false;
-    };
     one-small-step-for-vimkind = {
       url = "github:jbyuki/one-small-step-for-vimkind";
       flake = false;
@@ -36,7 +32,6 @@
       home-manager,
       nixgl,
       catppuccin,
-      neogit,
       one-small-step-for-vimkind,
     }@inputs:
     let
@@ -55,10 +50,6 @@
             };
           });
           vimPlugins = super.vimPlugins // {
-            neogit = super.vimUtils.buildVimPlugin {
-              name = "neogit";
-              src = neogit;
-            };
             one-small-step-for-vimkind = super.vimUtils.buildVimPlugin {
               name = "one-small-step-for-vimkind";
               src = one-small-step-for-vimkind;
