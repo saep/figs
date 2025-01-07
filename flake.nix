@@ -18,10 +18,6 @@
     catppuccin = {
       url = "github:catppuccin/nix";
     };
-    one-small-step-for-vimkind = {
-      url = "github:jbyuki/one-small-step-for-vimkind";
-      flake = false;
-    };
   };
 
   outputs =
@@ -32,21 +28,12 @@
       home-manager,
       nixgl,
       catppuccin,
-      one-small-step-for-vimkind,
     }@inputs:
     let
       inherit (self) outputs;
       overlays = [
         nixgl.overlay
         nur.overlays.default
-        (self: super: {
-          vimPlugins = super.vimPlugins // {
-            one-small-step-for-vimkind = super.vimUtils.buildVimPlugin {
-              name = "one-small-step-for-vimkind";
-              src = one-small-step-for-vimkind;
-            };
-          };
-        })
       ];
     in
     rec {
