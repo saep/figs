@@ -40,15 +40,6 @@
         nixgl.overlay
         nur.overlays.default
         (self: super: {
-          remmina = super.remmina.overrideAttrs (prev: {
-            version = "ecb29e7830037dd3ee618472c80b5e8eaecf1ce0";
-            src = super.fetchFromGitLab {
-              owner = "Remmina";
-              repo = "Remmina";
-              rev = "ecb29e7830037dd3ee618472c80b5e8eaecf1ce0";
-              hash = "sha256-u+ysAFi7I7nXIiAw7VCmHbqgtRoZgkPnRfy/Mnl1b2g=";
-            };
-          });
           vimPlugins = super.vimPlugins // {
             one-small-step-for-vimkind = super.vimUtils.buildVimPlugin {
               name = "one-small-step-for-vimkind";
