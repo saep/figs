@@ -179,6 +179,9 @@
     pathsToLink = [ "/share/bash-completion" ];
     systemPackages = with pkgs; [
       (catppuccin-kde.override { flavour = [ "mocha" ]; })
+      dive # look into docker images
+      podman-tui
+      podman-compose
       headsetcontrol
       lsof
       mangohud
@@ -231,12 +234,13 @@
 
   virtualisation = {
     libvirtd.enable = true;
-    docker = {
+    containers.enable = true;
+    podman = {
       enable = true;
-      rootless = {
-        enable = true;
-        setSocketVariable = true;
-      };
+      # docker alias
+      dockerCompat = true;
+      # Required so that podman-compose containers can talk to each other
+      defaultNetwork.settings.dns_enabled = true;
     };
   };
 
