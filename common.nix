@@ -25,29 +25,20 @@
     # command line utilities
     age # encrypt things with SSH-Keys
     babashka # bash, but clojure
-    bat # should have been rat
     borgbackup
-    bottom # similar to htop
-    btop # similar to htop
     curl
     delta # diff
-    difftastic # diff
     du-dust # similar to du
     duckdb
-    fd # similar to find
     gnumake
     graphviz
-    htop
     hyperfine # similar to time
 
     inotify-tools
     isa-l # igzip is a really fast gzip
-    jq
     yq-go
     mprocs # tmux-esque for long running processes
     procs # similar to ps
-    ripgrep # similar to grep
-    tealdeer # common examples instead of man page
     trash-cli
     tokei # similar to cloc (count lines of code)
     wakeonlan
@@ -110,6 +101,8 @@
         ];
       };
     };
+    bat.enable = true;
+    btop.enable = true;
     readline = {
       enable = false; # carapace should handle completions
       variables = {
@@ -176,6 +169,7 @@
         unset LIBGL_DRIVERS_PATH
       '';
     };
+    bottom.enable = true;
     broot = {
       enable = true;
       settings = {
@@ -219,6 +213,7 @@
     direnv = {
       enable = true;
     };
+    fd.enable = true;
     fzf = {
       enable = true;
       changeDirWidgetCommand = "fd --type d";
@@ -331,6 +326,10 @@
       };
     };
 
+    htop.enable = true;
+
+    jq.enable = true;
+
     nushell =
       let
         editor = "/home/${username}/.nix-profile/bin/nvim";
@@ -353,7 +352,7 @@
           e = "${editor}";
         };
       };
-
+    ripgrep.enable = true;
     starship = {
       enable = true;
       settings = {
@@ -369,6 +368,8 @@
         ${lib.strings.fileContents ./zsh/zshrc}
       '';
     };
+
+    tealdeer.enable = true;
 
     tmux = {
       enable = true;
