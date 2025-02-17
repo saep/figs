@@ -349,6 +349,8 @@
           source ${pkgs.nu_scripts}/share/nu_scripts/themes/nu-themes/catppuccin-mocha.nu
         '';
         shellAliases = {
+          c = "docker compose";
+          d = "docker";
           e = "${editor}";
         };
       };
