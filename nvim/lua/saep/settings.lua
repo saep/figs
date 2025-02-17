@@ -46,7 +46,7 @@ vim.api.nvim_create_autocmd({ "BufReadPost" }, {
   pattern = "*",
 })
 
-local terminal_open_augroup = vim.api.nvim_create_augroup("terminal_open", {})
+local terminal_open_enter_augroup = vim.api.nvim_create_augroup("terminal_open_enter", {})
 vim.api.nvim_create_autocmd({ "TermOpen" }, {
   callback = function()
     vim.opt_local.number = false
@@ -55,7 +55,15 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
     vim.cmd(":startinsert")
   end,
   desc = "Disable line numbers in terminal windows",
-  group = terminal_open_augroup,
+  group = terminal_open_enter_augroup,
+  pattern = "*",
+})
+vim.api.nvim_create_autocmd({ "TermEnter" }, {
+  callback = function()
+    vim.cmd(":startinsert")
+  end,
+  desc = "Enter insert mode when switching to existing terminal window",
+  group = terminal_open_enter_augroup,
   pattern = "*",
 })
 
