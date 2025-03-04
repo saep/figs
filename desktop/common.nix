@@ -222,5 +222,13 @@
       enable = true;
       multimediaKeys = true;
     };
+    pueue = {
+      enable = true;
+      settings = {
+        daemon = {
+          default_parallel_tasks = 6;
+        };
+      };
+    };
   };
 }
