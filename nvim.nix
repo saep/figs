@@ -16,6 +16,15 @@
   xdg.configFile."nvim/".source =
     config.lib.file.mkOutOfStoreSymlink "/home/${username}/${saepfigsDirectory}/nvim/";
 
+  xdg.configFile."vale/.vale.ini".text = ''
+    MinAlertLevel = suggestion
+
+    Packages = Google, write-good
+
+    [*.{md,rst}]
+    BasedOnStyles = Vale, Google, write-good
+  '';
+
   catppuccin.nvim.enable = false; # incompatible with how I configure neovim
   programs = {
     neovim = {
