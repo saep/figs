@@ -81,9 +81,24 @@ map("window up", { "t" }, "<A-k>", [[<C-\><C-n><C-w>k]])
 map("window right", { "t" }, "<A-l>", [[<C-\><C-n><C-w>l]])
 map("window left", { "t" }, "<A-h>", [[<C-\><C-n><C-w>h]])
 
+local create_tabs_up_to = function(n)
+  local tab_pages = vim.api.nvim_list_tabpages()
+  while #tab_pages < n do
+    vim.cmd.tabnew()
+    tab_pages = vim.api.nvim_list_tabpages()
+  end
+end
+
 for i = 1, 9 do
-  map("tab " .. i, { "i", "n", "v" }, "<A-" .. i .. ">", i .. "gt")
-  map("tab " .. i, { "t" }, "<A-" .. i .. ">", [[<C-\><C-n>]] .. i .. "gt")
+  map("tab " .. i, { "i", "n", "v" }, "<A-" .. i .. ">", function()
+    create_tabs_up_to(i)
+    vim.api.nvim_feedkeys(i .. "gt", "n", true)
+  end)
+  map("tab " .. i, { "t" }, "<A-" .. i .. ">", function()
+    create_tabs_up_to(i)
+    local key = vim.api.nvim_replace_termcodes([[<C-\><C-n>]] .. i .. "gt", true, false, true)
+    vim.api.nvim_feedkeys(key, "n", false)
+  end)
 end
 
 map("yank to clipboard", { "n", "v" }, "Y", [["+y]])
