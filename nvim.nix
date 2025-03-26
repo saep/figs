@@ -58,6 +58,7 @@
         nvim-dap
         one-small-step-for-vimkind
         nvim-dap-ui
+        nvim-jdtls # java language server helper plugin
         nvim-lint
         nvim-lspconfig
         nvim-surround
@@ -141,6 +142,9 @@
 
         # postgres
         pgformatter
+
+        # java
+        jdt-language-server
 
         imagemagick
       ];
