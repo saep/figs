@@ -66,5 +66,14 @@ vim.api.nvim_create_autocmd({ "TermEnter" }, {
   group = terminal_open_enter_augroup,
   pattern = "*",
 })
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+  callback = function()
+    if vim.o.buftype == "terminal" then
+      vim.cmd(":startinsert")
+    end
+  end,
+  desc = "Enter inser mode when switching to existing terminal window",
+  pattern = "*",
+})
 
 return {}
