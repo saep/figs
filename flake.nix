@@ -67,7 +67,7 @@
         "saep@swaep" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = with hmModules; [
-            catppuccin.homeManagerModules.catppuccin
+            catppuccin.homeModules.catppuccin
             common
             nvim
             desktop.common
@@ -102,7 +102,7 @@
                   home.homeDirectory = "/home/${username}";
                   home.stateVersion = home-manager-state-version;
                   imports = with hmModules; [
-                    catppuccin.homeManagerModules.catppuccin
+                    catppuccin.homeModules.catppuccin
                     common
                     desktop.common
                     nvim
