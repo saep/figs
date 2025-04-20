@@ -115,8 +115,12 @@ end)
 
 -- debug and diagnostics
 map("open diagnostics popup", "n", "<leader>dd", vim.diagnostic.open_float)
-map("next", "n", "<leader>dn", vim.diagnostic.goto_next)
-map("previous", "n", "<leader>dp", vim.diagnostic.goto_prev)
+map("next", "n", "<leader>dn", function()
+  vim.diagnostic.jump({ count = 1, float = true })
+end)
+map("previous", "n", "<leader>dp", function()
+  vim.diagnostic.jump({ count = -1, float = true })
+end)
 map("open diagnostics in location list", "n", "<leader>dq", vim.diagnostic.setloclist)
 
 map("set breakpoint", "n", "<Leader>db", require("dap").toggle_breakpoint)
@@ -160,8 +164,12 @@ map("loclist prev", "n", "[l", function()
   vim.api.nvim_command("lprevious")
 end)
 
-map("diagnostic next", "n", "]e", vim.diagnostic.goto_next)
-map("diagnostic prev", "n", "[e", vim.diagnostic.goto_prev)
+map("diagnostic next", "n", "]e", function()
+  vim.diagnostic.jump({ count = 1, float = true })
+end)
+map("diagnostic prev", "n", "[e", function()
+  vim.diagnostic.jump({ count = -1, float = true })
+end)
 
 map("oi", "n", "-", require("oil").open)
 
