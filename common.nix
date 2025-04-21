@@ -172,7 +172,7 @@
     };
     bottom.enable = true;
     broot = {
-      enable = true;
+      enable = false;
       settings = {
         syntax_theme = "MochaDark";
         verbs = [
