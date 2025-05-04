@@ -27,3 +27,4 @@ local config = {
   },
 }
 require("jdtls").start_or_attach(config)
+require("saep.lsp").on_attach(nil, vim.api.nvim_get_current_buf())
