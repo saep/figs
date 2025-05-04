@@ -65,8 +65,8 @@ local on_attach = function(client, bufnr)
       vim.lsp.buf.list_workspace_folders,
       opts("list workspace folders")
     )
-    vim.keymap.set({ "n" }, "<Leader>ll", vim.lsp.codelens.run, opts("code lens"))
-    vim.keymap.set({ "n" }, "<Leader>lf", function()
+    vim.keymap.set({ "n", "v" }, "<Leader>ll", vim.lsp.codelens.run, opts("code lens"))
+    vim.keymap.set({ "n", "v" }, "<Leader>lf", function()
       vim.lsp.buf.format({ async = false })
     end, opts("format buffer"))
     vim.keymap.set({ "n" }, "<Leader>ld", vim.lsp.buf.definition, opts("definition"))
@@ -76,7 +76,7 @@ local on_attach = function(client, bufnr)
     vim.keymap.set({ "n" }, "<Leader>lr", vim.lsp.buf.rename, opts("rename"))
     vim.keymap.set({ "n" }, "<Leader>lt", vim.lsp.buf.type_definition, opts("type definition"))
     vim.keymap.set({ "n" }, "<Leader>lu", vim.lsp.buf.references, opts("usages"))
-    vim.keymap.set({ "n" }, "<Leader>lc", vim.lsp.buf.code_action, opts("code action"))
+    vim.keymap.set({ "n", "v" }, "<Leader>lc", vim.lsp.buf.code_action, opts("code action"))
   end
 end
 
@@ -224,3 +224,7 @@ for server, config in pairs(lsp_server_opts) do
     lspconfig[server].setup(config)
   end
 end
+
+return {
+  on_attach = on_attach,
+}
