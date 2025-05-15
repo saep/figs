@@ -61,7 +61,7 @@
   };
   services.ratbagd.enable = true; # piper mouse
 
-  security.sudo = {
+  security.sudo-rs = {
     enable = true;
     extraRules = [
       {
