@@ -1,5 +1,5 @@
 require("neogit").setup({
-  kind = "floating",
+  kind = "tab",
   disable_hint = true,
   graph_style = "unicode",
   mappings = {
