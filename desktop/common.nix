@@ -53,6 +53,8 @@
     };
     configFile."ghostty".source =
       config.lib.file.mkOutOfStoreSymlink "/home/${username}/${saepfigsDirectory}/config/ghostty";
+    configFile."wezterm/wezterm.lua".source =
+      config.lib.file.mkOutOfStoreSymlink "/home/${username}/${saepfigsDirectory}/desktop/wezterm.lua";
   };
 
   home.packages =
@@ -79,6 +81,8 @@
       pkgs.nerd-fonts.hasklug
       pkgs.nerd-fonts.droid-sans-mono
     ];
+
+  catppuccin.wezterm.enable = false; # builtin
 
   programs = {
     chromium = {
@@ -142,6 +146,23 @@
         };
       };
     };
+    wezterm = {
+      enable = true; # currently broken https://github.com/wez/wezterm/issues/5990
+      # error message when trying to source non-existent file
+      enableBashIntegration = false;
+      enableZshIntegration = false;
+      package =
+        if isNixos then
+          pkgs.wezterm
+        else
+          let
+            wrapper = pkgs.nixgl.nixGLIntel;
+          in
+          pkgs.writeShellScriptBin "wezterm" ''
+            ${wrapper}/bin/nixGLIntel ${pkgs.wezterm}/bin/wezterm "$@"
+          '';
+    };
+
     # kitty {{{2
     kitty = {
       enable = true;
