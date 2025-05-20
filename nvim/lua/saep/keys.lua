@@ -105,12 +105,11 @@ map("yank to clipboard", { "n", "v" }, "Y", [["+y]])
 
 map("previous buffer", "n", "<leader><space>", "<C-^>")
 
--- map("floating terminal", { "n", "t" }, "<A-f>", "<Cmd>Floaterminal<CR>")
 map("floating terminal", { "n", "t" }, "<A-f>", function()
-  Snacks.terminal("nu")
+  Snacks.terminal.toggle("nu")
 end)
 map("bottom terminal", { "n", "t" }, "<A-t>", function()
-  Snacks.terminal()
+  Snacks.terminal.toggle()
 end)
 
 -- debug and diagnostics
