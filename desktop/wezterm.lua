@@ -9,7 +9,7 @@ config.enable_tab_bar = true
 config.show_new_tab_button_in_tab_bar = false
 config.warn_about_missing_glyphs = false
 config.disable_default_key_bindings = false
-config.leader = { key = "f", mods = "ALT", timeout_milliseconds = 1000 }
+config.leader = { key = "a", mods = "ALT", timeout_milliseconds = 1000 }
 config.keys = {
   { key = "f", mods = "LEADER|ALT", action = act.SendKey({ key = "f", mods = "ALT" }) },
   { key = "C", mods = "SHIFT|CTRL", action = act.CopyTo("Clipboard") },
