@@ -45,10 +45,10 @@ nnoremap <Leader>tt :action RunClass<CR>
 nnoremap <Leader>z :action CompileDirty<CR>
 nnoremap <Leader>wc :action CloseEditor<CR>
 
-nnroremap <Leader>wl <C-w>l
-nnroremap <Leader>wk <C-w>k
-nnroremap <Leader>wj <C-w>j
-nnroremap <Leader>wh <C-w>h
+nnoremap <Leader>wl <C-w>l
+nnoremap <Leader>wk <C-w>k
+nnoremap <Leader>wj <C-w>j
+nnoremap <Leader>wh <C-w>h
 
 nnoremap gii :action Inline<CR>
 nnoremap gic :action IntroduceConstant<CR>
