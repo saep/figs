@@ -69,26 +69,6 @@ nnoremap gmr :action Maven.Reimport<CR>
 nnoremap [e :action GotoPreviousError<CR>
 nnoremap ]e :action GotoNextError<CR>
 
-nnoremap ]1 :action GotoBookmark1<CR>
-nnoremap ]2 :action GotoBookmark2<CR>
-nnoremap ]3 :action GotoBookmark3<CR>
-nnoremap ]4 :action GotoBookmark4<CR>
-nnoremap ]5 :action GotoBookmark5<CR>
-nnoremap ]6 :action GotoBookmark6<CR>
-nnoremap ]7 :action GotoBookmark7<CR>
-nnoremap ]8 :action GotoBookmark8<CR>
-nnoremap ]9 :action GotoBookmark9<CR>
-
-nnoremap [1 :action ToggleBookmark1<CR>
-nnoremap [2 :action ToggleBookmark2<CR>
-nnoremap [3 :action ToggleBookmark3<CR>
-nnoremap [4 :action ToggleBookmark4<CR>
-nnoremap [5 :action ToggleBookmark5<CR>
-nnoremap [6 :action ToggleBookmark6<CR>
-nnoremap [7 :action ToggleBookmark7<CR>
-nnoremap [8 :action ToggleBookmark8<CR>
-nnoremap [9 :action ToggleBookmark9<CR>
-
 nnoremap <A-h> <C-w>h
 nnoremap <A-l> <C-w>l
 nnoremap <A-k> <C-w>k
