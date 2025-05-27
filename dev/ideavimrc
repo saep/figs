@@ -27,6 +27,8 @@ vnoremap <CR> :action ShowIntentionActions<CR>
 nnoremap <CR> :action ShowIntentionActions<CR>
 
 nnoremap <Leader>b :action RecentFiles<CR>
+nnoremap <C-e> :action RecentFiles<CR>
+inoremap <C-e> :action RecentFiles<CR>
 nnoremap <Leader>c :action GotoClass<CR>
 nnoremap <Leader>s :action ChangeSignature<CR>
 nnoremap <Leader>r :action RenameElement<CR>
