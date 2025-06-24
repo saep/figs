@@ -24,6 +24,7 @@
   home.packages = with pkgs; [
     # command line utilities
     age # encrypt things with SSH-Keys
+    ast-grep # grep for source code
     babashka # bash, but clojure
     borgbackup
     curl
