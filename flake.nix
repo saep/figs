@@ -6,6 +6,7 @@
     # nixpkgs.url = "git+file:///home/saep/git/nixpkgs";
     nur = {
       url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -17,6 +18,7 @@
     };
     catppuccin = {
       url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
