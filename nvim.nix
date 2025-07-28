@@ -97,11 +97,12 @@
         shellcheck
         nodePackages.bash-language-server
 
-        # html/css
-        nodePackages.vscode-langservers-extracted
+        # html/css/json
+        vscode-langservers-extracted
 
-        # json
-        nodePackages.vscode-json-languageserver
+        # typescript
+        deno
+        typescript-language-server
 
         # markdown
         comrak
