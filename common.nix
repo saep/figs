@@ -322,6 +322,7 @@
         ".classpath"
         ".project"
         ".settings/"
+        ".factorypath"
 
         # Java
         "target/"
