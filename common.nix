@@ -17,6 +17,7 @@
     enable = true;
     flavor = "mocha";
     accent = "blue";
+    firefox.profiles.default.enable = false;
   };
 
   fonts.fontconfig.enable = true;
