@@ -46,7 +46,7 @@
         conform-nvim
         conjure
         diffview-nvim
-        fzf-lua # for neogit
+        fzf-lua
         image-nvim
         leap-nvim
         lualine-nvim
@@ -72,9 +72,6 @@
         rainbow-delimiters-nvim
         render-markdown-nvim
         snacks-nvim
-        telescope-nvim
-        telescope-fzf-native-nvim
-        telescope-ui-select-nvim
         text-case-nvim
         vim-exchange
         vim-dadbod
