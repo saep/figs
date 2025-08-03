@@ -212,6 +212,7 @@
     };
     carapace = {
       enable = true;
+      enableNushellIntegration = false; # done manually to hide deprecations
     };
     direnv = {
       enable = true;
@@ -350,6 +351,11 @@
         configFile.source = ./nushell/config.nu;
         extraConfig = ''
           source ${pkgs.nu_scripts}/share/nu_scripts/themes/nu-themes/catppuccin-mocha.nu
+          source ${
+            pkgs.runCommand "carapace-nushell-config.nu" { } ''
+              ${pkgs.carapace}/bin/carapace _carapace nushell | sed 's|"/homeless-shelter|$"($env.HOME)|g' | sed 's|get -i |get --optional |g' >> "$out"
+            ''
+          }
         '';
         shellAliases = {
           c = "docker compose";
