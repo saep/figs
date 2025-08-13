@@ -229,6 +229,15 @@
         "--preview '${pkgs.bat}/bin/bat --force-colorization --paging=never --line-range :100 {}'"
       ];
     };
+    jujutsu = {
+      enable = true;
+      settings = {
+        user = {
+          email = "saep@saep.rocks";
+          name = "Sebastian Witte";
+        };
+      };
+    };
     git = {
       enable = true;
       delta.enable = true;
