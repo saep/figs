@@ -32,6 +32,7 @@
     delta # diff
     du-dust # similar to du
     duckdb
+    erdtree # tree
     gnumake
     graphviz
     hyperfine # similar to time
