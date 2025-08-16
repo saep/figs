@@ -44,3 +44,5 @@ vim.g.sexp_mappings = {
   sexp_swap_element_backward = "", -- '<M-h>',
   sexp_swap_element_forward = "", -- '<M-l>',
 }
+
+vim.api.nvim_create_user_command("Q", ":quit", {})
