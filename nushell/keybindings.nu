@@ -36,4 +36,36 @@ let keybindings = [
           }
         ]
       }
+      {
+        name: fuzzy_directory
+        modifier: alt
+        keycode: char_c
+        mode: [emacs, vi_normal, vi_insert]
+        event: [
+          {
+            send: ExecuteHostCommand
+            cmd: "
+              let fzf_alt_c_command = \$\"($env.FZF_ALT_C_COMMAND) | fzf ($env.FZF_ALT_C_OPTS)\";
+              let result = nu -c $fzf_alt_c_command;
+              cd $result;
+            "
+          }
+        ]
+      }
+      {
+        name: fuzzy_file
+        modifier: control
+        keycode: char_t
+        mode: [emacs, vi_normal, vi_insert]
+        event: [
+          {
+            send: ExecuteHostCommand
+            cmd: "
+              let fzf_ctrl_t_command = \$\"($env.FZF_CTRL_T_COMMAND) | fzf ($env.FZF_CTRL_T_OPTS)\";
+              let result = nu -c $fzf_ctrl_t_command;
+              commandline edit --insert $result
+            "
+          }
+        ]
+      }
 ] 

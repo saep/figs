@@ -225,7 +225,7 @@
       changeDirWidgetOptions = [
         "--preview '${pkgs.erdtree}/bin/erd --color force --icons --human --hidden --truncate {}'"
       ];
-      fileWidgetCommand = "${pkgs.fd}/bin/fd --type f";
+      fileWidgetCommand = "${pkgs.fd}/bin/fd --type file --hidden";
       fileWidgetOptions = [
         "--preview '${pkgs.bat}/bin/bat --force-colorization --paging=never --line-range :100 {}'"
       ];
