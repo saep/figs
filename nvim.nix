@@ -65,6 +65,7 @@
         (nvim-treesitter.withPlugins (_: nvim-treesitter.allGrammars))
         nvim-treesitter-context
         nvim-ts-autotag
+        nvim-unception
         nvim-web-devicons
         oil-nvim
         rest-nvim
