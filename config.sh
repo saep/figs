@@ -18,12 +18,7 @@ elif [ -z "$host" ]; then
   exit 1
 fi
 
-if [ "$WSL_DISTRO_NAME" = "nixos" ] && [ "$(hostname)" = "Monoid" ]; then
-  activationPackage=".#homeConfigurations."${user}@nixos-wsl".activationPackage"
-else
-  activationPackage=".#homeConfigurations."${user}@${host}".activationPackage"
-fi
-
+activationPackage=".#homeConfigurations."${user}@${host}".activationPackage"
 
 build() {
   if ! nix build \
