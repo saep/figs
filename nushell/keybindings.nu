@@ -19,6 +19,7 @@ let keybindings = [
             cmd: "do {
               commandline edit --replace (
                 history
+                | where exit_status == 0
                 | get command
                 | reverse
                 | uniq
