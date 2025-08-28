@@ -18,12 +18,10 @@
       devShells."x86_64-linux".default = pkgs.mkShell {
         buildInputs = with pkgs; [
           bacon
-          bunyan-rs
           cargo
           cargo-edit
           cargo-nextest
           clippy
-          comrak
           rust-analyzer
           rustc
         ];
