@@ -145,6 +145,8 @@
         jdt-language-server
 
         imagemagick
+
+        xmlstarlet
       ];
     };
   };

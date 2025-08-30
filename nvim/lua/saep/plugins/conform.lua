@@ -9,6 +9,7 @@ require("conform").setup({
     nix = { "nixfmt" },
     rust = { "rustfmt", lsp_format = "fallback" },
     sql = { "pg_format" },
+    xml = { "my_xml" },
   },
   format_on_save = function(bufnr)
     -- Disable with a global or buffer-local variable
@@ -21,6 +22,10 @@ require("conform").setup({
     my_comrak = {
       command = "comrak",
       args = { "--to", "commonmark", "--gfm", "--width", "80" },
+    },
+    my_xml = {
+      command = "xmlstarlet",
+      args = { "fo" },
     },
   },
 })
