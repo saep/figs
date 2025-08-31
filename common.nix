@@ -45,6 +45,7 @@
     trash-cli
     tokei # similar to cloc (count lines of code)
     wakeonlan
+    unzip
     zip
 
     nu_scripts
