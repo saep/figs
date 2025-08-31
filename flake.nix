@@ -107,6 +107,7 @@
                     catppuccin.homeModules.catppuccin
                     common
                     desktop.common
+                    dev.java
                     nvim
                     private
                     misc.syncthing
