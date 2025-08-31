@@ -76,4 +76,6 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
   pattern = "*",
 })
 
+require("fzf-lua").register_ui_select()
+
 return {}
