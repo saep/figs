@@ -31,4 +31,8 @@
         config.lib.file.mkOutOfStoreSymlink "${ext.vscode-java-test}/share/${vs-ext}/vscjava.vscode-java-test";
     };
 
+  home.packages = with pkgs; [
+    openjdk
+    jbang
+  ];
 }
