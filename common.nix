@@ -41,7 +41,6 @@
     isa-l # igzip is a really fast gzip
     yq-go
     mprocs # tmux-esque for long running processes
-    procs # similar to ps
     sqlite
     trash-cli
     tokei # similar to cloc (count lines of code)
