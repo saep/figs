@@ -214,14 +214,14 @@ lsp_server_opts["nixd"] = {
 }
 
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
-local lspconfig = require("lspconfig")
 for server, config in pairs(lsp_server_opts) do
   if not config.can_start or config.can_start() then
     config.can_start = nil
     config.capabilities =
       cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
     config.on_attach = on_attach
-    lspconfig[server].setup(config)
+    vim.lsp.config(server, config)
+    vim.lsp.enable(server)
   end
 end
 
