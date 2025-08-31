@@ -218,10 +218,17 @@
     direnv = {
       enable = true;
     };
-    fd.enable = true;
+    fd = {
+      enable = true;
+      ignores = [
+        ".git/"
+        ".jj/"
+        "target/"
+      ];
+    };
     fzf = {
       enable = true;
-      changeDirWidgetCommand = "fd --type d";
+      changeDirWidgetCommand = "${pkgs.fd}/bin/fd --type d --hidden";
       changeDirWidgetOptions = [
         "--preview '${pkgs.erdtree}/bin/erd --color force --icons --human --hidden --truncate {}'"
       ];
@@ -297,6 +304,9 @@
         "*.swo"
         "*~"
         ".netrwhist"
+
+        # jujutsu
+        ".jj/"
 
         # Haskell
         ".stack-work/"
