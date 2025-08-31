@@ -1,6 +1,7 @@
 local java_home = os.getenv("JAVA_HOME")
 local home = os.getenv("HOME")
 local jdtls = require("jdtls")
+
 local config = {
   cmd = {
     "jdtls",
@@ -68,7 +69,44 @@ local config = {
         local _, _ = pcall(vim.lsp.codelens.refresh)
       end,
     })
+    local opts = function(desc, args)
+      local opts = { silent = true, buffer = bufnr, desc = desc }
+      if args then
+        for key, value in pairs(args) do
+          opts[key] = value
+        end
+      end
+      return opts
+    end
+    vim.keymap.set("n", "<Leader>o", jdtls.organize_imports, opts("organize imports"))
+    vim.keymap.set("n", "<Leader>tt", jdtls.test_nearest_method, opts("test nearest method"))
+    vim.keymap.set("n", "<Leader>tc", jdtls.test_class, opts("test nearest method"))
     vim.lsp.codelens.refresh()
   end,
 }
+
+local vs_code_extensions_dir = home .. "/.local/share/vscode/extensions"
+local bundles = {}
+
+vim.list_extend(
+  bundles,
+  vim.fn.glob(
+    vs_code_extensions_dir
+      .. "/vscjava.vscode-java-debug/server/com.microsoft.java.debug.plugin-*.jar",
+    false,
+    true
+  )
+)
+vim.list_extend(
+  bundles,
+  vim.fn.glob(vs_code_extensions_dir .. "/vscjava.vscode-java-test/server/*.jar", false, true)
+)
+
+local extendedClientCapabilities = jdtls.extendedClientCapabilities
+extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
+config.init_options = {
+  bundles = bundles,
+  extendedClientCapabilities = extendedClientCapabilities,
+}
+
 jdtls.start_or_attach(config)

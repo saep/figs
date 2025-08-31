@@ -42,6 +42,7 @@ local on_attach = function(client, bufnr)
     return opts
   end
   if bufnr then
+    vim.keymap.set({ "n", "v" }, "<Cr>", vim.lsp.buf.code_action, opts("code action"))
     vim.keymap.set("n", "<Leader>u", vim.lsp.buf.references, opts("usages"))
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts("hover docs"))
     vim.keymap.set("n", "H", max_severity_diagnostics, opts("cursor diagnostics"))
