@@ -168,7 +168,7 @@ local lsp_server_opts = {
           enable = true,
         },
         cargo = {
-          features = "all,",
+          features = "all",
         },
       },
     },
