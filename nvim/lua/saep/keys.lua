@@ -101,6 +101,45 @@ for i = 1, 9 do
   end)
 end
 
+map("magic prev", { "n", "v" }, "<C-,>", function()
+  local actions = {
+    { vim.cmd.cprev, {} },
+    { vim.cmd.lprev, {} },
+    { vim.diagnostic.jump, { { count = -1, float = true } } },
+  }
+  for _, f in ipairs(actions) do
+    local ok, _ = pcall(f[1], f[2])
+    if ok then
+      return
+    end
+  end
+end)
+map("magic next", { "n", "v" }, "<C-.>", function()
+  local actions = {
+    { vim.cmd.cnext, {} },
+    { vim.cmd.lnext, {} },
+    { vim.diagnostic.jump, { { count = 1, float = true } } },
+  }
+  for _, f in ipairs(actions) do
+    local ok, _ = pcall(f[1], f[2])
+    if ok then
+      return
+    end
+  end
+end)
+map("magic close", { "n", "v" }, "<C-/>", function()
+  local actions = {
+    { vim.cmd.cclose, {} },
+    { vim.cmd.lclose, {} },
+  }
+  for _, f in ipairs(actions) do
+    local ok, _ = pcall(f[1], f[2])
+    if ok then
+      return
+    end
+  end
+end)
+
 map("yank to clipboard", { "n", "v" }, "Y", [["+y]])
 
 map("previous buffer", "n", "<leader><space>", "<C-^>")
