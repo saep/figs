@@ -59,7 +59,6 @@
         one-small-step-for-vimkind
         nvim-dap-ui
         nvim-jdtls # java language server helper plugin
-        nvim-lint
         nvim-lspconfig
         nvim-surround
         (nvim-treesitter.withPlugins (_: nvim-treesitter.allGrammars))
@@ -135,9 +134,6 @@
 
         # postgresql
         pgformatter
-
-        # spell and gramar checker
-        vale
 
         # postgres
         pgformatter
