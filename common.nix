@@ -154,6 +154,8 @@
           VISUAL = editor;
           MANPAGER = "${editor} +Man!";
           FLAKE_PATH = "${saepfigsDirectory}";
+          GOPATH = "/home/${username}/.cache/go";
+          GOBIN = "/home/${username}/.local/bin";
         };
       shellAliases = {
         g = "git";
