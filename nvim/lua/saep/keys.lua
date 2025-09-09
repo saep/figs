@@ -105,7 +105,7 @@ map("magic prev", { "n", "v" }, "<C-,>", function()
   local actions = {
     { vim.cmd.cprev, {} },
     { vim.cmd.lprev, {} },
-    { vim.diagnostic.jump, { { count = -1, float = true } } },
+    { vim.diagnostic.jump, { count = -1, float = true } },
   }
   for _, f in ipairs(actions) do
     local ok, _ = pcall(f[1], f[2])
@@ -118,7 +118,7 @@ map("magic next", { "n", "v" }, "<C-.>", function()
   local actions = {
     { vim.cmd.cnext, {} },
     { vim.cmd.lnext, {} },
-    { vim.diagnostic.jump, { { count = 1, float = true } } },
+    { vim.diagnostic.jump, { count = 1, float = true } },
   }
   for _, f in ipairs(actions) do
     local ok, _ = pcall(f[1], f[2])
@@ -128,8 +128,14 @@ map("magic next", { "n", "v" }, "<C-.>", function()
   end
 end)
 map("magic close", { "n", "v" }, "<C-/>", function()
+  local current_tab_windows = vim.iter(vim.api.nvim_tabpage_list_wins(0))
+  if current_tab_windows:any(function(w)
+    return vim.fn.win_gettype(w) == "quickfix"
+  end) then
+    vim.cmd.cclose()
+    return
+  end
   local actions = {
-    { vim.cmd.cclose, {} },
     { vim.cmd.lclose, {} },
   }
   for _, f in ipairs(actions) do
