@@ -2,6 +2,20 @@ local java_home = os.getenv("JAVA_HOME")
 local home = os.getenv("HOME")
 local jdtls = require("jdtls")
 
+local runtimes = {}
+if java_home and string.match(java_home, "jdk[-]11[.]") then
+  table.insert(runtimes, {
+    name = "JavaSE-11",
+    path = java_home,
+  })
+end
+if java_home and string.match(java_home, "jdk[-]21[.]") then
+  table.insert(runtimes, {
+    name = "JavaSE-21",
+    path = java_home,
+  })
+end
+
 local config = {
   cmd = {
     "jdtls",
@@ -18,20 +32,7 @@ local config = {
         -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
         -- And search for `interface RuntimeOption`
         -- The `name` is NOT arbitrary, but must match one of the elements from `enum ExecutionEnvironment` in the link above
-        runtimes = {
-          {
-            name = "JavaSE-11",
-            path = java_home,
-          },
-          {
-            name = "JavaSE-17",
-            path = java_home,
-          },
-          {
-            name = "JavaSE-21",
-            path = java_home,
-          },
-        },
+        runtimes = runtimes,
         inlayHints = {
           parameterNames = {
             enabled = "all",
