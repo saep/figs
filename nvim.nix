@@ -93,7 +93,6 @@
         tree-sitter
 
         # bash/shell
-        shellcheck
         nodePackages.bash-language-server
 
         # html/css/json

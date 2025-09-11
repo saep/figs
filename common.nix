@@ -51,6 +51,7 @@
     nu_scripts
 
     html-tidy
+    shellcheck
   ];
 
   home.shellAliases = {
