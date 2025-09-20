@@ -233,7 +233,7 @@
   # networking.firewall.enable = false;
 
   virtualisation = {
-    libvirtd.enable = true;
+    libvirtd.enable = false;
     containers.enable = true;
     podman = {
       enable = true;
