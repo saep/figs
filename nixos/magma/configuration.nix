@@ -23,7 +23,7 @@
     kernel.sysctl."net.core.default_qdisc" = "fq"; # see https://news.ycombinator.com/item?id=14814530
     tmp = {
       cleanOnBoot = true;
-      useTmpfs = false;
+      useTmpfs = true;
     };
 
     loader = {
