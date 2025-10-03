@@ -21,6 +21,10 @@
     kernel.sysctl."net.ipv4.tcp_congestion_control" = "bbr";
     # default is fq_codel
     kernel.sysctl."net.core.default_qdisc" = "fq"; # see https://news.ycombinator.com/item?id=14814530
+    tmp = {
+      cleanOnBoot = true;
+      useTmpfs = false;
+    };
 
     loader = {
       efi.canTouchEfiVariables = true;
