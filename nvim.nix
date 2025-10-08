@@ -34,15 +34,10 @@
       vimAlias = true;
       vimdiffAlias = true;
       plugins = with pkgs.vimPlugins; [
+        blink-cmp
+        blink-compat
         catppuccin-nvim
         luasnip
-        cmp-buffer
-        cmp-cmdline
-        cmp-conjure
-        cmp_luasnip
-        cmp-nvim-lsp
-        cmp-nvim-lua
-        cmp-path
         conform-nvim
         conjure
         diffview-nvim
@@ -54,7 +49,6 @@
         neodev-nvim
         neogit
         nvim-colorizer-lua
-        nvim-cmp
         nvim-dap
         one-small-step-for-vimkind
         nvim-dap-ui

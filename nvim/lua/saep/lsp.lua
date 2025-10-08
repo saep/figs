@@ -214,12 +214,13 @@ lsp_server_opts["nixd"] = {
   },
 }
 
-local cmp_nvim_lsp = require("cmp_nvim_lsp")
+local capabilities = require("blink.cmp").get_lsp_capabilities({
+  textDocument = { completion = { completionItem = { snippetSupport = false } } },
+})
 for server, config in pairs(lsp_server_opts) do
   if not config.can_start or config.can_start() then
     config.can_start = nil
-    config.capabilities =
-      cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
+    config.capabilities = capabilities
     config.on_attach = on_attach
     vim.lsp.config(server, config)
     vim.lsp.enable(server)
@@ -228,5 +229,5 @@ end
 
 return {
   on_attach = on_attach,
-  capabilities = cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+  capabilities = capabilities,
 }
