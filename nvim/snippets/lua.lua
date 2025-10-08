@@ -1,4 +1,21 @@
 return {
+  s({ trig = "f", name = "function" }, {
+    t("function("),
+    i(1, ""),
+    t(")"),
+    c(2, {
+      sn(nil, {
+        t(" "),
+        i(1, " "),
+        t(" end"),
+      }),
+      sn(nil, {
+        t({ "", "  " }),
+        i(1, ""),
+        t({ "", "end" }),
+      }),
+    }),
+  }),
   s("d", {
     t('describe("'),
     i(1, "category"),
