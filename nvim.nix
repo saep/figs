@@ -137,6 +137,8 @@
 
         imagemagick
 
+        # xml
+        lemminx
         xmlstarlet
       ];
     };

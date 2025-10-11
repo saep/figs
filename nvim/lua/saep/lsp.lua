@@ -144,6 +144,7 @@ local lsp_server_opts = {
   ts_ls = {},
   eslint = {},
   gleam = {},
+  lemminx = {},
   html = {},
   cssls = {},
   hls = {
