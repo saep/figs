@@ -8,6 +8,14 @@ require("nvim-treesitter.configs").setup({
     enable = true,
     additional_vim_regex_highlighting = false,
   },
+  textObjects = {
+    select = {
+      keymaps = {
+        ["at"] = "@function.outer",
+        ["it"] = "@function.inner",
+      },
+    },
+  },
   incremental_selection = {
     enable = true,
     keymaps = {

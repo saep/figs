@@ -1,6 +1,13 @@
 require("mini.bufremove").setup({})
 require("mini.align").setup({})
-require("mini.ai").setup({})
+require("mini.ai").setup({
+  custom_textobjects = {
+    -- Use tag object from tree-sitter.objects because it supports tags with dots in them.
+    ["t"] = false,
+    -- This mostly fixes my issue with '.' in a tag name. I've changed the first %w to [%w.]
+    -- ["t"] = { "<([%w.]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" },
+  },
+})
 
 require("mini.surround").setup({
   mappings = {
