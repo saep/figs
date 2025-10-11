@@ -43,6 +43,7 @@
         diffview-nvim
         fzf-lua
         image-nvim
+        kulala-nvim
         leap-nvim
         lualine-nvim
         mini-nvim
@@ -55,13 +56,14 @@
         nvim-jdtls # java language server helper plugin
         nvim-lspconfig
         nvim-surround
-        (nvim-treesitter.withPlugins (_: nvim-treesitter.allGrammars))
+        (nvim-treesitter.withPlugins (
+          _: nvim-treesitter.allGrammars ++ [ pkgs.tree-sitter-grammars.kulala-http ]
+        ))
         nvim-treesitter-context
         nvim-ts-autotag
         nvim-unception
         nvim-web-devicons
         oil-nvim
-        rest-nvim
         plenary-nvim
         rainbow-delimiters-nvim
         render-markdown-nvim

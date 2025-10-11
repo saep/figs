@@ -36,6 +36,16 @@
       overlays = [
         nixgl.overlay
         nur.overlays.default
+        (self: super: {
+          tree-sitter-grammars = super.tree-sitter-grammars // {
+            kulala-http = super.tree-sitter.buildGrammar {
+              language = "kulala-http";
+              src = super.vimPlugins.kulala-nvim.src;
+              version = super.vimPlugins.kulala-nvim.version;
+              location = "lua/tree-sitter";
+            };
+          };
+        })
       ];
     in
     rec {
