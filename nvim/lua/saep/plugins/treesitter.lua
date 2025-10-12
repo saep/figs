@@ -8,11 +8,34 @@ require("nvim-treesitter.configs").setup({
     enable = true,
     additional_vim_regex_highlighting = false,
   },
-  textObjects = {
+  textobjects = {
     select = {
+      enable = true,
+      lookahead = true,
       keymaps = {
-        ["at"] = "@function.outer",
-        ["it"] = "@function.inner",
+        ["af"] = { query = "@function.outer", desc = "outer function" },
+        ["if"] = { query = "@function.inner", desc = "inner function" },
+
+        -- Hack for xml files
+        ["at"] = { query = "@function.outer", desc = "outer tag" },
+        ["it"] = { query = "@function.inner", desc = "inner tag" },
+
+        ["aa"] = { query = "@parameter.outer", desc = "outer param" },
+        ["ia"] = { query = "@parameter.inner", desc = "inner param" },
+
+        ["ac"] = { query = "@class.outer", desc = "outer class" },
+      },
+      selection_modes = {
+        -- charwise
+        ["@parameter.outer"] = "v",
+        ["@parameter.inner"] = "v",
+
+        -- linewise
+        ["@function.outer"] = "V",
+        ["@function.inner"] = "V",
+
+        --blockwise
+        ["@class.outer"] = "<c-v>",
       },
     },
   },

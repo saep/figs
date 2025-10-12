@@ -46,7 +46,6 @@
         kulala-nvim
         leap-nvim
         lualine-nvim
-        mini-nvim
         neodev-nvim
         neogit
         nvim-colorizer-lua
@@ -60,6 +59,7 @@
           _: nvim-treesitter.allGrammars ++ [ pkgs.tree-sitter-grammars.kulala-http ]
         ))
         nvim-treesitter-context
+        nvim-treesitter-textobjects
         nvim-ts-autotag
         nvim-unception
         nvim-web-devicons

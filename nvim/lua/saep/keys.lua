@@ -67,12 +67,7 @@ map("window right", "n", "<leader>wl", "<C-w>l")
 map("window left", "n", "<leader>wh", "<C-w>h")
 map("window only", "n", "<leader>wo", "<C-w>o")
 map("window close", "n", "<leader>wc", "<Cmd>quit<CR>")
-map("window delete buffer", "n", "<leader>wd", function()
-  require("mini.bufremove").wipeout()
-end)
-map("window delete buffer", "n", "<leader>wu", function()
-  require("mini.bufremove").unshow_in_window()
-end)
+map("window delete buffer", "n", "<leader>wd", Snacks.bufdelete.delete)
 
 map("zen-mode", "n", "<Leader>wz", Snacks.zen.zen)
 
