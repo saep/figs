@@ -41,6 +41,7 @@
         conform-nvim
         conjure
         diffview-nvim
+        flatten-nvim
         fzf-lua
         image-nvim
         kulala-nvim
@@ -61,7 +62,6 @@
         nvim-treesitter-context
         nvim-treesitter-textobjects
         nvim-ts-autotag
-        nvim-unception
         nvim-web-devicons
         oil-nvim
         plenary-nvim
