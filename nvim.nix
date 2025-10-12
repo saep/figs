@@ -55,6 +55,7 @@
         nvim-dap-ui
         nvim-jdtls # java language server helper plugin
         nvim-lspconfig
+        nvim-surround
         (nvim-treesitter.withPlugins (
           _: nvim-treesitter.allGrammars ++ [ pkgs.tree-sitter-grammars.kulala-http ]
         ))
