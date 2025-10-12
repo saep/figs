@@ -39,8 +39,18 @@ return {
     t(") "),
     c(3, {
       i(1),
+      -- Return without an error
       sn(nil, { t("-> "), i(1), t(" ") }),
-      sn(nil, { t("-> Result<"), i(1, "()"), t(", "), i(2, "anyhow::Error"), t("> ") }),
+      -- Return with an overloaded result type for a module
+      sn(nil, { t("-> Result<"), i(1, "()"), t("> ") }),
+      -- Return with an error type to specify
+      sn(nil, {
+        t("-> Result<"),
+        i(1, "()"),
+        t(", "),
+        i(2, "color_eyre::Error"),
+        t("> "),
+      }),
     }),
     t({ "{", "    " }),
     i(0, "todo!()"),
