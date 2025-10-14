@@ -64,5 +64,11 @@ require("blink.cmp").setup({
       "cancel",
       "fallback",
     },
+    ["<C-k>"] = false,
+    ["<C-s>"] = {
+      "show_signature",
+      "hide_signature",
+      "fallback",
+    },
   },
 })
