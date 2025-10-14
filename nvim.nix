@@ -78,7 +78,6 @@
         vim-speeddating
         vim-visual-multi
         which-key-nvim
-        twilight-nvim
       ];
       extraPackages = with pkgs; [
         curl
