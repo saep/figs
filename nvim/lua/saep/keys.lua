@@ -4,7 +4,7 @@ vim.g.mapleader = " "
 
 -- Set localleader to <BS>
 vim.g.maplocalleader = "\\"
-vim.api.nvim_set_keymap("n", "<BS>", ":WhichKey \\<cr>", { noremap = true, silent = true })
+vim.keymap.set({ "v", "n", "x" }, "<BS>", ":WhichKey \\<cr>", { silent = true })
 -- The below definition works, but which-key doesn't work with that and sometimes plugins
 -- act weird with such a local leader.
 -- vim.g.maplocalleader = vim.api.nvim_replace_termcodes("<BS>", false, false, true)
@@ -27,13 +27,6 @@ require("which-key").setup({
     },
   },
 })
-
-map(
-  "local leader",
-  { "n" },
-  "<LocalLeader>",
-  "<cmd>lua require'which-key'.show('<LocalLeader>', {mode='n'})<cr>"
-)
 
 map("ESC", "i", "jk", "<ESC>")
 map("format gqgq", "n", "Q", "gqgq")
