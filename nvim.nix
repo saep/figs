@@ -41,7 +41,6 @@
         conform-nvim
         conjure
         diffview-nvim
-        flatten-nvim
         fzf-lua
         image-nvim
         kulala-nvim
