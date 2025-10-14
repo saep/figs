@@ -37,6 +37,12 @@ require("blink.cmp").setup({
     providers = {
       dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
     },
+    transform_items = function(_, items)
+      return vim.tbl_filter(function(item)
+        return item.kind ~= require("blink.cmp.types").CompletionItemKind.Snippet
+          and item.kind ~= require("blink.cmp.types").CompletionItemKind.Keyword
+      end, items)
+    end,
   },
   keymap = {
     ["<C-space>"] = {

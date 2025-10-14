@@ -216,9 +216,8 @@ lsp_server_opts["nixd"] = {
   },
 }
 
-local capabilities = require("blink.cmp").get_lsp_capabilities({
-  textDocument = { completion = { completionItem = { snippetSupport = false } } },
-})
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+
 for server, config in pairs(lsp_server_opts) do
   if not config.can_start or config.can_start() then
     config.can_start = nil
