@@ -27,9 +27,9 @@
         "text/plain" = "nvim.desktop";
         "application/json" = "nvim.desktop";
         "applications/pdf" = "org.pwmt.zathura-pdf-mupdf.desktop";
-        "x-scheme-handler/http" = "firefox.desktop";
-        "x-scheme-handler/https" = "firefox.desktop";
-        "text/html" = "firefox.desktop";
+        "x-scheme-handler/http" = "app.zen_browser.zen.desktop";
+        "x-scheme-handler/https" = "app.zen_browser.zen.desktop";
+        "text/html" = "app.zen_browser.zen.desktop";
         "x-scheme-handler/file" = "pcmanfm-qt.desktop";
         "inode/directory" = "pcmanfm-qt.desktop";
       };
