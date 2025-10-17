@@ -43,6 +43,7 @@ return {
       sn(nil, { t("-> "), i(1), t(" ") }),
       -- Return with an overloaded result type for a module
       sn(nil, { t("-> Result<"), i(1, "()"), t("> ") }),
+      sn(nil, { t("-> color_eyre::Result<"), i(1, "()"), t("> ") }),
       -- Return with an error type to specify
       sn(nil, {
         t("-> Result<"),
@@ -53,7 +54,10 @@ return {
       }),
     }),
     t({ "{", "    " }),
-    i(0, "todo!()"),
+    c(4, {
+      sn(nil, { i(1, "todo!()") }),
+      sn(nil, { i(1), t({ "", "    Ok(())" }) }),
+    }),
     t({ "", "}" }),
   }),
   s({ trig = "tm", name = "test module" }, {
