@@ -42,7 +42,6 @@
         conjure
         diffview-nvim
         fzf-lua
-        image-nvim
         kulala-nvim
         leap-nvim
         lualine-nvim
