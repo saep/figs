@@ -223,6 +223,7 @@ vim.g.rustaceanvim = {
   server = {
     on_attach = function(client, bufnr)
       on_attach(client, bufnr)
+      vim.keymap.set("n", "K", vim.cmd.RustLsp({ "hover", "actions" }))
     end,
     default_settings = {
       -- rust-analyzer language server configuration
