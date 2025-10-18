@@ -163,18 +163,6 @@ local lsp_server_opts = {
       },
     },
   },
-  rust_analyzer = {
-    settings = {
-      ["rust-analyzer"] = {
-        diagnostics = {
-          enable = true,
-        },
-        cargo = {
-          features = "all",
-        },
-      },
-    },
-  },
 }
 
 local function hostname()
@@ -227,6 +215,23 @@ for server, config in pairs(lsp_server_opts) do
     vim.lsp.enable(server)
   end
 end
+
+vim.g.rustaceanvim = {
+  -- Plugin configuration
+  tools = {},
+  -- LSP configuration
+  server = {
+    on_attach = function(client, bufnr)
+      on_attach(client, bufnr)
+    end,
+    default_settings = {
+      -- rust-analyzer language server configuration
+      ["rust-analyzer"] = {},
+    },
+  },
+  -- DAP configuration
+  dap = {},
+}
 
 return {
   on_attach = on_attach,

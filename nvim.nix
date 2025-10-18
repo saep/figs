@@ -66,6 +66,7 @@
         plenary-nvim
         rainbow-delimiters-nvim
         render-markdown-nvim
+        rustaceanvim
         snacks-nvim
         text-case-nvim
         vim-exchange
