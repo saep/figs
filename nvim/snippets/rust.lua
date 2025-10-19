@@ -131,6 +131,10 @@ return {
       sn(nil, { t("assert_neq!("), i(1), t(");") }),
     }),
   }),
+  s({ trig = "o", name = "Ok(())" }, {
+    i(0),
+    t({ "", "Ok(())" }),
+  }),
   postfix({ trig = '"', match_pattern = '"[^"]+$' }, {
     -- t("format!("),
     -- f(function(_, parent)
