@@ -247,6 +247,9 @@
           email = "saep@saep.rocks";
           name = "Sebastian Witte";
         };
+        revset-aliases = {
+          "immutable_heads()" = "trunk() | tags() | remote_branches()";
+        };
       };
     };
     jjui = {
