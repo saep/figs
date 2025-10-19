@@ -248,7 +248,7 @@
           name = "Sebastian Witte";
         };
         revset-aliases = {
-          "immutable_heads()" = "trunk() | tags() | remote_branches()";
+          "immutable_heads()" = "trunk() | tags() | remote_bookmarks()";
         };
       };
     };
