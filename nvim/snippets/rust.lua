@@ -135,6 +135,11 @@ return {
     i(0),
     t({ "", "Ok(())" }),
   }),
+  s({ trig = "er", name = "color_eyre::Result<()>" }, {
+    t("color_eyre::Result<"),
+    i(0, "()"),
+    t(">"),
+  }),
   postfix({ trig = '"', match_pattern = '"[^"]+$' }, {
     -- t("format!("),
     -- f(function(_, parent)
