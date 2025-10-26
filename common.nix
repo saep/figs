@@ -29,7 +29,6 @@
     babashka # bash, but clojure
     borgbackup
     curl
-    delta # diff
     du-dust # similar to du
     duckdb
     erdtree # tree
@@ -218,6 +217,10 @@
       enable = true;
       enableNushellIntegration = false; # done manually to hide deprecations
     };
+    difftastic = {
+      enable = true;
+      git.enable = true;
+    };
     direnv = {
       enable = true;
     };
@@ -257,20 +260,21 @@
     };
     git = {
       enable = true;
-      delta.enable = true;
-      userName = "Sebastian Witte";
-      aliases = {
-        cb = "switch -c";
-        st = "status";
-        fa = "fetch --all";
-        fo = "fetch origin";
-        fu = "fetch uptream";
-        pf = "push --force-with-lease";
-        rod = "!git fetch origin && git rebase origin/develop";
-        rom = "!git fetch origin && git rebase origin/main";
-        rum = "!git fetch upstream && git rebase upstream/main";
-      };
-      extraConfig = {
+      settings = {
+        user = {
+          name = "Sebastian Witte";
+        };
+        alias = {
+          cb = "switch -c";
+          st = "status";
+          fa = "fetch --all";
+          fo = "fetch origin";
+          fu = "fetch uptream";
+          pf = "push --force-with-lease";
+          rod = "!git fetch origin && git rebase origin/develop";
+          rom = "!git fetch origin && git rebase origin/main";
+          rum = "!git fetch upstream && git rebase upstream/main";
+        };
         difftool = {
           prompt = false;
         };
