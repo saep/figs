@@ -29,7 +29,7 @@
     babashka # bash, but clojure
     borgbackup
     curl
-    du-dust # similar to du
+    dust # similar to du
     duckdb
     erdtree # tree
     gnumake

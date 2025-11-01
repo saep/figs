@@ -111,7 +111,7 @@
         nixfmt-rfc-style
 
         # lua
-        sumneko-lua-language-server
+        lua-language-server
         lua51Packages.jsregexp
         stylua
 
