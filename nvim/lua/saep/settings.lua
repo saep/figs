@@ -48,11 +48,17 @@ vim.api.nvim_create_autocmd({ "BufReadPost" }, {
 
 local terminal_open_enter_augroup = vim.api.nvim_create_augroup("terminal_open_enter", {})
 vim.api.nvim_create_autocmd({ "TermOpen" }, {
-  callback = function()
+  callback = function(ev)
     vim.opt_local.number = false
     vim.opt_local.relativenumber = false
     vim.opt_local.signcolumn = "no"
-    vim.cmd(":startinsert")
+
+    -- neotest spawns terminals to run the tests. Without this guard,
+    -- I end up in insert mode after running tests.
+    local buf = vim.api.nvim_get_current_buf()
+    if vim.fn.getbufinfo(buf)[1].listed == 1 then
+      vim.cmd(":startinsert")
+    end
   end,
   desc = "Disable line numbers in terminal windows",
   group = terminal_open_enter_augroup,

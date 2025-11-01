@@ -50,6 +50,8 @@
         nvim-colorizer-lua
         nvim-dap
         one-small-step-for-vimkind
+        neotest
+        neotest-plenary
         nvim-dap-ui
         nvim-jdtls # java language server helper plugin
         nvim-lspconfig

@@ -223,9 +223,15 @@ vim.g.rustaceanvim = {
   server = {
     on_attach = function(client, bufnr)
       on_attach(client, bufnr)
-      vim.keymap.set("n", "K", vim.cmd.RustLsp({ "hover", "actions" }))
-      vim.keymap.set("n", "<Leader>dd", vim.cmd.RustLsp({ "debug" }))
-      vim.keymap.set("n", "<Leader>dl", vim.cmd.RustLsp({ "debuggables" }))
+      vim.keymap.set("n", "K", function()
+        vim.cmd.RustLsp({ "hover", "actions" })
+      end, { desc = "hover actions", buffer = bufnr })
+      vim.keymap.set("n", "<Leader>dd", function()
+        vim.cmd.RustLsp({ "debug" })
+      end, { desc = "debug this", buffer = bufnr })
+      vim.keymap.set("n", "<Leader>dl", function()
+        vim.cmd.RustLsp({ "debuggables" })
+      end, { desc = "list debuggables", buffer = bufnr })
     end,
     default_settings = {
       -- rust-analyzer language server configuration

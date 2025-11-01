@@ -209,6 +209,16 @@ map("neogit", "n", "<A-g>", "<cmd>Neogit<cr>")
 map("neogit", "n", "<leader>gl", "<cmd>Neogit log<cr>")
 map("blame line", { "n", "v" }, "<leader>gb", Snacks.git.blame_line)
 
+map("test nearest", "n", "<Leader>tt", require("neotest").run.run)
+map("test file", "n", "<Leader>tf", function()
+  require("neotest").run.run(vim.fn.expand("%"))
+end)
+map("test debug", "n", "<Leader>td", function()
+  require("neotest").run.run({ strategy = "dap" })
+end)
+map("test summary", "n", "<Leader>ts", require("neotest").summary.toggle)
+map("test output", "n", "<Leader>to", require("neotest").output.open)
+
 local http_group = vim.api.nvim_create_augroup("http_autocommands", { clear = true })
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = { "*.http" },
