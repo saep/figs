@@ -151,6 +151,7 @@
       };
     };
     keyboard.zsa.enable = true;
+    steam-hardware.enable = true;
     xpadneo.enable = true;
   };
 
@@ -158,8 +159,10 @@
     kdeconnect.enable = true;
     dconf.enable = true;
     gamemode.enable = true;
-    steam.enable = true;
-    steam.gamescopeSession.enable = true;
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+    };
     virt-manager.enable = true;
   };
 
