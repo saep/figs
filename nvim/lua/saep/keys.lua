@@ -182,6 +182,9 @@ map("diagnostic prev", "n", "[e", function()
   vim.diagnostic.jump({ count = -1, float = true })
 end)
 
+map("leap", { "n", "x", "o" }, "s", "<Plug>(leap)")
+map("leap from window", "n", "S", "<Plug>(leap-from-window)")
+
 map("oi", "n", "-", require("oil").open)
 
 local ls = require("luasnip")
