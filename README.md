@@ -17,3 +17,27 @@ and hostname, so no arguments are required for me.
 
 The configuration can be installed by running `result/activate` or by passing
 `install` as the first paraemter to [config.sh](./config.sh).
+
+# Installing/updating nixos
+
+## Update
+
+> nix flake update
+
+And afterwards install.
+
+## Install
+
+For the host `magma` either use:
+
+``` sh
+nixos-rebuild --flake .#magma switch
+```
+
+to build and switch directly or
+
+``` sh
+nixos-rebuild --flake .#magma boot
+```
+
+to switch after the next reboot.
