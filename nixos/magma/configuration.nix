@@ -55,6 +55,9 @@
     useXkbConfig = true; # use xkbOptions in tty.
   };
 
+  services.earlyoom = {
+    enable = true;
+  };
   services.flatpak.enable = true;
   xdg.portal = {
     enable = true;
