@@ -162,6 +162,7 @@
     kdeconnect.enable = true;
     dconf.enable = true;
     gamemode.enable = true;
+    localsend.enable = true;
     steam = {
       enable = true;
       gamescopeSession.enable = true;
