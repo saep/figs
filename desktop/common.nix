@@ -51,8 +51,6 @@
         icon = "chromium-browser";
       };
     };
-    configFile."ghostty".source =
-      config.lib.file.mkOutOfStoreSymlink "/home/${username}/${saepfigsDirectory}/config/ghostty";
     configFile."wezterm/wezterm.lua".source =
       config.lib.file.mkOutOfStoreSymlink "/home/${username}/${saepfigsDirectory}/desktop/wezterm.lua";
   };
@@ -161,6 +159,21 @@
           pkgs.writeShellScriptBin "wezterm" ''
             ${wrapper}/bin/nixGLIntel ${pkgs.wezterm}/bin/wezterm "$@"
           '';
+    };
+
+    # ghostty {{{2
+    ghostty = {
+      enable = true;
+      settings = {
+        command = "nu";
+        theme = "catppuccin-mocha";
+        font-family = "Hasklug Nerd Font";
+        font-size = 14;
+        window-theme = "ghostty";
+
+        keybind = "ctrl+shift+minus=increase_font_size:1";
+        window-decoration = false;
+      };
     };
 
     # kitty {{{2

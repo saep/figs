@@ -1,8 +1,0 @@
-command = nu
-theme = catppuccin-mocha
-font-family = Hasklug Nerd Font 
-font-size = 14
-window-theme = ghostty
-
-keybind = ctrl+shift+minus=increase_font_size:1
-window-decoration = false
