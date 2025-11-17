@@ -167,7 +167,13 @@
         font-size = 14;
         window-theme = "ghostty";
 
-        keybind = "ctrl+shift+minus=increase_font_size:1";
+        mouse-scroll-multiplier = 0.25;
+
+        keybind = [
+          "ctrl+shift+minus=increase_font_size:1"
+          "ctrl+,=unbind"
+          "ctrl+shift+,=unbind"
+        ];
         window-decoration = false;
       };
     };
