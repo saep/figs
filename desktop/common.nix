@@ -30,8 +30,6 @@
         "x-scheme-handler/http" = "app.zen_browser.zen.desktop";
         "x-scheme-handler/https" = "app.zen_browser.zen.desktop";
         "text/html" = "app.zen_browser.zen.desktop";
-        "x-scheme-handler/file" = "pcmanfm-qt.desktop";
-        "inode/directory" = "pcmanfm-qt.desktop";
       };
     };
     systemDirs = {
@@ -67,8 +65,6 @@
       chromium
 
       xdg-utils
-
-      pcmanfm-qt
 
       # other
       remmina
