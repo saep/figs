@@ -216,6 +216,18 @@ for server, config in pairs(lsp_server_opts) do
   end
 end
 
+local cargo_features_env_str = os.getenv("CARGO_FEATURES")
+local cargo_features
+if cargo_features_env_str == "all" then
+  cargo_features = "all"
+elseif cargo_features_env_str and cargo_features_env_str ~= "" then
+  cargo_features = {}
+  for feature in cargo_features_env_str:gmatch("([^,]+),?") do
+    table.insert(cargo_features, feature)
+  end
+else
+  cargo_features = {}
+end
 vim.g.rustaceanvim = {
   -- Plugin configuration
   tools = {},
@@ -235,7 +247,11 @@ vim.g.rustaceanvim = {
     end,
     default_settings = {
       -- rust-analyzer language server configuration
-      ["rust-analyzer"] = {},
+      ["rust-analyzer"] = {
+        cargo = {
+          features = cargo_features,
+        },
+      },
     },
   },
   -- DAP configuration
