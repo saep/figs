@@ -159,7 +159,7 @@
 
     # ghostty {{{2
     ghostty = {
-      enable = true;
+      enable = isNixos; # doesn't work, even with the nixgl wrapper
       settings = {
         command = "nu";
         theme = "catppuccin-mocha";
