@@ -57,8 +57,8 @@
         nvim-lspconfig
         nvim-spider
         nvim-surround
-        (nvim-treesitter.withPlugins (
-          _: nvim-treesitter.allGrammars ++ [ pkgs.tree-sitter-grammars.kulala-http ]
+        (nvim-treesitter-legacy.withPlugins (
+          _: nvim-treesitter-legacy.allGrammars ++ [ pkgs.tree-sitter-grammars.kulala-http ]
         ))
         nvim-treesitter-context
         nvim-treesitter-textobjects
@@ -110,7 +110,7 @@
 
         # nix
         nixd
-        nixfmt-rfc-style
+        nixfmt
 
         # lua
         lua-language-server
