@@ -36,6 +36,8 @@
     graphviz
     hyperfine # similar to time
 
+    helix # until I've got a stable config, keep it here
+
     inotify-tools
     isa-l # igzip is a really fast gzip
     yq-go
@@ -69,6 +71,9 @@
     '';
     configFile."nushell/keybindings.nu".source =
       config.lib.file.mkOutOfStoreSymlink "/home/${username}/${saepfigsDirectory}/nushell/keybindings.nu";
+
+    configFile."helix/".source =
+      config.lib.file.mkOutOfStoreSymlink "/home/${username}/${saepfigsDirectory}/helix/";
 
     systemDirs = {
       data = [
