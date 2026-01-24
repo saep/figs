@@ -57,8 +57,8 @@
         nvim-lspconfig
         nvim-spider
         nvim-surround
-        (nvim-treesitter-legacy.withPlugins (
-          _: nvim-treesitter-legacy.allGrammars ++ [ pkgs.tree-sitter-grammars.kulala-http ]
+        (nvim-treesitter.withPlugins (
+          _: nvim-treesitter.allGrammars ++ [ pkgs.tree-sitter-grammars.kulala-http ]
         ))
         nvim-treesitter-context
         nvim-treesitter-textobjects
