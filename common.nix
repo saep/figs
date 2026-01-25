@@ -353,6 +353,9 @@
         "tags"
       ];
     };
+    gitui = {
+      enable = true;
+    };
 
     helix = {
       enable = false;
