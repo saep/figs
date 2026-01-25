@@ -9,6 +9,16 @@ let keybindings = [
         }
       }
       {
+        name: "unfreeze job"
+        modifier: control
+        keycode: char_z
+        mode: [emacs, vi_insert]
+        event: {
+          send: ExecuteHostCommand
+          cmd: "job unfreeze"
+        }
+      }
+      {
         name: fuzzy_history
         modifier: control
         keycode: char_r
