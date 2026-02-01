@@ -111,6 +111,10 @@
 
     # Keymapp Flashing rules for the Voyager
     SUBSYSTEMS=="usb", ATTRS{idVendor}=="3297", MODE:="0666", SYMLINK+="ignition_dfu"
+
+    # Disable Voyager as joystick input, so that I don't have to unplug it to play Sekiro
+    # with my Controller.
+    SUBSYSTEM=="input", ATTRS{idVendor}=="3297", ATTRS{idProduct}=="1977", ENV{ID_INPUT_JOYSTICK}="" 
   '';
 
   # Enable the X11 windowing system.
