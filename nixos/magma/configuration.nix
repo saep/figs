@@ -134,7 +134,12 @@
       user = "saep";
     };
   };
-  services.desktopManager.plasma6.enable = true;
+  services.desktopManager = {
+    plasma6.enable = true;
+    cosmic.enable = true;
+  };
+
+  services.system76-scheduler.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
