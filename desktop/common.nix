@@ -66,6 +66,10 @@
 
       xdg-utils
 
+      # cosmic media applet always choses the browser and I almost always want mpd,
+      # as a workaround I bind the media keys to call mpc
+      mpc
+
       # other
       remmina
       pavucontrol
