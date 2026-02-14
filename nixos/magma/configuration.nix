@@ -207,7 +207,7 @@
       mangohud
       piper
       usbutils
-      wineWowPackages.staging
+      wineWow64Packages.staging
       winetricks
       wl-clipboard
     ];
