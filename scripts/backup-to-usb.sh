@@ -12,7 +12,7 @@ fi
 
 mountPoint="$1"
 
-if ! mount | rg " ${mountPoint} " 2>&1 >/dev/null || [[ ! -d "$mountPoint" ]]; then
+if ! mount | rg " ${mountPoint} " >/dev/null 2>&1 || [[ ! -d "$mountPoint" ]]; then
     echo "mount directory is probably not correct: ${mountPoint}"
     exit 1
 fi
@@ -22,59 +22,62 @@ fi
 export BORG_REPO="${mountPoint}/backup/borg"
 
 # or this to ask an external program to supply the passphrase:
-read -p "borg backup password: " -s BORG_PASSPHRASE
-/run/media/saep/7747d059-a34c-476f-bc89-06473ef129a4
+read -r -p "borg backup password: " -s BORG_PASSPHRASE
+export BORG_PASSPHRASE
+
 # some helpers and error handling:
 info() { printf "\n%s %s\n\n" "$( date )" "$*" >&2; }
 trap 'echo $( date ) Backup interrupted >&2; exit 2' INT TERM
 
-### Syncthing {{{2
-if [ -d "${HOME}/documents" ]; then
-    info "Starting backup of syncthing documents"
+folders=(documents Music)
 
-    # Backup the most important directories into an archive named after
-    # the machine this script is currently running on:
+for folder in "${folders[@]}"; do
+    if [ -d "${HOME}/${folder}" ]; then
+        info "Starting backup of syncthing documents"
 
-    borg create                         \
-        --verbose                       \
-        --filter AME                    \
-        --list                          \
-        --stats                         \
-        --show-rc                       \
-        --compression lz4               \
-        --exclude-caches                \
-        \
-        ::'documents-{now}'              \
-        "${HOME}/documents"
+        # Backup the most important directories into an archive named after
+        # the machine this script is currently running on:
 
-    backup_exit=$?
+        borg create                         \
+            --verbose                       \
+            --filter AME                    \
+            --list                          \
+            --stats                         \
+            --show-rc                       \
+            --compression lz4               \
+            --exclude-caches                \
+            \
+            ::"${folder}"'-{now}'           \
+            "${HOME}/${folder}"
 
-    info "Pruning repository"
+        backup_exit=$?
 
-    borg prune                          \
-        --list                          \
-        --glob-archives 'documents-*'   \
-        --show-rc                       \
-        --keep-daily    28              \
-        --keep-weekly   4               \
-        --keep-monthly  12              \
+        info "Pruning repository"
+
+        borg prune                          \
+            --list                          \
+            --glob-archives "${folder}"'-*' \
+            --show-rc                       \
+            --keep-daily    28              \
+            --keep-weekly   4               \
+            --keep-monthly  12              \
 
         prune_exit=$?
 
-    global_exit=$(( backup_exit > prune_exit ? backup_exit : prune_exit ))
+        global_exit=$(( backup_exit > prune_exit ? backup_exit : prune_exit ))
 
-    if [ ${global_exit} -eq 1 ];
-    then
-        info "Backup and/or Prune finished with a warning"
+        if [ ${global_exit} -eq 1 ];
+        then
+            info "Backup and/or Prune finished with a warning for ${folder}"
+        fi
+
+        if [ ${global_exit} -gt 1 ];
+        then
+            info "Backup and/or Prune finished with an error for ${folder}"
+        fi
     fi
+done
 
-    if [ ${global_exit} -gt 1 ];
-    then
-        info "Backup and/or Prune finished with an error"
-    fi
-fi
-
-### Host specific {{{2
 if [ -d "${HOME}/.gnupg" ]; then
     GNUPG_EXPORT_DIR="${HOME}/.gnupg/exported"
     rm -rf "$GNUPG_EXPORT_DIR"
