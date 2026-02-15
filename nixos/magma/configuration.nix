@@ -117,6 +117,9 @@
     SUBSYSTEM=="input", ATTRS{idVendor}=="3297", ATTRS{idProduct}=="1977", ENV{ID_INPUT_JOYSTICK}="" 
   '';
 
+  # mount of encrypted USB sticks within dolphin
+  services.udisks2.enable = true;
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 

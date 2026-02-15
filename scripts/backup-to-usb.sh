@@ -5,57 +5,31 @@ if [ "$(id -u)" != "1000" ]; then
     exit 1
 fi
 
-case $(hostname) in
-    monad)
-        mountPoint=/mnt/my_usb
-        ;;
-    monoid)
-        mountPoint=/media/saep/persistence
-        ;;
-    swaep)
-        mountPoint=/run/media/saep/persistence
-        ;;
-    *)
-        echo 'Unknown hostname: ' "$(hostname)"
-        exit 1
-        ;;
-esac
-
-## Mount usb stick {{{1
-if [ ! -d "$mountPoint" ]; then
-    echo "Please mount the usb stick"
+if [[ -z "$1" ]]; then
+    echo "No mount point for the usb drive given"
     exit 1
 fi
-# Ye olde ways!
-# if [ ! -e /dev/mapper/my_usb ]; then
-#     sudo cryptsetup luksOpen /dev/disk/by-uuid/4cd2375a-e1d2-4690-90f6-1796ed07dac4 my_usb
-#     if [ $? -ne 0 ]; then
-#         echo Failed to decrypt usb stick
-#         exit 1
-#     fi
-# fi
 
-# if ! mount | grep "${mountPoint}" >/dev/null ; then
-#     sudo mount -t ext4 /dev/mapper/my_usb "${mountPoint}"
-#     if [ $? -ne 0 ]; then
-#         echo Failed to mount usb stick
-#         exit 1
-#     fi
-# fi
+mountPoint="$1"
+
+if ! mount | rg " ${mountPoint} " 2>&1 >/dev/null || [[ ! -d "$mountPoint" ]]; then
+    echo "mount directory is probably not correct: ${mountPoint}"
+    exit 1
+fi
 
 ## BORG BACKUP {{{1
 # Setting this, so the repo does not need to be given on the commandline:
 export BORG_REPO="${mountPoint}/backup/borg"
 
 # or this to ask an external program to supply the passphrase:
-export BORG_PASSCOMMAND='pass show backup'
-
+read -p "borg backup password: " -s BORG_PASSPHRASE
+/run/media/saep/7747d059-a34c-476f-bc89-06473ef129a4
 # some helpers and error handling:
 info() { printf "\n%s %s\n\n" "$( date )" "$*" >&2; }
 trap 'echo $( date ) Backup interrupted >&2; exit 2' INT TERM
 
 ### Syncthing {{{2
-if [ -d "${HOME}/Documents" ]; then
+if [ -d "${HOME}/documents" ]; then
     info "Starting backup of syncthing documents"
 
     # Backup the most important directories into an archive named after
@@ -70,8 +44,8 @@ if [ -d "${HOME}/Documents" ]; then
         --compression lz4               \
         --exclude-caches                \
         \
-        ::'Documents-{now}'              \
-        "${HOME}/Documents"
+        ::'documents-{now}'              \
+        "${HOME}/documents"
 
     backup_exit=$?
 
@@ -79,7 +53,7 @@ if [ -d "${HOME}/Documents" ]; then
 
     borg prune                          \
         --list                          \
-        --prefix 'Documents-'           \
+        --glob-archives 'documents-*'   \
         --show-rc                       \
         --keep-daily    28              \
         --keep-weekly   4               \
@@ -101,49 +75,53 @@ if [ -d "${HOME}/Documents" ]; then
 fi
 
 ### Host specific {{{2
-GNUPG_EXPORT_DIR="${HOME}/.gnupg/exported"
-rm -rf "$GNUPG_EXPORT_DIR"
-mkdir "$GNUPG_EXPORT_DIR"
-gpg -a --export > "${GNUPG_EXPORT_DIR}/pubkeys.asc"
-gpg -a --export-secret-keys > "${GNUPG_EXPORT_DIR}/privatekeys.asc"
-gpg --export-ownertrust > "${GNUPG_EXPORT_DIR}/otrust.txt"
-## To restore gnupg data:
-# gpg --import myprivatekeys.asc
-# gpg --import mypubkeys.asc
-# gpg -K
-# gpg -k
-# gpg --import-ownertrust otrust.txt
+if [ -d "${HOME}/.gnupg" ]; then
+    GNUPG_EXPORT_DIR="${HOME}/.gnupg/exported"
+    rm -rf "$GNUPG_EXPORT_DIR"
+    mkdir "$GNUPG_EXPORT_DIR"
+    gpg -a --export > "${GNUPG_EXPORT_DIR}/pubkeys.asc"
+    gpg -a --export-secret-keys > "${GNUPG_EXPORT_DIR}/privatekeys.asc"
+    gpg --export-ownertrust > "${GNUPG_EXPORT_DIR}/otrust.txt"
+    ## To restore gnupg data:
+    # gpg --import myprivatekeys.asc
+    # gpg --import mypubkeys.asc
+    # gpg -K
+    # gpg -k
+    # gpg --import-ownertrust otrust.txt
 
-info "Starting backup of host specific folders"
+    info "Starting backup of host specific folders"
 
-# Backup the most important directories into an archive named after
-# the machine this script is currently running on:
+    # Backup the most important directories into an archive named after
+    # the machine this script is currently running on:
 
-borg create                         \
-    --verbose                       \
-    --filter AME                    \
-    --list                          \
-    --stats                         \
-    --show-rc                       \
-    --compression lz4               \
-    --exclude-caches                \
-                                    \
-    ::'{hostname}-{now}'            \
-    "$GNUPG_EXPORT_DIR"
+    borg create                         \
+        --verbose                       \
+        --filter AME                    \
+        --list                          \
+        --stats                         \
+        --show-rc                       \
+        --compression lz4               \
+        --exclude-caches                \
+                                        \
+        ::'{hostname}-{now}'            \
+        "$GNUPG_EXPORT_DIR"
 
-backup_exit=$?
+    backup_exit=$?
 
-info "Pruning repository"
+    info "Pruning repository"
 
-borg prune                          \
-    --list                          \
-    --prefix '{hostname}-'           \
-    --show-rc                       \
-    --keep-daily    28              \
-    --keep-weekly   4               \
-    --keep-monthly  12              \
+    borg prune                          \
+        --list                          \
+        --glob-archives '{hostname}-*'  \
+        --show-rc                       \
+        --keep-daily    28              \
+        --keep-weekly   4               \
+        --keep-monthly  12              \
 
-prune_exit=$?
+    prune_exit=$?
+else
+    prune_exit=0
+fi
 
 # use highest exit code as global exit code
 global_exit=$(( backup_exit > prune_exit ? backup_exit : prune_exit ))
@@ -160,18 +138,6 @@ fi
 ## BORG BACKUP }}}1
 
 sync
-
-echo 'Unmount stick? (y/N)'
-read -r unmount
-case $unmount in
-    y*)
-        if ! sudo umount "$mountPoint" && sudo cryptsetup luksClose my_usb ; then
-            echo failure unmounting usb stick
-        fi
-        ;;
-    **)
-        ;;
-esac
 
 exit ${global_exit}
 
