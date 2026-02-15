@@ -357,6 +357,10 @@
       enable = true;
     };
 
+    gpg = {
+      enable = true;
+    };
+
     helix = {
       enable = false;
       settings = {
