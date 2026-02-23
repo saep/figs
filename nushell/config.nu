@@ -9,3 +9,11 @@ $env.config = {
   },
     keybindings: $keybindings
 }
+
+def today [file_name?: string] {
+  let date_str: string = (date now | format date "%Y-%m-%d")
+  match $file_name {
+    null => $date_str
+    _ => { $date_str + "_" + $file_name }
+  }
+}
