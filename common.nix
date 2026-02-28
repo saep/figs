@@ -162,6 +162,7 @@
           FLAKE_PATH = "${saepfigsDirectory}";
           GOPATH = "/home/${username}/.cache/go";
           GOBIN = "/home/${username}/.local/bin";
+          SDL_JOYSTICK_HIDAPI = "0";
         };
       shellAliases = {
         g = "git";
