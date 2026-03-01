@@ -10,6 +10,8 @@ $env.config = {
     keybindings: $keybindings
 }
 
+# Add today's date in front of the given file name or return the current date
+# as a string when no file name is given.
 def today [file_name?: string] {
   let date_str: string = (date now | format date "%Y-%m-%d")
   match $file_name {
