@@ -267,6 +267,7 @@
     };
     git = {
       enable = true;
+      signing.format = "ssh";
       settings = {
         user = {
           name = "Sebastian Witte";
