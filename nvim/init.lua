@@ -1,3 +1,7 @@
+-- Workaround because I mange my neovim config with a symlink to a directory:
+-- https://github.com/nix-community/home-manager/blob/master/modules/misc/news/2026/01/2026-01-25_19-00-28.nix
+require("hm-generated")
+
 -- nushell settings
 -- taken from: https://github.com/nushell/integrations/blob/main/nvim/init.lua
 vim.opt.sh = "nu"

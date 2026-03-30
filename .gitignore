@@ -21,6 +21,7 @@ home/config/doom/config.el
 
 # generated from home manager/nix
 result
+nvim/lua/hm-generated.lua
 
 # generated from direnv with 'use flakes'
 .direnv/

@@ -13,8 +13,18 @@
   home.homeDirectory = "/home/${username}";
   home.stateVersion = stateVersion;
 
-  xdg.configFile."nvim/".source =
-    config.lib.file.mkOutOfStoreSymlink "/home/${username}/${saepfigsDirectory}/nvim/";
+  # Workaround because I mange my neovim config with a symlink to a directory:
+  # https://github.com/nix-community/home-manager/blob/master/modules/misc/news/2026/01/2026-01-25_19-00-28.nix
+  xdg.configFile."nvim/init.lua".enable = false;
+  xdg.configFile."nvim/lua/hm-generated.lua".text = config.programs.neovim.initLua;
+  xdg.configFile."nvim/init.lua".source =
+    config.lib.file.mkOutOfStoreSymlink "/home/${username}/${saepfigsDirectory}/nvim/init.lua";
+  xdg.configFile."nvim/after".source =
+    config.lib.file.mkOutOfStoreSymlink "/home/${username}/${saepfigsDirectory}/nvim/after";
+  xdg.configFile."nvim/lua/saep".source =
+    config.lib.file.mkOutOfStoreSymlink "/home/${username}/${saepfigsDirectory}/nvim/lua/saep";
+  xdg.configFile."nvim/snippets".source =
+    config.lib.file.mkOutOfStoreSymlink "/home/${username}/${saepfigsDirectory}/nvim/snippets";
 
   xdg.configFile."vale/.vale.ini".text = ''
     MinAlertLevel = suggestion
