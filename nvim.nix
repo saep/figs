@@ -15,7 +15,7 @@
 
   # Workaround because I mange my neovim config with a symlink to a directory:
   # https://github.com/nix-community/home-manager/blob/master/modules/misc/news/2026/01/2026-01-25_19-00-28.nix
-  xdg.configFile."nvim/init.lua".enable = false;
+  # xdg.configFile."nvim/init.lua".enable = false;
   xdg.configFile."nvim/lua/hm-generated.lua".text = config.programs.neovim.initLua;
   xdg.configFile."nvim/init.lua".source =
     config.lib.file.mkOutOfStoreSymlink "/home/${username}/${saepfigsDirectory}/nvim/init.lua";
@@ -39,10 +39,13 @@
   programs = {
     neovim = {
       enable = true;
+      initLua = "";
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
+      withRuby = false;
+      withPython3 = false;
       plugins = with pkgs.vimPlugins; [
         blink-cmp
         blink-compat
@@ -99,7 +102,7 @@
         tree-sitter
 
         # bash/shell
-        nodePackages.bash-language-server
+        bash-language-server
 
         # html/css/json
         vscode-langservers-extracted

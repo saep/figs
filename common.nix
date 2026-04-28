@@ -53,7 +53,7 @@
 
     html-tidy
     shellcheck
-    nodePackages.bash-language-server
+    bash-language-server
   ];
 
   home.shellAliases = {
