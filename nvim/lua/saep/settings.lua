@@ -17,6 +17,7 @@ vim.opt.formatoptions = vim.opt.formatoptions + "cqtnjr"
 vim.opt.swapfile = false
 vim.opt.spelllang = "en_us,de_de"
 vim.opt.spellfile = vim.fn.stdpath("cache") .. "/ende.utf-8.add"
+vim.opt.spell = true
 vim.o.pumblend = 15
 vim.o.pumheight = 15
 vim.o.winblend = 0
