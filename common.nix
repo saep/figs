@@ -422,6 +422,7 @@
           c = "docker compose";
           d = "docker";
           e = "${editor}";
+          k = "kubectl";
         };
       };
     ripgrep.enable = true;
