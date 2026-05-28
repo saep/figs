@@ -16,6 +16,7 @@
   ];
 
   boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
     # Enable BBR congestion control
     kernelModules = [ "tcp_bbr" ];
     kernel.sysctl."net.ipv4.tcp_congestion_control" = "bbr";
