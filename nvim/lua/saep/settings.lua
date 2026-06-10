@@ -85,4 +85,11 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 
 require("fzf-lua").register_ui_select()
 
+vim.api.nvim_create_user_command("CopyPathToClipboard", function()
+  local fp = vim.fn.expand("%")
+  fp = vim.fn.fnamemodify(fp, ":.")
+  vim.fn.setreg("+", fp)
+  vim.notify("Copied path to clipboard: " .. fp)
+end, { force = true })
+
 return {}
