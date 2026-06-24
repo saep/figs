@@ -48,3 +48,19 @@ vim.g.sexp_mappings = {
 
 vim.api.nvim_create_user_command("Q", ":quit", {})
 vim.api.nvim_create_user_command("W", ":write", {})
+
+local intro_augroup = vim.api.nvim_create_augroup("saep_intro", { clear = true })
+vim.api.nvim_create_autocmd("BufEnter", {
+  group = intro_augroup,
+  callback = function()
+    local buf = vim.api.nvim_buf_get_name(0)
+    if buf == "" then
+      if vim.api.nvim_get_option_value("filetype", {}) == "" then
+        -- draw something so that the intro screen disappears
+        vim.api.nvim_buf_set_lines(0, 0, 0, false, { "" })
+        -- and then delete the buffer to remove the added line and allow quitting without a bang
+        vim.api.nvim_buf_delete(0, { force = true })
+      end
+    end
+  end,
+})
