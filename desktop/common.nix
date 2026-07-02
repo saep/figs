@@ -21,7 +21,7 @@
   xdg = {
     enable = true;
     mimeApps = {
-      enable = true;
+      enable = false;
       defaultApplications = {
         "text/*" = "nvim.desktop";
         "text/plain" = "nvim.desktop";
