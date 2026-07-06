@@ -242,14 +242,18 @@
     };
     fzf = {
       enable = true;
-      changeDirWidgetCommand = "${pkgs.fd}/bin/fd --type d --hidden";
-      changeDirWidgetOptions = [
-        "--preview '${pkgs.erdtree}/bin/erd --color force --icons --human --hidden --truncate {}'"
-      ];
-      fileWidgetCommand = "${pkgs.fd}/bin/fd --type file --hidden";
-      fileWidgetOptions = [
-        "--preview '${pkgs.bat}/bin/bat --force-colorization --paging=never --line-range :100 {}'"
-      ];
+      changeDirWidget = {
+        command = "${pkgs.fd}/bin/fd --type d --hidden";
+        options = [
+          "--preview '${pkgs.erdtree}/bin/erd --color force --icons --human --hidden --truncate {}'"
+        ];
+      };
+      fileWidget = {
+        command = "${pkgs.fd}/bin/fd --type file --hidden";
+        options = [
+          "--preview '${pkgs.bat}/bin/bat --force-colorization --paging=never --line-range :100 {}'"
+        ];
+      };
     };
     jujutsu = {
       enable = true;
