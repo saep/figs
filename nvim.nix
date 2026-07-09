@@ -118,6 +118,9 @@
         lua51Packages.jsregexp
         stylua
 
+        # nu
+        nufmt
+
         # go
         gcc # tests can't be run without it
         go
