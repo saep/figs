@@ -68,6 +68,7 @@
         vim-dadbod
         vim-dadbod-ui
         vim-dadbod-completion
+        vim-fugitive
         vim-repeat
         vim-sexp
         vim-sexp-mappings-for-regular-people

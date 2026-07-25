@@ -207,9 +207,8 @@ map("edit snippet", { "n" }, "<Leader>fs", function()
   require("luasnip.loaders").edit_snippet_files()
 end)
 
-map("neogit", "n", "<leader>gg", "<cmd>Neogit<cr>")
-map("neogit", "n", "<A-g>", "<cmd>Neogit<cr>")
-map("neogit", "n", "<leader>gl", "<cmd>Neogit log<cr>")
+map("git status", "n", "<leader>gg", "<cmd>Git<cr>")
+map("neogit", "n", "<leader>gl", "<cmd>Git log<cr>")
 map("blame line", { "n", "v" }, "<leader>gb", Snacks.git.blame_line)
 
 local http_group = vim.api.nvim_create_augroup("http_autocommands", { clear = true })
