@@ -33,8 +33,6 @@ require("snacks").setup({
 })
 require("saep.lsp")
 
--- vim.opt.runtimepath:append("/home/saep/git/neogit")
-
 vim.g.sexp_mappings = {
   sexp_move_to_prev_top_element = "", -- '[[',
   sexp_move_to_next_top_element = "", -- ']]',

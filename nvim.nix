@@ -42,27 +42,19 @@
         catppuccin-nvim
         luasnip
         conform-nvim
-        conjure
-        diffview-nvim
         fzf-lua
         kulala-nvim
         leap-nvim
         lualine-nvim
         neodev-nvim
-        neogit
         nvim-colorizer-lua
         nvim-dap
         one-small-step-for-vimkind
-        neotest
-        neotest-plenary
         nvim-dap-ui
-        nvim-jdtls # java language server helper plugin
         nvim-lspconfig
         nvim-spider
         nvim-surround
         (nvim-treesitter.withPlugins (_: nvim-treesitter.allGrammars))
-        nvim-treesitter-context
-        nvim-treesitter-textobjects
         nvim-ts-autotag
         nvim-web-devicons
         oil-nvim
@@ -106,9 +98,6 @@
         evcxr
         lldb
 
-        # scheme
-        mitscheme
-
         # nix
         nixd
         nixfmt
@@ -118,27 +107,14 @@
         lua51Packages.jsregexp
         stylua
 
-        # nu
-        nufmt
-
         # go
         gcc # tests can't be run without it
         go
         gofumpt
         gopls
 
-        # clojure
-        clojure
-        clojure-lsp
-
         # postgresql
         pgformatter
-
-        # postgres
-        pgformatter
-
-        # java
-        jdt-language-server
 
         imagemagick
 
