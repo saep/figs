@@ -124,8 +124,6 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  catppuccin.sddm.enable = true;
-
   # Enable the Plasma 5 Desktop Environment.
   services.displayManager = {
     plasma-login-manager = {
