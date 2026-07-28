@@ -55,6 +55,8 @@
     html-tidy
     shellcheck
     bash-language-server
+
+    zellij # with symlinmked config directory for now
   ];
 
   home.shellAliases = {
@@ -76,6 +78,9 @@
 
     configFile."helix/".source =
       config.lib.file.mkOutOfStoreSymlink "/home/${username}/${saepfigsDirectory}/helix/";
+
+    configFile."zellij/".source =
+      config.lib.file.mkOutOfStoreSymlink "/home/${username}/${saepfigsDirectory}/zellij/";
 
     systemDirs = {
       data = [
