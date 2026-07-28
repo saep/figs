@@ -181,6 +181,20 @@
     steam = {
       enable = true;
       gamescopeSession.enable = true;
+      package = pkgs.steam.override {
+        extraLibraries =
+          pkgs: with pkgs; [
+            openssl
+            nghttp2
+            libidn2
+            rtmpdump
+            libpsl
+            curl
+            krb5
+            keyutils
+            glib
+          ];
+      };
     };
     virt-manager.enable = true;
   };
