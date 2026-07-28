@@ -278,6 +278,7 @@
           name = "Sebastian Witte";
         };
         alias = {
+          br = "branch";
           cb = "switch -c";
           st = "status";
           fa = "fetch --all";
