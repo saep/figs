@@ -43,7 +43,7 @@
 
   time.timeZone = "Europe/Berlin";
 
-  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+  nix.settings.nix-path = [ "nixpkgs=${inputs.nixpkgs}" ];
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -117,6 +117,8 @@
     # with my Controller.
     SUBSYSTEM=="input", ATTRS{idVendor}=="3297", ATTRS{idProduct}=="1977", ENV{ID_INPUT_JOYSTICK}="" 
   '';
+
+  catppuccin.autoEnable = true;
 
   # mount of encrypted USB sticks within dolphin
   services.udisks2.enable = true;

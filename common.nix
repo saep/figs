@@ -266,6 +266,7 @@
         user = {
           email = "saep@saep.rocks";
           name = "Sebastian Witte";
+          ui-default-command = "log";
         };
         revset-aliases = {
           "immutable_heads()" = "trunk() | tags() | remote_bookmarks()";
