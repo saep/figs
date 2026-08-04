@@ -7,8 +7,13 @@ $env.config = {
     file_format: 'sqlite',
     max_size: 1000000,
   },
-    keybindings: $keybindings
+  datetime_format: {
+    table: "%Y-%m-%d %H:%M:%S%:z",
+    normal: "%Y-%m-%d %H:%M:%S%:z",
+  },
+  keybindings: $keybindings
 }
+
 
 # Add today's date in front of the given file name or return the current date
 # as a string when no file name is given.
