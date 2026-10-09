@@ -1,11 +1,11 @@
 require("conform").setup({
   formatters_by_ft = {
     gleam = { "gleam format" },
-    haskell = { "fourmolu", "ormolu" },
-    javascript = { "prettier" },
-    typescript = { "prettier" },
+    haskell = { "fourmolu", "ormolu", stop_after_first = true },
+    javascript = { "prettierd", "prettier", stop_after_first = true },
+    typescript = { "prettierd", "prettier", stop_after_first = true },
     lua = { "stylua" },
-    markdown = { "my_comrak", "prettier" },
+    markdown = { "my_comrak", "prettierd", "prettier", stop_after_first = true },
     nix = { "nixfmt" },
     rust = { "rustfmt", lsp_format = "fallback" },
     sql = { "pg_format" },
@@ -16,9 +16,14 @@ require("conform").setup({
     if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
       return
     end
-    return { timeout_ms = 500, lsp_format = "fallback" }
+    return { timeout_ms = 5000, lsp_format = "fallback" }
   end,
   formatters = {
+    prettierd = {
+      command = "prettierd",
+      args = { "$FILENAME" },
+      stdin = true,
+    },
     my_comrak = {
       command = "comrak",
       args = { "--to", "commonmark", "--gfm", "--width", "80" },
