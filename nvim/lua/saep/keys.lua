@@ -45,6 +45,15 @@ end)
 map("move selection down", "v", "J", ":m '>+1<CR>gv=gv")
 map("move selection up", "v", "K", ":m '<-2<CR>gv=gv")
 
+map("window down", "n", "<A-j>", "<C-w>j")
+map("window down", "i", "<A-j>", "<C-o><C-w>j<Esc>")
+map("window up", "n", "<A-k>", "<C-w>k")
+map("window up", "i", "<A-k>", "<C-o><C-w>k<Esc>")
+map("window right", "n", "<A-l>", "<C-w>l")
+map("window right", "i", "<A-l>", "<C-o><C-w>l<Esc>")
+map("window left", "n", "<A-h>", "<C-w>h")
+map("window left", "i", "<A-h>", "<C-o><C-w>h<Esc>")
+
 map("window down", "n", "<leader>wj", "<C-w>j")
 map("window up", "n", "<leader>wk", "<C-w>k")
 map("window right", "n", "<leader>wl", "<C-w>l")
@@ -54,6 +63,11 @@ map("window close", "n", "<leader>wc", "<Cmd>quit<CR>")
 map("window delete buffer", "n", "<leader>wd", Snacks.bufdelete.delete)
 
 map("zen-mode", "n", "<Leader>wz", Snacks.zen.zen)
+
+map("window down", { "t" }, "<A-j>", [[<C-\><C-n><C-w>j]])
+map("window up", { "t" }, "<A-k>", [[<C-\><C-n><C-w>k]])
+map("window right", { "t" }, "<A-l>", [[<C-\><C-n><C-w>l]])
+map("window left", { "t" }, "<A-h>", [[<C-\><C-n><C-w>h]])
 
 local create_tabs_up_to = function(n)
   local tab_pages = vim.api.nvim_list_tabpages()
@@ -196,43 +210,6 @@ end)
 map("git status", "n", "<leader>gg", "<cmd>Git<cr>")
 map("neogit", "n", "<leader>gl", "<cmd>Git log<cr>")
 map("blame line", { "n", "v" }, "<leader>gb", Snacks.git.blame_line)
-
-vim.keymap.set(
-  "n",
-  "<leader>xx",
-  "<cmd>Trouble diagnostics toggle<cr>",
-  { desc = "Diagnostics (Trouble)" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>xX",
-  "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-  { desc = "Buffer Diagnostics (Trouble)" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>cs",
-  "<cmd>Trouble symbols toggle focus=false<cr>",
-  { desc = "Symbols (Trouble)" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>cl",
-  "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-  { desc = "LSP Definitions / references / ... (Trouble)" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>xL",
-  "<cmd>Trouble loclist toggle<cr>",
-  { desc = "Location List (Trouble)" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>xQ",
-  "<cmd>Trouble qflist toggle<cr>",
-  { desc = "Quickfix List (Trouble)" }
-)
 
 local http_group = vim.api.nvim_create_augroup("http_autocommands", { clear = true })
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {

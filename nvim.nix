@@ -64,7 +64,6 @@
         rustaceanvim
         snacks-nvim
         text-case-nvim
-        trouble-nvim
         vim-exchange
         vim-dadbod
         vim-dadbod-ui
@@ -75,7 +74,6 @@
         vim-sexp-mappings-for-regular-people
         vim-speeddating
         which-key-nvim
-        zellij-nav-nvim
       ];
       extraPackages = with pkgs; [
         curl
