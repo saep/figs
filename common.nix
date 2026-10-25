@@ -396,6 +396,7 @@
       in
       {
         enable = true;
+        loadSessionVariables = true;
         environmentVariables = {
           EDITOR = editor;
           VISUAL = editor;
@@ -432,7 +433,7 @@
       enable = false;
       dotDir = ".config/zsh";
       syntaxHighlighting.enable = true;
-      initExtra = ''
+      initContent = ''
         ${lib.strings.fileContents ./zsh/zshrc}
       '';
     };
