@@ -160,6 +160,28 @@
   services.pipewire = {
     enable = true;
     pulse.enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+
+    # Prevent buffer underruns on the HyperX Cloud III Wireless USB dongle
+    wireplumber.extraConfig."99-hyperx-headroom" = {
+      "monitor.alsa.rules" = [
+        {
+          matches = [
+            {
+              "node.name" = "~alsa_output.*HyperX.*";
+            }
+          ];
+          actions = {
+            update-props = {
+              "api.alsa.headroom" = 1024;
+              "api.alsa.period-size" = 1024;
+              "session.suspend-timeout-seconds" = 0;
+            };
+          };
+        }
+      ];
+    };
   };
   hardware = {
     bluetooth = {
