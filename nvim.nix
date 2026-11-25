@@ -89,7 +89,7 @@
         vscode-langservers-extracted
 
         # typescript
-        deno
+        nodejs
         typescript-language-server
 
         # markdown
